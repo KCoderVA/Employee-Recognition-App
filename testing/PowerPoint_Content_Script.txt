@@ -1,0 +1,403 @@
+# PowerPoint Presentation Content - Employee Recognition App Flow Map
+
+## Instructions for PowerPoint Creation:
+1. Create a new PowerPoint presentation
+2. Use the "Title and Content" layout for most slides
+3. Apply VA branding and colors (Primary: #003f7f, Secondary: #00a91c)
+4. Copy the content below into each slide
+
+---
+
+## SLIDE 1: Title Slide
+**Layout:** Title Slide
+
+### Title:
+Employee Recognition Canvas App
+
+### Subtitle:
+Streamlining Recognition at Edward Hines Jr. VA Hospital
+
+### Content Box:
+- Version: 0.4.2
+- Platform: Microsoft Power Platform
+- Developed by: Informatics Team  
+- Date: July 2025
+
+---
+
+## SLIDE 2: Application Overview
+**Layout:** Title and Content
+
+### Title:
+Application Overview
+
+### Content:
+**What is the Employee Recognition App?**
+• Single platform for all employee recognition awards
+• Digital replacement for paper-based nomination forms  
+• Automated workflows for approval and processing
+• Mobile-friendly design for all devices
+
+**Key Benefits:**
+✓ Faster processing times - 50% reduction vs. paper forms
+✓ Reduced administrative burden
+✓ Better tracking and reporting capabilities  
+✓ Improved user experience
+
+---
+
+## SLIDE 3: Supported Award Types
+**Layout:** Title and Content
+
+### Title:
+Supported Award Types
+
+### Content:
+**🏥 HRO Awards (High Reliability Organization)**
+• Purpose: Patient safety & quality care
+• Key Features: Context-Actions-Results format
+• Process: Triage → Committee Review → Approval
+
+**🦸 Hines Hero Awards**
+• Purpose: Exceptional service above and beyond
+• Key Features: Detailed impact assessment
+• Process: Submission → Review → Recognition
+
+**⭐ Starfish Awards**  
+• Purpose: Peer-to-peer recognition for daily excellence
+• Key Features: I-CARE principles focus
+• Process: Quick Submission → Immediate Recognition
+
+**🌟 ICARE Awards**
+• Purpose: VA core values demonstration  
+• Key Features: Values-based evaluation
+• Process: Values Assessment → Recognition
+
+---
+
+## SLIDE 4: User Journey - Getting Started
+**Layout:** Title and Content
+
+### Title:
+User Journey - Getting Started
+
+### Content:
+**Step 1: Access the App**
+• Launch from SharePoint or direct link
+• Automatic Office 365 authentication
+• Personalized dashboard appears
+
+**Step 2: Choose Award Type**
+• Four award options displayed
+• Click to open nomination form
+• Context-sensitive help available
+
+**Step 3: Complete Nomination**
+• Dynamic form based on award type
+• Required fields highlighted
+• Progress indicator shows completion
+
+**Navigation Structure:**
+• Home Screen: Award selection, recent submissions, quick access
+• Nomination Screens: Award-specific questionnaires, validation, progress
+• Admin Screens: User management, oversight, configuration (Admin only)
+
+---
+
+## SLIDE 5: Example - Starfish Award Process
+**Layout:** Title and Content
+
+### Title:
+Example: Starfish Award Process
+
+### Content:
+**User Flow:**
+User Opens App → Selects "Starfish Award" → Fills Form:
+├── Nominee Information (auto-populated when possible)
+├── Event Date & Location
+├── I-CARE Principle Comments:
+│   ├── Integrity
+│   ├── Commitment  
+│   ├── Advocacy
+│   ├── Respect
+│   └── Excellence
+├── Special Flags (Safety/Nursing)
+└── Additional Comments
+
+**Submit → Confirmation → Background Processing:**
+• Save to SharePoint
+• Notify supervisor  
+• Update recognition database
+
+**Form Features:**
+• Auto-complete from directory
+• Real-time validation
+• Save draft capability
+
+---
+
+## SLIDE 6: Advanced Features
+**Layout:** Title and Content
+
+### Title:
+Advanced Features
+
+### Content:
+**Smart Functionality:**
+🧠 **Conditional Logic:** Form adapts based on responses
+✅ **Data Validation:** Prevents incomplete submissions  
+🔄 **Auto-Population:** User info from Active Directory
+📱 **Offline Capability:** Works without internet
+
+**Integration Points:**
+📊 **SharePoint:** Secure data storage and management
+⚡ **Power Automate:** Automated workflow processing
+👥 **Microsoft Teams:** Approval notifications and collaboration
+📧 **Email:** Automated communications and updates
+
+**Technical Features:**
+• 50+ variables and collections for state management
+• Responsive design for all devices
+• Role-based access control
+• Version tracking and deployment history
+
+---
+
+## SLIDE 7: HRO Award Approval Workflow
+**Layout:** Title and Content
+
+### Title:
+HRO Award Approval Workflow
+
+### Content:
+**Process Flow:**
+Submission → Triage Team Review → Committee Routing
+     ↓              ↓                    ↓
+Save to SP → Teams Notification → Approval Action
+     ↓              ↓                    ↓
+Auto-email → Review Packet → Route OR Return
+     ↓              ↓                    ↓
+Tracking → Decision Made → Final Processing
+
+**Approval Options:**
+✅ **Approve & Route:** Send to appropriate sub-committee
+❌ **Return for Info:** Request additional information
+ℹ️ **Add Comments:** Include notes for next reviewer
+🔄 **Reassign:** Route to different committee
+
+**Key Benefits:**
+• Reviewers can act directly in Teams or email
+• Complete audit trail of all decisions
+• Automated notifications to all stakeholders
+
+---
+
+## SLIDE 8: User Roles & Access
+**Layout:** Title and Content
+
+### Title:
+User Roles & Permissions
+
+### Content:
+**👤 Standard Users (All Employees)**
+• Submit nominations for any award type
+• View their own submission history
+• Access help and resources
+• Edit pending submissions
+
+**👨‍💼 Managers (Supervisory Staff)**
+• All Standard User functions
+• Review nominations for their team
+• Access departmental reports  
+• Approve certain award types
+
+**🏛️ Award Committee Members**
+• All Manager functions
+• Access detailed approval workflows
+• Triage and route nominations
+• Committee-specific views and reports
+
+**⚙️ Administrators (IT & Developers)**
+• Full app configuration access
+• User management capabilities
+• System monitoring and maintenance
+• App development and updates
+
+---
+
+## SLIDE 9: Technical Architecture
+**Layout:** Title and Content
+
+### Title:
+Technical Architecture
+
+### Content:
+**System Components:**
+```
+Frontend (Canvas App) ←→ Backend (Power Automate) ←→ Data Layer (SharePoint)
+        ↑                       ↑                       ↑
+Mobile/Desktop/Tablet    Teams & Email Integration    Office 365 & AD
+```
+
+**Frontend Features:**
+• Responsive design for all devices
+• Dynamic forms with smart validation
+• Intuitive navigation and user experience
+• 50+ variables and collections
+
+**Backend Capabilities:**
+• Automated workflow processing
+• Multi-stage approval chains
+• Teams and email integration
+• Dynamic content generation
+
+**Data Management:**
+• Secure SharePoint storage
+• Role-based access control
+• Complete audit trail
+• Built-in analytics and reporting
+
+---
+
+## SLIDE 10: Success Metrics & Impact
+**Layout:** Title and Content
+
+### Title:
+Success Metrics & Impact
+
+### Content:
+**Efficiency Improvements:**
+• **50% faster** processing vs. paper forms
+• **100% digital** audit trail coverage  
+• **24/7 real-time** status tracking
+• **Zero manual** routing required
+
+**User Satisfaction:**
+📱 **Mobile Accessibility:** Field staff can submit on-the-go
+⚡ **Instant Confirmations:** Immediate feedback upon submission
+❓ **Contextual Help:** Guidance available throughout process
+🎯 **Single Platform:** All award types in one location
+
+**Compliance & Reporting:**
+• Complete documentation with timestamps
+• Standardized forms and workflows
+• Automated reporting and analytics
+• Improved audit capabilities
+
+---
+
+## SLIDE 11: Future Roadmap
+**Layout:** Title and Content
+
+### Title:
+Future Roadmap & Enhancements
+
+### Content:
+**Phase 1: Current State (✅ Complete)**
+• Four award types supported
+• Basic approval workflows
+• Mobile responsive design
+• SharePoint integration
+
+**Phase 2: Enhanced Features (🚧 In Planning)**
+• Analytics dashboard with trend analysis
+• Enhanced Teams integration
+• Bulk processing capabilities
+• Advanced reporting and metrics
+
+**Phase 3: Future Vision (💡 Conceptual)**
+• VA-wide integration and scaling
+• Voice-to-text input for mobile users
+• AI-powered nomination recommendations
+• Real-time public recognition portal
+
+**Immediate Next Steps:**
+📈 Analytics Dashboard: Recognition trends and impact metrics
+🏆 Recognition Portal: Public celebration space for awardees
+
+---
+
+## SLIDE 12: Getting Help & Support
+**Layout:** Title and Content
+
+### Title:
+Getting Help & Support
+
+### Content:
+**Built-in Support Features:**
+💡 **In-app Help:** Tooltips and contextual guidance
+📊 **Progress Indicators:** Visual completion status
+⚠️ **Error Prevention:** Real-time validation messages
+✅ **Confirmation Screens:** Clear submission verification
+
+**Additional Resources:**
+📖 **Training Materials:** Step-by-step user guides
+🎥 **Video Tutorials:** Screen recordings for common tasks
+❓ **FAQs:** Comprehensive answers to frequent questions
+🔧 **Technical Support:** IT help desk for technical issues
+
+**Contact Information:**
+• **Primary Contact:** Kyle Coder, Program Analyst
+• **Email:** Kyle.Coder@va.gov
+• **Department:** Informatics, Hines VAMC
+• **Support:** Submit via IT Help Desk or contact administrators
+
+---
+
+## SLIDE 13: Questions & Demo
+**Layout:** Title and Content
+
+### Title:
+Questions & Live Demo
+
+### Content:
+**Ready to See It in Action?**
+🖥️ **Live Demo:** Walk through actual application interface
+📝 **Sample Nomination:** Complete nomination start to finish
+⚡ **Approval Workflow:** Show committee review process
+❓ **Q&A Session:** Answer questions about functionality
+
+**Next Steps for New Users:**
+1. Access training materials
+2. Practice with test nominations
+3. Reach out with questions
+4. Start using for real nominations
+
+**We Welcome Your Feedback!**
+💡 **User Suggestions:** Ideas for improvements and features
+🎯 **Feature Requests:** Functionality for future versions
+🐛 **Bug Reports:** Help identify and fix issues
+🏆 **Success Stories:** Share positive experiences
+
+**Thank you for your attention!**
+*Questions and feedback are always welcome*
+
+---
+
+## POWERPOINT DESIGN NOTES:
+
+### Color Scheme:
+- **Primary Blue:** #003f7f (VA Blue)
+- **Secondary Green:** #00a91c (Success/Approval)
+- **Accent Orange:** #ff8c00 (Attention/Highlights)
+- **Background:** White with light blue accents
+
+### Fonts:
+- **Headers:** Bold, Arial or Calibri, 32-36pt
+- **Subheaders:** Bold, 24-28pt
+- **Body Text:** Regular, 18-20pt
+- **Bullets:** 16-18pt
+
+### Layout Tips:
+- Use consistent spacing between elements
+- Include VA logo on title slide
+- Add slide numbers on all slides except title
+- Use animations sparingly (fade in/out only)
+- Include flowchart diagrams using SmartArt where indicated
+- Add screenshots of actual app when available
+
+### SmartArt Suggestions:
+- Slide 5: Use Process flow for Starfish Award steps
+- Slide 7: Use Decision tree for approval workflow
+- Slide 9: Use Block diagram for technical architecture
+- Slide 11: Use Timeline for roadmap phases

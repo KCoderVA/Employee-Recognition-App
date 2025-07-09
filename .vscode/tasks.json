@@ -1,0 +1,146 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Package Power App",
+			"type": "shell",
+			"command": "pac",
+			"args": [
+				"canvas",
+				"pack",
+				"--sources",
+				"./src/power-apps/EmployeeRecognitionApp_Unpacked",
+				"--msapp",
+				"./src/power-apps/EmployeeRecognitionApp.msapp"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Unpack Power App",
+			"type": "shell",
+			"command": "pac",
+			"args": [
+				"canvas",
+				"unpack",
+				"--msapp",
+				"./src/power-apps/EmployeeRecognitionApp.msapp",
+				"--sources",
+				"./src/power-apps/EmployeeRecognitionApp_Unpacked"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Open Project Documentation",
+			"type": "shell",
+			"command": "code",
+			"args": [
+				"./PROJECT_MIGRATION_PLAN.md"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Generate Project Report",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"Get-ChildItem -Recurse | Group-Object Extension | Sort-Object Count -Descending | Format-Table Name, Count -AutoSize"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "new"
+			}
+		},
+		{
+			"label": "Backup Project",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"$date = Get-Date -Format 'yyyy-MM-dd_HHmm'; Compress-Archive -Path './src', './docs', './assets' -DestinationPath \"./archive/backup_$date.zip\" -Force; Write-Host \"Backup created: backup_$date.zip\""
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Show Active Extensions",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"Write-Host 'Power Platform Workspace - Active Extensions:' -ForegroundColor Green; Write-Host ''; code --list-extensions | Where-Object { $_ -notmatch 'ms-vscode.cmake|ms-vscode.cpp|redhat.java|ms-toolsai|ms-python|gerhardbrueckl.powerbi|analysis-services|ms-mssql|ms-vscode.live-server|github.codespaces|github.remotehub|github.vscode-pull-request|ms-vscode.azure-repos|ms-vscode.remote-repositories|visualstudioexptteam.intellicode' } | ForEach-Object { Write-Host \"✅ $_\" -ForegroundColor Cyan }; Write-Host ''; Write-Host 'Disabled Extensions (workspace-specific):' -ForegroundColor Yellow; code --list-extensions | Where-Object { $_ -match 'ms-vscode.cmake|ms-vscode.cpp|redhat.java|ms-toolsai|ms-python|gerhardbrueckl.powerbi|analysis-services|ms-mssql|ms-vscode.live-server|github.codespaces|github.remotehub|github.vscode-pull-request|ms-vscode.azure-repos|ms-vscode.remote-repositories|visualstudioexptteam.intellicode' } | ForEach-Object { Write-Host \"❌ $_\" -ForegroundColor Red }"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "new"
+			}
+		},
+		{
+			"label": "Initialize Git Repository",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"if (!(Test-Path .git)) { git init; Write-Host 'Git repository initialized' -ForegroundColor Green; git add .; git commit -m 'Initial commit - Employee Recognition workspace setup'; Write-Host 'Initial commit created' -ForegroundColor Green } else { Write-Host 'Git repository already exists' -ForegroundColor Yellow }"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Create Git Ignore for Power Platform",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"$gitignore = @'`n# Power Platform specific`n*.msapp`nConnections/`nDataSources/`nother/`n`n# VS Code`n.vscode/launch.json`n.vscode/settings.json.bak`n`n# Temporary files`n*.tmp`n*.temp`n`n# Archive and backup files`n*.bak`n*.backup`n`n# OS generated files`n.DS_Store`n.DS_Store?`nThumbs.db`nehthumbs.db`n`n# Solution files (keep source, ignore binary)`n*.zip.bak`n'@; Set-Content -Path '.gitignore' -Value $gitignore; Write-Host 'Power Platform .gitignore created' -ForegroundColor Green"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		}
+	]
+}

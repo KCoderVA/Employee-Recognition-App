@@ -1,0 +1,111 @@
+// Final Markdown Table for Approval Action - Combines dynamic logic with proper table formatting
+// Use this in your Approval action's Details field (Expression tab): outputs('Compose.HinesHero.Table')
+
+// Contents of the "Compose.HinesHero.Table" action (Markdown formatted with safe literal line breaks):
+@{concat(
+'| **FIELD** | **VALUE** |
+|:----------|:----------|
+',
+if(not(equals(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'],'None provided')), 
+   concat('| **Award Type** | ', outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'], ' |
+'), 
+   ''),
+if(not(equals(triggerOutputs()?['body/field_5'],'None provided')), 
+   concat('| **Nominee''s Name** | ', triggerOutputs()?['body/field_5'], ' |
+'), 
+   ''),
+if(not(equals(formatDateTime(convertTimeZone(triggerOutputs()?['body/field_7'], 'UTC', 'Central Standard Time'), 'MM/dd/yyyy hh:mm tt'),'None provided')), 
+   concat('| **Event Date** | ', formatDateTime(convertTimeZone(triggerOutputs()?['body/field_7'], 'UTC', 'Central Standard Time'), 'MM/dd/yyyy hh:mm tt'), ' |
+'), 
+   ''),
+if(not(equals(outputs('Compose.Location.Text'),'None provided')), 
+   concat('| **Location** | ', outputs('Compose.Location.Text'), ' |
+'), 
+   ''),
+if(not(equals(triggerOutputs()?['body/SafetyBoolean'],'None provided')), 
+   concat('| **Event is a safety concern** | ', triggerOutputs()?['body/SafetyBoolean'], ' |
+'), 
+   ''),
+if(not(or(empty(outputs('Compose_HinesHero_Summary_Text')), equals(outputs('Compose_HinesHero_Summary_Text'),'None provided'))), 
+   concat('| **Hines Hero Summary** | ', outputs('Compose_HinesHero_Summary_Text'), ' |
+'), 
+   ''),
+if(not(or(empty(outputs('Compose_HinesHero_Details_Text')), equals(outputs('Compose_HinesHero_Details_Text'),'None provided'))), 
+   concat('| **Hines Hero Details** | ', outputs('Compose_HinesHero_Details_Text'), ' |
+'), 
+   ''),
+if(not(equals(outputs('Compose.AdditionalComments.Text'),'None provided')), 
+   concat('| **Additional Comments** | ', outputs('Compose.AdditionalComments.Text'), ' |
+'), 
+   ''),
+if(not(or(empty(outputs('Compose_NomineeServiceLine_Text')), equals(outputs('Compose_NomineeServiceLine_Text'),'None provided'))), 
+   concat('| **Nominee''s Service Line** | ', outputs('Compose_NomineeServiceLine_Text'), ' |
+'), 
+   '')
+)}
+
+///////////////////////////////////////////////////////////////////////
+// Final Approval Action Details (combines intro text + table):
+@{concat(
+'A new award nomination packet was submitted to you (Award Packet #', triggerOutputs()?['body/ID'], '), as a member of the Hines Award Committee Triage Team. Please review the details below, and either re-route this packet to the appropriate award sub-committee OR return this back to sender with your free-text comments to request follow-up/additional information.
+
+You can interact with this award nomination within [Microsoft Teams](msteams://teams.microsoft.com/l/entity/2d4edd75-5a69-41da-bead-44c3a268ece8/approvals) or [Microsoft Approvals](https://make.gov.powerautomate.us/environments/Default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/approvals/received).
+
+', 
+outputs('Compose.HinesHero.Table')
+)}
+
+///////////////////////////////////////////////////////////////////////
+// Alternative: Simple approach if markdown tables don't render properly in Approvals
+// Use this version in Compose.HinesHero.Table if the markdown table version has issues:
+
+@{concat(
+'**AWARD NOMINATION DETAILS**
+
+',
+if(not(equals(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'],'None provided')), 
+   concat('**Award Type:**  ', outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'], '
+
+'), 
+   ''),
+if(not(equals(triggerOutputs()?['body/field_5'],'None provided')), 
+   concat('**Nominee''s Name:**  ', triggerOutputs()?['body/field_5'], '
+
+'), 
+   ''),
+if(not(equals(formatDateTime(convertTimeZone(triggerOutputs()?['body/field_7'], 'UTC', 'Central Standard Time'), 'MM/dd/yyyy hh:mm tt'),'None provided')), 
+   concat('**Event Date:**  ', formatDateTime(convertTimeZone(triggerOutputs()?['body/field_7'], 'UTC', 'Central Standard Time'), 'MM/dd/yyyy hh:mm tt'), '
+
+'), 
+   ''),
+if(not(equals(outputs('Compose.Location.Text'),'None provided')), 
+   concat('**Location:**  ', outputs('Compose.Location.Text'), '
+
+'), 
+   ''),
+if(not(equals(triggerOutputs()?['body/SafetyBoolean'],'None provided')), 
+   concat('**Event is a safety concern:**  ', triggerOutputs()?['body/SafetyBoolean'], '
+
+'), 
+   ''),
+if(not(or(empty(outputs('Compose_HinesHero_Summary_Text')), equals(outputs('Compose_HinesHero_Summary_Text'),'None provided'))), 
+   concat('**Hines Hero Summary:**  ', outputs('Compose_HinesHero_Summary_Text'), '
+
+'), 
+   ''),
+if(not(or(empty(outputs('Compose_HinesHero_Details_Text')), equals(outputs('Compose_HinesHero_Details_Text'),'None provided'))), 
+   concat('**Hines Hero Details:**  ', outputs('Compose_HinesHero_Details_Text'), '
+
+'), 
+   ''),
+if(not(equals(outputs('Compose.AdditionalComments.Text'),'None provided')), 
+   concat('**Additional Comments:**  ', outputs('Compose.AdditionalComments.Text'), '
+
+'), 
+   ''),
+if(not(or(empty(outputs('Compose_NomineeServiceLine_Text')), equals(outputs('Compose_NomineeServiceLine_Text'),'None provided'))), 
+   concat('**Nominee''s Service Line:**  ', outputs('Compose_NomineeServiceLine_Text'), '
+
+'), 
+   '')
+)}

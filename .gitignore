@@ -1,0 +1,27 @@
+# Power Platform specific
+*.msapp
+Connections/
+DataSources/
+other/
+
+# VS Code
+.vscode/launch.json
+.vscode/settings.json.bak
+
+# Temporary files
+*.tmp
+*.temp
+
+# Archive and backup files
+*.bak
+*.backup
+
+# OS generated files
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+
+# Solution files (keep source, ignore binary)
+*.zip.bak
+

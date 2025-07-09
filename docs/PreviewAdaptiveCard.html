@@ -1,0 +1,613 @@
+{
+            "type": "AdaptiveCard",
+            "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.5",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "text": "Award Packet - Triage Routing",
+                    "wrap": true,
+                    "size": "Large",
+                    "weight": "Bolder"
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "A new award nomination packet was submitted to you (Award Packet #@{triggerOutputs()?['body/ID']}), as a member of the Hines Award Committee Triage Team. The submitter is recommending that an Edward Hines Jr. VA Hospital employee be recognized for their outstanding actions! Please review the details below, and either re-route this packet to the appropriate award sub-committee OR return this back to sender with your free-text comments to request follow-up/additional information.",
+                    "wrap": true
+                },
+                {
+                    "type": "Table",
+                    "columns": [
+                        {
+                            "width": 1
+                        },
+                        {
+                            "width": 1
+                        }
+                    ],
+                    "rows": [
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "QUESTION",
+                                            "wrap": true,
+                                            "horizontalAlignment": "Center"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "ANSWER",
+                                            "wrap": true,
+                                            "horizontalAlignment": "Center"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "isVisible": "@{outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'] != '' && outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'] != null && outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'] != 'None provided'}",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Award Type:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "isVisible": "@{triggerOutputs()?['body/field_5'] != '' && triggerOutputs()?['body/field_5'] != null && triggerOutputs()?['body/field_5'] != 'None provided'}",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Nominee:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/field_5']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "isVisible": "@{formatDateTime(convertTimeZone(triggerOutputs()?['body/field_7'], 'UTC', 'Central Standard Time'), 'MM/dd/yyyy hh:mm tt') != '' && formatDateTime(convertTimeZone(triggerOutputs()?['body/field_7'], 'UTC', 'Central Standard Time'), 'MM/dd/yyyy hh:mm tt') != null && formatDateTime(convertTimeZone(triggerOutputs()?['body/field_7'], 'UTC', 'Central Standard Time'), 'MM/dd/yyyy hh:mm tt') != 'None provided'}",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Event Date:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{formatDateTime(convertTimeZone(triggerOutputs()?['body/field_7'], 'UTC', 'Central Standard Time'), 'MM/dd/yyyy hh:mm tt')}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "isVisible": "@{triggerOutputs()?['body/field_6'] != '' && triggerOutputs()?['body/field_6'] != null && triggerOutputs()?['body/field_6'] != 'None provided'}",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Event Location:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/field_6']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "isVisible": "@{triggerOutputs()?['body/SafetyBoolean'] != '' && triggerOutputs()?['body/SafetyBoolean'] != null && triggerOutputs()?['body/SafetyBoolean'] != 'None provided'}",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Event Is A Safety Concern?:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/SafetyBoolean']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Nominee Is Part Of Nursing Services?:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/NursingBoolean']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Integrity Comments:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/field_9']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Commitment Comments:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/field_11']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Advocacy Comments:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/field_13']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Respect Comments:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/field_13']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Excellence Comments:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/field_17']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Additional Comments:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{triggerOutputs()?['body/field_19']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Hines Hero Summary:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Packet_HinesHero_Summary_Text']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "Hines Hero Details:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Packet_HinesHero_Text']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "HRO Context:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Context_Text']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "HRO Actions:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Actions_Text']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "HRO Results:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Results_Text']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "HRO Clinical Event?:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_ClinicalOrNonc']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "HRO Service Line:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Nominee_ServiceLineOrTeam_Text']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "TableRow",
+                            "cells": [
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "HRO Principles:",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "TableCell",
+                                    "items": [
+                                        {
+                                            "type": "TextBlock",
+                                            "text": "@{outputs('Get_Refreshed_Item_Info')?['body/Choice_HROPrinciple']}",
+                                            "wrap": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Container"
+                },
+                {
+                    "type": "Input.ChoiceSet",
+                    "choices": [
+                        {
+                            "title": "Forward to Nursing Team",
+                            "value": "Forward to Nursing Team"
+                        },
+                        {
+                            "title": "Forward to HRO Team",
+                            "value": "Forward to HRO Team"
+                        },
+                        {
+                            "title": "Forward to Public Affairs",
+                            "value": "Forward to Public Affairs"
+                        },
+                        {
+                            "title": "Return to Sender",
+                            "value": "Return to Sender"
+                        }
+                    ],
+                    "placeholder": "Choose one option....",
+                    "label": "Move nomination packet forwards to:",
+                    "value": "TriageStage_Output",
+                    "isRequired": true,
+                    "errorMessage": "Please select one of the four options...",
+                    "id": "Triage",
+                    "spacing": "Medium"
+                },
+                {
+                    "type": "Input.Text",
+                    "label": "Any comments from Triage Team?",
+                    "errorMessage": "You can add any free-text comments here...",
+                    "id": "TriageStage_Comments"
+                },
+                {
+                    "type": "ActionSet",
+                    "actions": [
+                        {
+                            "type": "Action.Submit",
+                            "title": "Submit",
+                            "style": "positive",
+                            "tooltip": "Submit Triage"
+                        }
+                    ],
+                    "spacing": "ExtraLarge"
+                }
+            ]
+        }
