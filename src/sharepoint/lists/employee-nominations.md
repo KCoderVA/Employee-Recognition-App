@@ -2,10 +2,10 @@
 
 ## List Configuration
 
-**List Name**: Employee_Nominations  
-**Description**: Stores all employee award nominations and their status  
-**Template**: Custom List  
-**Content Types**: Award Nomination  
+**List Name**: Employee_Nominations
+**Description**: Stores all employee award nominations and their status
+**Template**: Custom List
+**Content Types**: Award Nomination
 
 ## Column Schema
 
@@ -145,5 +145,5 @@
 
 ---
 
-**Last Updated**: July 9, 2025  
+**Last Updated**: July 9, 2025
 **Maintained By**: VHA Informatics Data Team

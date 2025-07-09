@@ -102,6 +102,6 @@
 
 ---
 
-**Next Review Date**: October 9, 2025  
-**Document Owner**: VHA Informatics Security Team  
+**Next Review Date**: October 9, 2025
+**Document Owner**: VHA Informatics Security Team
 **Approval**: CISO Office

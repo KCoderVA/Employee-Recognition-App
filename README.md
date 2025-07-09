@@ -91,6 +91,25 @@ This workspace contains a complete Power Platform solution including:
 - Document deployment procedures
 - Maintain environment-specific configurations
 
+## Documentation
+
+### Project Documentation
+- **[Migration Plan](./PROJECT_MIGRATION_PLAN.md)** - Complete migration strategy and implementation
+- **[Optimization Report](./OPTIMIZATION_COMPLETE.md)** - Workspace optimization summary
+- **[Comprehensive Evaluation](./COMPREHENSIVE_EVALUATION.md)** - Complete project assessment and roadmap
+
+### Technical Documentation
+- **[Flow Maps](./docs/flow-maps/)** - Application workflow diagrams
+- **[Training Materials](./docs/training/)** - User guides and training resources
+- **[SharePoint Components](./src/sharepoint/)** - Data structure and configuration
+- **[Monitoring & Analytics](./docs/monitoring-analytics-framework.md)** - Comprehensive monitoring strategy
+- **[CI/CD Pipeline](./docs/cicd-pipeline-strategy.md)** - Deployment and release management
+
+### Advanced Features
+- **[Testing Framework](./testing/)** - Comprehensive testing strategy and tools
+- **[Environment Configuration](./environments/)** - Multi-environment setup and management
+- **[Security Compliance](./security/)** - Security framework and compliance tracking
+
 ## Support & Maintenance
 
 ### Regular Tasks

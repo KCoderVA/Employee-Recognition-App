@@ -11,10 +11,11 @@ This folder contains SharePoint lists, pages, and queries for the Employee Recog
 ## SharePoint Lists
 
 ### Employee Recognition Lists
-- Award nominations and submissions
-- Employee directory and profiles
-- Award types and categories
-- Approval tracking and history
+- **[Employee Nominations](./lists/employee-nominations.md)** - Award nominations and submissions
+- **[User Profiles](./lists/user-profiles.md)** - Employee directory and profiles
+- **[Award Categories](./lists/award-categories.md)** - Award types and categories
+- **[Admin Settings](./lists/admin-settings.md)** - Application configuration settings
+- **[Audit Log](./lists/audit-log.md)** - Comprehensive audit trail and activity logs
 
 ### Data Management
 - Regular exports for backup and analysis

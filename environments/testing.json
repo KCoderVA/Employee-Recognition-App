@@ -1,0 +1,117 @@
+{
+    "environment": {
+        "name": "Testing",
+        "type": "Sandbox",
+        "region": "unitedstates",
+        "purpose": "Integration testing and quality assurance"
+    },
+    "powerPlatform": {
+        "environmentUrl": "https://org-testing.crm.dynamics.com/",
+        "dataverseDatabase": "org-testing-db",
+        "defaultCurrency": "USD",
+        "defaultLanguage": "en-US",
+        "securityGroup": "EmployeeRecognition-Testing-Users"
+    },
+    "connections": {
+        "sharepoint": {
+            "siteUrl": "https://va.sharepoint.com/sites/EmployeeRecognition-Testing",
+            "connectionName": "SharePoint-Testing",
+            "authentication": "Office365"
+        },
+        "email": {
+            "connectionName": "Office365Outlook-Testing",
+            "fromAddress": "noreply-testing@va.gov",
+            "authentication": "Office365"
+        },
+        "teams": {
+            "connectionName": "MicrosoftTeams-Testing",
+            "authentication": "Office365"
+        },
+        "approvals": {
+            "connectionName": "Approvals-Testing",
+            "authentication": "Office365"
+        }
+    },
+    "dataConfiguration": {
+        "testDataEnabled": true,
+        "anonymizePII": true,
+        "dataRefreshSchedule": "bi-weekly",
+        "retentionPeriod": "6 months",
+        "backupFrequency": "weekly"
+    },
+    "applicationSettings": {
+        "debugMode": true,
+        "telemetryLevel": "verbose",
+        "errorHandling": "detailed",
+        "performanceLogging": true,
+        "featureFlags": {
+            "newAwardTypes": true,
+            "bulkProcessing": false,
+            "advancedReporting": true,
+            "mobilePushNotifications": false
+        }
+    },
+    "security": {
+        "conditionalAccess": "testing-policy",
+        "mfaRequired": false,
+        "sessionTimeout": 480,
+        "dataLossPrevention": "testing-policy",
+        "auditLogging": true
+    },
+    "integrations": {
+        "activeDirectory": {
+            "syncEnabled": true,
+            "testUsersOnly": true,
+            "groupFilters": [
+                "Testing-Users",
+                "QA-Team"
+            ]
+        },
+        "monitoring": {
+            "applicationInsights": "testing-app-insights",
+            "logAnalytics": "testing-workspace",
+            "alertsEnabled": true
+        }
+    },
+    "deploymentSettings": {
+        "autoDeployFromDev": true,
+        "approvalRequired": false,
+        "rollbackEnabled": true,
+        "healthCheckEndpoint": "/api/health/testing",
+        "deploymentWindow": "24/7"
+    },
+    "testing": {
+        "automatedTestsEnabled": true,
+        "performanceTestingEnabled": true,
+        "loadTestingEnabled": false,
+        "testDataGeneration": true,
+        "mockExternalServices": true
+    },
+    "compliance": {
+        "dataClassification": "internal",
+        "retentionPolicy": "testing-retention",
+        "privacyLevel": "internal",
+        "complianceChecks": [
+            "data-governance",
+            "security-baseline"
+        ]
+    },
+    "resourceLimits": {
+        "apiCallsPerDay": 50000,
+        "powerAutomateRuns": 10000,
+        "storageGB": 50,
+        "maxConcurrentUsers": 100
+    },
+    "notifications": {
+        "stakeholders": [
+            "testing-team@va.gov",
+            "qa-managers@va.gov"
+        ],
+        "alerts": {
+            "deploymentIssues": true,
+            "performanceDegradation": true,
+            "securityIncidents": true,
+            "testFailures": true
+        }
+    }
+}
