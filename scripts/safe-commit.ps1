@@ -320,7 +320,7 @@ if ($DryRun) {
 } else {
     Write-Status "Executing commit..." "🚀"
     try {
-        git commit -m $CommitMessage
+        git commit -m "$CommitMessage"
         if ($LASTEXITCODE -eq 0) {
             Write-Success "Commit successful!"
             
@@ -355,108 +355,3 @@ if ($DryRun) {
 }
 
 Write-Status "Safe commit process completed successfully!" "✨" "Green"
-        exit 1
-    }
-}
-
-# Check for sensitive data patterns
-Write-Host "`n🔒 Scanning for sensitive data..." -ForegroundColor Yellow
-$sensitivePatterns = @(
-    "Kyle\.Coder@va\.gov",
-    "password\s*=",
-    "secret\s*=",
-    "token\s*=",
-    "api.key",
-    "connection.string"
-)
-
-$sensitiveFindings = @()
-foreach ($file in $modifiedFiles) {
-    if (Test-Path $file) {
-        $content = Get-Content $file -Raw -ErrorAction SilentlyContinue
-        foreach ($pattern in $sensitivePatterns) {
-            if ($content -match $pattern -and $content -notmatch "example|placeholder|TODO|template") {
-                $sensitiveFindings += "$file : $pattern"
-            }
-        }
-    }
-}
-
-if ($sensitiveFindings.Count -gt 0 -and !$Force) {
-    Write-Host "🚨 Potential sensitive data found:" -ForegroundColor Red
-    $sensitiveFindings | ForEach-Object { Write-Host "  - $_" -ForegroundColor Red }
-    
-    $sensitiveChoice = Read-Host "`nContinue anyway? (y/N)"
-    if ($sensitiveChoice -notmatch '^[Yy]') {
-        Write-Host "❌ Commit aborted. Please review sensitive data." -ForegroundColor Red
-        exit 1
-    }
-}
-
-# Get commit message if not provided
-if (!$CommitMessage) {
-    Write-Host "`n📝 Commit Message Required" -ForegroundColor Cyan
-    Write-Host "Enter a detailed commit message (press Enter twice when done):" -ForegroundColor Yellow
-    
-    $messageLines = @()
-    do {
-        $line = Read-Host ""
-        if ($line) {
-            $messageLines += $line
-        }
-    } while ($line -or $messageLines.Count -eq 0)
-    
-    $CommitMessage = $messageLines -join "`n"
-}
-
-# Add project context to commit message
-$enhancedCommitMessage = @"
-$CommitMessage
-
-Project: Employee Recognition App
-Developer: Kyle J. Coder (Advanced Analytics & Informatics)
-Organization: Edward Hines Jr. VA Hospital (Station #578), VISN #12
-Timestamp: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
-Files Changed: $($gitStatus.Count)
-
-[Committed via safe-commit.ps1 with CHANGELOG enforcement]
-"@
-
-# Stage all changes
-Write-Host "`n📤 Staging all changes..." -ForegroundColor Green
-git add -A
-
-# Show final status
-Write-Host "`n📊 Final Commit Summary:" -ForegroundColor Cyan
-Write-Host "Files to commit: $((git diff --cached --name-only).Count)" -ForegroundColor White
-Write-Host "CHANGELOG updated: $(if (git diff --cached --name-only | Where-Object { $_ -eq 'CHANGELOG.md' }) { 'Yes' } else { 'No' })" -ForegroundColor White
-
-# Perform the commit
-Write-Host "`n🚀 Committing changes..." -ForegroundColor Green
-git commit -m $enhancedCommitMessage
-
-if ($LASTEXITCODE -eq 0) {
-    $commitHash = git rev-parse HEAD
-    Write-Host "`n✅ Commit successful!" -ForegroundColor Green
-    Write-Host "Commit hash: $commitHash" -ForegroundColor Cyan
-    Write-Host ""
-    
-    # Ask about pushing to remote
-    $pushChoice = Read-Host "Push to remote repository? (Y/n)"
-    if ($pushChoice -match '^[Yy]' -or $pushChoice -eq '') {
-        Write-Host "`n📡 Pushing to remote..." -ForegroundColor Green
-        git push origin main
-        
-        if ($LASTEXITCODE -eq 0) {
-            Write-Host "✅ Push successful!" -ForegroundColor Green
-        } else {
-            Write-Host "❌ Push failed. You may need to pull first." -ForegroundColor Red
-        }
-    }
-} else {
-    Write-Host "❌ Commit failed!" -ForegroundColor Red
-    exit 1
-}
-
-Write-Host "`n🎉 Safe commit process completed!" -ForegroundColor Green
-Write-Host "Repository is up to date with comprehensive change tracking." -ForegroundColor Cyan
