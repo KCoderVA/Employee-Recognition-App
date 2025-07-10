@@ -1,18 +1,30 @@
-# Security Policy
+# Security Policy & Compliance Framework
 
-## Supported Versions
+## 🔒 Overview
+This security policy governs the Employee Recognition Application, a comprehensive Power Platform solution handling sensitive employee information within the VA healthcare system. This policy ensures compliance with VA IT security standards, FISMA requirements, Privacy Act considerations, and HIPAA regulations where applicable.
 
-We provide security updates for the following versions of the Employee Recognition Application:
+## 📋 Related Documentation
+- **[README.md](README.md)** - Complete project overview including security features
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history with security-related updates
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - Security considerations in development process
+- **[Compliance Framework](security/compliance-framework.md)** - Detailed compliance documentation
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 0.8.x   | ✅ Current Release |
-| 0.7.x   | ⚠️ Limited Support |
-| < 0.7   | ❌ No Support      |
+## 🛡️ Supported Versions & Security Updates
 
-## Reporting a Vulnerability
+We provide comprehensive security support for the following versions:
 
-The Employee Recognition Application handles sensitive employee information and must maintain the highest security standards in compliance with VA IT security policies.
+| Version | Support Status | Security Updates | End of Life |
+|---------|---------------|------------------|-------------|
+| 0.8.x   | ✅ **Full Support** | Active monitoring & immediate patches | TBD |
+| 0.7.x   | ⚠️ **Limited Support** | Critical vulnerabilities only | December 2025 |
+| 0.6.x   | ❌ **End of Life** | No security updates | July 2025 |
+| < 0.6   | ❌ **Unsupported** | No security updates | Immediate |
+
+**Current Production Version**: 0.8.3 (Pre-Production Release Candidate)
+
+## 🚨 Vulnerability Reporting Process
+
+The Employee Recognition Application processes sensitive employee data and maintains enterprise-level security standards in compliance with VA IT security policies and federal regulations.
 
 ### How to Report
 
