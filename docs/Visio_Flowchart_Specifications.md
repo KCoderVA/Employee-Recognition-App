@@ -20,7 +20,7 @@
 
 ### Main Flow Structure:
 ```
-[START: User Opens App] 
+[START: User Opens App]
     ↓
 [Office 365 Authentication]
     ↓
@@ -28,7 +28,7 @@
     ↓
 [Award Type Selection]
     ├── [HRO Award] → [HRO Form] → [HRO Workflow]
-    ├── [Hines Hero] → [Hero Form] → [Hero Workflow]  
+    ├── [Hines Hero] → [Hero Form] → [Hero Workflow]
     ├── [Starfish] → [Starfish Form] → [Starfish Workflow]
     └── [ICARE] → [ICARE Form] → [ICARE Workflow]
     ↓
@@ -58,7 +58,7 @@
 ```
 [User Launches App]
     ↓
-[Authentication Check] → [Valid?] 
+[Authentication Check] → [Valid?]
     ├── NO → [Login Screen] → [Office 365 Auth]
     └── YES → [Continue]
     ↓
@@ -121,7 +121,7 @@
     ↓
 [Triage Team Reviews Packet]
     ↓
-[Decision Point] 
+[Decision Point]
     ├── [Approve & Route]
     │   ├── [Determine Sub-committee]
     │   ├── [HRO Principles Committee]
@@ -155,11 +155,11 @@
 
 ### Technical Component Flow:
 ```
-[Users] 
+[Users]
     ↓ (Access via)
 [Canvas App Interface]
     ├── [Mobile Devices]
-    ├── [Desktop Browsers] 
+    ├── [Desktop Browsers]
     └── [Tablet Devices]
     ↓ (Authenticates through)
 [Office 365 / Azure AD]
