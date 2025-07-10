@@ -2,32 +2,50 @@ Employee Recognition Application - Power Platform Project
 Copyright 2025 Kyle J. Coder
 
 This product includes software developed by Kyle J. Coder
-for the VA healthcare system.
+for the Edward Hines Jr. VA Hospital (Station #578), VISN #12, Department of Veterans Affairs.
 
-Original work created as part of the VHA Informatics Data Team
-employee recognition solution development project.
+Original work created as part of the Advanced Analytics & Informatics team
+employee recognition solution development project for the Hines Award Committee.
+
+**Developer**: Kyle J. Coder (Developer/Program Analyst)
+**Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
+**Team**: Advanced Analytics & Informatics
+**Customer**: Hines Award Committee
+**Project Key Stakeholder**: Christina Conway (Health System Specialist)
+**Executive Sponsor**: James Doelling (Executive Director/CEO)
 
 This software contains the following components:
 
 1. Power Apps Canvas Application
-   - Employee Recognition submission and management interface
-   - Award-specific workflow logic and user experience design
-   - Mobile-responsive design and accessibility features
+   - Comprehensive employee recognition submission and management interface
+   - Award-specific workflow logic for 8 distinct award types
+   - Mobile-responsive design with accessibility compliance
+   - Integration with VA security systems and SharePoint
 
 2. Power Automate Flows
    - Safety Check Chatbot with AI-powered guidance
-   - Triage and Approval Routing automation
-   - Teams and Outlook integration workflows
+   - Triage and Approval Routing automation for award committee workflow
+   - Teams and Outlook integration for notification systems
+   - Multi-level approval processes with intelligent routing
 
 3. SharePoint Integration Components
-   - List configurations and data structure design
-   - Permission frameworks and security models
-   - Audit logging and compliance tracking systems
+   - Award management lists for 8 award categories (Hines Hero, Great Catch, Starfish, Daisy, Bee, HRO HeRO, Safety Story, WOW! Recognition)
+   - Employee directory and nomination tracking systems
+   - Permission frameworks and security models for 5502+ hospital employees
+   - Audit logging and compliance tracking systems for federal requirements
 
-4. Documentation and Training Materials
-   - Comprehensive technical documentation
-   - User training presentations and guides
-   - Professional repository organization and best practices
+4. Award Management System
+   - Monthly awards: Hines Hero, Daisy, Bee (limited winners)
+   - Weekly awards: Starfish (unlimited winners)
+   - Safety awards: Great Catch, Safety Story (incident-based)
+   - Organizational awards: HRO HeRO (culture-based)
+   - Volume recognition: WOW! Recognition (hundreds monthly)
+
+5. Documentation and Training Materials
+   - Comprehensive technical documentation for VA healthcare environment
+   - User training presentations and guides for award committee operations
+   - Professional repository organization and development best practices
+   - Security and compliance frameworks for federal healthcare standards
 
 5. Enterprise Architecture Design
    - Multi-environment deployment strategy
