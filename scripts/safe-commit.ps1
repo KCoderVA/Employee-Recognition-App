@@ -20,22 +20,25 @@
 param(
     [Parameter(Mandatory=$false, Position=0)]
     [string]$CommitMessage = "",
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$Force = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$SkipChangelogCheck = $false,
-    
+
+    [Parameter(Mandatory=$false)]
+    [switch]$SkipWorkspaceCleanup = $false,
+
     [Parameter(Mandatory=$false)]
     [switch]$Interactive = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$DryRun = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [string]$ChangelogEntry = "",
-    
+
     [Parameter(Mandatory=$false)]
     [ValidateSet("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security")]
     [string]$ChangeType = "Changed"
@@ -71,7 +74,7 @@ function Write-Warning {
 
 # Main execution
 Write-Header "Safe Commit Manager - Employee Recognition App"
-Write-Status "Ensuring CHANGELOG.md compliance before commit" "🔍"
+Write-Status "Ensuring CHANGELOG.md compliance and workspace optimization before commit" "🔍"
 
 if ($DryRun) {
     Write-Warning "DRY RUN MODE - No actual commits will be made"
@@ -88,7 +91,46 @@ try {
     exit 1
 }
 
-# Get current git status
+# Step 1: Automatic Workspace Cleanup (NEW REQUIREMENT)
+if (-not $SkipWorkspaceCleanup) {
+    Write-Header "🧹 Automatic Workspace Cleanup" "Blue"
+    Write-Status "Cleaning redundant and outdated files before GitHub commit..." "🗂️"
+
+    $workspaceCleanupScript = Join-Path $PSScriptRoot "workspace-cleanup.ps1"
+    if (Test-Path $workspaceCleanupScript) {
+        try {
+            if ($DryRun) {
+                & $workspaceCleanupScript -DryRun -Verbose
+            } else {
+                $cleanupResults = & $workspaceCleanupScript
+                if ($cleanupResults.FilesRemoved.Count -gt 0 -or $cleanupResults.DirectoriesRemoved.Count -gt 0) {
+                    Write-Success "Workspace cleanup complete - $($cleanupResults.FilesRemoved.Count) files and $($cleanupResults.DirectoriesRemoved.Count) directories removed"
+
+                    # Re-stage files after cleanup
+                    Write-Status "Re-staging files after cleanup..." "📦"
+                    git add .
+                } else {
+                    Write-Status "Workspace already clean - no files removed" "✨" "Green"
+                }
+            }
+        }
+        catch {
+            Write-Warning "Workspace cleanup encountered an issue: $($_.Exception.Message)"
+            if (-not $Force) {
+                Write-Status "Use -Force to bypass cleanup issues or -SkipWorkspaceCleanup to skip this step" "⚠️" "Yellow"
+                exit 1
+            }
+        }
+    } else {
+        Write-Warning "Workspace cleanup script not found at: $workspaceCleanupScript"
+        Write-Status "Continuing without automatic cleanup..." "⏭️"
+    }
+    Write-Host ""
+} else {
+    Write-Status "Skipping workspace cleanup (SkipWorkspaceCleanup flag set)" "⏭️" "Yellow"
+}
+
+# Get current git status (refresh after potential cleanup)
 $gitStatus = git status --porcelain 2>$null
 if (!$gitStatus) {
     Write-Status "No changes to commit - working directory is clean" "✨" "Green"
@@ -102,7 +144,7 @@ $unstagedFiles = @()
 foreach ($line in $gitStatus) {
     $status = $line.Substring(0, 2)
     $file = $line.Substring(3)
-    
+
     if ($status[0] -ne ' ') {
         $stagedFiles += $file
         Write-Host "  📄 [STAGED] $file" -ForegroundColor Green
@@ -138,29 +180,29 @@ if ($stagedFiles.Count -eq 0) {
 # Analyze if changes require CHANGELOG update
 function Test-RequiresChangelog {
     param([string[]]$Files)
-    
+
     $significantExtensions = @('.md', '.js', '.ts', '.py', '.ps1', '.json', '.yml', '.yaml', '.xml', '.html', '.css')
     $significantPaths = @('src/', 'docs/', 'scripts/', '.github/', 'assets/')
     $significantFiles = @('LICENSE', 'NOTICE', 'SECURITY.md', 'CONTRIBUTING.md', 'README.md')
-    
+
     foreach ($file in $Files) {
         # Skip CHANGELOG.md itself
         if ($file -eq "CHANGELOG.md") { continue }
-        
+
         # Check file extensions
         foreach ($ext in $significantExtensions) {
             if ($file.EndsWith($ext)) { return $true }
         }
-        
+
         # Check paths
         foreach ($path in $significantPaths) {
             if ($file.StartsWith($path)) { return $true }
         }
-        
+
         # Check specific files
         if ($significantFiles -contains $file) { return $true }
     }
-    
+
     return $false
 }
 
@@ -169,7 +211,7 @@ $requiresChangelog = Test-RequiresChangelog $stagedFiles
 
 if (!$SkipChangelogCheck -and $requiresChangelog) {
     Write-Status "CHANGELOG Verification Required..." "🔍" "Yellow"
-    
+
     # Check if CHANGELOG.md exists
     if (!(Test-Path "CHANGELOG.md")) {
         Write-Error "CHANGELOG.md not found!"
@@ -177,24 +219,24 @@ if (!$SkipChangelogCheck -and $requiresChangelog) {
         Write-Host "Run: .\scripts\update-changelog.ps1 --init" -ForegroundColor Cyan
         exit 1
     }
-    
+
     # Check if CHANGELOG.md is being committed
     $changelogStaged = $stagedFiles -contains "CHANGELOG.md"
-    
+
     # Get the last modification date of CHANGELOG.md
     $changelogLastModified = (Get-Item "CHANGELOG.md").LastWriteTime
     $timeSinceModified = (Get-Date) - $changelogLastModified
-    
+
     # Check if CHANGELOG.md has recent updates (within last 2 hours)
     $recentUpdate = $timeSinceModified.TotalHours -lt 2
-    
+
     if (!$changelogStaged -and !$recentUpdate -and !$Force) {
         Write-Header "CHANGELOG UPDATE REQUIRED" "Red"
         Write-Host "The CHANGELOG.md file must be updated before committing significant changes." -ForegroundColor Yellow
         Write-Host "Last modified: $($changelogLastModified.ToString('yyyy-MM-dd HH:mm:ss'))" -ForegroundColor Gray
         Write-Host "Time since modification: $([math]::Round($timeSinceModified.TotalMinutes, 1)) minutes" -ForegroundColor Gray
         Write-Host ""
-        
+
         Write-Status "Files requiring CHANGELOG documentation:" "📄"
         foreach ($file in $stagedFiles) {
             if ($file -ne "CHANGELOG.md" -and (Test-RequiresChangelog @($file))) {
@@ -202,14 +244,14 @@ if (!$SkipChangelogCheck -and $requiresChangelog) {
             }
         }
         Write-Host ""
-        
+
         Write-Status "Resolution Options:" "🛠️"
         Write-Host "  1. Auto-update CHANGELOG: .\scripts\update-changelog.ps1" -ForegroundColor White
         Write-Host "  2. Manual edit: code CHANGELOG.md" -ForegroundColor White
         Write-Host "  3. Interactive entry: Add -ChangelogEntry 'Your change description'" -ForegroundColor White
         Write-Host "  4. Force bypass: Add -Force (NOT recommended)" -ForegroundColor White
         Write-Host ""
-        
+
         # Offer to auto-update CHANGELOG if ChangelogEntry provided
         if ($ChangelogEntry) {
             Write-Status "Auto-updating CHANGELOG with provided entry..." "🔄"
@@ -288,7 +330,7 @@ foreach ($file in $sourceFiles) {
 if ($filesWithoutHeaders.Count -gt 0 -and !$Force) {
     Write-Warning "Files missing Apache 2.0 license headers:"
     $filesWithoutHeaders | ForEach-Object { Write-Host "    • $_" -ForegroundColor Yellow }
-    
+
     if ($Interactive) {
         Write-Status "Continue anyway? (y/N)" "🤔" "Yellow"
         $headerChoice = Read-Host
@@ -323,11 +365,11 @@ if ($DryRun) {
         git commit -m "$CommitMessage"
         if ($LASTEXITCODE -eq 0) {
             Write-Success "Commit successful!"
-            
+
             # Get commit hash
             $commitHash = git rev-parse --short HEAD
             Write-Status "Commit hash: $commitHash" "🔗" "Green"
-            
+
             # Ask about pushing to GitHub
             if ($Interactive) {
                 Write-Status "Push to GitHub? (y/N)" "🌐" "Yellow"

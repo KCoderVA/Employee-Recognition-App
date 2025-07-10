@@ -25,6 +25,29 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "📦 Package Power App v0.9.0 (Source Control)",
+			"type": "shell",
+			"command": "pac",
+			"args": [
+				"canvas",
+				"pack",
+				"--sources",
+				"./src/power-apps/EmployeeRecognitionApp_v0.9.0/Source",
+				"--msapp",
+				"./releases/v0.9.x/EmployeeRecognitionApp_v0.9.0.msapp"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": false
+			},
+			"problemMatcher": []
+		},
+		{
 			"label": "Unpack Power App",
 			"type": "shell",
 			"command": "pac",
@@ -147,8 +170,10 @@
 			"type": "shell",
 			"command": "powershell",
 			"args": [
-				"-ExecutionPolicy", "Bypass",
-				"-File", "./scripts/update-changelog.ps1"
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/update-changelog.ps1"
 			],
 			"group": "build",
 			"presentation": {
@@ -166,8 +191,10 @@
 			"type": "shell",
 			"command": "powershell",
 			"args": [
-				"-ExecutionPolicy", "Bypass",
-				"-File", "./scripts/safe-commit.ps1"
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/safe-commit.ps1"
 			],
 			"group": "build",
 			"presentation": {
@@ -187,8 +214,10 @@
 			"type": "shell",
 			"command": "powershell",
 			"args": [
-				"-ExecutionPolicy", "Bypass",
-				"-File", "./scripts/repo-health-check.ps1",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/repo-health-check.ps1",
 				"-Detailed"
 			],
 			"group": "test",
@@ -337,6 +366,160 @@
 				"reveal": "always",
 				"focus": true,
 				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "🧹 Clean Workspace (Auto Before Commit)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/workspace-cleanup.ps1"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "🧹 Clean Workspace (Dry Run Preview)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/workspace-cleanup.ps1",
+				"-DryRun",
+				"-Verbose"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "🌐 Open Power Apps Web Portal",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"Write-Host '🌐 Opening Power Apps web portal...' -ForegroundColor Cyan; Write-Host ''; Write-Host '📋 Quick Web Workflow Reminder:' -ForegroundColor Yellow; Write-Host '  1. Import canvas app (if uploading new .msapp)' -ForegroundColor White; Write-Host '  2. Edit and test in web editor' -ForegroundColor White; Write-Host '  3. Export app when satisfied' -ForegroundColor White; Write-Host '  4. Unpack exported .msapp for source control' -ForegroundColor White; Write-Host ''; Start-Process 'https://make.powerapps.com/'"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": false
+			}
+		},
+		{
+			"label": "📁 Open App Source in VS Code",
+			"type": "shell",
+			"command": "code",
+			"args": [
+				"./src/power-apps/EmployeeRecognitionApp_v0.9.0/Source"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "📋 Show Web Development Quick Reference",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"Write-Host '🎨 Power Apps Web Development Quick Reference' -ForegroundColor Green; Write-Host ''; Write-Host '📝 DEVELOPMENT CYCLE:' -ForegroundColor Yellow; Write-Host '  1. Edit source code (.fx.yaml files) in VS Code' -ForegroundColor White; Write-Host '  2. Package to .msapp using VS Code task' -ForegroundColor White; Write-Host '  3. Upload .msapp to https://make.powerapps.com manually' -ForegroundColor White; Write-Host '  4. Test and validate in Power Apps web editor' -ForegroundColor White; Write-Host '  5. Export updated .msapp when satisfied' -ForegroundColor White; Write-Host '  6. Unpack exported .msapp for next development cycle' -ForegroundColor White; Write-Host ''; Write-Host '📂 KEY FOLDERS:' -ForegroundColor Yellow; Write-Host '  • Source Code: src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/' -ForegroundColor Cyan; Write-Host '  • Packaged Apps: releases/v0.9.x/' -ForegroundColor Cyan; Write-Host '  • Documentation: src/power-apps/EmployeeRecognitionApp_v0.9.0/README.md' -ForegroundColor Cyan; Write-Host ''; Write-Host '⚠️  WEB-ONLY LIMITATIONS:' -ForegroundColor Red; Write-Host '  • No direct save from web to source control' -ForegroundColor White; Write-Host '  • Manual import required (no automated deployment)' -ForegroundColor White; Write-Host '  • Desktop Power Apps Studio unavailable' -ForegroundColor White; Write-Host ''; Write-Host '✅ Use VS Code tasks for packaging and portal access!' -ForegroundColor Green"
+			},
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "new",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "🚀 Power Apps Web Development Helper",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/powerapps-web.ps1",
+				"help"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "new",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "📖 Open Power Apps Web Reference",
+			"type": "shell",
+			"command": "code",
+			"args": [
+				"./docs/POWER_APPS_WEB_REFERENCE.md"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "silent",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "🚀 Launch Repository Manager",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./repository_manager/GitHub-Repository-Manager.ps1"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "new",
 				"showReuseMessage": false,
 				"clear": true
 			},

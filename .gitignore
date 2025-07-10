@@ -1,33 +1,124 @@
-# Power Platform specific
+# =============================================================================
+# Employee Recognition App - GitHub Repository .gitignore
+# =============================================================================
+# This file excludes VS Code settings, workspace files, archives, and
+# non-project files from GitHub while maintaining them locally.
+
+# ================================
+# VS Code & Development Environment
+# ================================
+.vscode/
+*.code-workspace
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/settings.json.bak
+
+# ================================
+# Archive & Backup Files
+# ================================
+archive/
+*.backup
+*.bak
+*.old
+*.tmp
+*.temp
+*_backup.*
+*_archive.*
+*_old.*
+
+# ================================
+# Scripts & Automation (Local Only)
+# ================================
+scripts/
+.gitmessage
+.git/hooks/pre-commit
+
+# ================================
+# Power Platform Specific
+# ================================
 *.msapp
 Connections/
 DataSources/
 other/
 temp/
-
-# Environment specific files
-environments/secrets.json
-environments/.env
-environments/local.json
-
-# PAC CLI cache and build outputs
 .pac/
 dist/
 build/
 
-# VS Code workspace specific
-.vscode/launch.json
-.vscode/settings.json.bak
+# ================================
+# Environment & Configuration
+# ================================
+environments/secrets.json
+environments/.env
+environments/local.json
+environments/production.json
 
-# Temporary files
-*.tmp
-*.temp
+# ================================
+# Documentation Management
+# ================================
+docs/CHANGELOG_ENFORCEMENT.md
+docs/CHANGELOG_ENFORCEMENT_SUMMARY.md
 
-# Archive and backup files
-*.bak
-*.backup
+# ================================
+# Project Management Files
+# ================================
+PROJECT_ORGANIZATION.md
+REPOSITORY_TRANSFORMATION.md
+DEVELOPMENT_TASKS.md
+GITHUB_OPTIMIZATION_PLAN.md
 
-# Large export files (keep source, not binaries)
+# ================================
+# Reference Materials
+# ================================
+*.pdf
+reference/
+guidelines/
+
+# ================================
+# OS Generated Files
+# ================================
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ================================
+# Large Binary Files
+# ================================
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# ================================
+# Node.js (if applicable)
+# ================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ================================
+# Python (if applicable)
+# ================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# ================================
+# Logs & Debug Files
+# ================================
+logs/
+*.log
+debug.log
+error.log
 *.zip.bak
 *_exportedZip.zip
 

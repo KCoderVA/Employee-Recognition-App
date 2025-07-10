@@ -20,10 +20,10 @@
 param(
     [Parameter(Mandatory=$false)]
     [switch]$Detailed = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$Fix = $false,
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$ShowStatus = $false
 )
@@ -58,33 +58,33 @@ function Write-Warning {
 
 function Test-ChangelogFormat {
     param([string]$Content)
-    
+
     $issues = @()
     $warnings = @()
-    
+
     # Check for basic structure
     if (!($Content -match "# Changelog")) {
         $issues += "Missing main '# Changelog' header"
     }
-    
+
     if (!($Content -match "## \[Unreleased\]")) {
         $issues += "Missing '## [Unreleased]' section"
     }
-    
+
     # Check for Keep a Changelog format compliance
     if (!($Content -match "All notable changes.*will be documented")) {
         $warnings += "Missing standard Keep a Changelog introduction"
     }
-    
+
     if (!($Content -match "The format is based on.*Keep a Changelog")) {
         $warnings += "Missing Keep a Changelog format reference"
     }
-    
+
     # Check for semantic versioning reference
     if (!($Content -match "Semantic Versioning")) {
         $warnings += "Missing Semantic Versioning reference"
     }
-    
+
     # Check for consistent date format
     $dateMatches = [regex]::Matches($Content, '\d{4}-\d{2}-\d{2}')
     foreach ($match in $dateMatches) {
@@ -94,7 +94,7 @@ function Test-ChangelogFormat {
             $issues += "Invalid date format: $($match.Value)"
         }
     }
-    
+
     # Check for proper section headers
     $validSections = @("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security")
     $sectionMatches = [regex]::Matches($Content, '### (.+)')
@@ -104,7 +104,7 @@ function Test-ChangelogFormat {
             $warnings += "Non-standard section: '$section' (should be one of: $($validSections -join ', '))"
         }
     }
-    
+
     return @{
         Issues = $issues
         Warnings = $warnings
@@ -114,21 +114,21 @@ function Test-ChangelogFormat {
 
 function Get-ChangelogStatus {
     param([string]$Content)
-    
+
     # Check for recent updates in Unreleased section
     $unreleasedMatch = [regex]::Match($Content, '## \[Unreleased\](.*?)(?=## \[|$)', [System.Text.RegularExpressions.RegexOptions]::Singleline)
-    
+
     if ($unreleasedMatch.Success) {
         $unreleasedContent = $unreleasedMatch.Groups[1].Value
         $hasRecentChanges = $unreleasedContent -match '### (Added|Changed|Deprecated|Removed|Fixed|Security)[\s\S]*?- .+'
-        
+
         return @{
             HasUnreleasedSection = $true
             HasRecentChanges = $hasRecentChanges
             UnreleasedContent = $unreleasedContent.Trim()
         }
     }
-    
+
     return @{
         HasUnreleasedSection = $false
         HasRecentChanges = $false
@@ -192,10 +192,10 @@ $status = Get-ChangelogStatus $changelogContent
 
 if ($status.HasUnreleasedSection) {
     Write-Success "Has [Unreleased] section"
-    
+
     if ($status.HasRecentChanges) {
         Write-Success "Contains recent changes"
-        
+
         if ($Detailed) {
             Write-Status "Recent changes preview:" "📝"
             $preview = $status.UnreleasedContent -split "`n" | Select-Object -First 10
@@ -215,7 +215,7 @@ if ($status.HasUnreleasedSection) {
 # Git integration check
 if ($ShowStatus -and (git rev-parse --git-dir 2>$null)) {
     Write-Status "Git status for CHANGELOG.md:" "🔀"
-    
+
     $gitStatus = git status --porcelain CHANGELOG.md 2>$null
     if ($gitStatus) {
         if ($gitStatus.StartsWith('M ')) {
@@ -228,7 +228,7 @@ if ($ShowStatus -and (git rev-parse --git-dir 2>$null)) {
     } else {
         Write-Status "CHANGELOG.md is up to date with git" "🔄" "Green"
     }
-    
+
     # Check last commit
     $lastCommit = git log -1 --format="%h %s" CHANGELOG.md 2>$null
     if ($lastCommit) {
