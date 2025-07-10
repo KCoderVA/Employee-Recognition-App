@@ -124,7 +124,7 @@ Include any breaking changes or special deployment notes.
 ```
 ├── src/                     # Source code
 │   ├── power-apps/         # Canvas app exports and source
-│   ├── power-automate/     # Flow definitions and exports  
+│   ├── power-automate/     # Flow definitions and exports
 │   └── sharepoint/         # List templates and configurations
 ├── docs/                   # Project documentation
 ├── testing/                # Test scripts and data

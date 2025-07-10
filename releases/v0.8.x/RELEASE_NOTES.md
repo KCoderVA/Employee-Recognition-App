@@ -1,6 +1,6 @@
 # Employee Recognition App - Release v0.8.x
 
-**Release Date**: July 9, 2025  
+**Release Date**: July 9, 2025
 **Status**: Pre-production (Awaiting Final Stakeholder Approval)
 
 ## Overview
@@ -10,7 +10,7 @@ This release represents the culmination of the Employee Recognition Application 
 
 ### Power Apps Canvas Application
 - **File**: `App_EmployeeRecognition_v0.8.x_20250709.zip`
-- **Features**: 
+- **Features**:
   - Complete employee recognition workflow
   - Award-specific question logic (CR-002)
   - Safety reporting integration (CR-009)
