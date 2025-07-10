@@ -1,11 +1,11 @@
 # =============================================================================
 # Employee Recognition App - GitHub Repository .gitignore
 # =============================================================================
-# This file excludes VS Code settings, workspace files, archives, and
-# non-project files from GitHub while maintaining them locally.
+# This file excludes VS Code settings, workspace files, archives, testing data,
+# and developer-specific files from GitHub while maintaining them locally.
 
 # ================================
-# VS Code & Development Environment
+# VS Code & Development Environment (Local Only)
 # ================================
 .vscode/
 *.code-workspace
@@ -16,7 +16,16 @@
 .vscode/settings.json.bak
 
 # ================================
-# Archive & Backup Files
+# Testing & Development Data (Local Only)
+# ================================
+testing/
+**/test
+**/tests
+*.test.*
+*_test.*
+
+# ================================
+# Archive & Backup Files (Local Only)
 # ================================
 archive/
 *.backup
@@ -27,6 +36,7 @@ archive/
 *_backup.*
 *_archive.*
 *_old.*
+*_exportedZip.zip
 
 # ================================
 # Scripts & Automation (Local Only)
@@ -34,9 +44,20 @@ archive/
 scripts/
 .gitmessage
 .git/hooks/pre-commit
+repository_manager/
 
 # ================================
-# Power Platform Specific
+# Security & Environment Configuration (Local Only)
+# ================================
+security/
+environments/
+*.env
+.env.*
+config.local.*
+settings.local.*
+
+# ================================
+# Power Platform Specific (Local Only)
 # ================================
 *.msapp
 Connections/
@@ -46,35 +67,61 @@ temp/
 .pac/
 dist/
 build/
+releases/
+src/power-apps/**/Source/Connections/
+src/power-apps/**/Source/DataSources/
+src/power-apps/**/Source/Other/
+**/*_exportedZip.zip
+**/*_PowerAutomateFlow*.zip
 
 # ================================
-# Environment & Configuration
-# ================================
-environments/secrets.json
-environments/.env
-environments/local.json
-environments/production.json
-
-# ================================
-# Documentation Management
+# Documentation Management (Local Only)
 # ================================
 docs/CHANGELOG_ENFORCEMENT.md
 docs/CHANGELOG_ENFORCEMENT_SUMMARY.md
+docs/legacy/
+docs/**/DRAFT_*
+docs/**/TODO_*
+docs/**/*.msg
+docs/**/*.url
+docs/**/*.pdf
+docs/**/*.docx
+docs/**/*.pptx
+docs/**/*.vsdx
+docs/training/
+docs/flow-maps/
+docs/**/*Preview*.html
+docs/**/*Experiment*.md
+docs/**/*Extracted*.html
 
 # ================================
-# Project Management Files
+# Project Management Files (Local Only)
 # ================================
 PROJECT_ORGANIZATION.md
 REPOSITORY_TRANSFORMATION.md
 DEVELOPMENT_TASKS.md
 GITHUB_OPTIMIZATION_PLAN.md
+WORKSPACE_*.md
+*_MIGRATION_*.md
 
 # ================================
-# Reference Materials
+# Reference Materials & Assets (Local Only)
 # ================================
 *.pdf
+*.docx
+*.doc
+*.pptx
+*.ppt
+*.xlsx
+*.xls
+*.msg
+*.vsdx
+*.vsd
 reference/
 guidelines/
+assets/excel/
+assets/images/
+assets/documents/
 
 # ================================
 # OS Generated Files
@@ -86,12 +133,13 @@ ehthumbs.db
 Desktop.ini
 
 # ================================
-# Large Binary Files
+# Large Binary Files & Archives
 # ================================
 *.zip
 *.rar
 *.7z
 *.tar.gz
+*.msapp
 
 # ================================
 # Node.js (if applicable)
@@ -122,48 +170,7 @@ error.log
 *.zip.bak
 *_exportedZip.zip
 
-# OS generated files
-.DS_Store
-.DS_Store?
-Thumbs.db
-ehthumbs.db
-*~
-
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-
-# Personal notes and drafts
-**/TODO_*
-**/DRAFT_*
-**/_personal/
-
-# Power Platform specific patterns
-**/*.msapp
-**/Connections/**
-**/DataSources/**
-**/other/**
-
-# GitHub specific
-.github/secrets/
-
-# Node.js (for any future web components)
-node_modules/
-package-lock.json
-
-# Python (for any future scripts)
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-
-# SQL Server files
+# SQL Server files (if applicable)
 *.mdf
 *.ldf
 *.ndf
