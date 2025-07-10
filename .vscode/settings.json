@@ -73,5 +73,8 @@
         "ms-vscode.remote-repositories",
         "visualstudioexptteam.intellicode-api-usage-examples",
         "visualstudioexptteam.vscodeintellicode"
-    ]
+    ],
+    "powerplatform.experimental.enableCanvasAppIntelliSense": true,
+    "powerplatform.experimental.enableModelDrivenAppIntelliSense": true,
+    "powerplatform.enablePortalIntelliSense": true
 }

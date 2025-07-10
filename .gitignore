@@ -3,6 +3,15 @@
 Connections/
 DataSources/
 other/
+temp/
+releases/
+
+# Environment specific files
+environments/secrets.json
+environments/.env
+
+# PAC CLI cache
+.pac/
 
 # VS Code
 .vscode/launch.json
@@ -16,6 +25,10 @@ other/
 *.bak
 *.backup
 
+# Large export files
+*.zip.bak
+*_exportedZip.zip
+
 # OS generated files
 .DS_Store
 .DS_Store?
@@ -24,4 +37,9 @@ ehthumbs.db
 
 # Solution files (keep source, ignore binary)
 *.zip.bak
+
+# Personal notes and drafts
+**/DRAFT_*
+**/PERSONAL_*
+**/TODO_*
 

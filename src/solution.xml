@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml version="9.2.0000.0000" SolutionPackageVersion="9.2.0000.0000"
+    languagecode="1033" generatedBy="EmployeeRecognition">
+    <SolutionManifest>
+        <UniqueName>EmployeeRecognitionSolution</UniqueName>
+        <LocalizedNames>
+            <LocalizedName description="Employee Recognition Solution" languagecode="1033" />
+        </LocalizedNames>
+        <Descriptions>
+            <Description
+                description="Complete Power Platform solution for employee recognition and awards management"
+                languagecode="1033" />
+        </Descriptions>
+        <Version>1.0.0.0</Version>
+        <Managed>0</Managed>
+        <Publisher>
+            <UniqueName>VAHealthcare</UniqueName>
+            <LocalizedNames>
+                <LocalizedName description="VA Healthcare" languagecode="1033" />
+            </LocalizedNames>
+            <Descriptions>
+                <Description description="Department of Veterans Affairs Healthcare"
+                    languagecode="1033" />
+            </Descriptions>
+            <EMailAddress>admin@va.gov</EMailAddress>
+            <SupportingWebsiteUrl>https://www.va.gov</SupportingWebsiteUrl>
+            <CustomizationPrefix>vah</CustomizationPrefix>
+            <CustomizationOptionValuePrefix>10000</CustomizationOptionValuePrefix>
+            <Addresses>
+                <Address>
+                    <AddressNumber>1</AddressNumber>
+                    <AddressTypeCode>1</AddressTypeCode>
+                    <City>Washington</City>
+                    <County>District of Columbia</County>
+                    <Country>United States</Country>
+                    <PostalCode>20420</PostalCode>
+                    <StateOrProvince>DC</StateOrProvince>
+                    <StreetAddress>810 Vermont Avenue NW</StreetAddress>
+                </Address>
+            </Addresses>
+        </Publisher>
+        <RootComponents>
+            <!-- Canvas App -->
+            <RootComponent type="300" schemaName="vah_EmployeeRecognitionApp" behavior="0" />
+
+            <!-- Power Automate Flows -->
+            <RootComponent type="29" schemaName="vah_TriageAndApprovalRouting" behavior="0" />
+            <RootComponent type="29" schemaName="vah_SafetyCheckChatbot" behavior="0" />
+
+            <!-- Connection References -->
+            <RootComponent type="35" schemaName="vah_SharePointConnection" behavior="0" />
+            <RootComponent type="35" schemaName="vah_OutlookConnection" behavior="0" />
+            <RootComponent type="35" schemaName="vah_TeamsConnection" behavior="0" />
+            <RootComponent type="35" schemaName="vah_ApprovalsConnection" behavior="0" />
+
+            <!-- Environment Variables -->
+            <RootComponent type="380" schemaName="vah_SharePointSiteUrl" behavior="0" />
+            <RootComponent type="380" schemaName="vah_NotificationEmailFrom" behavior="0" />
+            <RootComponent type="380" schemaName="vah_MaxAttachmentSize" behavior="0" />
+        </RootComponents>
+        <MissingDependencies />
+    </SolutionManifest>
+</ImportExportXml>

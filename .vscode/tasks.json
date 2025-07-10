@@ -141,6 +141,59 @@
 				"focus": false,
 				"panel": "shared"
 			}
+		},
+		{
+			"label": "Validate Power App",
+			"type": "shell",
+			"command": "pac",
+			"args": [
+				"canvas",
+				"pack",
+				"--sources",
+				"./src/power-apps/EmployeeRecognitionApp_Unpacked",
+				"--msapp",
+				"./temp/validation.msapp",
+				"--verbose"
+			],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Create Solution Package",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"$date = Get-Date -Format 'yyyy-MM-dd_HHmm'; New-Item -ItemType Directory -Path './releases' -Force | Out-Null; pac solution pack --zipfile \"./releases/EmployeeRecognition_$date.zip\" --folder './src' --packagetype Both; Write-Host \"Solution package created: EmployeeRecognition_$date.zip\" -ForegroundColor Green"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
+		},
+		{
+			"label": "Environment Health Check",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-Command",
+				"Write-Host 'Power Platform Environment Health Check' -ForegroundColor Green; Write-Host ''; pac auth list; Write-Host ''; pac org list; Write-Host ''; Write-Host 'CLI Version:' -ForegroundColor Yellow; pac --version"
+			],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": false,
+				"panel": "shared"
+			}
 		}
 	]
 }
