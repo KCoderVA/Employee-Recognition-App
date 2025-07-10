@@ -24,6 +24,7 @@ Thank you for your interest in contributing to the Employee Recognition Applicat
 - [Development Process](#development-process)
 - [Submission Guidelines](#submission-guidelines)
 - [Power Platform Best Practices](#power-platform-best-practices)
+- [Repository Structure & File Policy](#repository-structure--file-policy)
 
 ## Code of Conduct
 
@@ -135,18 +136,31 @@ Include any breaking changes or special deployment notes.
 - Document any new configuration requirements
 - Update training materials if user-facing changes
 
-## File Organization
+## Repository Structure & File Policy
 
-```
-├── src/                     # Source code
-│   ├── power-apps/         # Canvas app exports and source
-│   ├── power-automate/     # Flow definitions and exports
-│   └── sharepoint/         # List templates and configurations
-├── docs/                   # Project documentation
-├── testing/                # Test scripts and data
-├── releases/               # Release packages and notes
-└── environments/           # Environment-specific configurations
-```
+### 📁 **Public Repository (GitHub)**
+The GitHub repository contains only user-relevant files:
+- Source code and documentation that users need to run or contribute to the project
+- Essential README files, contribution guidelines, and security policies
+- GitHub workflows and issue templates
+
+### 🏠 **Local Development Environment**
+Your local repository contains additional development resources:
+- **VS Code Settings** - Personal workspace configurations
+- **Scripts & Automation** - Developer tools and repository management utilities  
+- **Testing Data** - Test files, validation data, and debugging information
+- **Archive Materials** - Historical exports, backups, and reference documents
+- **Binary Files** - Excel files, PowerPoint presentations, Visio diagrams
+- **Environment Configs** - Environment-specific settings and credentials
+
+### 🔄 **Contribution Workflow**
+When contributing:
+1. **Edit only public files** - Focus on source code and documentation in `src/` and `docs/`
+2. **Test locally** - Use your complete local environment for development and testing
+3. **Commit selectively** - Only commit changes to files tracked in the public repository
+4. **Reference local materials** - Feel free to reference local documentation in commit messages
+
+This separation ensures the GitHub repository remains clean and professional while preserving your complete development environment locally.
 
 ## Testing Requirements
 

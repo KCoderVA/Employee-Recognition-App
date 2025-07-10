@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Recognition App - Flow Map Presentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #003f7f, #0056b3);
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slide {
+            padding: 20px 30px;
+            height: calc(100vh - 120px);
+            page-break-after: always;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        .slide h1 {
+            color: #003f7f;
+            font-size: 2em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #00a91c;
+            padding-bottom: 8px;
+        }
+        
+        .slide h2 {
+            color: #0056b3;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .slide h3 {
+            color: #003f7f;
+            font-size: 1.1em;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .flow-diagram {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-line;
+            font-size: 0.9em;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .feature-box {
+            background: #e7f3ff;
+            border-left: 4px solid #003f7f;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        
+        .benefit-item {
+            background: #f0f9ff;
+            border: 1px solid #bee5eb;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+        }
+        
+        .benefit-icon {
+            background: #00a91c;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+        
+        .award-type {
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+            border: 2px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+        
+        .process-flow {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 8px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+        
+        .role-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .role-card {
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.85em;
+        }
+        
+        .role-card h4 {
+            color: #003f7f;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        
+        .metric-box {
+            background: linear-gradient(45deg, #e8f5e8, #c8e6c8);
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .metric-number {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .roadmap-phase {
+            background: #fafafa;
+            border-left: 4px solid #ff9800;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 0.9em;
+        }
+        
+        .contact-info {
+            background: #003f7f;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 8px 0;
+        }
+        
+        li {
+            margin: 5px 0;
+            padding-left: 18px;
+            position: relative;
+            font-size: 0.9em;
+        }
+        
+        li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00a91c;
+            font-weight: bold;
+        }
+        
+        .slide-number {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: #003f7f;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+        
+        .navigation-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-button {
+            background: #003f7f;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 100px;
+        }
+        
+        .nav-button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .slide-counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #003f7f;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #00a91c;
+            transition: width 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .presentation-title {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 63, 127, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+        
+        @media print {
+            .slide {
+                display: flex !important;
+                page-break-after: always;
+            }
+            .navigation-controls,
+            .progress-bar,
+            .presentation-title {
+                display: none !important;
+            }
+        }
+        
+        .slide-transition {
+            animation: slideIn 0.3s ease-in-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .role-matrix {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 15px 20px;
+                height: calc(100vh - 100px);
+            }
+            
+            .slide h1 {
+                font-size: 1.6em;
+            }
+            
+            .slide h2 {
+                font-size: 1.2em;
+            }
+            
+            .navigation-controls {
+                bottom: 20px;
+                padding: 10px 15px;
+            }
+            
+            .nav-button {
+                padding: 8px 16px;
+                font-size: 12px;
+                min-width: 80px;
+            }
+        }
+        
+        /* Scrollbar styling for slide content */
+        .slide::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .slide::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .slide::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        .slide::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+        
+        /* Screenshot Thumbnail Section */
+        .screenshot-thumbnail {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 120px;
+            height: 80px;
+            background: #f8f9fa;
+            border: 2px dashed #007bff;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .screenshot-thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .screenshot-thumbnail.has-image {
+            border: 2px solid #28a745;
+            background: #f8fff9;
+            padding: 2px;
+        }
+        
+        .screenshot-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        
+        .thumbnail-placeholder {
+            text-align: center;
+            color: #6c757d;
+            font-size: 10px;
+        }
+        
+        .thumbnail-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        /* Screenshot Modal */
+        .screenshot-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .screenshot-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2001;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: #c82333;
+            transform: scale(1.1);
+        }
+        
+        .modal-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+        
+        .modal-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-button:hover {
+            background: #0056b3;
+        }
+        
+        .modal-button.replace {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .modal-button.replace:hover {
+            background: #e0a800;
+        }
+        
+        .modal-button.remove {
+            background: #dc3545;
+        }
+        
+        .modal-button.remove:hover {
+            background: #c82333;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .screenshot-thumbnail {
+                width: 80px;
+                height: 60px;
+                bottom: 70px;
+                right: 15px;
+            }
+            
+            .thumbnail-icon {
+                font-size: 16px;
+            }
+            
+            .thumbnail-placeholder {
+                font-size: 8px;
+            }
+            
+            .modal-close {
+                width: 25px;
+                height: 25px;
+                font-size: 14px;
+            }
+            
+            .modal-controls {
+                bottom: 5px;
+                padding: 6px 12px;
+            }
+            
+            .modal-button {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="presentation-title">Employee Recognition App - Flow Map</div>
+    
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title Slide -->
+        <div class="slide active" data-slide="1">
+            <!-- Content will be loaded dynamically from markdown -->
+        </div>
+
+        <!-- Slide 2: Application Overview -->
+        <div class="slide" data-slide="2">
+            <h1>Application Overview</h1>
+            <h2>What is the Employee Recognition App?</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>🎯 Single Platform</h3>
+                    <p>One application for all employee recognition awards</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📱 Digital Replacement</h3>
+                    <p>Eliminates paper-based nomination forms</p>
+                </div>
+                <div class="feature-box">
+                    <h3>⚡ Automated Workflows</h3>
+                    <p>Streamlined approval and processing</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📱 Mobile-Friendly</h3>
+                    <p>Works on all devices and platforms</p>
+                </div>
+            </div>
+            
+            <h2>Key Benefits</h2>
+            <div class="benefit-item">
+                <div class="benefit-icon">⚡</div>
+                <div>Faster processing times - 50% reduction vs. paper forms</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">📊</div>
+                <div>Reduced administrative burden</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">📈</div>
+                <div>Better tracking and reporting capabilities</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">😊</div>
+                <div>Improved user experience</div>
+            </div>
+            <div class="slide-number">2</div>
+        </div>
+
+        <!-- Slide 3: Supported Award Types -->
+        <div class="slide" data-slide="3">
+            <h1>Supported Award Types</h1>
+            
+            <div class="award-type">
+                <h3>🏥 HRO Awards (High Reliability Organization)</h3>
+                <p><strong>Purpose:</strong> Patient safety & quality care</p>
+                <p><strong>Key Features:</strong> Context-Actions-Results format, HRO Principles alignment</p>
+                <div class="process-flow">Triage → Committee Review → Approval</div>
+            </div>
+            
+            <div class="award-type">
+                <h3>🦸 Hines Hero Awards</h3>
+                <p><strong>Purpose:</strong> Exceptional service above and beyond</p>
+                <p><strong>Key Features:</strong> Detailed impact assessment, service line identification</p>
+                <div class="process-flow">Submission → Review → Recognition</div>
+            </div>
+            
+            <div class="award-type">
+                <h3>⭐ Starfish Awards</h3>
+                <p><strong>Purpose:</strong> Peer-to-peer recognition for daily excellence</p>
+                <p><strong>Key Features:</strong> I-CARE principles focus, safety flagging</p>
+                <div class="process-flow">Quick Submission → Immediate Recognition</div>
+            </div>
+            
+            <div class="award-type">
+                <h3>🌟 ICARE Awards</h3>
+                <p><strong>Purpose:</strong> VA core values demonstration</p>
+                <p><strong>Key Features:</strong> Values-based evaluation</p>
+                <div class="process-flow">Values Assessment → Recognition                </div>
+            </div>
+            <div class="slide-number">3</div>
+        </div>
+
+        <!-- Slide 4: User Journey - Getting Started -->
+        <div class="slide" data-slide="4">
+            <h1>User Journey - Getting Started</h1>
+            
+            <div class="flow-diagram">
+<strong>Step 1: Access the App</strong>
+┌─────────────────────────────────────┐
+│  Launch from SharePoint or direct  │
+│  link → Office 365 authentication  │
+│  → Personalized dashboard appears   │
+└─────────────────────────────────────┘
+                     ↓
+<strong>Step 2: Choose Award Type</strong>
+┌─────────────────────────────────────┐
+│  Four award options displayed       │
+│  → Click to open nomination form    │
+│  → Context-sensitive help available │
+└─────────────────────────────────────┘
+                     ↓
+<strong>Step 3: Complete Nomination</strong>
+┌─────────────────────────────────────┐
+│  Dynamic form based on award type   │
+│  → Required fields highlighted      │
+│  → Progress indicator shows status  │
+└─────────────────────────────────────┘
+            </div>
+            
+            <h2>Navigation Structure</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>Home Screen</h3>
+                    <ul>
+                        <li>Award type selection</li>
+                        <li>Recent submissions view</li>
+                        <li>Quick access buttons</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3>Nomination Screens</h3>
+                    <ul>
+                        <li>Award-specific questionnaires</li>
+                        <li>Dynamic field validation</li>
+                        <li>Progress indicators</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">4</div>
+        </div>
+
+        <!-- Slide 5: Starfish Award Process Example -->
+        <div class="slide" data-slide="5">
+            <h1>Example: Starfish Award Process</h1>
+            
+            <div class="flow-diagram">
+<strong>User Flow:</strong>
+User Opens App → Selects "Starfish Award" → Fills Form:
+├── Nominee Information (auto-populated when possible)
+├── Event Date & Location
+├── I-CARE Principle Comments:
+│   ├── Integrity
+│   ├── Commitment  
+│   ├── Advocacy
+│   ├── Respect
+│   └── Excellence
+├── Special Flags (Safety/Nursing)
+└── Additional Comments
+                     ↓
+Submit → Confirmation → Background Processing:
+├── Save to SharePoint
+├── Notify supervisor
+└── Update recognition database
+            </div>
+            
+            <h2>Form Sections Detail</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>Required Information</h3>
+                    <ul>
+                        <li>Nominee name and department</li>
+                        <li>Event date and location</li>
+                        <li>At least one I-CARE comment</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3>Smart Features</h3>
+                    <ul>
+                        <li>Auto-complete from directory</li>
+                        <li>Validation prevents errors</li>
+                        <li>Save draft capability</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">5</div>
+        </div>
+
+        <!-- Slide 6: Advanced Features -->
+        <div class="slide" data-slide="6">
+            <h1>Advanced Features</h1>
+            
+            <h2>Smart Functionality</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>🧠 Conditional Logic</h3>
+                    <p>Form adapts based on user responses and award type selected</p>
+                </div>
+                <div class="feature-box">
+                    <h3>✅ Data Validation</h3>
+                    <p>Prevents incomplete submissions with real-time feedback</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔄 Auto-Population</h3>
+                    <p>User info pulled from Active Directory automatically</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📱 Offline Capability</h3>
+                    <p>Continue working without internet connection</p>
+                </div>
+            </div>
+            
+            <h2>Integration Points</h2>
+            <div class="benefit-item">
+                <div class="benefit-icon">📊</div>
+                <div><strong>SharePoint:</strong> Secure data storage and management</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">⚡</div>
+                <div><strong>Power Automate:</strong> Automated workflow processing</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">👥</div>
+                <div><strong>Microsoft Teams:</strong> Approval notifications and collaboration</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">📧</div>
+                <div><strong>Email:</strong> Automated communications and updates</div>
+            </div>
+            <div class="slide-number">6</div>
+        </div>
+
+        <!-- Slide 7: HRO Award Approval Workflow -->
+        <div class="slide" data-slide="7">
+            <h1>HRO Award Approval Workflow</h1>
+            
+            <div class="flow-diagram">
+<strong>Complex Approval Process:</strong>
+Submission → Triage Team Review → Committee Routing
+     ↓              ↓                    ↓
+Save to SP → Teams Notification → Approval Action
+     ↓              ↓                    ↓
+Auto-email → Review Packet → Route OR Return
+     ↓              ↓                    ↓
+Tracking → Decision Made → Final Processing
+            </div>
+            
+            <h2>Approval Options</h2>
+            <div class="feature-grid">
+                <div class="award-type">
+                    <h3>✅ Approve & Route</h3>
+                    <p>Send to appropriate sub-committee for specialized review</p>
+                </div>
+                <div class="award-type">
+                    <h3>❌ Return for Info</h3>
+                    <p>Request additional information from submitter</p>
+                </div>
+                <div class="award-type">
+                    <h3>ℹ️ Add Comments</h3>
+                    <p>Include notes and guidance for next reviewer</p>
+                </div>
+                <div class="award-type">
+                    <h3>🔄 Reassign</h3>
+                    <p>Route to different committee or reviewer</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">📱</div>
+                <div>Reviewers can take action directly in Microsoft Teams or via email</div>
+            </div>
+            <div class="slide-number">7</div>
+        </div>
+
+        <!-- Slide 8: User Roles & Access -->
+        <div class="slide" data-slide="8">
+            <h1>User Roles & Permissions</h1>
+            
+            <div class="role-matrix">
+                <div class="role-card">
+                    <h4>👤 Standard Users</h4>
+                    <p><em>All Employees</em></p>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>Submit nominations</li>
+                        <li>View own submissions</li>
+                        <li>Access help resources</li>
+                        <li>Edit pending submissions</li>
+                    </ul>
+                </div>
+                
+                <div class="role-card">
+                    <h4>👨‍💼 Managers</h4>
+                    <p><em>Supervisory Staff</em></p>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>All Standard functions</li>
+                        <li>Review team nominations</li>
+                        <li>Departmental reports</li>
+                        <li>Approve basic awards</li>
+                    </ul>
+                </div>
+                
+                <div class="role-card">
+                    <h4>🏛️ Committee Members</h4>
+                    <p><em>Award Reviewers</em></p>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>All Manager functions</li>
+                        <li>Access approval workflows</li>
+                        <li>Route nominations</li>
+                        <li>Committee-specific views</li>
+                    </ul>
+                </div>
+                
+                <div class="role-card">
+                    <h4>⚙️ Administrators</h4>
+                    <p><em>IT & App Developers</em></p>
+                    <ul style="text-align: left; font-size: 0.9em;">
+                        <li>All system functions</li>
+                        <li>User management</li>
+                        <li>App configuration</li>
+                        <li>System monitoring</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2>Role Assignment</h2>
+            <div class="flow-diagram">
+User Login → Active Directory Lookup → Role Determination
+     ↓              ↓                    ↓
+Check Admin List → Manager Status → Committee Membership
+     ↓              ↓                    ↓
+Apply Permissions → Show Relevant Features → Grant Access
+            </div>
+            <div class="slide-number">8</div>
+        </div>
+
+        <!-- Slide 9: Technical Architecture -->
+        <div class="slide" data-slide="9">
+            <h1>Technical Architecture</h1>
+            
+            <div class="flow-diagram">
+<strong>System Components:</strong>
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Frontend      │    │    Backend      │    │   Data Layer    │
+│  Canvas App     │←→  │ Power Automate  │←→  │   SharePoint    │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+        ↑                       ↑                       ↑
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│ Mobile Devices  │    │ Teams & Email   │    │ Office 365 AD   │
+│ Desktop Browsers│    │ Notifications   │    │ User Profiles   │
+│ Tablet Devices  │    │ Approvals       │    │ Authentication  │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>Frontend (Canvas App)</h3>
+                    <ul>
+                        <li>Responsive Design</li>
+                        <li>Dynamic Forms</li>
+                        <li>50+ Variables & Collections</li>
+                        <li>Intuitive Navigation</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3>Backend (Power Automate)</h3>
+                    <ul>
+                        <li>Automated Workflows</li>
+                        <li>Multi-stage Approvals</li>
+                        <li>Teams & Email Integration</li>
+                        <li>Dynamic Content Generation</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3>Data Layer (SharePoint)</h3>
+                    <ul>
+                        <li>Secure Storage</li>
+                        <li>Role-based Access</li>
+                        <li>Complete Audit Trail</li>
+                        <li>Built-in Analytics</li>
+                    </ul>
+                </div>
+                <div class="feature-box">
+                    <h3>Integration Layer</h3>
+                    <ul>
+                        <li>Office 365 Authentication</li>
+                        <li>Active Directory Sync</li>
+                        <li>Teams Notifications</li>
+                        <li>Email Automation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">9</div>
+        </div>
+
+        <!-- Slide 10: Success Metrics -->
+        <div class="slide" data-slide="10">
+            <h1>Success Metrics & Impact</h1>
+            
+            <h2>Efficiency Improvements</h2>
+            <div class="feature-grid">
+                <div class="metric-box">
+                    <div class="metric-number">50%</div>
+                    <p>Faster processing vs. paper forms</p>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-number">100%</div>
+                    <p>Digital audit trail coverage</p>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-number">24/7</div>
+                    <p>Real-time status tracking</p>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-number">0</div>
+                    <p>Manual routing required</p>
+                </div>
+            </div>
+            
+            <h2>User Satisfaction Benefits</h2>
+            <div class="benefit-item">
+                <div class="benefit-icon">📱</div>
+                <div><strong>Mobile Accessibility:</strong> Field staff can submit on-the-go</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">⚡</div>
+                <div><strong>Instant Confirmations:</strong> Immediate feedback upon submission</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">❓</div>
+                <div><strong>Contextual Help:</strong> Guidance available throughout process</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🎯</div>
+                <div><strong>Single Platform:</strong> All award types in one location</div>
+            </div>
+            
+            <h2>Compliance & Reporting</h2>
+            <div class="award-type">
+                <p><strong>Complete Documentation:</strong> Every action logged and timestamped</p>
+                <p><strong>Standardized Process:</strong> Consistent forms and workflows</p>
+                <p><strong>Automated Reports:</strong> Real-time analytics and trend analysis</p>
+            </div>
+            <div class="slide-number">10</div>
+        </div>
+
+        <!-- Slide 11: Future Roadmap -->
+        <div class="slide" data-slide="11">
+            <h1>Future Roadmap & Enhancements</h1>
+            
+            <div class="roadmap-phase">
+                <h3>📊 Phase 1: Current State (✅ Complete)</h3>
+                <ul>
+                    <li>Four award types supported</li>
+                    <li>Basic approval workflows</li>
+                    <li>Mobile responsive design</li>
+                    <li>SharePoint integration</li>
+                </ul>
+            </div>
+            
+            <div class="roadmap-phase">
+                <h3>🔄 Phase 2: Enhanced Features (🚧 In Planning)</h3>
+                <ul>
+                    <li>Analytics dashboard with trend analysis</li>
+                    <li>Enhanced Teams integration</li>
+                    <li>Bulk processing capabilities</li>
+                    <li>Advanced reporting and metrics</li>
+                </ul>
+            </div>
+            
+            <div class="roadmap-phase">
+                <h3>🚀 Phase 3: Future Vision (💡 Conceptual)</h3>
+                <ul>
+                    <li>VA-wide integration and scaling</li>
+                    <li>Voice-to-text input for mobile</li>
+                    <li>AI-powered nomination recommendations</li>
+                    <li>Real-time public recognition portal</li>
+                </ul>
+            </div>
+            
+            <h2>Immediate Next Steps</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>📈 Analytics Dashboard</h3>
+                    <p>Recognition trends, frequency analysis, and impact metrics</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🏆 Recognition Portal</h3>
+                    <p>Public celebration space for awarded employees</p>
+                </div>
+            </div>
+            <div class="slide-number">11</div>
+        </div>
+
+        <!-- Slide 12: Getting Help & Support -->
+        <div class="slide" data-slide="12">
+            <h1>Getting Help & Support</h1>
+            
+            <h2>Built-in Support Features</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>💡 In-app Help</h3>
+                    <p>Tooltips, guidance text, and contextual assistance throughout the application</p>
+                </div>
+                <div class="feature-box">
+                    <h3>📊 Progress Indicators</h3>
+                    <p>Visual cues showing completion status and next steps</p>
+                </div>
+                <div class="feature-box">
+                    <h3>⚠️ Error Prevention</h3>
+                    <p>Real-time validation with helpful error messages</p>
+                </div>
+                <div class="feature-box">
+                    <h3>✅ Confirmation Screens</h3>
+                    <p>Clear verification of successful submissions</p>
+                </div>
+            </div>
+            
+            <h2>Additional Resources</h2>
+            <div class="benefit-item">
+                <div class="benefit-icon">📖</div>
+                <div><strong>Training Materials:</strong> Step-by-step user guides and documentation</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🎥</div>
+                <div><strong>Video Tutorials:</strong> Screen recordings for common tasks and processes</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">❓</div>
+                <div><strong>FAQs:</strong> Comprehensive answers to frequently asked questions</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🔧</div>
+                <div><strong>Technical Support:</strong> IT help desk for technical issues and troubleshooting</div>
+            </div>
+            
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p><strong>Primary Contact:</strong> Kyle Coder, Program Analyst</p>
+                <p><strong>Email:</strong> Kyle.Coder@va.gov</p>
+                <p><strong>Department:</strong> Informatics, Hines VAMC</p>
+                <p><strong>Support:</strong> Submit via IT Help Desk or contact app administrators</p>
+            </div>
+            <div class="slide-number">12</div>
+        </div>
+
+        <!-- Slide 13: Questions & Demo -->
+        <div class="slide" data-slide="13">
+            <h1>Questions & Live Demo</h1>
+            
+            <div style="text-align: center; margin: 50px 0;">
+                <h2 style="color: #003f7f;">Ready to See It in Action?</h2>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="award-type">
+                    <h3>🖥️ Live Demo</h3>
+                    <p>Walk through the actual application interface and submission process</p>
+                </div>
+                <div class="award-type">
+                    <h3>📝 Sample Nomination</h3>
+                    <p>Complete a real nomination from start to finish</p>
+                </div>
+                <div class="award-type">
+                    <h3>⚡ Approval Workflow</h3>
+                    <p>Show how committee members review and process submissions</p>
+                </div>
+                <div class="award-type">
+                    <h3>❓ Q&A Session</h3>
+                    <p>Answer questions about functionality and implementation</p>
+                </div>
+            </div>
+            
+            <h2>Next Steps for New Users</h2>
+            <div class="flow-diagram">
+1. Access Training Materials
+   ↓
+2. Practice with Test Nominations  
+   ↓
+3. Reach Out with Questions
+   ↓
+4. Start Using for Real Nominations
+            </div>
+            
+            <h2>We Welcome Your Feedback!</h2>
+            <div class="benefit-item">
+                <div class="benefit-icon">💡</div>
+                <div><strong>User Suggestions:</strong> Ideas for improvements and new features</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🎯</div>
+                <div><strong>Feature Requests:</strong> Functionality you'd like to see in future versions</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🐛</div>
+                <div><strong>Bug Reports:</strong> Help us identify and fix any issues encountered</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">🏆</div>
+                <div><strong>Success Stories:</strong> Share positive experiences to motivate the team</div>
+            </div>
+            
+            <div class="contact-info" style="margin-top: 40px;">
+                <h3>Thank You for Your Attention!</h3>
+                <p>Questions and feedback are always welcome</p>
+            </div>
+            <div class="slide-number">13</div>
+        </div>
+    </div>
+    
+    <!-- Screenshot Thumbnail (Fixed Position) -->
+    <div class="screenshot-thumbnail" id="screenshotThumbnail" onclick="openScreenshotModal()">
+        <div class="thumbnail-placeholder">
+            <div class="thumbnail-icon">📷</div>
+            <div>Add Screenshot</div>
+        </div>
+        <input type="file" class="file-input" id="screenshotInput" accept="image/*" onchange="handleScreenshotUpload(this)">
+    </div>
+    
+    <!-- Screenshot Modal -->
+    <div class="screenshot-modal" id="screenshotModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeScreenshotModal()">×</button>
+            <img id="modalImage" class="modal-image" src="" alt="Screenshot">
+            <div class="modal-controls">
+                <button class="modal-button" onclick="triggerFileInput()">Upload</button>
+                <button class="modal-button replace" onclick="triggerFileInput()" id="replaceBtn" style="display: none;">Replace</button>
+                <button class="modal-button remove" onclick="removeCurrentScreenshot()" id="removeBtn" style="display: none;">Remove</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation Controls -->
+    <div class="navigation-controls">
+        <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">13</span>
+        </div>
+        <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+    
+    <script>
+        let currentSlideIndex = 1;
+        let totalSlides = 13;
+        let slideContent = {};
+        
+        // Load and parse the markdown outline file
+        async function loadSlideContent() {
+            try {
+                const response = await fetch('Employee_Recognition_App_PowerPoint_Outline.md');
+                const markdownText = await response.text();
+                parseMarkdownToSlides(markdownText);
+                updateAllSlides();
+            } catch (error) {
+                console.warn('Could not load outline file, using default content:', error);
+                // Fall back to default content if file can't be loaded
+                loadDefaultContent();
+            }
+        }
+        
+        function parseMarkdownToSlides(markdown) {
+            const slides = markdown.split(/---+/).filter(section => section.trim());
+            
+            slides.forEach((slide, index) => {
+                const slideNumber = index + 1;
+                if (slideNumber <= totalSlides) {
+                    slideContent[slideNumber] = parseSlideMarkdown(slide.trim());
+                }
+            });
+        }
+        
+        function parseSlideMarkdown(slideText) {
+            const lines = slideText.split('\n').filter(line => line.trim());
+            let content = {
+                title: '',
+                subtitle: '',
+                sections: [],
+                lists: [],
+                diagrams: [],
+                tables: []
+            };
+            
+            let currentSection = '';
+            let currentList = [];
+            let inCodeBlock = false;
+            let codeBlock = '';
+            
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                
+                // Handle code blocks (for diagrams)
+                if (trimmed.startsWith('```')) {
+                    if (inCodeBlock) {
+                        content.diagrams.push(codeBlock);
+                        codeBlock = '';
+                        inCodeBlock = false;
+                    } else {
+                        inCodeBlock = true;
+                    }
+                    return;
+                }
+                
+                if (inCodeBlock) {
+                    codeBlock += line + '\n';
+                    return;
+                }
+                
+                // Parse titles and headers
+                if (trimmed.startsWith('## Slide')) {
+                    // Extract slide title
+                    const titleMatch = trimmed.match(/## Slide \d+: (.+)/);
+                    if (titleMatch) {
+                        content.title = titleMatch[1];
+                    }
+                } else if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
+                    // Main title
+                    content.title = trimmed.replace(/\*\*/g, '');
+                } else if (trimmed.startsWith('*') && trimmed.endsWith('*') && !trimmed.startsWith('**')) {
+                    // Subtitle
+                    content.subtitle = trimmed.replace(/\*/g, '');
+                } else if (trimmed.startsWith('### ')) {
+                    // Section header
+                    currentSection = trimmed.replace('### ', '');
+                    if (currentList.length > 0) {
+                        content.lists.push({
+                            title: currentSection,
+                            items: [...currentList]
+                        });
+                        currentList = [];
+                    }
+                    content.sections.push(currentSection);
+                } else if (trimmed.startsWith('- ') || trimmed.startsWith('✅ ') || trimmed.startsWith('🔄 ') || trimmed.startsWith('🚀 ')) {
+                    // List items
+                    currentList.push(trimmed.replace(/^[-✅🔄🚀] /, ''));
+                } else if (trimmed.startsWith('|') && trimmed.includes('|')) {
+                    // Table row
+                    const cells = trimmed.split('|').map(cell => cell.trim()).filter(cell => cell);
+                    if (cells.length > 0 && !cells[0].includes('-')) {
+                        content.tables.push(cells);
+                    }
+                } else if (trimmed && !trimmed.startsWith('#') && currentSection) {
+                    // Regular content
+                    currentList.push(trimmed);
+                }
+            });
+            
+            // Add final list if exists
+            if (currentList.length > 0) {
+                content.lists.push({
+                    title: currentSection,
+                    items: [...currentList]
+                });
+            }
+            
+            return content;
+        }
+        
+        function updateAllSlides() {
+            for (let i = 1; i <= totalSlides; i++) {
+                if (slideContent[i]) {
+                    updateSlideContent(i, slideContent[i]);
+                }
+            }
+        }
+        
+        function updateSlideContent(slideNumber, content) {
+            const slide = document.querySelector(`[data-slide="${slideNumber}"]`);
+            if (!slide) return;
+            
+            let html = '';
+            
+            // Add title
+            if (content.title) {
+                html += `<h1>${content.title}</h1>`;
+            }
+            
+            // Add subtitle
+            if (content.subtitle) {
+                html += `<div style="font-size: 1.3em; color: #666; margin: 20px 0;"><p><em>${content.subtitle}</em></p></div>`;
+            }
+            
+            // Handle different slide types based on content
+            if (slideNumber === 1) {
+                // Title slide special formatting
+                html = `
+                    <div style="text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <h1 style="font-size: 2.5em; margin: 20px 0;">${content.title}</h1>
+                        ${content.subtitle ? `<div style="font-size: 1.3em; color: #666; margin: 20px 0;"><p><em>${content.subtitle}</em></p></div>` : ''}
+                        <div style="margin: 30px auto; max-width: 400px;">
+                            <div class="feature-box" style="text-align: left;">
+                                ${content.lists[0] ? content.lists[0].items.map(item => `<p><strong>${item.split(':')[0]}:</strong> ${item.split(':')[1] || ''}</p>`).join('') : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (content.tables.length > 0) {
+                // Table-based content (like slide 3)
+                content.sections.forEach(section => {
+                    html += `<h2>${section}</h2>`;
+                });
+                
+                if (content.tables.length > 0) {
+                    content.tables.forEach(row => {
+                        if (row.length >= 3) {
+                            html += `
+                                <div class="award-type">
+                                    <h3>${row[0]}</h3>
+                                    <p><strong>Purpose:</strong> ${row[1]}</p>
+                                    <p><strong>Key Features:</strong> ${row[2]}</p>
+                                    <div class="process-flow">Award Process</div>
+                                </div>
+                            `;
+                        }
+                    });
+                }
+            } else {
+                // Regular content slides
+                content.sections.forEach((section, index) => {
+                    html += `<h2>${section}</h2>`;
+                    
+                    // Find corresponding list
+                    const sectionList = content.lists.find(list => list.title === section);
+                    if (sectionList) {
+                        if (section.includes('Benefits') || section.includes('Resources') || section.includes('Satisfaction')) {
+                            // Benefit items format
+                            sectionList.items.forEach(item => {
+                                const parts = item.split(':');
+                                const title = parts[0];
+                                const description = parts.slice(1).join(':').trim();
+                                html += `
+                                    <div class="benefit-item">
+                                        <div class="benefit-icon">✓</div>
+                                        <div><strong>${title}:</strong> ${description}</div>
+                                    </div>
+                                `;
+                            });
+                        } else if (section.includes('Functionality') || section.includes('Integration') || section.includes('Features')) {
+                            // Feature grid format
+                            html += '<div class="feature-grid">';
+                            sectionList.items.forEach(item => {
+                                const parts = item.split(':');
+                                const title = parts[0].replace(/\*\*/g, '');
+                                const description = parts.slice(1).join(':').trim();
+                                html += `
+                                    <div class="feature-box">
+                                        <h3>${title}</h3>
+                                        <p>${description}</p>
+                                    </div>
+                                `;
+                            });
+                            html += '</div>';
+                        } else if (section.includes('Phase') || section.includes('Roadmap')) {
+                            // Roadmap format
+                            sectionList.items.forEach(item => {
+                                html += `
+                                    <div class="roadmap-phase">
+                                        <h3>${section}</h3>
+                                        <ul><li>${item}</li></ul>
+                                    </div>
+                                `;
+                            });
+                        } else {
+                            // Regular list format
+                            html += '<ul>';
+                            sectionList.items.forEach(item => {
+                                html += `<li>${item}</li>`;
+                            });
+                            html += '</ul>';
+                        }
+                    }
+                });
+                
+                // Add diagrams if present
+                content.diagrams.forEach(diagram => {
+                    html += `<div class="flow-diagram">${diagram}</div>`;
+                });
+            }
+            
+            // Add slide number
+            html += `<div class="slide-number">${slideNumber}</div>`;
+            
+            slide.innerHTML = html;
+        }
+        
+        function loadDefaultContent() {
+            // Keep existing default content as fallback
+            console.log('Using default slide content');
+        }
+        
+        function showSlide(slideNumber) {
+            // Hide all slides
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show current slide with animation
+            const currentSlide = document.querySelector(`[data-slide="${slideNumber}"]`);
+            if (currentSlide) {
+                currentSlide.classList.add('active');
+                currentSlide.classList.add('slide-transition');
+                setTimeout(() => {
+                    currentSlide.classList.remove('slide-transition');
+                }, 300);
+            }
+            
+            // Update navigation
+            updateNavigation();
+            updateProgressBar();
+            
+            // Update screenshot thumbnail for current slide
+            updateScreenshotThumbnail();
+        }
+        
+        function changeSlide(direction) {
+            const newSlideIndex = currentSlideIndex + direction;
+            
+            if (newSlideIndex >= 1 && newSlideIndex <= totalSlides) {
+                currentSlideIndex = newSlideIndex;
+                showSlide(currentSlideIndex);
+            }
+        }
+        
+        function goToSlide(slideNumber) {
+            if (slideNumber >= 1 && slideNumber <= totalSlides) {
+                currentSlideIndex = slideNumber;
+                showSlide(currentSlideIndex);
+            }
+        }
+        
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const currentSlideSpan = document.getElementById('currentSlide');
+            
+            // Update slide counter
+            currentSlideSpan.textContent = currentSlideIndex;
+            
+            // Enable/disable navigation buttons
+            prevBtn.disabled = currentSlideIndex === 1;
+            nextBtn.disabled = currentSlideIndex === totalSlides;
+            
+            // Update button text for last slide
+            if (currentSlideIndex === totalSlides) {
+                nextBtn.textContent = 'End';
+            } else {
+                nextBtn.textContent = 'Next →';
+            }
+        }
+        
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            const progress = (currentSlideIndex / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (event.key === 'ArrowRight') {
+                changeSlide(1);
+            } else if (event.key === 'Home') {
+                goToSlide(1);
+            } else if (event.key === 'End') {
+                goToSlide(totalSlides);
+            } else if (event.key >= '1' && event.key <= '9') {
+                const slideNum = parseInt(event.key);
+                if (slideNum <= totalSlides) {
+                    goToSlide(slideNum);
+                }
+            }
+        });
+        
+        // Prevent default spacebar page scroll
+        document.addEventListener('keydown', function(event) {
+            if (event.key === ' ') {
+                event.preventDefault();
+                changeSlide(1);
+            }
+        });
+        
+        // Initialize presentation
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadSlideContent(); // Load content from markdown file
+            showSlide(1);
+            updateScreenshotThumbnail(); // Initialize thumbnail for first slide
+            
+            // Add click listeners to slide elements for easier navigation
+            document.querySelectorAll('.slide').forEach((slide, index) => {
+                slide.addEventListener('click', function(event) {
+                    // Only advance if clicking on empty area (not on buttons, links, etc.)
+                    if (event.target === slide || event.target.classList.contains('slide-content')) {
+                        changeSlide(1);
+                    }
+                });
+            });
+        });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', function(event) {
+            touchStartX = event.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', function(event) {
+            touchEndX = event.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const difference = touchStartX - touchEndX;
+            
+            if (Math.abs(difference) > swipeThreshold) {
+                if (difference > 0) {
+                    // Swipe left - next slide
+                    changeSlide(1);
+                } else {
+                    // Swipe right - previous slide
+                    changeSlide(-1);
+                }
+            }
+        }
+        
+        // Screenshot thumbnail and modal functions
+        let currentScreenshotSlide = 1;
+        
+        function updateScreenshotThumbnail() {
+            const thumbnail = document.getElementById('screenshotThumbnail');
+            const savedImage = localStorage.getItem(`slide_${currentSlideIndex}_image`);
+            
+            if (savedImage) {
+                thumbnail.classList.add('has-image');
+                thumbnail.innerHTML = `<img src="${savedImage}" alt="Screenshot">`;
+            } else {
+                thumbnail.classList.remove('has-image');
+                thumbnail.innerHTML = `
+                    <div class="thumbnail-placeholder">
+                        <div class="thumbnail-icon">📷</div>
+                        <div>Add Screenshot</div>
+                    </div>
+                `;
+            }
+        }
+        
+        function openScreenshotModal() {
+            const modal = document.getElementById('screenshotModal');
+            const modalImage = document.getElementById('modalImage');
+            const replaceBtn = document.getElementById('replaceBtn');
+            const removeBtn = document.getElementById('removeBtn');
+            const savedImage = localStorage.getItem(`slide_${currentSlideIndex}_image`);
+            
+            if (savedImage) {
+                modalImage.src = savedImage;
+                replaceBtn.style.display = 'inline-block';
+                removeBtn.style.display = 'inline-block';
+            } else {
+                modalImage.src = '';
+                replaceBtn.style.display = 'none';
+                removeBtn.style.display = 'none';
+                // If no image, trigger file input immediately
+                triggerFileInput();
+                return;
+            }
+            
+            modal.classList.add('active');
+        }
+        
+        function closeScreenshotModal() {
+            const modal = document.getElementById('screenshotModal');
+            modal.classList.remove('active');
+        }
+        
+        function triggerFileInput() {
+            document.getElementById('screenshotInput').click();
+        }
+        
+        function handleScreenshotUpload(input) {
+            if (!input.files || !input.files[0]) return;
+            
+            const file = input.files[0];
+            if (!file.type.startsWith('image/')) {
+                alert('Please select a valid image file.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageData = e.target.result;
+                const fileName = file.name;
+                
+                // Save to localStorage for current slide
+                localStorage.setItem(`slide_${currentSlideIndex}_image`, imageData);
+                localStorage.setItem(`slide_${currentSlideIndex}_caption`, fileName);
+                
+                // Update thumbnail and modal
+                updateScreenshotThumbnail();
+                
+                const modalImage = document.getElementById('modalImage');
+                const replaceBtn = document.getElementById('replaceBtn');
+                const removeBtn = document.getElementById('removeBtn');
+                
+                modalImage.src = imageData;
+                replaceBtn.style.display = 'inline-block';
+                removeBtn.style.display = 'inline-block';
+                
+                // Open modal to show the uploaded image
+                document.getElementById('screenshotModal').classList.add('active');
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function removeCurrentScreenshot() {
+            localStorage.removeItem(`slide_${currentSlideIndex}_image`);
+            localStorage.removeItem(`slide_${currentSlideIndex}_caption`);
+            
+            updateScreenshotThumbnail();
+            closeScreenshotModal();
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('screenshotModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeScreenshotModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeScreenshotModal();
+            }
+        });
+        
+        // Print functionality
+        function printSlides() {
+            window.print();
+        }
+        
+        // Add refresh button to reload content from markdown
+        const refreshButton = document.createElement('button');
+        refreshButton.textContent = '� Reload Content';
+        refreshButton.style.cssText = 'position: fixed; top: 60px; right: 20px; z-index: 1000; padding: 10px 15px; background: #0056b3; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;';
+        refreshButton.onclick = async function() {
+            await loadSlideContent();
+            updateScreenshotThumbnail();
+            refreshButton.textContent = '✅ Reloaded';
+            setTimeout(() => {
+                refreshButton.textContent = '🔄 Reload Content';
+            }, 2000);
+        };
+        document.body.appendChild(refreshButton);
+        
+        // Add print button (but hide it in print mode)
+        const printButton = document.createElement('button');
+        printButton.textContent = '🖨️ Print';
+        printButton.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 1000; padding: 10px 15px; background: #00a91c; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;';
+        printButton.onclick = printSlides;
+        document.body.appendChild(printButton);
+    </script>
+</body>
+</html>

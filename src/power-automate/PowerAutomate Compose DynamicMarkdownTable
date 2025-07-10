@@ -1,0 +1,119 @@
+// Compose_HinesHeroTable
+concat(
+  '| **QUESTION** | **ANSWER** |',
+  '|:--------------------------|:-----------|',
+  '| **Award Type:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType']), ' |',
+  '| **Nominee** | ', string(triggerOutputs()?['body/field_5']), ' |',
+  '| **Additional Comments:** | ', string(triggerOutputs()?['body/field_19']), ' |',
+  '| **Hines Hero Summary:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_HinesHero_Summary_Text']), ' |',
+  '| **Hines Hero Details:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_HinesHero_Text']), ' |',
+  '| **Nominee Service Line:** | ', string(outputs('Update_Item_-_PreTriage_Stage')?['body/Nominee_ServiceLineOrTeam_Text']), ' |',
+  '| **Event Date:** | ', string(triggerOutputs()?['body/field_7']), ' |',
+  '| **Event Location:** | ', string(triggerOutputs()?['body/field_6']), ' |'
+)
+
+// Compose_HROTable
+concat(
+  '| **QUESTION** | **ANSWER** |',
+  '|:--------------------------|:-----------|',
+  '| **Award Type:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType']), ' |',
+  '| **Nominee** | ', string(triggerOutputs()?['body/field_5']), ' |',
+  '| **Event Is A Safety Concern?** | ', string(triggerOutputs()?['body/SafetyBoolean']), ' |',
+  '| **HRO Context:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Context_Text']), ' |',
+  '| **HRO Actions:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Actions_Text']), ' |',
+  '| **HRO Results:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Results_Text']), ' |',
+  '| **Additional Comments:** | ', string(triggerOutputs()?['body/field_19']), ' |',
+  '| **HRO Principles:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Choice_HROPrinciple']), ' |',
+  '| **HRO Clinical Event?** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_ClinicalOrNonc']), ' |',
+  '| **HRO Service Line:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Nominee_ServiceLineOrTeam_Text']), ' |',
+  '| **Event Date:** | ', string(triggerOutputs()?['body/field_7']), ' |',
+  '| **Event Location:** | ', string(triggerOutputs()?['body/field_6']), ' |'
+)
+
+// Compose_NursingTable
+concat(
+  '| **QUESTION** | **ANSWER** |',
+  '|:--------------------------|:-----------|',
+  '| **Award Type:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType']), ' |',
+  '| **Nominee** | ', string(triggerOutputs()?['body/field_5']), ' |',
+  '| **Nominee Is Part Of Nursing Services?** | ', string(triggerOutputs()?['body/NursingBoolean']), ' |',
+  '| **Integrity Comments:** | ', string(triggerOutputs()?['body/field_9']), ' |',
+  '| **Commitment Comments:** | ', string(triggerOutputs()?['body/field_11']), ' |',
+  '| **Advocacy Comments:** | ', string(triggerOutputs()?['body/field_13']), ' |',
+  '| **Respect Comments:** | ', string(triggerOutputs()?['body/field_15']), ' |',
+  '| **Excellence Comments:** | ', string(triggerOutputs()?['body/field_17']), ' |',
+  '| **Additional Comments:** | ', string(triggerOutputs()?['body/field_19']), ' |',
+  '| **Event Is A Safety Concern?** | ', string(triggerOutputs()?['body/SafetyBoolean']), ' |',
+  '| **Event Date:** | ', string(triggerOutputs()?['body/field_7']), ' |',
+  '| **Event Location:** | ', string(triggerOutputs()?['body/field_6']), ' |'
+)
+
+// Compose_ICARETable
+concat(
+  '| **QUESTION** | **ANSWER** |',
+  '|:--------------------------|:-----------|',
+  '| **Award Type:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType']), ' |',
+  '| **Nominee** | ', string(triggerOutputs()?['body/field_5']), ' |',
+  '| **Event Date:** | ', string(triggerOutputs()?['body/field_7']), ' |',
+  '| **Event Location:** | ', string(triggerOutputs()?['body/field_6']), ' |',
+  '| **Integrity Comments:** | ', string(triggerOutputs()?['body/field_9']), ' |',
+  '| **Commitment Comments:** | ', string(triggerOutputs()?['body/field_11']), ' |',
+  '| **Advocacy Comments:** | ', string(triggerOutputs()?['body/field_13']), ' |',
+  '| **Respect Comments:** | ', string(triggerOutputs()?['body/field_15']), ' |',
+  '| **Excellence Comments:** | ', string(triggerOutputs()?['body/field_17']), ' |',
+  '| **Additional Comments:** | ', string(triggerOutputs()?['body/field_19']), ' |',
+  '| **Event Is A Safety Concern?** | ', string(triggerOutputs()?['body/SafetyBoolean']), ' |',
+  '| **Nominee Is Part Of Nursing Services?** | ', string(triggerOutputs()?['body/NursingBoolean']), ' |'
+)
+
+// Compose_FullTable
+concat(
+  '| **QUESTION** | **ANSWER** |',
+  '|:--------------------------|:-----------|',
+  '| **Award Type:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType']), ' |',
+  '| **Nominee** | ', string(triggerOutputs()?['body/field_5']), ' |',
+  '| **Event Is A Safety Concern?** | ', string(triggerOutputs()?['body/SafetyBoolean']), ' |',
+  '| **Nominee Is Part Of Nursing Services?** | ', string(triggerOutputs()?['body/NursingBoolean']), ' |',
+  '| **Integrity Comments:** | ', string(triggerOutputs()?['body/field_9']), ' |',
+  '| **Commitment Comments:** | ', string(triggerOutputs()?['body/field_11']), ' |',
+  '| **Advocacy Comments:** | ', string(triggerOutputs()?['body/field_13']), ' |',
+  '| **Respect Comments:** | ', string(triggerOutputs()?['body/field_15']), ' |',
+  '| **Excellence Comments:** | ', string(triggerOutputs()?['body/field_17']), ' |',
+  '| **Additional Comments:** | ', string(triggerOutputs()?['body/field_19']), ' |',
+  '| **Hines Hero Summary:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_HinesHero_Summary_Text']), ' |',
+  '| **Hines Hero Details:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_HinesHero_Text']), ' |',
+  '| **HRO Context:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Context_Text']), ' |',
+  '| **HRO Actions:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Actions_Text']), ' |',
+  '| **HRO Results:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_Results_Text']), ' |',
+  '| **HRO Clinical Event?** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Packet_GreatCatch_ClinicalOrNonc']), ' |',
+  '| **HRO Service Line:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Nominee_ServiceLineOrTeam_Text']), ' |',
+  '| **HRO Principles:** | ', string(outputs('Get_Refreshed_Item_Info')?['body/Choice_HROPrinciple']), ' |',
+  '| **Event Date:** | ', string(triggerOutputs()?['body/field_7']), ' |',
+  '| **Event Location:** | ', string(triggerOutputs()?['body/field_6']), ' |'
+)
+
+// Compose_SelectTable (final logic)
+if(
+  startsWith(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'], 'Hines Hero'),
+    outputs('Compose_HinesHeroTable'),
+    if(
+      or(
+        contains(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'],'HRO'),
+        contains(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'],'Safety Story'),
+        contains(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'],'Great Catch'),
+        contains(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'],'HRO HeRO')
+      ),
+      outputs('Compose_HROTable'),
+      if(
+        contains(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'],'Nursing'),
+        outputs('Compose_NursingTable'),
+        if(
+          contains(outputs('Get_Refreshed_Item_Info')?['body/Text_AwardType'],'I*CARE'),
+          outputs('Compose_ICARETable'),
+          outputs('Compose_FullTable')
+        )
+      )
+    )
+) 
+
+I will be out of the office on Friday, June 13, 2025, and expect to return to work on Monday, June 16th. For any issues, please contact the Clinical Informatic's Advanced Analytics Team (HINClinicalAnalytics@va.gov) or Ara.Zakarian@va.gov during my absence.

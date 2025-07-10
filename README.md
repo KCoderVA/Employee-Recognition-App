@@ -2,7 +2,7 @@
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
 [![Version](https://img.shields.io/badge/Version-0.9.0-green)](./CHANGELOG.md)
-[![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](./releases/v0.9.x/RELEASE_NOTES.md)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](./CHANGELOG.md)
 [![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen)](./docs/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
 
@@ -62,8 +62,8 @@ A production-ready **Power Platform application** that transforms traditional pa
 git clone https://github.com/KCoderVA/Employee-Recognition-App.git
 cd Employee-Recognition-App
 
-# Open in VS Code with workspace configuration
-code Employee_Recognition_PowerPlatform.code-workspace
+# Open in VS Code
+code .
 ```
 
 ### Prerequisites
@@ -73,28 +73,26 @@ code Employee_Recognition_PowerPlatform.code-workspace
 - **SharePoint Site** - With proper permissions structure
 - **Git** - For version control operations
 
-### 🎯 One-Click Repository Management
-Use the **Repository Manager** for automated setup and commit workflows:
+### 🎯 Repository Management
+For local development, additional management tools are available:
 
-- **Windows**: Double-click `Repository-Manager.bat` in project root
-- **PowerShell**: Run `repository_manager\GitHub-Repository-Manager.ps1`
+- **VS Code Tasks** - Comprehensive automation through VS Code (`Ctrl+Shift+P` → "Tasks")
+- **Power Platform CLI** - Install from [Microsoft Learn](https://learn.microsoft.com/power-platform/developer/cli/introduction)
 
-**Automated features**:
-- ✅ Workspace cleanup and validation
-- ✅ CHANGELOG enforcement and updates
-- ✅ Safe commit with error checking
-- ✅ Repository preparation for deployment
+**Available VS Code tasks**:
+- ✅ Package/Unpack Power Apps
+- ✅ Repository health checks
+- ✅ CHANGELOG validation
 
 ### VS Code Tasks
-Access comprehensive automation through VS Code tasks (`Ctrl+Shift+P` → "Tasks: Run Task"):
+Access automation through VS Code tasks (`Ctrl+Shift+P` → "Tasks: Run Task"):
 
 | Task | Description |
 |------|-------------|
 | 📦 **Package Power App** | Create deployment-ready .msapp packages |
 | 📤 **Unpack Power App** | Extract source files for version control |
-| 🛡️ **Safe Commit** | Guided commit with CHANGELOG validation |
-| 🔍 **Repository Health Check** | Complete project status analysis |
-| 🚀 **Prepare Release** | Automated release preparation |
+| � **Generate Project Report** | Complete project file analysis |
+| �️ **Show Active Extensions** | Display workspace-optimized extensions |
 - **VS Code Integration** - Built-in tasks for CHANGELOG management and validation
 
 ## Project Structure
@@ -102,16 +100,15 @@ Access comprehensive automation through VS Code tasks (`Ctrl+Shift+P` → "Tasks
 ```
 📁 Employee Recognition App/
 ├── 📂 .github/                  # GitHub workflows and templates
-├── 📂 .vscode/                 # VS Code workspace configuration
 ├── 📂 src/                     # Source code and configurations
 │   ├── 📂 power-apps/         # Canvas app source control
-│   ├── 📂 power-automate/     # Flow definitions and exports
+│   ├── 📂 power-automate/     # Flow documentation
 │   └── 📂 sharepoint/         # Lists, pages, and permissions
 ├── 📂 docs/                    # Documentation and guides
-├── 📂 releases/                # Versioned releases and packages
-├── 📂 scripts/                 # Automation and deployment tools
-├── 📂 testing/                 # Testing strategies and data
-└── 📂 environments/            # Multi-environment configurations
+├── � CHANGELOG.md            # Complete development history
+├── � CONTRIBUTING.md         # Contribution guidelines
+├── � SECURITY.md             # Security policy
+└── � README.md               # This file
 ```
 
 ## Development Metrics
