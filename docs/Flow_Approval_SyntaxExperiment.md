@@ -1,3 +1,19 @@
+<!--
+   Copyright 2025 Kyle J. Coder
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
 ~!testing!~
 A new award nomination packet was submitted to you (Award Packet #@{triggerOutputs()?['body/ID']}), as a member of the Hines "Award Committee Triage Team. You can interact with this award nomination within [Microsoft Teams (click this link)](msteams://teams.microsoft.com/l/entity/2d4edd75-5a69-41da-bead-44c3a268ece8/approvals "Microsoft Teams Approvals"), by opening [Microsoft Approvals (click this link)](https://make.gov.powerautomate.us/environments/Default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/approvals/received "Microsoft PowerAutomate"), or via an email you should have recieved from Microsoft Power Automate (flow-noreply@microsoft.com). Please review the details below, and either re-route this packet to the appropriate award sub-committee OR return this back to sender with your free-text comments to request follow-up/additional information.
 

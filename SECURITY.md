@@ -1,5 +1,21 @@
 # Security Policy & Compliance Framework
 
+<!--
+   Copyright 2025 Kyle J. Coder
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
 ## 🔒 Overview
 This security policy governs the Employee Recognition Application, a comprehensive Power Platform solution handling sensitive employee information within the VA healthcare system. This policy ensures compliance with VA IT security standards, FISMA requirements, Privacy Act considerations, and HIPAA regulations where applicable.
 

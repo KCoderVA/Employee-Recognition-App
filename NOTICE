@@ -1,0 +1,46 @@
+Employee Recognition Application - Power Platform Project
+Copyright 2025 Kyle J. Coder
+
+This product includes software developed by Kyle J. Coder
+for the VA healthcare system.
+
+Original work created as part of the VHA Informatics Data Team
+employee recognition solution development project.
+
+This software contains the following components:
+
+1. Power Apps Canvas Application
+   - Employee Recognition submission and management interface
+   - Award-specific workflow logic and user experience design
+   - Mobile-responsive design and accessibility features
+
+2. Power Automate Flows
+   - Safety Check Chatbot with AI-powered guidance
+   - Triage and Approval Routing automation
+   - Teams and Outlook integration workflows
+
+3. SharePoint Integration Components
+   - List configurations and data structure design
+   - Permission frameworks and security models
+   - Audit logging and compliance tracking systems
+
+4. Documentation and Training Materials
+   - Comprehensive technical documentation
+   - User training presentations and guides
+   - Professional repository organization and best practices
+
+5. Enterprise Architecture Design
+   - Multi-environment deployment strategy
+   - Security compliance framework
+   - Application lifecycle management procedures
+
+All original code, documentation, architecture design, and implementation
+patterns are the intellectual property of Kyle J. Coder and are licensed
+under the Apache License, Version 2.0.
+
+For questions regarding licensing or attribution requirements,
+contact: Kyle J. Coder, VHA Informatics Data Team
+
+Project Repository: https://github.com/KCoderVA/Employee-Recognition-App
+Development Timeline: April 9, 2025 - July 10, 2025
+Version History: 94 incremental releases (0.1.0 → 0.8.3)

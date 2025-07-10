@@ -1,6 +1,22 @@
 # GitHub Repository Post-Setup Commands
 # Run these commands AFTER creating the repository on GitHub.com
 
+<#
+   Copyright 2025 Kyle J. Coder
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+#>
+
 param(
     [string]$GitHubUsername = "KCoderVA",
     [string]$RepositoryName = "Employee-Recognition-App"
@@ -38,13 +54,13 @@ try {
     Write-Host ""
     Write-Host "git push -u origin main" -ForegroundColor Cyan
     Write-Host ""
-    
+
     # Ask if user wants to push now
     $push = Read-Host "Would you like to push to GitHub now? (y/N)"
     if ($push -eq "y" -or $push -eq "Y") {
         Write-Host "📤 Pushing to GitHub..." -ForegroundColor Green
         git push -u origin main
-        
+
         if ($LASTEXITCODE -eq 0) {
             Write-Host ""
             Write-Host "✅ Successfully pushed to GitHub!" -ForegroundColor Green
@@ -70,7 +86,7 @@ try {
 Write-Host ""
 Write-Host "📋 Post-Setup Checklist:" -ForegroundColor Magenta
 Write-Host "  1. ✅ Configure branch protection rules" -ForegroundColor White
-Write-Host "  2. ✅ Add repository topics/tags" -ForegroundColor White  
+Write-Host "  2. ✅ Add repository topics/tags" -ForegroundColor White
 Write-Host "  3. ✅ Enable security features" -ForegroundColor White
 Write-Host "  4. ✅ Set up project board (optional)" -ForegroundColor White
 Write-Host "  5. ✅ Invite collaborators (if needed)" -ForegroundColor White

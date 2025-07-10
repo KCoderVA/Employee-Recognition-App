@@ -1,6 +1,6 @@
 # Employee Recognition Application - Power Platform Project
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
 [![Version](https://img.shields.io/badge/Version-0.8.3-green)](./CHANGELOG.md)
 [![Status](https://img.shields.io/badge/Status-Pre--Production-orange)](./releases/v0.8.x/RELEASE_NOTES.md)
@@ -330,5 +330,19 @@ This project enhances the VA healthcare mission by:
 ---
 
 **🎯 Professional Repository Status**: This repository demonstrates enterprise-level Power Platform development with comprehensive documentation, proper version control, security compliance, and GitHub best practices. Ready for organizational or public deployment.
+
+## 📄 License & Copyright
+
+Copyright 2025 Kyle J. Coder. Licensed under the Apache License, Version 2.0.
+
+This project is licensed under the Apache License 2.0, which provides:
+- ✅ **Patent Protection** - Explicit patent grant from contributors
+- ✅ **Attribution Requirements** - Proper credit must be maintained
+- ✅ **Commercial Use** - Organizations can adopt for commercial purposes
+- ✅ **Modification Rights** - Can be modified and distributed
+- ✅ **Liability Protection** - Strong warranty disclaimers
+- ✅ **Trademark Protection** - Protects the original author's trademarks
+
+See [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE) files for complete terms and attribution requirements.
 
 **📞 Contact**: VHA Informatics Data Team | **Created**: April 9, 2025 | **Updated**: July 10, 2025
