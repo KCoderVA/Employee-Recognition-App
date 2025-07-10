@@ -101,7 +101,7 @@ Write-Host "Release assets prepared in: $releaseDir"
 # 1. Navigate to Discussions tab
 # 2. Set up categories:
 #    - General (Open discussion)
-#    - Ideas (Ideas and feature requests) 
+#    - Ideas (Ideas and feature requests)
 #    - Q&A (Questions and help)
 #    - Show and tell (Community showcases)
 #    - Power Platform Tips (Best practices)
@@ -115,7 +115,7 @@ Write-Host "Release assets prepared in: $releaseDir"
 # Manual Steps in Issues → Labels:
 # Create these labels with specified colors:
 # - power-apps (#0052CC) - Power Apps related issues
-# - power-automate (#28A745) - Flow related issues  
+# - power-automate (#28A745) - Flow related issues
 # - sharepoint (#FD7E14) - SharePoint integration issues
 # - documentation (#7057FF) - Documentation improvements
 # - enhancement (#A2EEEF) - Feature requests
@@ -173,7 +173,7 @@ Write-Host "Release assets prepared in: $releaseDir"
 ```
 
 ### Script 2: Release Preparation
-```powershell  
+```powershell
 # File: scripts/prepare-release.ps1
 # Automates release asset preparation and validation
 ```
@@ -192,7 +192,7 @@ Write-Host "Release assets prepared in: $releaseDir"
 - [ ] Create initial release
 - [ ] Configure security settings
 
-### Week 2 (July 17-23, 2025)  
+### Week 2 (July 17-23, 2025)
 - [ ] Complete Medium Priority tasks
 - [ ] Set up community features
 - [ ] Create project management board

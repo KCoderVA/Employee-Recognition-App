@@ -1,0 +1,32 @@
+# Summary: Brief description of your changes (50 chars max)
+
+# Body: Detailed description of what was changed and why
+# Wrap at 72 characters
+# 
+# 
+
+# IMPORTANT REMINDERS:
+# ✅ Have you updated CHANGELOG.md under [Unreleased] section?
+# ✅ Are your changes categorized properly (Added/Changed/Fixed/etc.)?
+# ✅ Do significant changes have appropriate documentation?
+# ✅ Are breaking changes clearly marked?
+#
+# Categories for CHANGELOG.md:
+# - Added: for new features
+# - Changed: for changes in existing functionality  
+# - Deprecated: for soon-to-be removed features
+# - Removed: for now removed features
+# - Fixed: for any bug fixes
+# - Security: in case of vulnerabilities
+#
+# Example CHANGELOG entry:
+# ### Added
+# - New employee recognition workflow with approval routing
+# ### Fixed  
+# - Resolved issue with award notification emails
+#
+# Use 'scripts/update-changelog.ps1' to help update CHANGELOG.md
+# Use 'scripts/safe-commit.ps1' for automated CHANGELOG checking
+#
+# Employee Recognition App - Kyle J. Coder
+# Copyright 2025 - Licensed under Apache 2.0

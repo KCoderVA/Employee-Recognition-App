@@ -92,16 +92,6 @@ To ensure complete accuracy in future references, please consider providing:
 - **Budget Authority**: (Who approves project expenses/resources)
 - **Change Control Process**: (How modifications are approved)
 
-### Award Types Managed by Committee
-1. **Hines Hero Award** - Employee of the month recognition for all hospital employees, any reason, one winner per month
-2. **Great Catch Award** - Recognition for employees who identify and prevent problems before they impact patient care
-3. **Starfish Award** - Employee of the week recognition, unlimited winners allowed
-4. **Daisy Award** - Monthly recognition for licensed nursing staff who exceed expectations in patient care, one winner per month
-5. **Bee Award** - Monthly recognition for unlicensed nursing assistants or medical technicians who exceed patient care expectations, one winner per month
-6. **HRO HeRO Award** - Recognition for employees demonstrating high reliability organization principles and virtues
-7. **Safety Story** - Recognition for patient safety situations including falls, accidents, job injuries, or emergency responses
-8. **WOW! Recognition** - Low-level kudos/congratulations for good performance or compliments, hundreds created monthly for various situations not covered by other awards
-
 ### Communication Protocols
 - **Preferred Communication Channels**: (Teams, Email, SharePoint)
 - **Meeting Cadence**: (Regular check-ins, status updates)

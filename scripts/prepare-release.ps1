@@ -19,10 +19,10 @@
 param(
     [Parameter(Mandatory=$true)]
     [string]$Version,
-    
+
     [Parameter(Mandatory=$false)]
     [string]$OutputPath = ".\releases\$Version-assets",
-    
+
     [Parameter(Mandatory=$false)]
     [switch]$CreateZip = $true
 )
@@ -55,7 +55,7 @@ if (Test-Path "src\power-apps") {
         Copy-Item $_.FullName -Destination "$OutputPath\power-apps\" -Force
         Write-Host "  ✓ Copied $($_.Name)" -ForegroundColor Green
     }
-    
+
     # Copy Power Apps documentation
     if (Test-Path "src\power-apps\README.md") {
         Copy-Item "src\power-apps\README.md" -Destination "$OutputPath\power-apps\" -Force
@@ -69,7 +69,7 @@ if (Test-Path "src\power-automate") {
         Copy-Item $_.FullName -Destination "$OutputPath\power-automate\" -Force
         Write-Host "  ✓ Copied $($_.Name)" -ForegroundColor Green
     }
-    
+
     # Copy Flow documentation
     if (Test-Path "src\power-automate\README.md") {
         Copy-Item "src\power-automate\README.md" -Destination "$OutputPath\power-automate\" -Force
@@ -254,17 +254,17 @@ Write-Host "Scripts: $($versionInfo.Components.Scripts) files" -ForegroundColor 
 if ($CreateZip) {
     Write-Host "`n📦 Creating release archive..." -ForegroundColor Yellow
     $zipPath = ".\releases\Employee-Recognition-App-$Version.zip"
-    
+
     # Ensure releases directory exists
     if (!(Test-Path ".\releases")) {
         New-Item -ItemType Directory -Path ".\releases" -Force | Out-Null
     }
-    
+
     # Remove existing zip if it exists
     if (Test-Path $zipPath) {
         Remove-Item $zipPath -Force
     }
-    
+
     # Create the archive
     try {
         Compress-Archive -Path "$OutputPath\*" -DestinationPath $zipPath -CompressionLevel Optimal

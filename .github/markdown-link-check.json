@@ -1,23 +1,26 @@
 {
-  "ignorePatterns": [
-    {
-      "pattern": "^http://localhost"
-    },
-    {
-      "pattern": "^https://localhost"
-    },
-    {
-      "pattern": "^file://"
-    }
-  ],
-  "replacementPatterns": [
-    {
-      "pattern": "^/",
-      "replacement": "https://github.com/KCoderVA/Employee-Recognition-App/blob/main/"
-    }
-  ],
-  "retryOn429": true,
-  "retryCount": 3,
-  "fallbackRetryDelay": "30s",
-  "aliveStatusCodes": [200, 206]
+    "ignorePatterns": [
+        {
+            "pattern": "^http://localhost"
+        },
+        {
+            "pattern": "^https://localhost"
+        },
+        {
+            "pattern": "^file://"
+        }
+    ],
+    "replacementPatterns": [
+        {
+            "pattern": "^/",
+            "replacement": "https://github.com/KCoderVA/Employee-Recognition-App/blob/main/"
+        }
+    ],
+    "retryOn429": true,
+    "retryCount": 3,
+    "fallbackRetryDelay": "30s",
+    "aliveStatusCodes": [
+        200,
+        206
+    ]
 }

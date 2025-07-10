@@ -37,9 +37,9 @@ function Test-RepositoryHealth {
         [string]$Recommendation = "",
         [string]$Category = "General"
     )
-    
+
     $script:totalChecks++
-    
+
     try {
         $result = & $TestScript
         if ($result) {
@@ -57,7 +57,7 @@ function Test-RepositoryHealth {
         Write-Host "⚠️  $CheckName - Error: $($_.Exception.Message)" -ForegroundColor Yellow
         $status = "ERROR"
     }
-    
+
     $script:healthReport += [PSCustomObject]@{
         Category = $Category
         Check = $CheckName
@@ -135,9 +135,9 @@ Write-Host "`n🛡️ Security & Compliance Checks" -ForegroundColor Cyan
 Write-Host "-" * 30 -ForegroundColor Cyan
 
 Test-RepositoryHealth -CheckName "Apache 2.0 license headers in source files" -Category "Legal" `
-    -TestScript { 
+    -TestScript {
         $mdFiles = Get-ChildItem -Recurse -Filter "*.md" | Where-Object { $_.Name -notlike "*archive*" }
-        $filesWithHeaders = ($mdFiles | Where-Object { 
+        $filesWithHeaders = ($mdFiles | Where-Object {
             $content = Get-Content $_.FullName -Raw -ErrorAction SilentlyContinue
             $content -and $content.Contains("Apache License, Version 2.0")
         }).Count
@@ -146,7 +146,7 @@ Test-RepositoryHealth -CheckName "Apache 2.0 license headers in source files" -C
     -Recommendation "Add Apache 2.0 license headers to all source files"
 
 Test-RepositoryHealth -CheckName "No sensitive data in repository" -Category "Security" `
-    -TestScript { 
+    -TestScript {
         $sensitivePatterns = @("password", "apikey", "secret", "token", "connectionstring")
         $found = $false
         Get-ChildItem -Recurse -Include "*.md", "*.json", "*.txt" | ForEach-Object {
@@ -168,7 +168,7 @@ Write-Host "`n📊 Quality Metrics" -ForegroundColor Cyan
 Write-Host "-" * 30 -ForegroundColor Cyan
 
 Test-RepositoryHealth -CheckName "Documentation coverage is comprehensive" -Category "Quality" `
-    -TestScript { 
+    -TestScript {
         $docFiles = Get-ChildItem -Recurse -Filter "*.md"
         $totalSize = ($docFiles | ForEach-Object { (Get-Content $_.FullName -Raw -ErrorAction SilentlyContinue).Length } | Measure-Object -Sum).Sum
         $totalSize -gt 50000 # At least 50KB of documentation
@@ -187,11 +187,11 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
     Test-RepositoryHealth -CheckName "Git repository is clean" -Category "Git" `
         -TestScript { (git status --porcelain).Count -eq 0 } `
         -Recommendation "Commit any pending changes"
-    
+
     Test-RepositoryHealth -CheckName "Remote repository configured" -Category "Git" `
         -TestScript { (git remote -v | Select-String "origin").Count -gt 0 } `
         -Recommendation "Configure remote repository (GitHub)"
-    
+
     Test-RepositoryHealth -CheckName "Recent commits exist" -Category "Git" `
         -TestScript { (git log --oneline -10).Count -gt 5 } `
         -Recommendation "Maintain regular commit history"
@@ -219,7 +219,7 @@ if ($healthPercentage -gt 90) {
 if ($Detailed) {
     Write-Host "`n📋 DETAILED REPORT" -ForegroundColor Cyan
     Write-Host "=" * 40 -ForegroundColor Cyan
-    
+
     $healthReport | Group-Object Category | ForEach-Object {
         Write-Host "`n$($_.Name):" -ForegroundColor Yellow
         $_.Group | ForEach-Object {

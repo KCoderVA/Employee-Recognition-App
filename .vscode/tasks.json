@@ -143,49 +143,53 @@
 			}
 		},
 		{
-			"label": "Validate Power App",
-			"type": "shell",
-			"command": "pac",
-			"args": [
-				"canvas",
-				"pack",
-				"--sources",
-				"./src/power-apps/EmployeeRecognitionApp_Unpacked",
-				"--msapp",
-				"./temp/validation.msapp",
-				"--verbose"
-			],
-			"group": "test",
-			"presentation": {
-				"echo": true,
-				"reveal": "always",
-				"focus": false,
-				"panel": "shared"
-			}
-		},
-		{
-			"label": "Create Solution Package",
+			"label": "Update CHANGELOG (Required Before Commit)",
 			"type": "shell",
 			"command": "powershell",
 			"args": [
-				"-Command",
-				"$date = Get-Date -Format 'yyyy-MM-dd_HHmm'; New-Item -ItemType Directory -Path './releases' -Force | Out-Null; pac solution pack --zipfile \"./releases/EmployeeRecognition_$date.zip\" --folder './src' --packagetype Both; Write-Host \"Solution package created: EmployeeRecognition_$date.zip\" -ForegroundColor Green"
+				"-ExecutionPolicy", "Bypass",
+				"-File", "./scripts/update-changelog.ps1"
 			],
 			"group": "build",
 			"presentation": {
 				"echo": true,
 				"reveal": "always",
-				"focus": false,
-				"panel": "shared"
-			}
+				"focus": true,
+				"panel": "new",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
 		},
 		{
-			"label": "Environment Health Check",
+			"label": "Safe Commit with CHANGELOG Check",
 			"type": "shell",
 			"command": "powershell",
 			"args": [
-				"-Command",
-				"Write-Host 'Power Platform Environment Health Check' -ForegroundColor Green; Write-Host ''; pac auth list; Write-Host ''; pac org list; Write-Host ''; Write-Host 'CLI Version:' -ForegroundColor Yellow; pac --version"
+				"-ExecutionPolicy", "Bypass",
+				"-File", "./scripts/safe-commit.ps1"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "new",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": [],
+			"dependsOrder": "sequence",
+			"dependsOn": "Repository Health Check"
+		},
+		{
+			"label": "Repository Health Check",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-ExecutionPolicy", "Bypass",
+				"-File", "./scripts/repo-health-check.ps1",
+				"-Detailed"
 			],
 			"group": "test",
 			"presentation": {
@@ -193,7 +197,150 @@
 				"reveal": "always",
 				"focus": false,
 				"panel": "shared"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "📋 Validate CHANGELOG (Comprehensive)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/validate-changelog.ps1",
+				"-Detailed",
+				"-ShowStatus"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": [],
+			"runOptions": {
+				"runOn": "default"
 			}
+		},
+		{
+			"label": "📝 Update CHANGELOG (Required Before Commit)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/update-changelog.ps1",
+				"-Interactive"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": [],
+			"runOptions": {
+				"runOn": "default"
+			}
+		},
+		{
+			"label": "🛡️ Safe Commit with CHANGELOG Check",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/safe-commit.ps1",
+				"-Interactive"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": [],
+			"runOptions": {
+				"runOn": "default"
+			}
+		},
+		{
+			"label": "🔍 Repository Health Check",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/repo-health-check.ps1",
+				"-Detailed"
+			],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "🚀 Prepare Release",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/prepare-release.ps1",
+				"-Interactive"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "🔧 Fix CHANGELOG Format",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/validate-changelog.ps1",
+				"-Fix"
+			],
+			"group": "build",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"problemMatcher": []
 		}
 	]
 }
