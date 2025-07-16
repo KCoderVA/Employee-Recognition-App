@@ -27,22 +27,13 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        "**/archive": true,
-        "**/testing": true,
-        "**/releases": true,
-        "**/scripts": true,
-        "**/environments": true,
-        "**/repository_manager": true,
-        "**/*.msapp": true,
-        "**/*.zip": true,
-        "**/node_modules": true
+        "**/Thumbs.db": true
     },
     "search.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
         "**/node_modules": true,
-        "**/bower_components": true,
-        "**/*.code-search": true,
-        "**/archive": true
+        "**/*.code-search": true
     },
     "explorer.sortOrder": "type",
     "explorer.fileNesting.enabled": true,

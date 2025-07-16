@@ -147,7 +147,7 @@ The GitHub repository contains only user-relevant files:
 ### 🏠 **Local Development Environment**
 Your local repository contains additional development resources:
 - **VS Code Settings** - Personal workspace configurations
-- **Scripts & Automation** - Developer tools and repository management utilities  
+- **Scripts & Automation** - Developer tools and repository management utilities
 - **Testing Data** - Test files, validation data, and debugging information
 - **Archive Materials** - Historical exports, backups, and reference documents
 - **Binary Files** - Excel files, PowerPoint presentations, Visio diagrams
