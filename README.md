@@ -292,3 +292,4 @@ pac canvas pack --sources "./src/power-apps/EmployeeRecognitionApp_v0.9.0/Source
 - **PowerShell Helper**: `scripts/powerapps-web.ps1` (Interactive commands)
 - **VS Code Tasks**: Multiple tasks for packaging, portal access, and reference
 - **Quick Reference**: Use VS Code task "📖 Open Power Apps Web Reference"
+

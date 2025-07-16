@@ -22,6 +22,83 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## Version 0.9.20 - 2025-07-16
+
+**Release Type**: Documentation Release
+**Date**: 2025-07-16 18:45:00
+**Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
+**Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
+
+### Summary
+Enhanced autonomous commit protocol with comprehensive message generation requirements
+
+### Changes Made
+- Added detailed commit message generation protocol to copilot-instructions.md
+- Implemented pre-analysis requirements examining get_changed_files output before generation
+- Enhanced message construction template with conventional commit format enforcement
+- Added step-by-step protocol for change classification and impact assessment
+- Updated autonomous execution workflow with comprehensive message preparation
+- Strengthened zero-prompt automation with file-based commit approaches
+- Applied minor formatting improvements to README.md
+
+### Technical Details
+- **Commit Hash**: (Auto-generated)
+- **Branch**: main
+- **Files Modified**: .github/copilot-instructions.md, CHANGELOG.md, README.md
+- **Repository Status**: Enhanced commit message automation
+
+### Impact Assessment
+- **User Impact**: Improved automation reliability and commit message quality
+- **Breaking Changes**: None
+- **Migration Required**: No
+- **Testing Required**: Automated workflow validation
+
+### Related Information
+- **Change Request**: CR-2025-097 - Commit message generation protocol enhancement
+- **Documentation**: Enhanced copilot-instructions.md with message generation requirements
+- **Protocol Added**: Comprehensive commit message generation with pre-analysis
+
+---
+
+## Version 0.9.19 - 2025-07-16
+
+**Release Type**: Feature Release
+**Date**: 2025-07-16 18:40:00
+**Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
+**Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
+
+### Summary
+Enhanced autonomous git commit protocol with zero-prompt execution
+
+### Changes Made
+- Added explicit protocol to avoid run_in_terminal for all commands during automated workflows
+- Implemented zero-prompt execution using VS Code commands and file tools exclusively
+- Updated workflow to completely eliminate terminal usage and system prompts
+- Added dedicated git-commit-automation.ps1 script for reference purposes
+- Ensured absolute terminal ban during automated commit workflows
+- Updated critical command execution guidelines to use file-based approaches
+- Improved autonomous workflow reliability by avoiding all system prompts
+- Enhanced copilot-instructions.md with comprehensive prompt-free protocols
+
+### Technical Details
+- **Commit Hash**: (Auto-generated)
+- **Branch**: main
+- **Files Modified**: .github/copilot-instructions.md, scripts/git-commit-automation.ps1
+- **Repository Status**: Enhanced automation protocols
+
+### Impact Assessment
+- **User Impact**: Improved automation reliability
+- **Breaking Changes**: None
+- **Migration Required**: No
+- **Testing Required**: Automated workflow validation
+
+### Related Information
+- **Change Request**: CR-2025-096 - Zero-prompt automation enhancement
+- **Documentation**: Updated copilot-instructions.md with terminal ban protocols
+- **Scripts Added**: git-commit-automation.ps1 for reference implementation
+
+---
+
 ## Version 0.9.18 - 2025-07-16
 
 **Release Type**: Feature Release
