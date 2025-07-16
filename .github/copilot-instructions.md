@@ -60,6 +60,37 @@ When the user types any of these short commands, automatically execute comprehen
 
 **Standard Response**: "Executing comprehensive repository health check and validation..."
 
+### **💾 Automated Local Git Commit Commands**
+When the user types any of these short commands, automatically execute the complete local commit workflow:
+
+- **"Commit local"** - Execute full automated local git commit workflow
+- **"Commit .git"** - Run complete local repository commit process
+- **"Back up local"** - Perform automated local git backup commit
+- **"Local commit"** - Execute comprehensive local commit automation
+- **"Save changes local"** - Run full local git commit workflow
+
+**Automated Commit Workflow (Execute in Order):**
+1. **Workspace Cleanup**: Run "🧹 Clean Workspace (Auto Before Commit)" VS Code task
+2. **Health Validation**: Run "🔍 Repository Health Check" VS Code task
+   - Continue ONLY if health check passes OR fails with "Git repository is clean" error
+   - HALT workflow for any other validation failures (manual resolution required)
+3. **Change Analysis**: Examine all local .git repository changes since previous commit
+4. **Commit Message Generation**: Create comprehensive and detailed commit message based on changes
+5. **Local Git Commit**: Execute git commit with generated message
+6. **CHANGELOG Update**: Update CHANGELOG.md with new commit-related content
+7. **Success Confirmation**: Provide completion status in both terminal and Copilot Chat
+
+**Standard Response**: "Executing automated local git commit workflow..."
+
+**Error Handling**: If step 2 (health validation) fails with errors other than "Git repository is clean", halt the workflow and report the specific validation failures that require manual resolution.
+
+**Success Output**: Provide detailed confirmation showing:
+- Workspace cleanup results
+- Health validation status
+- Files committed and commit hash
+- CHANGELOG update confirmation
+- Final workflow completion status
+
 ## Project Architecture
 This is a **production-ready Power Platform Employee Recognition application** with enterprise-grade ALM workflows. The solution follows a multi-component architecture:
 
