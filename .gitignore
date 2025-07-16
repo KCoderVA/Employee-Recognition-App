@@ -19,6 +19,29 @@
 # =============================================================================
 # This file excludes VS Code settings, workspace files, archives, testing data,
 # and developer-specific files from GitHub while maintaining them locally.
+# GitHub workflows and automation files are INCLUDED for CI/CD functionality.
+
+# ================================
+# GitHub Workflows & Automation (Included for CI/CD)
+# ================================
+# .github/ folder IS included for automation workflows
+# Individual workflow files are tracked for repository management
+# CRITICAL: Never exclude .github/copilot-instructions.md from repository
+
+# ================================
+# WORKSPACE SAFETY - Critical Files (NEVER AUTO-DELETE)
+# ================================
+# These files should NEVER be cleaned up by automation
+!.github/copilot-instructions.md
+!README.md
+!CHANGELOG.md
+!LICENSE
+!SECURITY.md
+!CONTRIBUTING.md
+!PROJECT_STATUS.md
+!*.code-workspace
+!.vscode/workspace-safety.config
+!scripts/pre-commit-safety-hook.ps1
 
 # ================================
 # VS Code & Development Environment (Local Only)

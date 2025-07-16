@@ -31,12 +31,13 @@ We provide comprehensive security support for the following versions:
 
 | Version | Support Status | Security Updates | End of Life |
 |---------|---------------|------------------|-------------|
+| 0.9.x   | ✅ **Full Support** | Active monitoring & immediate patches | TBD |
 | 0.8.x   | ✅ **Full Support** | Active monitoring & immediate patches | TBD |
 | 0.7.x   | ⚠️ **Limited Support** | Critical vulnerabilities only | December 2025 |
 | 0.6.x   | ❌ **End of Life** | No security updates | July 2025 |
 | < 0.6   | ❌ **Unsupported** | No security updates | Immediate |
 
-**Current Production Version**: 0.8.3 (Pre-Production Release Candidate)
+**Current Production Version**: 0.9.18 (Production-Ready with GitHub Automation)
 
 ## 🚨 Vulnerability Reporting Process
 

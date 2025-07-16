@@ -1,0 +1,227 @@
+# =============================================================================
+# Repository Health Check - GitHub Actions Workflow
+# =============================================================================
+#
+#    Copyright 2025 Kyle J. Coder
+#
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
+#
+# =============================================================================
+
+name: Repository Health Check
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Run weekly on Sundays at 2 AM UTC
+    - cron: "0 2 * * 0"
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    name: Repository Health Assessment
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check repository structure
+        run: |
+          echo "🏗️ Checking repository structure..."
+
+          # Required files check
+          required_files=("README.md" "LICENSE" "NOTICE" "CHANGELOG.md" "CONTRIBUTING.md" "SECURITY.md")
+          missing_files=()
+
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              missing_files+=("$file")
+            fi
+          done
+
+          if [ ${#missing_files[@]} -eq 0 ]; then
+            echo "✅ All required files present"
+          else
+            echo "❌ Missing required files: ${missing_files[*]}"
+            exit 1
+          fi
+
+          # Directory structure check
+          required_dirs=("src" "docs" ".github" "scripts")
+          missing_dirs=()
+
+          for dir in "${required_dirs[@]}"; do
+            if [ ! -d "$dir" ]; then
+              missing_dirs+=("$dir")
+            fi
+          done
+
+          if [ ${#missing_dirs[@]} -eq 0 ]; then
+            echo "✅ All required directories present"
+          else
+            echo "❌ Missing required directories: ${missing_dirs[*]}"
+            exit 1
+          fi
+
+      - name: Validate documentation
+        run: |
+          echo "📚 Validating documentation..."
+
+          # Check README.md size (should be comprehensive)
+          readme_size=$(wc -c < README.md)
+          if [ $readme_size -gt 5000 ]; then
+            echo "✅ README.md is comprehensive ($readme_size bytes)"
+          else
+            echo "⚠️ README.md might need more content ($readme_size bytes)"
+          fi
+
+          # Check for Apache 2.0 license headers in documentation
+          md_files=$(find . -name "*.md" -not -path "./archive/*" -not -path "./.git/*")
+          files_with_headers=0
+          total_md_files=0
+
+          for file in $md_files; do
+            total_md_files=$((total_md_files + 1))
+            if grep -q "Apache License, Version 2.0" "$file"; then
+              files_with_headers=$((files_with_headers + 1))
+            fi
+          done
+
+          coverage_percent=$((files_with_headers * 100 / total_md_files))
+          echo "📄 License header coverage: $files_with_headers/$total_md_files files ($coverage_percent%)"
+
+          if [ $coverage_percent -ge 80 ]; then
+            echo "✅ Good license header coverage"
+          else
+            echo "⚠️ Consider adding license headers to more files"
+          fi
+
+      - name: Check for sensitive data
+        run: |
+          echo "🔒 Checking for sensitive data..."
+
+          # Patterns to check for sensitive data
+          sensitive_patterns=("password" "secret" "token" "api.key" "connection.string")
+
+          # Files to check
+          files_to_check=$(find . -type f \( -name "*.md" -o -name "*.json" -o -name "*.txt" -o -name "*.yml" -o -name "*.yaml" \) -not -path "./.git/*")
+
+          found_sensitive=false
+          for pattern in "${sensitive_patterns[@]}"; do
+            matches=$(grep -ri "$pattern" $files_to_check | grep -v "example\|placeholder\|# Example\|TODO" || true)
+            if [ -n "$matches" ]; then
+              echo "⚠️ Found potential sensitive data pattern '$pattern':"
+              echo "$matches"
+              found_sensitive=true
+            fi
+          done
+
+          if [ "$found_sensitive" = false ]; then
+            echo "✅ No obvious sensitive data patterns found"
+          else
+            echo "❌ Please review and remove any actual sensitive data"
+          fi
+
+      - name: Validate links in documentation
+        run: |
+          echo "🔗 Checking links in documentation..."
+
+          # Install markdown-link-check if available
+          if command -v npm &> /dev/null; then
+            npm install -g markdown-link-check
+
+            # Check main documentation files
+            important_files=("README.md" "CONTRIBUTING.md" "SECURITY.md")
+
+            for file in "${important_files[@]}"; do
+              if [ -f "$file" ]; then
+                echo "Checking links in $file..."
+                markdown-link-check "$file" --config .github/markdown-link-check.json || true
+              fi
+            done
+          else
+            echo "ℹ️ npm not available, skipping link check"
+          fi
+
+      - name: Check Git repository health
+        run: |
+          echo "📝 Checking Git repository health..."
+
+          # Check for recent commits
+          commit_count=$(git rev-list --count HEAD)
+          echo "📊 Total commits: $commit_count"
+
+          if [ $commit_count -gt 10 ]; then
+            echo "✅ Repository has good commit history"
+          else
+            echo "ℹ️ Repository is relatively new"
+          fi
+
+          # Check branch structure
+          branch_count=$(git branch -r | wc -l)
+          echo "🌿 Remote branches: $branch_count"
+
+          # Check for large files
+          large_files=$(find . -type f -size +10M -not -path "./.git/*" || true)
+          if [ -n "$large_files" ]; then
+            echo "⚠️ Large files found (>10MB):"
+            echo "$large_files"
+          else
+            echo "✅ No large files detected"
+          fi
+
+      - name: Generate health report
+        run: |
+          echo "📊 Generating repository health report..."
+
+          # Create a simple health report
+          cat > health-report.md << 'EOF'
+          # Repository Health Report
+
+          **Generated:** $(date)
+          **Repository:** ${{ github.repository }}
+          **Commit:** ${{ github.sha }}
+
+          ## Summary
+          This automated health check validates:
+          - ✅ Repository structure and required files
+          - ✅ Documentation completeness and quality
+          - ✅ License compliance (Apache 2.0)
+          - ✅ Security best practices
+          - ✅ Git repository health
+
+          ## Recommendations
+          1. Maintain comprehensive documentation
+          2. Keep license headers up to date
+          3. Regular security reviews
+          4. Follow consistent commit practices
+
+          ---
+          *This report was generated automatically by GitHub Actions*
+          EOF
+
+          echo "✅ Health report generated"
+
+      - name: Upload health report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: repository-health-report
+          path: health-report.md
+          retention-days: 30

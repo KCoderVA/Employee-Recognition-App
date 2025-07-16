@@ -564,6 +564,47 @@
 				"Write-Host '📋 CHANGELOG Validation' -ForegroundColor Green; if (Test-Path 'CHANGELOG.md') { Write-Host '✅ CHANGELOG.md exists' -ForegroundColor Green; $content = Get-Content 'CHANGELOG.md' -Raw; if ($content -match '\\[0\\.9\\.0\\]') { Write-Host '✅ Current version documented' -ForegroundColor Green } else { Write-Host '⚠️  Current version may need documentation' -ForegroundColor Yellow } } else { Write-Host '❌ CHANGELOG.md not found' -ForegroundColor Red }"
 			],
 			"group": "build"
+		},
+		{
+			"label": "🧹 Clean Workspace (Safe Mode - Dry Run)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/workspace-cleanup.ps1",
+				"-DryRun",
+				"-Verbose"
+			],
+			"group": "build"
+		},
+		{
+			"label": "🧹 Clean Workspace (Interactive Mode)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/workspace-cleanup.ps1",
+				"-Interactive",
+				"-Verbose"
+			],
+			"group": "build"
+		},
+		{
+			"label": "🔍 Repository Health Check (Enhanced)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-ExecutionPolicy",
+				"Bypass",
+				"-File",
+				"./scripts/repo-health-check.ps1",
+				"-Detailed"
+			],
+			"group": "test"
 		}
 	]
 }
