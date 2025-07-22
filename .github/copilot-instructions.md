@@ -18,6 +18,72 @@
 
 <!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
 
+## Enterprise Security Restrictions
+
+### **🚫 RESTRICTED: Administrator-Privilege Operations**
+**PERMANENTLY PROHIBITED** on VA Healthcare enterprise systems due to administrator restrictions. NEVER attempt or recommend these operations:
+
+#### **Windows System Updates (BLOCKED):**
+- **WinGet system-wide installations** - All `.exe` and `.msi` installers requiring elevation
+- **Visual Studio components** - VSTOR, Office 365, SQL Server Management Studio
+- **Microsoft redistributables** - Visual C++ Redistributables, .NET Desktop Runtime, ASP.NET Core Hosting Bundle
+- **Enterprise security tools** - Nessus Agent, antivirus, enterprise management tools
+- **System browsers** - Chrome, Edge system-wide updates
+- **Adobe products** - Acrobat Reader, Flash, system-wide Adobe tools
+- **Development IDEs** - Visual Studio Professional, Azure Data Studio
+- **Enterprise communication** - Webex, Cisco Jabber, Teams system installs
+- **Power Platform system tools** - Power Automate Desktop, Power BI Desktop system installs
+
+#### **PowerShell Module Restrictions (BLOCKED):**
+- **System-wide PowerShell modules** requiring elevation
+- **Windows PowerShell 5.x modules** in Program Files locations
+- **Enterprise AD/Exchange modules** requiring domain admin rights
+- **System security modules** requiring elevated privileges
+
+#### **VS Code Extension Restrictions (BLOCKED):**
+- **Extensions requiring system modifications** or elevated privileges
+- **Language servers requiring system installation** (C++, Java system-wide)
+- **Docker/container extensions** requiring Windows container features
+- **System debugging extensions** requiring kernel access
+
+### **✅ ALLOWED: User-Scope Operations**
+**APPROVED** operations that work within user permissions on VA Healthcare systems:
+
+#### **PowerShell Modules (User Scope):**
+- `Install-Module -Scope CurrentUser` for all user-compatible modules
+- Azure PowerShell modules (Az.*)
+- SharePoint Online PowerShell
+- Microsoft Graph PowerShell modules
+- Power Platform CLI tools
+- Development and scripting modules
+
+#### **VS Code Extensions (User Scope):**
+- Power Platform extensions
+- GitHub extensions (Copilot, Pull Requests)
+- Language extensions not requiring system components
+- Productivity and documentation extensions
+- Theme and UI customization extensions
+
+#### **Node.js/NPM Packages (User Scope):**
+- Global npm packages with `npm install -g`
+- Development tools and CLI utilities
+- Power Platform CLI via npm
+
+#### **Git and Development Tools:**
+- Portable applications and user-scope installers
+- User profile configurations and settings
+- Workspace-specific tools and extensions
+
+### **🛡️ Security Compliance Protocol**
+When user requests updates or installations:
+1. **IMMEDIATELY CHECK** if operation requires administrator privileges
+2. **AUTOMATICALLY REJECT** any system-wide installation attempts
+3. **OFFER USER-SCOPE ALTERNATIVES** when available
+4. **DOCUMENT WHY** operation was restricted (VA Healthcare security policy)
+5. **SUGGEST WORKAROUNDS** using user-permission tools
+
+**Standard Security Response**: "This operation requires administrator privileges which are restricted on VA Healthcare enterprise systems. I'll provide user-scope alternatives that comply with your security policies."
+
 ## Quick Command Triggers
 
 ### **🧹 Workspace Cleanup Commands**
@@ -76,8 +142,8 @@ When the user types any of these short commands, automatically execute the compl
 **NO OUTPUT VERIFICATION REQUIRED**: Do NOT use `get_task_output` or `get_terminal_output` between steps. Execute each step immediately after the previous one without checking outputs or waiting for completion confirmations.
 
 **Automated Commit Workflow (Execute ALL Steps Continuously):**
-1. **Workspace Cleanup**: Run "🧹 Clean Workspace (Auto Before Commit)" VS Code task
-2. **Health Validation**: Run "🔍 Repository Health Check" VS Code task
+1. **Workspace Cleanup**: Use `run_in_terminal` with `pwsh -ExecutionPolicy Bypass -File ./scripts/workspace-cleanup.ps1`
+2. **Health Validation**: Use `run_in_terminal` with `pwsh -ExecutionPolicy Bypass -File ./scripts/repo-health-check.ps1 -Detailed`
    - Continue ONLY if health check passes OR fails with "Git repository is clean" error
    - HALT workflow for any other validation failures (manual resolution required)
 3. **Change Analysis**: Use `get_changed_files` tool to analyze repository changes
@@ -89,10 +155,9 @@ When the user types any of these short commands, automatically execute the compl
    - Include conventional commit format (type: description)
    - Add detailed bullet points explaining all changes
    - Ensure message is ready for immediate use without modification
-5. **Local Git Commit**: Use file-based git operations with pre-generated message
-   - Create .git/COMMIT_EDITMSG file with the complete commit message
-   - Use `replace_string_in_file` to replace template with actual message
-   - Execute VS Code git.commit command with prepared message
+5. **Local Git Commit**: Use `run_in_terminal` with direct git commands and proper commit message handling
+   - Use git add and git commit commands directly through terminal
+   - Provide commit messages through command line arguments or files
    - Always ensure commit message is properly formatted and comprehensive
 6. **CHANGELOG Update**: Use file editing tools to update CHANGELOG.md directly
 7. **Success Confirmation**: Use `get_changed_files` to confirm commit success
@@ -331,12 +396,44 @@ Execute all terminal commands and VS Code tasks automatically without prompting 
 7. **Background Processes**: Use `isBackground=true` for long-running tasks (servers, watch modes)
 8. **Task Dependencies**: Automatically handle task dependencies and prerequisite execution
 
+### **🚫 FORBIDDEN TERMINAL OPERATIONS**
+**NEVER execute these commands** due to VA Healthcare enterprise security restrictions:
+
+#### **Blocked WinGet Operations:**
+- `winget upgrade --all` (requires administrator privileges for system components)
+- `winget install Microsoft.*` (Office, Visual Studio, SQL Server, etc.)
+- `winget install Adobe.*` (Acrobat Reader, Flash, etc.)
+- `winget install Google.Chrome` (system-wide browser updates)
+- `winget install Cisco.*` (Webex, Jabber enterprise tools)
+- `winget install *.msi` installers requiring elevation
+- `winget install *.exe` installers requiring elevation
+
+#### **Blocked PowerShell Module Operations:**
+- `Install-Module -Scope AllUsers` (requires elevation)
+- `Update-Module` without `-Scope CurrentUser`
+- Enterprise AD/Exchange modules requiring domain privileges
+- System security modules requiring elevated access
+
+#### **Blocked System Modification Commands:**
+- Any command requesting "Run as administrator"
+- Windows Feature installations (`Enable-WindowsOptionalFeature`)
+- System service modifications (`Set-Service`, `Start-Service` with system services)
+- Registry modifications requiring HKEY_LOCAL_MACHINE access
+- Certificate store modifications in LocalMachine scope
+
+#### **Approved Alternative Commands:**
+- `Install-Module -Scope CurrentUser` for PowerShell modules
+- `npm install -g` for Node.js packages (user scope)
+- Portable application downloads and user-profile configurations
+- Git operations and user-scope development tools
+
 **IMMEDIATE EXECUTION COMMANDS** (No approval required):
 - All `git` commands: `git status`, `git diff`, `git add`, `git commit`, `git log`
 - All PowerShell scripts: `pwsh -ExecutionPolicy Bypass -File ./scripts/*`
-- All VS Code tasks and terminal operations
+- All VS Code tasks and terminal operations (user-scope only)
 - All repository analysis and validation commands
 - All CHANGELOG and documentation updates
+- User-scope PowerShell module installations
 
 **AUTONOMOUS DECISION MAKING**: Generate all required inputs automatically:
 - Commit messages based on detected changes
@@ -351,6 +448,26 @@ Execute all terminal commands and VS Code tasks automatically without prompting 
 - **Path Issues**: Verify and correct working directories before command execution
 - **Network Timeouts**: Implement retry logic with exponential backoff
 - **Dependency Conflicts**: Automatically resolve version conflicts when possible
+
+### **🚫 VS CODE TASK EXECUTION BAN**
+**CRITICAL FIX FOR CHRONIC WORKFLOW INTERRUPTIONS**: Due to persistent false "user cancelled" messages from VS Code tasks, NEVER use `run_vs_code_task` during automated workflows. Use direct PowerShell execution instead:
+
+#### **Banned VS Code Task Usage:**
+- `run_vs_code_task` - Always generates false cancellation interruptions
+- `get_task_output` - Consistently returns "user cancelled" errors
+- Any VS Code task-based automation during workflows
+
+#### **Required Alternative Approaches:**
+- **Repository Health Check**: Use `run_in_terminal` with `pwsh -ExecutionPolicy Bypass -File ./scripts/repo-health-check.ps1 -Detailed`
+- **CHANGELOG Updates**: Use `run_in_terminal` with `pwsh -ExecutionPolicy Bypass -File ./scripts/update-changelog.ps1`
+- **Workspace Cleanup**: Use `run_in_terminal` with `pwsh -ExecutionPolicy Bypass -File ./scripts/workspace-cleanup.ps1`
+- **Safe Commits**: Use `run_in_terminal` with `pwsh -ExecutionPolicy Bypass -File ./scripts/safe-commit.ps1`
+
+#### **Direct PowerShell Command Protocol:**
+1. **Always use `run_in_terminal`** instead of `run_vs_code_task` for all automation
+2. **Use full script paths** with `pwsh -ExecutionPolicy Bypass -File` syntax
+3. **Check output with `get_terminal_output`** instead of `get_task_output`
+4. **Continue workflows without VS Code task dependencies**
 
 ### **📊 Execution Reporting**
 After completing terminal operations and task executions, provide brief status updates:

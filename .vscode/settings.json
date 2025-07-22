@@ -1,4 +1,8 @@
 {
+    // VA Healthcare Enterprise Security Configuration
+    // See .vscode/restricted-operations.json for administrator-privilege restrictions
+    // Copilot instructions include permanent security restrictions for system updates
+    
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
