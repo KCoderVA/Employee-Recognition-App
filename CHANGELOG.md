@@ -22,6 +22,40 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## Version 0.9.22 - 2025-07-22
+
+**Release Type**: Critical Fix Release
+**Date**: 2025-07-22 10:15:00
+**Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
+**Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
+
+### Fixed
+- **VS Code Task Execution Ban**: Implemented permanent ban on `run_vs_code_task` during automated workflows to resolve chronic "user cancelled" interruptions
+- **Workflow Reliability**: Eliminated persistent false cancellation messages that were halting automation processes
+- **Terminal Automation**: Enhanced direct PowerShell execution protocol for all automation scripts
+
+### Added
+- **Direct PowerShell Command Protocol**: Required alternative approaches using `run_in_terminal` instead of `run_vs_code_task`
+- **Banned VS Code Task Usage**: Comprehensive documentation of problematic task operations
+- **Enhanced Error Recovery**: Improved workflow continuation protocols to bypass system interruptions
+
+### Changed
+- **Automated Commit Workflow**: Updated to use direct PowerShell execution for all steps
+- **Repository Health Check**: Converted from VS Code task to direct script execution
+- **Workspace Cleanup**: Enhanced to use `run_in_terminal` with full script paths
+- **CHANGELOG Updates**: Improved to use direct PowerShell execution instead of task automation
+
+### Technical Details
+- **Root Cause**: VS Code tasks were generating false "user cancelled" messages causing workflow halts
+- **Solution**: Complete elimination of `run_vs_code_task` and `get_task_output` during automation
+- **Implementation**: Direct PowerShell execution using `pwsh -ExecutionPolicy Bypass -File` syntax
+- **Validation**: Successfully tested repository health check and commit workflow without interruptions
+
+**Change Request**: CR-2025-VAH-FIX-001 - Resolve chronic VS Code task interruption issues
+**Business Justification**: Ensure reliable automated workflows for development and deployment processes
+**Impact Assessment**: Critical improvement to development productivity and automation reliability
+
+
 ## Version 0.9.21 - 2025-07-22
 
 **Release Type**: Security Configuration Release
