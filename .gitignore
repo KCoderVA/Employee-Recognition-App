@@ -133,6 +133,11 @@ docs/**/*Preview*.html
 docs/**/*Experiment*.md
 docs/**/*Extracted*.html
 
+# Private Analysis Documents (Local Only - Never Share)
+# ONLY protect the final analysis documents in docs/project_analysis_documents/
+docs/project_analysis_documents/
+docs/project_analysis_documents/**
+
 # ================================
 # Project Management Files (Local Only)
 # ================================

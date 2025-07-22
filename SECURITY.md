@@ -37,7 +37,14 @@ We provide comprehensive security support for the following versions:
 | 0.6.x   | ❌ **End of Life** | No security updates | July 2025 |
 | < 0.6   | ❌ **Unsupported** | No security updates | Immediate |
 
-**Current Production Version**: 0.9.18 (Production-Ready with GitHub Automation)
+**Current Production Version**: 0.9.23 (Major Organizational Release with Complete Documentation Alignment)
+
+### Recent Security Enhancements (v0.9.21-0.9.23)
+- **Enterprise Security Restrictions**: 50+ permanent administrator-privilege operation restrictions
+- **VA Healthcare Compliance**: Comprehensive security protocols for enterprise environments
+- **Automated Security Validation**: PowerShell-based compliance checking system
+- **Workflow Security**: Enhanced automation protocols with security safeguards
+- **Documentation Alignment**: Complete security documentation consistency and alignment
 
 ## 🚨 Vulnerability Reporting Process
 

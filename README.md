@@ -1,7 +1,7 @@
 # Employee Recognition Application
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
-[![Version](https://img.shields.io/badge/Version-0.9.18-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.9.23-green)](./CHANGELOG.md)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](./CHANGELOG.md)
 [![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen)](./docs/)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)

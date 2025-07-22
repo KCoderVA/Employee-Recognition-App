@@ -2,7 +2,6 @@
     // VA Healthcare Enterprise Security Configuration
     // See .vscode/restricted-operations.json for administrator-privilege restrictions
     // Copilot instructions include permanent security restrictions for system updates
-    
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
@@ -78,5 +77,13 @@
     ],
     "powerplatform.experimental.enableCanvasAppIntelliSense": true,
     "powerplatform.experimental.enableModelDrivenAppIntelliSense": true,
-    "powerplatform.enablePortalIntelliSense": true
+    "powerplatform.enablePortalIntelliSense": true,
+    // Markdown performance optimization settings
+    "markdown.validate.enabled": false,
+    "markdown.experimental.validate.enabled": false,
+    "markdown.preview.breaks": true,
+    "markdown.preview.typographer": false,
+    "typescript.suggest.autoImports": false,
+    "markdown.preview.scrollEditorWithPreview": false,
+    "markdown.preview.scrollPreviewWithEditor": false
 }

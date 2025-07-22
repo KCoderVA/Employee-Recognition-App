@@ -41,12 +41,20 @@ This project follows the VA's standards for professional conduct. All contributo
 - Power Platform CLI (pac) installed
 - VS Code with Power Platform extensions
 - Git for version control
+- PowerShell 7+ for automation scripts
 
 ### Development Environment Setup
 1. Clone the repository
 2. Install required VS Code extensions (see `.vscode/extensions.json`)
 3. Configure your Power Platform environment connection
 4. Review the project documentation in `/docs/`
+5. Run initial health check: `pwsh -ExecutionPolicy Bypass -File ./scripts/repo-health-check.ps1`
+
+### Current Development Focus (v0.9.22)
+- **Enhanced Automation**: 33+ VS Code tasks and 17+ PowerShell scripts
+- **Security Compliance**: VA Healthcare enterprise security restrictions
+- **Web-Only Development**: Optimized Power Apps development workflow
+- **Quality Assurance**: Comprehensive CHANGELOG enforcement and validation
 
 ## Development Process
 
