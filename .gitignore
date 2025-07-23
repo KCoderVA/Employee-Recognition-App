@@ -149,6 +149,12 @@ WORKSPACE_*.md
 *_MIGRATION_*.md
 
 # ================================
+# Copilot Export Package (Local Only - Not for Public Distribution)
+# ================================
+copilot-export/
+copilot-export/**
+
+# ================================
 # Reference Materials & Assets (Local Only)
 # ================================
 *.pdf

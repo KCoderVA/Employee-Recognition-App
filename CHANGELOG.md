@@ -23,6 +23,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Version 0.9.24 - 2025-07-23
+
+**Release Type**: Development Enhancement Release
+**Date**: 2025-07-23
+**Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
+**Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
+
+### Added
+- **Power Apps Triage Screen Development**: Enhanced Canvas app with new triage functionality for award nominations
+- **Advanced Gallery Filtering**: Implemented sophisticated filtering for untriaged submissions using Power FX formulas
+- **Form-Gallery Integration**: Created seamless toggle between gallery list view and form detail view
+- **Search Functionality**: Added real-time search capability for filtering submissions by employee email
+- **Workflow Documentation**: Comprehensive Power FX formula guidance for triage team functionality
+
+### Changed
+- **User Interface Flow**: Enhanced navigation between submission review and detailed editing modes
+- **Data Management**: Improved SharePoint list integration with advanced filtering capabilities
+- **Search Experience**: Real-time filtering with SharePoint data source optimization
+
+### Technical Details
+- **Power FX Formulas**: Advanced Filter() operations with multiple criteria and search integration
+- **Gallery Configuration**: Dynamic Items property with sophisticated filtering logic
+- **Form Integration**: Seamless data binding between gallery selection and form display
+- **SharePoint Integration**: Enhanced data operations with "578_Starfish" list and "TriageStage_ActionTakenBy_Text" field validation
+
+**Change Request**: CR-2025-PWR-TRIAGE-001 - Implement triage functionality for award nomination review
+**Business Justification**: Enable efficient review and processing of employee recognition submissions by authorized triage team
+**Impact Assessment**: Significant improvement in nomination processing workflow efficiency
+
+---
+
 ## Version 0.9.23 - 2025-07-22
 
 **Release Type**: Major Organizational Release
