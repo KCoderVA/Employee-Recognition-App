@@ -99,7 +99,7 @@ To ensure complete accuracy in future references, please consider providing:
 - **Documentation Standards**: (VA-specific formatting/requirements)
 
 ### Technical Standards
-- **Development Standards**: C:\Users\VHAHINCoderK1\OneDrive - Department of Veterans Affairs\Desktop\Workspace\PowerApps canvas app coding standards and guidelines.pdf
+- **Development Standards**: S:\Informatics\Data Team\Coder - Informatics\App Programing\Employee Recognition App\PowerApps canvas app coding standards and guidelines.pdf
 - **Security Classifications**: VA-wide visibility, Edward Hines Jr. VA Hospital functional access only
 - **Access Model**: Microsoft Security Distribution Group (VhaHinAllUsers) controls read/write permissions
 - **Network Requirements**: VA secured government networks required for all access

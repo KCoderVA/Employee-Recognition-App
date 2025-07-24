@@ -23,6 +23,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Version 0.9.25 - 2025-07-24
+
+**Release Type**: Workspace Migration Fix
+**Date**: 2025-07-24
+**Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
+
+### Fixed
+- **Workspace Location Path Reference**: Updated PROJECT_PROFILE.md development standards file path for network migration
+  - Changed from old C:\Users\VHAHINCoderK1\OneDrive location to new S:\Informatics\Data Team network location
+  - Ensures all file references correctly point to permanent shared network drive storage
+  - Prevents errors from obsolete local machine path references
+  - Comprehensive workspace analysis confirmed this was the only absolute path requiring update
+- **Migration Compatibility**: Verified all other workspace paths use relative references that automatically work from new location
+- **Functionality Preservation**: Maintained complete workspace functionality after migration from local C:\ to networked S:\ drive
+
+### Changed
+- **Documentation Path**: Updated absolute file reference in PROJECT_PROFILE.md to reflect new network storage location
+- **Development Standards Reference**: PowerApps coding standards document path updated for organizational shared drive
+
+### Technical Details
+- Examined all 107 lines of VS Code workspace configuration - no updates needed (uses relative paths)
+- Analyzed 90 lines of VS Code settings - no updates needed (workspace-relative paths)
+- Searched entire codebase for old location references - only found one absolute path in documentation
+- Verified git configuration uses GitHub remote URLs - no local path dependencies
+- Confirmed all VS Code tasks and PowerShell scripts use relative paths - fully compatible with new location
+
 ## Version 0.9.24 - 2025-07-23
 
 **Release Type**: Development Enhancement Release
