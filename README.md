@@ -1,7 +1,8 @@
 # Employee Recognition Application
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
-[![Version](https://img.shields.io/badge/Version-0.9.23-green)](./CHANGELOG.md)
+
+[![Version](https://img.shields.io/badge/Version-0.9.47-green)](./CHANGELOG.md)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](./CHANGELOG.md)
 [![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen)](./docs/)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)
@@ -9,9 +10,17 @@
 
 > **A comprehensive Power Platform solution for streamlining employee recognition workflows in healthcare organizations. Built for the VA healthcare system with enterprise-grade security, automated approvals, and professional documentation.**
 
+
+
 ## Overview
 
-A production-ready **Power Platform application** that transforms traditional paper-based employee recognition into an intelligent, automated digital workflow. Developed through 3 months of iterative design with complete stakeholder collaboration, achieving **16 approvals** from Award Committee review with comprehensive GitHub automation and CI/CD workflows.
+A production-ready **Power Platform application** that transforms traditional paper-based employee recognition into an intelligent, automated digital workflow. Developed through 3+ months of iterative design with complete stakeholder collaboration, achieving **16 approvals** from Award Committee review with comprehensive GitHub automation and CI/CD workflows.
+
+**Current Version:** v0.9.47 (July 28, 2025)  
+**Status:** Production Ready – Documentation, Formatting, and Compliance Update  
+**Release Notes:** See [CHANGELOG.md](./CHANGELOG.md)
+
+---
 
 ### 🏆 Award Types Supported
 - **HeRO Awards** - Healthcare Recognition & Outcomes excellence

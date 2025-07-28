@@ -1,0 +1,138 @@
+# ,REQUEST ,PROGRESS ,UPDATES/COMMENTS 
+1.  ,"@Conway, Christina (HIN) : Remove names of nominees from public view (submitter can only see their submissions)  ",Completed ,"As of 04/18/25, modified display permissions so the app user can only see their own submissions. App admins can view everything. "
+2.  ,@Everyone : Which specific award is the nomination for? ,Completed ,"By 04/28/25, finished added initial screening question allowing for: "
+,,,"Only questions relevant to the identified award to be asked, via showing/hiding unnecessary question "
+,,,"If the user is unsure which specific award they want to submit, then the in-app algorithm will display more detailed questions and prompts to help the user create the most useful answers "
+,,,"On 05/05/25, completed new hidden layers to app that are customized for each award type based on initial screening question "
+,,,"As of 05/07/25, still working on debugging the new additions and algorithm and polishing the display. Anticipate completion by next week’s meeting. "
+,,,"As of 05/20/25, completed "
+3.  ,"@Franche, Chad C. (HIN) : Do we consider notifying the submitter that the nomination is general and that the type of award (if any) is determined by the triage team? To reduce potential confusion. ",Resolved ,Comment resolved via solution to “Which specific award is the nomination for?” line item (listed above). 
+4.  ,"@Conway, Christina (HIN) : Nomination choices allowing for either a “Group/Team” selection or “individual employee” selection ",Postponed ,"Requested on 04/09/25 meeting. Discussion identified the concept is technically possible & feasible, but is postponed until after roll-out publication. To be included in “Version 1.5”. Anticipated completion unspecified. "
+5.  ,"@Conway, Christina (HIN) :  End page tabs  ",Resolved ,n/a 
+6.  ,"@Conway, Christina (HIN) : Love the help page  ",Resolved ,n/a 
+7.  ,"@Conway, Christina (HIN) : Triage team that receives the submission has ability to simultaneously forward a packet to multiple teams at once (i.e. nomination is ideal for both a Safety Story & a Daisy award) ",Postponed ,"Requested on 04/02/25 meeting. Discussion identified the concept is technically possible & feasible, but de-prioritized & postponed until after roll-out publication. To be included in “Version 2”. Anticipated completion unspecified. "
+8.  ,"@Conway, Christina (HIN) : Get to 1st page to submit another nomination  ",Completed ,"Completed by 04/30/25: Upon the application’s initially opening, the user is taken right to “Page #1” to begin a new submission without extra clicks/redirects. After a user completes & submits an award, the application takes them back to the “View Submissions” screen to either begin another packet or review their past submissions. User can also navigate backwards to the “View Submissions” screen manually without completing a new packet. "
+9.  ,"@Majors, Tuesday A. / Safety Team: Safety Boolean response triggers JPSR/formal safety reporting system. Three main options available for possible inclusion upon the user saying “YES” to patient safety event question: ",Complete ,"On 04/18/25, added Patient Safety YES/NO simple question. "
+,Application asks the user a few follow-up questions at the end to kindly prompt them to initiate a JPSR ,,"On 04/29/25, finished programing algorithm for a “YES” response to trigger a JPSR system and prompt app user to complete a formal safety report. "
+,"Ai Chatbot sends informal Teams chat message to user, asking them to kindly initiate a JPSR (possibly one-way request to user, or question & answer interaction) ",,"During 04/30/25 meeting, key stakeholders requested change to soften the app’s requesting language presented and mandatory JPSR trigger. Presented with three options (in-app prompts, Ai Chatbot, after-action emails), and group decided to pursue the Ai Chatbot solution. "
+,"Automated email is sent to user, asking them to kindly initiate a formal JPSR (perhaps including instructions/tutorial?) ",,"On 05/01/25, finished debugging in-app additions and changes. Starting work on Ai Chatbot "
+,,,"As of 05/07/25, working on Ai Chatbot (approx. 25% complete) "
+,,,"As of 05/20/25, working on Ai Chatbot (approx. 75% complete) "
+,,,"As of 05/28/25, Ai Chatbot built & starting testing phase (approx. 90% complete) "
+10.  ,"@Coder, Kyle J. : Back button to return to previous pop-up, versus current start-over ",Completed ,"During 04/30/25 meeting, stakeholder group requested alterations to button routing. "
+,,,Completed 05/01/25. 
+11.  ,"@Everyone : Initial into question to directly target the specific award users want, instead of the algorithmic prompts that require more clicks and answers ",Resolved ,Comment resolved via solution to “Which specific award is the nomination for?” line item (listed above). 
+12.  ,"@Coder, Kyle J. : Confirm with Nursing Team that Daisy & Bee are supposed to be able to be submitted by both external (Veterans/Visitors) & internal (staff) groups, and also that: ",Resolved ,"Requested clarifying details from Nursing stakeholders during 04/09/25 meeting, but postponed due to nursing staff availability. "
+,The nominees for the Daisy award are targeted toward NPs/RNs/LPNs/CRNAs ,,"Completed 04/16/25, during project stakeholder meeting with @Richmond, Kimberly. "
+,The nominees for the Bee award are targeted toward CNAs/Nas/Health Techs/Med Techs ,,
+13.  ,"@Coder, Kyle J. : Post-approval automation potentials: Nominee notifications, award certificate printing, Service Chief/Supervisor notification of subordinate employee nominees, etc. ",Resolved ,"On 04/09/25 meeting, presented hypothetical future state solutions that might be worth inclusion in app. Stakeholder group interested, but deprioritized and postponed development/inclusion with no implementation plan or projected completion timeline. "
+14.  ,"@Persky, Irena : WOW! Tab re-directs to the already developed WOW! Platform ",Resolved ,"On 04/28/25, completed re-programing in-app tabs/buttons to open the existing WOW! platform "
+15.  ,"@Capulong, Manuelissa : Chat box for JPSR submission encouragement (find a way to make it not come off punitive to person submitting) ",Resolved ,Comment resolved via solution to “Safety Boolean response triggers JPSR/formal safety reporting system” line item (listed above). 
+16.  ,"@Richmond, Kimberly : Pre-fill Daisy Award Nomination Form after info given through app and send to Nursing Award sub-committee points of contact ",Postponed ,"On 04/30/25 meeting, request put forth by Nursing stakeholders. "
+,,,"On 05/01/25, briefly began proof-of-concept programing/testing to evaluate feasibility & requirements to plan implementation path. "
+,,,"As of 05/07/25 meeting, continuing to work on developing solution to request. "
+17.  ,"@Coder, Kyle J. : Develop QR code for non-VA employees to fill in similar questions to submit via Survey Monkey ",Postponed ,"On 04/09/25 meeting, presented to stakeholders on concept of possible inclusion. Identified need to meet with @Moeller, Matthew C. offline to experiment with external limitations. "
+,Check on the privacy/data sharing concerns related to SurveyMonkey ,,"On 04/16/25 meeting, Public Affairs stakeholders not available to discuss, de-prioritized completion until after initial app publication, anticipated for inclusion in “Version 1.5”. "
+,Evaluate the specific SurveyMonkey technical limitations/connections ,,"During 04/30/25 meeting, re-visited topic with Public Affairs stakeholders to confirm need to meet offline. "
+,,,"As of 05/07/25 meeting, meeting with Public Affairs has not yet occurred but other project components are prioritized for completion first, during interim planning stage. "
+18.  ,"@Capulong, Manuelissa : Spelling errors within application ",Completed ,Completed 05/07/25 meeting. 
+19.  ,"@Coder, Kyle J. : Updates created hundreds of application bugs & errors overnight on both the app’s user interface & hidden automation programing ",Completed ,"On 05/06/25, roughly 531 code errors manifested overnight following corrections to parallel system and software update. Aggressively working to fix the issues line-by-line to return to stable state, optimistically anticipating completion on 05/08/25. "
+,,,Completed 05/09/2025 
+20.  ,"@Conway, Christina (HIN): Change “I*CARE Award” references back to “Starfish Award” ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Completed 06/17/2025. 
+21.  ,"@Conway, Christina (HIN): Remove the “Select a specific time” boxes within all screens” ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Completed 06/18/2025. 
+22.  ,"@Conway, Christina (HIN)  : Change language on “Patient Safety” boolean popups to make softer prompt & alter the JPSR page functions ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Changed basic language & GUI on 06/17/2025. 
+,,,Built new subordinate popup that provides preparatory information prior to JPSR window opening with opt-out on 06/19/2025. 
+,,,Fixed popup variables/errors found during testing of new feature 
+,,,Completed testing & published updated app version 06/24/2025 
+23.  ,"@Moeller, Matthew C.: Modify the “Hines Hero” language and routing to include “Hines Happenings” packages simultaneously ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Changed feature languages & GUI on 06/23/2025. 
+,,,Completed 06/24/2025 
+24.  ,"@Conway, Christina (HIN)  & @Moeller, Matthew C.: Alter the “Choose an award” dropdown popups on all screens to improve GUI and wording around “More Info” buttons ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Changed feature languages & GUI on 06/26/2025. 
+,,,Altered new feature’s functions and underlying code 06/27/2025 
+,,,Testing and updates completed 06/30/2025 
+25.  ,"@Conway, Christina (HIN)  & @Moeller, Matthew C.: Alter the “Choose an award” dropdown popups on all screens to alter YES/NO button visibilities ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Changed feature languages & GUI on 06/26/2025. 
+,,,Altered new feature’s functions and underlying code 06/27/2025 
+,,,Testing and updates completed 06/30/2025 
+26.  ,"@Moeller, Matthew C.: Change “Additional Info” wording on all screens to simplify ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Completed changing identified wording & GUI on 06/30/2025 
+27.  ,"@Moeller, Matthew C.: Spelling/grammar errors with final form review screen views ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Completed corrections to identified spelling/grammar errors on 06/30/2025. 
+28.  ,"@Moeller, Matthew C.: Found bug with item labels displaying default SharePoint value ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Completed corrections to identified spelling/grammar errors on 06/30/2025. 
+29.  ,"@Moeller, Matthew C.: Prior to final form submissions, add a new larger/prompt to “Review Prior To Submission” ability to all screens ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Added new feature & GUI on 06/30/2025. 
+,,,Troubleshooting new features completed 07/01/2025 
+,,,"Updates completed 07/02/2025, new version published "
+30.  ,"@Moeller, Matthew C.: Remove instances of redundant “Select the most appropriate” instruction blocks ",Completed ,"Received change order via comments document from June 12th from @Conway, Christina (HIN). "
+,,,Removed all instances from entire app on 06/28/2025. 
+,,,"Talked to @Moeller, Matthew C. on 07/01/2025 about change order, decided to re-add two specific occasions that are relevant to specific popups "
+,,,Completed re-adding the GUI features back into app on 07/02/2025.  
+,,,Troubleshooting re-added feature on 07/03/2025 
+,,,"Updates completed 07/02/2025, new version published "
+31.  ,"@Coder, Kyle J.: Final draft of completed presented to primary key-stakeholder (@Conway, Christina (HIN)) for pre-approval ",Completed ,"Met with @Conway, Christina (HIN) on 07/01/2025 for review of change orders & to give extensive published state demonstration. "
+,,,"Pre-approval received, instructed to send a voting-enabled email to the project’s sub-committee to solicit “Approve/Reject” consensus for publishing to entire Hines employee staff. "
+,,,"Email sent to sub-committee on 07/02/2025, with assigned voting deadline of 07/07/2025. "
+,,,Awaiting deadline fulfillment to count total sub-committee approval or comments. 
+32.  ,@Everyone: Voting-enabled email sent to “Award Committee” to move project forward ,Completed ,"Per @Conway, Christina (HIN) instructions, created voting enabled email to APPROVE/REJECT the application’s current state and consideration to move the project forward toward publication. "
+,,,"First email sent voting email sent to 20 members of “Award Committee” on 07/02/2025 @ 11:53 AM, with voting deadline of July 7, 2025. "
+,,,"By deadline, received 12 responses (9 approvals, 3 non-voting comments/bugs, 0 rejections), with 8 members not responding at all. "
+,,,"Per @Conway, Christina (HIN) instructions, created second voting email to the 8 committee members who did not respond. "
+,,,"Sent second email on 07/09/2025 @ 9:51 AM, with deadline of July 14, 2025. "
+,,,"By second deadline, received an updated total of 17 responses (16 approvals, 1 non-voting comments/bug, 0 rejections), with 3 members not responding at all. "
+,,,"On 07/16/2025, updated this project tracking sheet with the various comments/bugs/inquiries/recommendations received with the votes of the Award Committee "
+33.  ,"@Franche, Chad C. (HIN): Bug identified ",Resolved ,"Received application bug comments on 07/07/2025 @ 10:58 AM: “When you click on ‘more info’ for I*CARE Values nothing pops up or is linked, like for the other options.” "
+,,,"Per Christina Conway, the “Starfish Award” is not discontinued, and the previous text referring to an “I*CARE Award” are renamed to be specific to “Starfish Award” instead. Updates throughout corrected 07/16/2025. "
+,,,Completed 07/18/2025: URL updated to open to “Starfish Award” PDF file on Whole Health SharePoint site. 
+34.  ,"@Franche, Chad C. (HIN): Recommendation provided ",Postponed ,"Received recommendation on 07/07/2025 @ 10:58 AM:  “After clicking on ‘more info’ for the Nursing Daisy/Bee and Safety Story, those pages still have submission links for the original process.” Consider altering hyperlink’s destination "
+,,,Postpone changing direct links during soft-rollout phase for redundancy sake. Consider altering link URL to new informational after new process is live and being actively used. 
+,,,Postponed to v1.5 
+35.  ,"@Lee, David Kyungsun: Inquiry about app’s “Location” text block & intent ",Resolved ,Received inquiry comments on 07/07/2025 @ 10:58 AM: “Lack of clarity regarding the in-app instructions around the ‘Location’ question’s intent ([paraphrasing] the specific room number vs generic description)” 
+,,,Completed by responding via email with clarifying info on 07/09/2025 @ 2:17 PM 
+36.  ,"@Lee, David Kyungsun: Recommendation provided about “Location” text blocks ",Resolved ,Received recommendation on 07/07/2025 @ 10:58 AM: Consider recommendation to alter that “Location” question’s clarifying language to make clearer to front-line staff. 
+,,,Resolved 07/22/2025: Added tooltip and expanded text prompt for ease of use 
+37.  ,"@Majors, Tuesday A.: Recommendation provided about app demo/walkthrough for committee ",Postponed ,"Received recommendation on 07/02/2025 @ 11:17 AM: “it may be beneficial to have a meeting to walk through the app, from beginning to end with all the updates” "
+,,,"Postponed as of 07/16/2025, pending approval/process of @Conway, Christina (HIN) "
+38.  ,"@Moeller, Matthew C. (via proxy  @Lutgen, Debralee P.): Bug identified ",Completed ,Received application bug comments on 07/09/2025 @ 3:34 PM:: on 07/02/2025 @ 11:17 AM: “One issue I found is that?there is no example of a Hines Hero (Media Service) nomination attached to the link. It gives a 404 error.” 
+,,,"Found link opens to .pdf flyer from 2022 on the WholeHealth SharePoint site, which itself contains a broken link. Downloaded old flyer and updated hyperlink to work properly. Uploaded new version back to WholeHealth SharePointsite publicly, then updated application’s hyperlinks to open new version of .pdf file. Testing completed 07/25/2025. "
+,,,Completed 07/28/2025 
+39.  ,"@Moeller, Matthew C. (via proxy @Howerton, Jeffry M.): Inquiry about overall process and routing ",In progress ,Received application multiple inquiries on 07/09/2025 @ 12:21 PM: 
+,,,How does a submission gets routed to its respective department? 
+,,,Is there a way to route the submission to the org box or POC of the responsible department? 
+,,,Hines Hero nominations don’t need a committee review & unclear who is receiving the submissions. 
+,,,Is overall Awards Committee a way to reduce number of names involved to eliminate confusion on what goes where? 
+,,,Is there a timeframe of when a department would get the name of the nominee after a submission? 
+,,,In progress as of 07/16/2025 
+40.  ,"@Persky, Irena: Bug identified ",Resolved ,"Received application bug comments on 07/02/2025 @ 2:16 PM: “For the Hines Hero’s click, is another form supposed to open?” Link currently goes to SharePoint document, which itself containing a dead link "
+,,,Resolved via Item #38 
+41.  ,"@Persky, Irena: Recommendation provided about WOW! Award nomenclature changes ",Completed ,Received recommendation request on 07/02/2025 @ 2:21 PM: Change instances of language showing ‘WOW! Award’ to more appropriately say ‘WOW! Recognition’ throughout app interface. 
+,,,Updated all instances to proper nomenclature 07/25/2025. 
+,,,Completed 07/28/2025 
+42.  ,"@Persky, Irena: Inquiry about “Help Me Choose” routing & triage process ",In progress ,"Received recommendation request on 07/02/2025 @ 2:23 PM: “For the ‘Help Me Choose’ option, the app user entering information just answers the questions and the committee chooses the award? The award list option does not come up if the person entering is not sure what to pick, correct?” "
+,,,In progress as of 07/16/2025 
+43.  ,"@Nakashima, Julia G.: Inquiry about overall ‘Award Committee’ workgroup ",Resolved ,"Received recommendation request on 07/07/2025 @ 4:57 PM: “I am wondering still what is the process for when a submission is submitted, who reviews these submissions? Did the workgroup figure out those details? How is it determined if someone wins or not? Is there a scoring system on the backend? How is an award determined especially if it is through the “no, help me choose option” option? Is there a triage team or through an algorithm? Was this ever determined? How is this fairly determined without bias?” "
+,,,Completed by responding via email with clarifying information via email on 07/07/2025 @ 1:08 PM 
+44.  ,"@Nakashima, Julia G.: Recommendation provided about “Click Here for More Information” pop-up language ",In progress ,Received recommendation request on 07/07/2025 @ 4:57 PM: “…it is nice but I am wondering if it should explain the process for if you need help choosing verses picking on your own. May be it should explain more how the app picks the award. Why would I let the app choose verses picking it myself? Maybe that should be explained because it kind of vague.” 
+,,,In progress as of 07/16/2025 
+45.  ,"@Nakashima, Julia G.: Inquiry about “Chat Bot” and automation component ",Resolved ,Received recommendation request on 07/07/2025 @ 4:57 PM: “What is the “chat bot” in teams? How does that work? What does that mean? How will I know how to access it? Will it just chat me?” 
+,,,Completed by responding via email with clarifying information via email on 07/07/2025 @ 1:08 PM 
+46.  ,"@Nakashima, Julia G.: Bug identified ",Resolved ,Received application bug comments on 07/07/2025 @ 4:57 PM: “The Hines Hero explanation/pdf is sort of outdated 
+,,,?Hines Hero Info.pdf as in Hines Happening is not always hosted by Mr. Doelling and the click here link leads to an error.” 
+,,,Resolved via item #38 
+47.  ,"@Nakashima, Julia G.: Recommendation provided about “Which of these HRO Principles…” pop-up ",In progress ,"Received application bug comments on 07/07/2025 @ 4:57 PM: “Is there a way to add a link to [the HRO Principles] page, or when these terms come up to an explanation for these because it unlikely that everyone knows what each of these mean and it is inefficient to go back and look through the app for the link to the HRO page.” "
+,,,In progress as of 07/16/2025 
+48.  ,"@Nakashima, Julia G.: Recommendation provided about the “Help Me Coose” award screen, to add preparatory options/pop-ups to explain differences between ICARE vs Great Catch/HRO to app-user ",In progress ,"Received application bug comments on 07/10/2025 @ 11:55 AM: Under the in-app of “Help Me Choose” generic award submission, consider preparatory option question to briefly explain differences between ICARE or Great Catch/HRO/Safety etc. Perhaps something like an explanation of what a Great Catch vs ICARE is before the app user is prompted to fill out unnecessary questions that end up being irrelevant later. Similarly on the Great Catch/Safety Story/HRO HeRO screen, provide brief preparatory question to help app user identify the difference between the three situations. "
+,,,In progress as of 07/16/2025 
+49.  ,"@Nakashima, Julia G.: Recommendation provided to alter the screening of HRO questions ",In progress ,"Received application bug comments on 07/17/2025 @ 4:26 PM: “suggest that the HRO questions be added to the “Help Pick me Choose” option. Because these questions are necessary for the triage team to be able to decide if the submission is a great catch, safety story or a HRO HeRO award. I put the questions that I think should be added below. It is for the context, actions, results, HRO principles and whether this event was clinical or non-clinical.” "
+50.  ,"@Nakashima, Julia G.: Recommendation to add the definitions/links to the “5 HRO principles” question ",In progress ,"Received application bug comments on 07/17/2025 @ 4:26 PM: “Also, I think the HRO section with the 5 principles should have the explanation right next to it. It may be helpful to provide the definition for the user.  I included the explanations below. For example, Sensitivity to operations: focus on frontline staff & care processes, etc.” "
+51.  ,"@Nakashima, Julia G.: Bug identified ",Completed ,Received application bug comments on 07/18/2025 @ 12:21 PM: “Also I noticed that nurse practitioner is spelled incorrectly.” 
+,,,Completed 07/28/2025: Spelling corrected in all instances; 
+52.  ,"@Nakashima, Julia G.: Bug identified ",Resolved ,Received application bug comments on 07/18/2025 @ 12:21 PM: “the link to the Hines Hero Example does not work” on the “Hines Hero” screen.” 
+,,,Resolved via item #38 
+53.  ,"@Nakashima, Julia G.: Inquiry about Triage Team process & structure ",In progress ,"Received application bug comments on 07/2/2025 @ 4:49 PM: “Who will be triaging the “No, help me choose option” submissions? Will it be the whole team or one member of the triage team. Who will be triaging the specific awards that are selected, like if a submitter makes a submission for a Daisy award would it just be Teneshia and Kimberley to do the initial triage or the whole team? How are we going to define “above and beyond” since this can be subjective.” "
+54.  ,"@Nakashima, Julia G.: Recommendation for “Triage Team Checklist” draft ",In progress ,Received application bug comments on 07/22/2025 @ 10:50 AM: Provided link to a “
+,,, Draft Award Triage Team Checklist.docx” document 

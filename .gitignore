@@ -98,6 +98,12 @@ settings.local.*
 # ================================
 # Power Platform Specific (Local Only)
 # ================================
+
+# Exclude specific Power Apps and Power Automate version folders (private, not for public repo)
+src/power-apps/EmployeeRecognitionApp_v0.9.0/
+src/power-apps/EmployeeRecognitionApp_v0.9.26/
+src/power-automate/2025.07.02 PowerAutomate Flow Syntax Extracts/
+src/power-automate/PowerAutomate Compose DynamicMarkdownTable/
 *.msapp
 Connections/
 DataSources/
@@ -118,6 +124,7 @@ src/power-apps/**/Source/Other/
 # ================================
 docs/CHANGELOG_ENFORCEMENT.md
 docs/CHANGELOG_ENFORCEMENT_SUMMARY.md
+CHANGELOG_draft.md
 docs/legacy/
 docs/**/DRAFT_*
 docs/**/TODO_*

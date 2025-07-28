@@ -14,7 +14,9 @@
    limitations under the License.
 -->
 
-# Power Apps Web Development - Quick Reference Card
+
+# Power Apps Web Development - Quick Reference Card (v0.9.47)
+
 
 ## 🎯 Web-Only Development Workflow
 

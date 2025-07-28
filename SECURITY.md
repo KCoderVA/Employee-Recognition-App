@@ -37,7 +37,7 @@ We provide comprehensive security support for the following versions:
 | 0.6.x   | ❌ **End of Life** | No security updates | July 2025 |
 | < 0.6   | ❌ **Unsupported** | No security updates | Immediate |
 
-**Current Production Version**: 0.9.23 (Major Organizational Release with Complete Documentation Alignment)
+**Current Production Version**: 0.9.47 (Documentation, Formatting, and Compliance Update)
 
 ### Recent Security Enhancements (v0.9.21-0.9.23)
 - **Enterprise Security Restrictions**: 50+ permanent administrator-privilege operation restrictions

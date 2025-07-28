@@ -25,25 +25,32 @@
     "yaml.format.enable": true,
     "markdown.preview.enhanced": true,
     "files.exclude": {
-        "**/.git": true,
+        "**/.git": false,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": true
+        "**/Thumbs.db": true,
+        "**/node_modules": true,
+        "**/*.zip": false,
+        "**/out": true,
+        "**/dist": true,
+        "**/*.bak": true
     },
     "search.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
         "**/node_modules": true,
-        "**/*.code-search": true
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "**/archive": true
     },
     "explorer.sortOrder": "type",
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
         "*.md": "${basename}.html, ${basename}.pdf",
-        "*.yml": "${basename}.yaml"
+        "*.yml": "${basename}.yaml",
+        "*.json": "${basename}.schema.json"
     },
+    "security.workspace.trust.enabled": true,
     "extensions.ignoreRecommendations": true,
     "extensions.disabled": [
         "ms-vscode.cmake-tools",
@@ -69,7 +76,6 @@
         "ms-vscode.live-server",
         "github.codespaces",
         "github.remotehub",
-        "github.vscode-pull-request-github",
         "ms-vscode.azure-repos",
         "ms-vscode.remote-repositories",
         "visualstudioexptteam.intellicode-api-usage-examples",

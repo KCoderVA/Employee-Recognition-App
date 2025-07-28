@@ -1,4 +1,43 @@
+
 # Copilot Instructions
+
+## Last Updated: 2025-07-28
+## Changelog
+- 2025-07-28: Added versioning, script reference table, extension management, troubleshooting, and formatting improvements.
+- 2025-07-22: Initial release.
+
+## 📑 Script Reference Table
+| Script Name            | Location | Description                                |
+| ---------------------- | -------- | ------------------------------------------ |
+| workspace-cleanup.ps1  | scripts/ | Cleans and organizes workspace files       |
+| repo-health-check.ps1  | scripts/ | Validates repository health and compliance |
+| validate-changelog.ps1 | scripts/ | Checks and fixes CHANGELOG format          |
+| safe-commit.ps1        | scripts/ | Interactive commit process with validation |
+| prepare-release.ps1    | scripts/ | Prepares release artifacts                 |
+| powerapps-web.ps1      | scripts/ | Power Apps web workflow helper             |
+
+## 🧩 Extension Management
+To update recommended or disabled extensions:
+- Edit `.vscode/settings.json` for workspace-specific disables.
+- Edit `.code-workspace` for recommendations.
+- If an extension causes conflicts, disable it in settings and document the reason.
+- Review extension list quarterly to ensure relevance.
+
+## ❓ Troubleshooting & FAQ
+**Q: What if a VS Code task fails with a false cancellation?**
+A: Ignore the message and continue; this is a known system artifact.
+
+**Q: Copilot or script not responding?**
+A: Restart VS Code, check extension status, and review recent changes in settings or instructions.
+
+**Q: How do I update security restrictions?**
+A: Edit `.vscode/restricted-operations.json` and document changes in the Changelog above.
+
+## 🧹 Deprecated/Unused Instructions
+Periodically review this file and remove any instructions or script references that are no longer relevant or have been superseded by new workflows or tools.
+
+---
+**[⬆️ Back to Top](#copilot-instructions)**
 
 <!--
    Copyright 2025 Kyle J. Coder

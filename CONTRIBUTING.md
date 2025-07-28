@@ -50,7 +50,7 @@ This project follows the VA's standards for professional conduct. All contributo
 4. Review the project documentation in `/docs/`
 5. Run initial health check: `pwsh -ExecutionPolicy Bypass -File ./scripts/repo-health-check.ps1`
 
-### Current Development Focus (v0.9.22)
+### Current Development Focus (v0.9.47)
 - **Enhanced Automation**: 33+ VS Code tasks and 17+ PowerShell scripts
 - **Security Compliance**: VA Healthcare enterprise security restrictions
 - **Web-Only Development**: Optimized Power Apps development workflow

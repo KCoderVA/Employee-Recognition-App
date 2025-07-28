@@ -1,0 +1,2904 @@
+"ViewSubmissions_Screen As screen.'phoneLayout_PeoplePicker_ver3.0'":
+    Fill: |
+        =RGBA(204, 200, 200, 1)
+    Height: |-
+        =//Max(App.Height, App.MinScreenHeight)
+        gbl_screenHeightValue
+    OnVisible: |-
+        =ClearCollect(col_listStarfishSubmissions, '578_Starfish');
+        Set(gbl_appFirstOnStart, false);
+    Width: |-
+        =//Max(App.Width, App.MinScreenWidth)
+        gbl_screenWidthValue
+
+    Submissions_Toolbar_Shape_Background As rectangle:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =85
+        Width: =Parent.Width
+        ZIndex: =1
+
+    Submissions_Toolbar_Button_HRO As button:
+        BorderThickness: =3
+        Fill: =RGBA(168, 0, 0, 1)
+        Height: =75
+        HoverColor: =RGBA(221, 79, 14, 1)
+        HoverFill: =RGBA(239, 245, 203, 1)
+        OnSelect: |-
+            =Navigate(Screen_Submissions_HROSafetyStory, BorderStyle.None);
+            Launch("https://dvagov.sharepoint.com/sites/VHAHINHRO/SitePages/HeRO-Recognition-Program-%26-Great-Catch-Program.aspx",{},LaunchTarget.New)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =15.5
+        Text: ="HRO"
+        Visible: |
+            =true
+        Width: =(Submissions_Toolbar_Shape_Background.Width / 6)
+        X: =(Submissions_Toolbar_Button_HinesHero.X + Submissions_Toolbar_Button_HinesHero.Width) + ((Submissions_Toolbar_Shape_Background.Width / 6) / 6)
+        Y: =10
+        ZIndex: =2
+
+    Submissions_Toolbar_Button_HinesHero As button:
+        BorderThickness: =3
+        Fill: =RGBA(221, 79, 14, 1)
+        FontWeight: =FontWeight.Normal
+        Height: =75
+        HoverColor: =RGBA(221, 79, 14, 1)
+        HoverFill: =RGBA(239, 245, 203, 1)
+        OnSelect: |-
+            =Navigate(Screen_Submissions_HinesHero);
+            Launch("https://dvagov.sharepoint.com/:b:/r/sites/HinesEmployeeEngagementandWholeHealth/Shared%20Documents/Hines%20Employee%20Engagement/Shared%20Documents/Employee%20Recognition/Hines%20Hero%20Info.pdf",{},LaunchTarget.New)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =16
+        Text: ="Hines Hero"
+        Visible: |
+            =true
+        Width: =(Submissions_Toolbar_Shape_Background.Width / 6)
+        X: =(Submissions_Toolbar_Button_WOW.X + Submissions_Toolbar_Button_WOW.Width) + ((Submissions_Toolbar_Shape_Background.Width / 6) / 6)
+        Y: =10
+        ZIndex: =3
+
+    Submissions_Toolbar_Button_WOW As button:
+        BorderThickness: =3
+        Fill: =RGBA(32, 56, 100, 1)
+        FontWeight: =FontWeight.Normal
+        Height: =75
+        HoverColor: =RGBA(32, 56, 100, 1)
+        HoverFill: =RGBA(239, 245, 203, 1)
+        OnSelect: |-
+            =Launch("https://apps.gov.powerapps.us/play/e/default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/a/90804a92-f5c3-4250-811f-361aaab67244?tenantId=e95f1b23-abaf-45ee-821d-b7ab251ab3bf", {}, LaunchTarget.Replace)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Text: ="WOW!"
+        Visible: |
+            =true
+        Width: =(Submissions_Toolbar_Shape_Background.Width / 6)
+        X: =(((Submissions_Toolbar_Shape_Background.Width / 6) / 6) * 2) + (Submissions_Toolbar_Button_MyAwards.Width)
+        Y: =10
+        ZIndex: =4
+
+    Submissions_Toolbar_Button_About As button:
+        BorderColor: =RGBA(29, 120, 109, 1)
+        BorderThickness: =3
+        Fill: =RGBA(41, 163, 149, 1)
+        FontWeight: =FontWeight.Normal
+        Height: =75
+        HoverColor: =RGBA(23, 102, 93, 1)
+        HoverFill: =RGBA(239, 245, 203, 1)
+        OnSelect: =Navigate(Update_Screen)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =16
+        Text: ="About/ Help"
+        Visible: |
+            =true
+        Width: =(Submissions_Toolbar_Shape_Background.Width / 6)
+        X: =(Submissions_Toolbar_Button_HRO.X + Submissions_Toolbar_Button_HRO.Width) + ((Submissions_Toolbar_Shape_Background.Width / 6) / 6)
+        Y: =10
+        ZIndex: =5
+
+    Submissions_Toolbar_Button_MyAwards As button:
+        BorderThickness: =3
+        Fill: =RGBA(0, 134, 208, 1)
+        FontWeight: =FontWeight.Normal
+        Height: =75
+        HoverColor: =RGBA(9, 99, 148, 1)
+        HoverFill: =RGBA(239, 245, 203, 1)
+        OnSelect: =Set(var_resetSearchParameter,true); Navigate(ViewSubmissions_Screen,ScreenTransition.None)
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Size: =16
+        Text: ="My Awards"
+        Visible: |
+            =true
+        Width: =(Submissions_Toolbar_Shape_Background.Width / 6)
+        X: =(Submissions_Toolbar_Shape_Background.Width / 6) / 6
+        Y: =10
+        ZIndex: =6
+
+    Update_DataCard_Container_About_1 As groupContainer.manualLayoutContainer:
+        BorderColor: =RGBA(9, 33, 98, 1)
+        BorderThickness: =2
+        Fill: =RGBA(0, 134, 208, 1)
+        Height: |
+            =100
+        RadiusBottomLeft: =10
+        RadiusBottomRight: =10
+        RadiusTopLeft: =10
+        RadiusTopRight: =10
+        Width: =Parent.Width
+        Y: =Parent.Height - Self.Height
+        ZIndex: =7
+
+        RectQuickActionBar2_6 As rectangle:
+            Fill: =RGBA(255, 255, 255, 1)
+            Width: =Parent.Width
+            ZIndex: =1
+
+        RectQuickActionBar2_7 As rectangle:
+            Fill: =RGBA(0, 134, 208, 1)
+            Width: =Parent.Width
+            ZIndex: =2
+
+        Image6_6 As image:
+            BorderThickness: =3
+            Height: =75
+            Image: =AboutInco
+            ImagePosition: =ImagePosition.Fill
+            RadiusBottomLeft: =50
+            RadiusBottomRight: =50
+            RadiusTopLeft: =50
+            RadiusTopRight: =50
+            Width: =75
+            X: =15
+            Y: =(Update_DataCard_Container_About_1.Height / 2) - (Self.Height / 2)
+            ZIndex: =3
+
+        Label1_7 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Bold
+            Height: =Parent.Height
+            Italic: =true
+            Size: =25
+            Text: ="Click here for more information!"
+            Width: =538
+            X: =100
+            ZIndex: =4
+
+        Button5_5 As button:
+            BorderThickness: =0
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =Parent.Height
+            HoverFill: =RGBA(255, 255, 255, 0.75)
+            OnSelect: =Set(var_PopUP_StarfishInfo, 1);
+            Size: =24
+            Text: =""
+            Tooltip: ="Click to view more information..."
+            Width: =Parent.Width
+            ZIndex: =5
+
+    "ViewSubmissions_BrowseGallery As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver5.0'":
+        '#CopilotOverlayLabel': ="Filtered"
+        AccessibleLabel: ="User look up search results"
+        DelayItemLoading: =true
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: |-
+            =//873
+            If(
+                IsBlank(ViewSubmissions_BrowseGallery),
+                0,
+                Parent.Height - Self.Y - Update_DataCard_Container_About_1.Height
+            )
+        Items: |-
+            =If(
+                gbl_userIsAdmin = true,
+                Sort(
+                        '578_Starfish',
+                        ID,
+                        SortOrder.Descending),
+                Sort(
+                        Filter(
+                            '578_Starfish',
+                            (gbl_userCurrentEmail = ThisRecord.Submitter_Email_Text)
+                            ),
+                        ID,
+                        SortOrder.Descending)
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowNavigation: =true
+        TemplatePadding: =0
+        TemplateSize: |-
+            =//116
+            If(
+                gbl_userIsAdmin = true,
+                (ViewSubmissions_BrowseGallery_Text_NomineeName.Height
+                    + ViewSubmissions_BrowseGallery_Text_AwardType.Height
+                    + ViewSubmissions_BrowseGallery_Text_SubmissionDateTime.Height
+                    + ViewSubmissions_BrowseGallery_Text_IsAdmin_SubmitterEmail.Height
+                    + 10),
+                (ViewSubmissions_BrowseGallery_Text_NomineeName.Height
+                + ViewSubmissions_BrowseGallery_Text_AwardType.Height
+                + ViewSubmissions_BrowseGallery_Text_SubmissionDateTime.Height
+                + 3)
+            )
+        Width: =Parent.Width - Self.X * 2
+        Y: =Submissions_Container_Header.Y + Submissions_Container_Header.Height
+        ZIndex: =8
+
+        NextArrow4 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            Color: =RGBA(166, 166, 166, 1)
+            Height: =Parent.TemplateHeight / 2
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(ViewSubmissions_BrowseGallery_Button_3)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =Parent.TemplateHeight / 2
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =2
+
+        Separator5 As rectangle:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderThickness: =1
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =2
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =3
+
+        Rectangle5 As rectangle:
+            Height: =Parent.TemplateHeight - Separator5.Height
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            ZIndex: =4
+
+        ViewSubmissions_BrowseGallery_Text_IsAdmin_SubmitterEmail As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: |-
+                =//Self.Size * 1.8
+                If(
+                    (gbl_userIsAdmin = true),
+                    (Self.Size * 1.8),
+                    0
+                )
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: =ThisItem.Submitter_Email_Text
+            VerticalAlign: =VerticalAlign.Top
+            Visible: |-
+                =If(
+                    gbl_userIsAdmin = true,
+                    true,
+                    false
+                    )
+            Width: =Parent.Width - (ViewSubmissions_BrowseGallery_Label_AwardType.X + ViewSubmissions_BrowseGallery_Label_AwardType.Width)
+            X: =ViewSubmissions_BrowseGallery_Text_AwardType.X
+            Y: =ViewSubmissions_BrowseGallery_Text_AwardType.Y + ViewSubmissions_BrowseGallery_Text_AwardType.Height
+            ZIndex: =5
+
+        ViewSubmissions_BrowseGallery_Label_IsAdmin_SubmitterEmail As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Height: |-
+                =//Self.Size * 1.8
+                If(
+                    (gbl_userIsAdmin = true),
+                    (Self.Size * 1.8),
+                    0
+                )
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: |-
+                ="Submitter:"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: |-
+                =If(
+                    gbl_userIsAdmin = true,
+                    true,
+                    false
+                    )
+            Width: =166
+            X: =ViewSubmissions_BrowseGallery_Label_AwardType.X
+            Y: =ViewSubmissions_BrowseGallery_Text_IsAdmin_SubmitterEmail.Y
+            ZIndex: =6
+
+        ViewSubmissions_BrowseGallery_Text_AwardType As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: |-
+                =If(
+                    (ThisItem.Packet_EventLocation_Text = "None provided"),
+                    ThisItem.Packet_AwardType_Text,
+                    ThisItem.Packet_EventLocation_Text
+                )
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - (ViewSubmissions_BrowseGallery_Label_AwardType.Width + ViewSubmissions_BrowseGallery_Label_AwardType.X)
+            X: =172
+            Y: =ViewSubmissions_BrowseGallery_Text_NomineeName.Y + ViewSubmissions_BrowseGallery_Text_NomineeName.Height
+            ZIndex: =7
+
+        ViewSubmissions_BrowseGallery_Label_AwardType As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: |-
+                =//"Event Location:"
+                
+                If(
+                    (ThisItem.Packet_EventLocation_Text = "None provided"),
+                    "Award Type:",
+                    "Event Location:"
+                )
+            VerticalAlign: =VerticalAlign.Top
+            Width: =166
+            X: =5
+            Y: =ViewSubmissions_BrowseGallery_Text_AwardType.Y
+            ZIndex: =8
+
+        ViewSubmissions_BrowseGallery_Text_NomineeName As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =IfError(Office365Users.UserProfile(ThisItem.Nominee_NameEmail_Text).DisplayName, " NONE FOUND")
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - (ViewSubmissions_BrowseGallery_Label_NomineeName.Width + ViewSubmissions_BrowseGallery_Label_NomineeName.X)
+            X: =171
+            Y: =ViewSubmissions_BrowseGallery_Text_SubmissionDateTime.Y + ViewSubmissions_BrowseGallery_Text_SubmissionDateTime.Height
+            ZIndex: =9
+
+        ViewSubmissions_BrowseGallery_Label_NomineeName As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: |-
+                ="Nominee Name:"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =166
+            X: =4
+            Y: =(ViewSubmissions_BrowseGallery_Text_NomineeName.Height / 2) + (ViewSubmissions_BrowseGallery_Text_NomineeName.Y / 2)
+            ZIndex: =10
+
+        ViewSubmissions_BrowseGallery_Text_SubmissionDateTime As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: =ThisItem.Packet_Submitted_DateTime
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - (ViewSubmissions_BrowseGallery_Label_SubmissionDateTime.Width - ViewSubmissions_BrowseGallery_Label_SubmissionDateTime.X)
+            X: =172
+            Y: |-
+                =/*If(
+                    (gbl_userIsAdmin = true), 
+                    (((Parent.TemplateHeight - (Self.Size * 1.8 + ViewSubmissions_BrowseGallery_Text_NomineeName.Size * 1.8 + 2 + ViewSubmissions_BrowseGallery_Text_EventLocation.Size * 1.8)) / 2) - 10), 
+                    (((Parent.TemplateHeight - (Self.Size * 1.8 + ViewSubmissions_BrowseGallery_Text_NomineeName.Size * 1.8 + 2 + ViewSubmissions_BrowseGallery_Text_EventLocation.Size * 1.8)) / 2))
+                )*/
+                If(
+                    gbl_HostIsWindows = true,
+                    (Parent.TemplateHeight - Parent.TemplateHeight + 3)
+                
+                )
+            ZIndex: =11
+
+        ViewSubmissions_BrowseGallery_Label_SubmissionDateTime As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: |-
+                ="Submitted:"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =166
+            X: =4
+            Y: =ViewSubmissions_BrowseGallery_Text_SubmissionDateTime.Y
+            ZIndex: =12
+
+        ViewSubmissions_BrowseGallery_Button_3 As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderThickness: =1
+            Fill: =RGBA(255, 255, 255, 0)
+            Height: =ViewSubmissions_BrowseGallery.TemplateHeight
+            HoverBorderColor: =RGBA(9, 33, 98, 1)
+            HoverFill: =RGBA(186, 202, 226, 0.75)
+            OnSelect: |-
+                =Select(Parent);
+                Set(var_PopUP_People, 1);
+                Set(var_selectedUser, Office365Users.UserProfile(ThisItem.Nominee_NameEmail_Text));
+                ClearCollect(col_selectedUserNominee, Office365Users.UserProfile(ThisItem.Nominee_NameEmail_Text));
+                Set(var_SelectedNomination, ThisItem);
+                ClearCollect(col_SelectedNomination_HROPrinciple, ThisItem.Packet_HROPrinciple_Text)
+            RadiusBottomLeft: =25
+            RadiusBottomRight: =25
+            RadiusTopLeft: =25
+            RadiusTopRight: =25
+            Size: =24
+            Text: =""
+            Tooltip: ="See detailed information about this nomination!"
+            Width: =Parent.Width - 2
+            X: =1
+            Y: =1
+            ZIndex: =13
+
+    Submissions_Container_NoSubmissionsFound As groupContainer.manualLayoutContainer:
+        Height: =873
+        Visible: |
+            =If(ViewSubmissions_BrowseGallery.AllItemsCount < 1, true, false)
+        Width: =640
+        X: =(Parent.Width / 2) - (Self.Width / 2)
+        Y: =Submissions_Container_Header.Y + Submissions_Container_Header.Height
+        ZIndex: =9
+
+        ViewSubmissions_NoSubmissionsFound_EmptyState_Icon As icon.Person:
+            DisplayMode: =DisplayMode.View
+            Height: =225
+            Icon: =Icon.Hide
+            Visible: =Parent.Visible
+            Width: =204
+            X: =218
+            Y: =61
+            ZIndex: =1
+
+        ViewSubmissions_NoSubmissionsFound_EmptyState_Label As label:
+            Align: =Align.Center
+            Color: =RGBA(0, 18, 107, 1)
+            DisplayMode: =DisplayMode.View
+            FontWeight: =FontWeight.Bold
+            Height: =395
+            Size: =40
+            Text: |-
+                ="NO PREVIOUS SUBMISSIONS FOUND!
+                
+                Add a new entry with the        button in the upper right corner."
+            Visible: =Parent.Visible
+            Width: =640
+            Y: =252
+            ZIndex: =2
+
+        ViewSubmissions_NoSubmissionsFound_StartNewPacket_Icon As icon.AddLibrary:
+            Height: =77
+            Icon: =Icon.AddLibrary
+            PaddingBottom: =5
+            PaddingLeft: =5
+            PaddingRight: =5
+            PaddingTop: =5
+            Visible: =Parent.Visible
+            Width: =74
+            X: =146
+            Y: =512
+            ZIndex: =3
+
+        ViewSubmissions_NoSubmissionsFound_StartNewPacket_Button As button:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderThickness: =5
+            Color: =RGBA(0, 0, 0, 0)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =77
+            HoverBorderColor: =RGBA(9, 33, 98, 1)
+            HoverColor: =Self.Fill
+            HoverFill: =Self.Fill
+            OnSelect: =Select(ViewSubmission_StartNewPacket_Button)
+            Size: =24
+            Text: ="Button"
+            Tooltip: ="Begin a new award nomination packet..."
+            Visible: =Parent.Visible
+            Width: =74
+            X: =146
+            Y: =512
+            ZIndex: =4
+
+        ViewSubmissions_NoSubmissionsFound_StartNewPacket_BigButton As button:
+            AutoDisableOnSelect: =false
+            BorderColor: =RGBA(255, 255, 255, 0)
+            BorderThickness: =0
+            Color: =RGBA(255, 255, 255, 0)
+            DisabledColor: =Self.Fill
+            Fill: =RGBA(56, 96, 178, 0)
+            FontWeight: =FontWeight.Bold
+            Height: =244
+            HoverBorderColor: =RGBA(9, 33, 98, 1)
+            HoverColor: =Self.Fill
+            HoverFill: =RGBA(0, 0, 0, 0)
+            OnSelect: =Select(ViewSubmission_StartNewPacket_Button)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            RadiusBottomLeft: =25
+            RadiusBottomRight: =25
+            RadiusTopLeft: =25
+            RadiusTopRight: =25
+            Size: =24
+            Text: =""
+            Tooltip: ="Unselect " & var_selectedUser.GivenName & ", and go back to your search results"
+            Visible: =Parent.Visible
+            Width: =640
+            Y: =425
+            ZIndex: =5
+
+    Submissions_Container_Header As groupContainer.manualLayoutContainer:
+        Height: |-
+            =//87
+            ViewSubmission_StartNewPacket_Button.Height
+        Width: =Parent.Width
+        Y: =76
+        ZIndex: =10
+
+        Submissions_Header_Shape_Background As rectangle:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =3
+            Fill: |
+                =RGBA(0, 134, 208, 1)
+            Height: =Parent.Height
+            Visible: |
+                =true
+            Width: =Parent.Width
+            ZIndex: =1
+
+        Submissions_Header_Label_Title As label:
+            Color: =RGBA(241, 245, 196, 1)
+            DisplayMode: =DisplayMode.View
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Bold
+            Height: =Parent.Height
+            Size: |-
+                =If(
+                    gbl_HostIsWindows = true,
+                    38,
+                    30
+                )
+            Text: ="Award Nominations"
+            Visible: |
+                =true
+            Width: =(Parent.Width / 4) * 3
+            X: =Parent.X + Submissions_Header_Label_SubTitle.Width
+            ZIndex: =2
+
+        Submissions_Header_Label_SubTitle As label:
+            Color: =RGBA(255, 255, 255, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =87
+            PaddingLeft: |-
+                =If(
+                    gbl_HostIsWindows = true,
+                    30,
+                    5
+                )
+            Size: |-
+                =If(
+                    gbl_HostIsWindows = true,
+                    22,
+                    16
+                )
+            Text: |-
+                ="My Previously Submitted:"
+            Visible: |
+                =true
+            Width: =Parent.Width / 4
+            ZIndex: =3
+
+        ViewSubmission_IsAdmin_Testing_Icon As icon.Bus:
+            Height: =30
+            Icon: =Icon.Bus
+            OnSelect: |-
+                =// Administrator-only button, to clear identities and settings to view app functions as regular user for testing, then refreshes app and navigates back to Loading_Screen
+                
+                // CLEARS ALL IDENTITY/VARIABLES/COLLECTIONS FOR THE CURRENT USER FROM THE DEFAULTED App.OnStart FUNCTIONS
+                Set(gbl_userCurrentEmail, Blank());
+                Set(gbl_userCurrentProfile, Blank());
+                Set(gbl_userIsAdmin, Blank());
+                Clear(col_userCurrentProfile);
+                Clear(col_selectedUserProfile);
+                Clear(col_selectedUser_Manager);
+                Clear(col_selectedUserNominee);
+                Clear(col_myPeople);
+                Clear(col_listStarfishSubmissions);
+                Clear(col_PopUP_Starfish_Submission_NurseBoolean_Response);
+                Clear(col_SelectedNomination_HROPrinciple);
+                Clear(col_SelectedAwardType);
+                
+                
+                // IDENTIFIES THE CURRENT USER BY Windows ActiveDirectory EMAIL ADDRESS
+                    Set(gbl_userCurrentEmail, Lower("Matthew.Olson@va.gov"));
+                
+                
+                // PICK UP ADDITIONAL Windows ActiveDirectory DEMOGRAPHICS BASED ON THE EMAIL ADDRESS IDENTIFIED IN "gbl_userCurrentEmail"
+                    Set(gbl_userCurrentProfile, Office365Users.UserProfile(gbl_userCurrentEmail));
+                        ClearCollect(col_userCurrentProfile, gbl_userCurrentProfile);
+                
+                
+                // NAVIGATE TO Loading_Screen, AFTER SLOWING THE DURATION OF THE TIMER ON Loading_Screen SLIGHTLY TO ALLOW NEW USER PROFILE PARAMETERS, VARIABLES, AND FUNCTIONS (ABOVE) TO REFRESH
+                Set(gbl_userIsAdmin, false);
+                Reset(Loading_Variable_Timer);
+                ((Loading_Variable_Timer).Duration = 5000);
+                ((Loading_Variable_Timer).Repeat = true);
+                ((Loading_Variable_Timer).AutoStart = true);
+                ((Loading_Variable_Timer).AutoPause = false);
+                ((Loading_Variable_Timer).Start = true);
+                Navigate(Loading_Screen);
+            Tooltip: |-
+                ="ADMIN ONLY: Reset application & reload in 'Testing' mode..."
+            Visible: =gbl_userIsAdmin
+            Width: =30
+            X: =54
+            Y: =27
+            ZIndex: =4
+
+        Group2 As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =8
+
+            ViewSubmission_StartNewPacket_Background_Button As button:
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =75
+                OnSelect: =Set(var_PopUP_People, 0); Set(var_selectedUser, Blank());
+                Size: =24
+                Text: =""
+                Width: =75
+                X: =Parent.Width - Self.Width - 3
+                Y: =5
+                ZIndex: =5
+
+            ViewSubmission_StartNewPacket_Icon As icon.Cancel:
+                DisplayMode: =DisplayMode.View
+                Height: =60
+                Icon: =Icon.AddLibrary
+                OnSelect: =Set(var_PopUP_People, 0); Set(var_selectedUser, Blank());
+                Width: =60
+                X: =(ViewSubmission_StartNewPacket_Background_Button.Width / 2) + (ViewSubmission_StartNewPacket_Background_Button.X) - (Self.Width / 2)
+                Y: =12
+                ZIndex: =6
+
+            ViewSubmission_StartNewPacket_Button As button:
+                AutoDisableOnSelect: =false
+                BorderColor: =RGBA(255, 255, 255, 0)
+                BorderThickness: =5
+                Color: =RGBA(255, 255, 255, 0)
+                Fill: =RGBA(56, 96, 178, 0)
+                FontWeight: =FontWeight.Bold
+                Height: =87
+                HoverBorderColor: =RGBA(9, 33, 98, 1)
+                HoverFill: =RGBA(186, 202, 226, 0.75)
+                OnSelect: |-
+                    =Set(var_selectedUser, Blank());
+                    Set(var_selectedUser_Manager, Blank());
+                    Set(var_SelectedNomination, Blank());
+                    ResetForm(Form_Starfish);
+                    
+                    Set(var_PopUP_StarfishInfo, Blank());
+                    Set(var_PopUP_Starfish_Submission_Location_TextInputBox, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q0, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q0_N, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q0_Y, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q1, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q2, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q2_N, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank());
+                    Set(var_PopUP_Starfish_Submission_NurseBoolean_Response, Blank());
+                    Clear(col_PopUP_Starfish_Submission_NurseBoolean_Response);
+                    Set(var_PopUP_Starfish_Submission_NurseBoolean_True, Blank());
+                    Set(var_PopUP_Starfish_Submission_NurseBoolean_False, Blank());
+                    Set(var_PopUP_Starfish_Submission_NurseBoolean_Unsure, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank());
+                    Set(var_PopUP_Starfish_Submission_SafetyBoolean_Response, Blank());
+                    Set(var_PopUP_Starfish_Submission_SafetyBoolean_True, Blank());
+                    Set(var_PopUP_Starfish_Submission_SafetyBoolean_False, Blank());
+                    Set(var_PopUP_Starfish_Submission_SafetyBoolean_Unsure, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q3, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q3_N, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q3_NO, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q3_Y, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q3_YES, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q4, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q4_N, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q4_NO, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q4_Y, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q4_YES, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q5, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q5_N, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q5_NO, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q5_Y, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q6, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q6_N, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q6_NO, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q6_Y, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q6_YES, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q7, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q7_N, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q7_Y, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q7_YES, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q8, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q8_N, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q8_NO, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q8_Y, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q8_YES, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_YES, Blank());
+                    Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_NO, Blank());
+                    Set(var_HROPrinciple_1, Blank());
+                    Set(var_HROPrinciple_2, Blank());
+                    Set(var_HROPrinciple_3, Blank());
+                    Set(var_HROPrinciple_4, Blank());
+                    Set(var_HROPrinciple_5, Blank());
+                    Set(var_HROPrinciplesCombined2, Blank());
+                    Clear(col_SelectedNomination_HROPrinciple);
+                    
+                    Set(var_PopUP_Starfish_Submission_Q0, 1);
+                    Navigate(Screen_NewSubmission);
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                RadiusBottomLeft: =25
+                RadiusBottomRight: =25
+                RadiusTopLeft: =25
+                RadiusTopRight: =25
+                Size: =24
+                Text: =""
+                Tooltip: ="Begin a new award nomination packet..."
+                Width: =87
+                X: =Parent.Width - Self.Width
+                ZIndex: =7
+
+    Submissions_PopUp_Container_MoreInformation As groupContainer.manualLayoutContainer:
+        BorderColor: =RGBA(9, 33, 98, 1)
+        Height: |-
+            =//1136
+            Parent.Height
+        Visible: =var_PopUP_StarfishInfo > 0
+        Width: |-
+            =//640
+            Parent.Width
+        ZIndex: =11
+
+        Update_PopUP_ViewSubmissions_Background_1 As rectangle:
+            Fill: =RGBA(128, 128, 128, 0.55)
+            Height: =Parent.Height
+            Width: =Parent.Width
+            ZIndex: =1
+
+        Container2 As groupContainer.manualLayoutContainer:
+            Height: |-
+                =//964
+                Parent.Height - (Self.Y * 2)
+            Width: |-
+                =//600
+                Parent.Width - (Self.X * 2)
+            X: |-
+                =//20
+                25
+            Y: |-
+                =//117
+                25
+            ZIndex: =16
+
+            Button2_1 As button:
+                BorderColor: =RGBA(9, 33, 98, 1)
+                BorderThickness: =5
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        (Update_PopUP_ViewSubmissions_Button_Self_2.Y + Update_PopUP_ViewSubmissions_Button_Self_2.Height + 10),
+                        gbl_HostIsMobile = true,
+                        (Update_PopUP_ViewSubmissions_Button_Self_2.Y + Update_PopUP_ViewSubmissions_Button_Self_2.Height + 25)
+                    )
+                HoverBorderColor: =
+                HoverFill: =RGBA(255, 255, 255, 1)
+                RadiusBottomLeft: =100
+                RadiusBottomRight: =100
+                RadiusTopLeft: =100
+                RadiusTopRight: =100
+                Size: =24
+                Text: ="Button"
+                Width: =Parent.Width - 10
+                X: =5
+                Y: =5
+                ZIndex: =1
+
+            Update_PopUP_ViewSubmissions_Button_Self_2 As button:
+                BorderColor: =RGBA(9, 33, 98, 1)
+                BorderThickness: =3
+                Fill: |
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                Height: =105
+                OnSelect: |-
+                    =Launch( "https://department.va.gov/icare/", {}, LaunchTarget.New)
+                    
+                    //Launch( "https://mim.va.gov/IdentityManagement/aspx/users/EditPerson.aspx", {}, LaunchTarget.New);
+                PaddingBottom: =0
+                PaddingTop: =0
+                RadiusBottomLeft: =100
+                RadiusBottomRight: =100
+                RadiusTopLeft: =100
+                RadiusTopRight: =100
+                Size: |
+                    =If(
+                        gbl_HostIsWindows = true,
+                        30,
+                        20
+                    )
+                Text: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        "National I CARE Values",
+                        "National
+                        I CARE Values"
+                    )
+                Width: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        480,
+                        240
+                    )
+                X: =35
+                Y: =Update_PopUP_ViewSubmissions_Label_Instructions_3.Y + Update_PopUP_ViewSubmissions_Label_Instructions_3.Height + 10
+                ZIndex: =2
+
+            Update_PopUP_ViewSubmissions_Button_Others_2 As button:
+                BorderColor: =RGBA(9, 33, 98, 1)
+                BorderThickness: =3
+                Fill: |
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                Height: =105
+                OnSelect: |-
+                    =Launch( "https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/SitePages/Hines-Employee-Recognition.aspx", {}, LaunchTarget.New);
+                PaddingBottom: =0
+                PaddingTop: =0
+                RadiusBottomLeft: =100
+                RadiusBottomRight: =100
+                RadiusTopLeft: =100
+                RadiusTopRight: =100
+                Size: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        30,
+                        20
+                    )
+                Text: ="Employee Recognition SharePoint"
+                Width: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        480,
+                        240
+                    )
+                X: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        (Parent.X + Parent.Width - Self.Width - (35 * 2)),
+                        325
+                    )
+                Y: =Update_PopUP_ViewSubmissions_Label_Instructions_3.Y + Update_PopUP_ViewSubmissions_Label_Instructions_3.Height + 10
+                ZIndex: =3
+
+            Update_PopUP_ViewSubmissions_Label_Instructions_3 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                Height: =45
+                Italic: =true
+                Size: =14
+                Text: |-
+                    ="Click one of the buttons below for more information:"
+                VerticalAlign: =VerticalAlign.Top
+                Width: =469
+                X: |
+                    =(Parent.Width / 2) - (Self.Width / 2)
+                Y: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        Update_PopUP_ViewSubmissions_Label_12.Y + Update_PopUP_ViewSubmissions_Label_12.Height + 25,
+                        816
+                    )
+                ZIndex: =4
+
+            Update_PopUP_ViewSubmissions_Close_Group_2 As group:
+                Height: =5
+                Width: =5
+                X: =-20
+                Y: =-167
+                ZIndex: =8
+
+                Update_PopUP_ViewSubmissions_Close_Background_2 As button:
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderThickness: =3
+                    Fill: |
+                        =About_Toolbar_Tab_MyAwards_Button.Fill
+                    Height: =60
+                    HoverBorderColor: =ColorFade(Self.Color, 20%)
+                    HoverFill: =ColorFade(Self.BorderColor, 20%)
+                    OnSelect: |-
+                        =Set(var_PopUP_StarfishInfo, 0);
+                        Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                    PaddingBottom: =0
+                    PaddingTop: =0
+                    RadiusBottomLeft: =100
+                    RadiusBottomRight: =100
+                    RadiusTopLeft: =100
+                    RadiusTopRight: =100
+                    Size: =24
+                    Text: =""
+                    Width: =60
+                    X: =Update_PopUP_ViewSubmissions_Close_Button_2.X + ((Update_PopUP_ViewSubmissions_Close_Button_2.Width - Self.Width) / 2)
+                    Y: =Update_PopUP_ViewSubmissions_Close_Button_2.Y + ((Update_PopUP_ViewSubmissions_Close_Button_2.Height - Self.Height) / 2)
+                    ZIndex: =12
+
+                Update_PopUP_ViewSubmissions_Close_Icon_2 As icon.CancelBadge:
+                    Color: =RGBA(255, 255, 255, 1)
+                    Height: =50
+                    HoverBorderColor: =
+                    HoverColor: =
+                    HoverFill: =ColorFade(Self.BorderColor, 20%)
+                    Icon: =Icon.CancelBadge
+                    OnSelect: |-
+                        =Set(var_PopUP_StarfishInfo, 0);
+                        Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                    Width: =50
+                    X: =Update_PopUP_ViewSubmissions_Close_Background_2.X + ((Update_PopUP_ViewSubmissions_Close_Background_2.Width - Self.Width) / 2)
+                    Y: =Update_PopUP_ViewSubmissions_Close_Background_2.Y + ((Update_PopUP_ViewSubmissions_Close_Background_2.Height - Self.Height) / 2)
+                    ZIndex: =13
+
+                Update_PopUP_ViewSubmissions_Close_Button_2 As button:
+                    BorderThickness: =0
+                    Fill: =RGBA(255, 255, 255, 0)
+                    Height: =100
+                    HoverColor: =
+                    HoverFill: =ColorFade(Self.BorderColor, 20%)
+                    OnSelect: |-
+                        =Set(var_PopUP_StarfishInfo, 0);
+                        Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                    RadiusBottomLeft: =0
+                    RadiusBottomRight: =0
+                    RadiusTopLeft: =0
+                    RadiusTopRight: =0
+                    Size: =24
+                    Text: =
+                    Width: =100
+                    X: =Parent.Width - Self.Width - 20
+                    Y: =20
+                    ZIndex: =14
+
+            Update_PopUP_ViewSubmissions_Label_11 As button:
+                Align: =Align.Left
+                Color: =RGBA(0, 0, 0, 1)
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        130,
+                        252    
+                    )
+                PaddingBottom: =0
+                PaddingTop: =0
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =19.5
+                Text: ="will enable you to easily prepare and submit an 'Nomination Packet' for many of the organized employee awards that are offered to Hines VA staff to recognize outstanding behaviour, actions, dedication, or other positive impacts on the facility's Veterans, visitors, or other staff."
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Label3_1.Width - 30
+                X: =15
+                Y: =Label3_1.Y + Label3_1.Height + 15
+                ZIndex: =9
+
+            Label3_1 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                Font: =Font.'Lato Black'
+                FontWeight: =FontWeight.Bold
+                Height: =70
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =50
+                Text: ="Employee Recognition App"
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Parent.Width
+                Y: =Update_PopUP_ViewSubmissions_Label_Instructions_4.Y + Update_PopUP_ViewSubmissions_Label_Instructions_4.Height
+                ZIndex: =10
+
+            Update_PopUP_ViewSubmissions_Label_Instructions_4 As label:
+                Height: =42
+                Italic: =true
+                Size: =20
+                Text: ="This Edward Hines Jr. VA Hospital's"
+                VerticalAlign: =VerticalAlign.Top
+                Width: =414
+                X: =57
+                Y: =10
+                ZIndex: =11
+
+            Update_PopUP_ViewSubmissions_Label_12 As button:
+                Align: =Align.Left
+                Color: =RGBA(0, 0, 0, 1)
+                DisplayMode: =DisplayMode.View
+                Fill: =RGBA(0, 0, 0, 0)
+                Height: |-
+                    =If(
+                        gbl_HostIsWindows = true,
+                        180,
+                        320    
+                    )
+                PaddingBottom: =0
+                PaddingTop: =0
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =19.5
+                Text: ="By answering simple questions in this app, your responses will be pre-populated for you into the correct places for each of the unique types of award. After submission, your packet will automatically be routed to the appropriate 'Award Subcommittee' team for consideration, and you will recieve updates from the Chatbot in Teams about your nomination packet's status."
+                VerticalAlign: =VerticalAlign.Top
+                Width: =Label3_1.Width - 30
+                X: =15
+                Y: |
+                    =Update_PopUP_ViewSubmissions_Label_11.Y + Update_PopUP_ViewSubmissions_Label_11.Height + 10
+                ZIndex: =17
+
+    ViewSubmissions_PopUP_Selected As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =14
+
+        PopUpBkgrnd_2 As rectangle:
+            Fill: =RGBA(56, 96, 178, 0.5)
+            Height: =Parent.Height - Submissions_Header_Shape_Background.Y - Self.Y - Update_DataCard_Container_About_1.Height
+            Visible: =var_PopUP_People > 0
+            Width: =Parent.Width
+            Y: =Submissions_Container_Header.Y
+            ZIndex: =12
+
+        ViewSubmissions_PopUP_Container As groupContainer.manualLayoutContainer:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =ViewSubmissions_PopUP_Container_Selected.Height + ViewSubmissions_PopUP_Container_Toolbar.Height + ViewSubmissions_PopUP_Container_Toolbar.Y
+            Visible: =var_PopUP_People > 0
+            Width: |-
+                =If(
+                    gbl_HostIsWindows = true,
+                    ((Parent.Width / 3) * 2),
+                    Parent.Width
+                )
+            X: |-
+                =If(
+                    gbl_HostIsWindows = true,
+                    ((gbl_screenWidthValue / 3) * 2),
+                    0
+                )
+            Y: =Submissions_Container_Header.Y
+            ZIndex: =13
+
+            PopUpTxtbx_1 As rectangle:
+                BorderThickness: =5
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =ViewSubmissions_PopUP_Container_Selected.Height - 5
+                Visible: =If(var_PopUP_People = 1, true, false)
+                Width: =Parent.Width
+                Y: =90
+                ZIndex: =2
+
+            ViewSubmissions_PopUP_Container_Toolbar As groupContainer.manualLayoutContainer:
+                Height: =ViewSubmissions_PopUP_Container_Toolbar_Close.Height
+                Width: =Parent.Width
+                ZIndex: =3
+
+                ViewSubmissions_PopUP_Container_Toolbar_Close As groupContainer.manualLayoutContainer:
+                    Height: =ViewSubmissions_PopUP_Group_Close_Shape_3.Height
+                    Width: =Parent.Width
+                    ZIndex: =4
+
+                    ViewSubmissions_PopUP_Group_Close_Shape_3 As label:
+                        Align: =Align.Center
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(0, 134, 208, 1)
+                        FontWeight: =FontWeight.Semibold
+                        Height: =86
+                        OnSelect: =Set(var_PopUP_People, 0); Set(var_selectedUser, Blank());
+                        Size: =20
+                        Text: |-
+                            ="Previously Award
+                            Nomination Packet:"
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =Parent.Width
+                        ZIndex: =1
+
+                    ViewSubmissions_PopUP_Group_Close_Button_3 As button:
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Height: =75
+                        OnSelect: =Set(var_PopUP_People, 0); Set(var_selectedUser, Blank());
+                        Size: =24
+                        Text: =""
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =75
+                        X: =ViewSubmissions_PopUP_Container_Interactions_Teams_Button_1.X
+                        Y: =5
+                        ZIndex: =2
+
+                    ViewSubmissions_PopUP_Group_Close_Icon_3 As icon.Cancel:
+                        DisplayMode: =DisplayMode.View
+                        Height: =60
+                        Icon: =Icon.Undo
+                        OnSelect: =Set(var_PopUP_People, 0); Set(var_selectedUser, Blank());
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =60
+                        X: =ViewSubmissions_PopUP_Group_Close_Button_3.X + (Self.Width / 8)
+                        Y: =12
+                        ZIndex: =3
+
+                    ViewSubmissions_PopUP_Group_Close_Button_4 As button:
+                        AutoDisableOnSelect: =false
+                        BorderThickness: =0
+                        Fill: =RGBA(255, 255, 255, 0)
+                        Height: =Parent.Height
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        OnSelect: =Set(var_PopUP_People, 0); Set(var_selectedUser, Blank());
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Size: =24
+                        Text: =""
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =Parent.Width
+                        ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Interactions_Teams_Button_1 As button:
+                        AutoDisableOnSelect: =false
+                        BorderColor: =RGBA(255, 255, 255, 0)
+                        BorderThickness: =5
+                        Color: =RGBA(255, 255, 255, 0)
+                        Fill: =RGBA(56, 96, 178, 0)
+                        FontWeight: =FontWeight.Bold
+                        Height: =80
+                        HoverBorderColor: =RGBA(9, 33, 98, 1)
+                        HoverFill: =RGBA(186, 202, 226, 0.75)
+                        OnSelect: |
+                            =Set(var_PopUP_People, 0);
+                            Set(var_selectedUser, Blank());
+                            Set(var_PopUP_StarfishInfo, 0);
+                            Set(var_SelectedNomination, Blank());
+                            Clear(col_SelectedNomination_HROPrinciple);
+                            Clear(col_selectedUserNominee);
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        RadiusBottomLeft: =25
+                        RadiusBottomRight: =25
+                        RadiusTopLeft: =25
+                        RadiusTopRight: =25
+                        Size: =24
+                        Text: =""
+                        Tooltip: ="Unselect " & var_selectedUser.GivenName & ", and go back to your search results"
+                        Width: =80
+                        X: =Parent.Width - Self.Width - 3
+                        Y: =3
+                        ZIndex: =5
+
+            ViewSubmissions_PopUP_Container_Selected As groupContainer.manualLayoutContainer:
+                BorderColor: =RGBA(9, 33, 98, 1)
+                Height: =ViewSubmissions_PopUP_Container_Demographics.Height + ViewSubmissions_PopUP_Container_Submissions.Height + ViewSubmissions_PopUP_Container_OtherInfo.Height
+                Width: =Parent.Width
+                Y: =ViewSubmissions_PopUP_Container_Toolbar.Y + ViewSubmissions_PopUP_Container_Toolbar.Height
+                ZIndex: =4
+
+                ViewSubmissions_PopUP_Container_OtherInfo As groupContainer.manualLayoutContainer:
+                    BorderThickness: =3
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =If( Len(ViewSubmissions_PopUP_Container_OtherInfo_Selected.Text) > 28, 90, 45)
+                    Width: =Parent.Width
+                    X: =ViewSubmissions_PopUP_Container_Submissions.X
+                    Y: =ViewSubmissions_PopUP_Container_Submissions.Y + ViewSubmissions_PopUP_Container_Submissions.Height
+                    ZIndex: =1
+
+                    ViewSubmissions_PopUP_Container_OtherInfo_Icon As icon.Mail:
+                        Height: =35
+                        Icon: =Icon.Information
+                        Width: =49
+                        X: =5
+                        Y: =5
+                        ZIndex: =1
+
+                    ViewSubmissions_PopUP_Container_OtherInfo_Label As label:
+                        AutoHeight: =true
+                        Color: =RGBA(9, 33, 98, 1)
+                        Height: =35
+                        Size: =12
+                        Text: |-
+                            =Concatenate(var_selectedUser.GivenName, "'s Manager:")
+                        Width: =279
+                        X: =42
+                        Y: =7
+                        ZIndex: =2
+
+                    ViewSubmissions_PopUP_Container_OtherInfo_Selected As label:
+                        Align: =Align.Right
+                        AutoHeight: =true
+                        Color: =RGBA(9, 33, 98, 1)
+                        FontWeight: =FontWeight.Bold
+                        Height: =35
+                        PaddingRight: =15
+                        Size: =14
+                        Text: |-
+                            =If(
+                                IsBlank(var_selectedUser),
+                                "None available in ActiveDirectory",
+                                Office365Users.Manager(var_selectedUser.Mail).GivenName & " " & Office365Users.Manager(var_selectedUser.Mail).Surname
+                            )
+                        Width: =316
+                        X: =321
+                        Y: =6
+                        ZIndex: =3
+
+                    ViewSubmissions_PopUP_Container_OtherInfo_Button As button:
+                        AutoDisableOnSelect: =false
+                        BorderColor: =RGBA(255, 255, 255, 1)
+                        BorderThickness: =5
+                        Color: =RGBA(255, 255, 255, 0)
+                        Fill: =RGBA(56, 96, 178, 0)
+                        FontWeight: =FontWeight.Bold
+                        Height: =Parent.Height
+                        HoverBorderColor: =RGBA(9, 33, 98, 1)
+                        HoverFill: =RGBA(186, 202, 226, 0.75)
+                        OnSelect: |-
+                            =//Set(var_PopUP_People, 0); Set(var_selectedUser, Blank());
+                            Launch(Concatenate( "msteams://teams.microsoft.com/l/chat/0/0?users=", Office365Users.Manager(var_selectedUser.Mail).Mail))
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        RadiusBottomLeft: =25
+                        RadiusBottomRight: =25
+                        RadiusTopLeft: =25
+                        RadiusTopRight: =25
+                        Size: =24
+                        Text: =""
+                        Tooltip: =If(IsBlank(var_selectedUser), Blank(), "Chat with " & Office365Users.Manager(var_selectedUser.Mail).GivenName & " on Teams")
+                        Width: =625
+                        X: =5
+                        ZIndex: =4
+
+                ViewSubmissions_PopUP_Container_Submissions As groupContainer.manualLayoutContainer:
+                    Height: |
+                        =(ViewSubmissions_PopUP_Container_Submission_ICAREBoolean.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_Integrity.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_Commitment.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_Advocacy.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_Respect.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_Excellence.Height)
+                        + (ViewSubmissions_PopUP_Container_Interactions_Teams.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_HinesHero_Summary.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_AdditionalComments.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_HRO_Context.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_HRO_Actions.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_HRO_Results.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_HRO.Height)
+                        + 5
+                    Width: =Parent.Width
+                    Y: =ViewSubmissions_PopUP_Container_Demographics.Y + ViewSubmissions_PopUP_Container_Demographics.Height + 1
+                    ZIndex: =2
+
+                    ViewSubmissions_PopUP_Container_Interactions_Calendar As groupContainer.manualLayoutContainer:
+                        Height: =ViewSubmissions_PopUP_Container_Interactions_Teams.Height
+                        Visible: =ViewSubmissions_PopUP_Container_Interactions_Teams.Visible
+                        Width: =Parent.Width / 2
+                        X: =Parent.Width - Self.Width
+                        Y: =ViewSubmissions_PopUP_Container_Interactions_Teams.Y
+                        ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_Calendar_Image As image:
+                            Height: =65
+                            Image: =TeamsCal5
+                            Width: =70
+                            X: =244
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_Calendar_Label As label:
+                            Color: =RGBA(9, 33, 98, 1)
+                            Height: =Parent.Height
+                            Size: =20
+                            Text: ="Invite to Meet"
+                            Width: =213
+                            X: =31
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_Calendar_Button As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(56, 96, 178, 1)
+                            BorderThickness: =5
+                            Fill: =RGBA(56, 96, 178, 0)
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/meeting/new?subject=I'd%20like%20to%20meet%20with%20you&attendees=", User().Email, var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Send a meeting or calendar invite to " & var_selectedUser.GivenName & " in Outlook"
+                            Width: =305
+                            X: =5
+                            Y: =5
+                            ZIndex: =3
+
+                    ViewSubmissions_PopUP_Container_Interactions_Teams As groupContainer.manualLayoutContainer:
+                        Height: =0
+                        Visible: =false
+                        Width: =Parent.Width / 2
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_Excellence.Y + ViewSubmissions_PopUP_Container_Submission_Excellence.Height
+                        ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_Teams_Image As image:
+                            Height: =75
+                            Image: =microsoft_teams
+                            Width: =75
+                            X: =Parent.Width - 75
+                            Y: =
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_Teams_Label As label:
+                            Color: =RGBA(9, 33, 98, 1)
+                            Height: =Parent.Height
+                            Size: =20
+                            Text: ="Chat on Teams"
+                            Width: =220
+                            X: =24
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_Teams_Button As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(56, 96, 178, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/chat/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Send a chat message to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =304
+                            X: =10
+                            Y: =5
+                            ZIndex: =3
+
+                    ViewSubmissions_PopUP_Container_Submission_HRO As groupContainer.manualLayoutContainer:
+                        Height: |-
+                            =//If(IsBlank(col_SelectedNomination_HROPrinciple),0,(ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Height + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_16.Height));
+                            //CountRows(col_SelectedNomination_HROPrinciple) < 1),
+                            
+                            If(
+                                var_SelectedNomination.Packet_HROPrinciple_Text = "None provided" || IsBlank(var_SelectedNomination.Packet_HROPrinciple_Text),
+                                65,
+                                (ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Height + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_16.Height)
+                            )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_AdditionalComments.Y + ViewSubmissions_PopUP_Container_Submission_AdditionalComments.Height
+                        ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_16 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =0
+                            RadiusBottomRight: =0
+                            RadiusTopLeft: =0
+                            RadiusTopRight: =0
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_16 As icon.Mail:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =35
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16 As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =35
+                            Size: =16
+                            Text: |-
+                                ="HRO Principles Indicated:"
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.Width
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_16 As label:
+                            Align: =Align.Right
+                            Height: |-
+                                =If(
+                                    (Concat(col_SelectedNomination_HROPrinciple, ThisRecord.Value) = Blank()),
+                                    35,
+                                    50
+                                    //If(Len(var_SelectedNomination.Choice_HROPrinciple) > 300, 170, 100)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: =Concat(col_SelectedNomination_HROPrinciple, ThisRecord.Value, ", ")
+                            Width: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Width
+                            Y: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Y + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Height
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_AdditionalComments As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                (var_SelectedNomination.Packet_AdditionalComments_Text = "None provided"),
+                                65,
+                                (ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Height + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_16.Height + 40)
+                            )
+                        Visible: |-
+                            =If(
+                                (var_SelectedNomination.Packet_AdditionalComments_Text = Blank()),
+                                false,
+                                true
+                                )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: |-
+                            =If(
+                                (!IsBlank(var_SelectedNomination.Packet_HRO_Context_Text) || !IsBlank(var_SelectedNomination.Packet_HRO_Actions_Text) || !IsBlank(var_SelectedNomination.Packet_HRO_Results_Text)),
+                                    (ViewSubmissions_PopUP_Container_Submission_HRO_Results.Y + ViewSubmissions_PopUP_Container_Submission_HRO_Results.Height),
+                                (!IsBlank(var_SelectedNomination.Packet_HinesHero_Details_Text) || !IsBlank(var_SelectedNomination.Packet_HinesHero_Summary_Text)),
+                                    (ViewSubmissions_PopUP_Container_Submission_HinesHero_Details.Y + ViewSubmissions_PopUP_Container_Submission_HinesHero_Details.Height),
+                                (var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award"),
+                                    (ViewSubmissions_PopUP_Container_Submission_Excellence.Y + ViewSubmissions_PopUP_Container_Submission_Excellence.Height),
+                                (Parent.Height - Self.Height)
+                            )
+                        ZIndex: =4
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_15 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_15 As icon.Mail:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =35
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_15 As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =35
+                            Size: =16
+                            Text: |-
+                                ="Additional Comments:"
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.Width
+                            X: =5
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_15 As label:
+                            Align: =Align.Right
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_AdditionalComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_AdditionalComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_AdditionalComments_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_AdditionalComments_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_15.Width
+                            X: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_15.X
+                            Y: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_15.Y + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_15.Height
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_HRO_Results As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HRO_Results_Text = "None provided") || IsBlank(var_SelectedNomination.Packet_HRO_Results_Text),
+                                0,
+                                (ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_20.Height + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_20.Height + 5)
+                            )
+                        maximumHeight: =11360
+                        maximumWidth: =640
+                        Visible: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HRO_Results_Text = Blank()),
+                                false,
+                                true
+                                )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_HRO_Actions.Y + ViewSubmissions_PopUP_Container_Submission_HRO_Actions.Height
+                        ZIndex: =5
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_20 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_20 As icon:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =35
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_20 As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =35
+                            Size: =16
+                            Text: |-
+                                ="HRO Results:"
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.Width
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_20 As label:
+                            Align: =Align.Right
+                            AutoHeight: =true
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_AdditionalComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_AdditionalComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_HRO_Results_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_HRO_Results_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_20.Width
+                            Y: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_20.Y + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_20.Height
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_HRO_Actions As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HRO_Actions_Text = "None provided") || IsBlank(var_SelectedNomination.Packet_HRO_Actions_Text),
+                                0,
+                                (ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_21.Height + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_21.Height + 5)
+                            )
+                        maximumHeight: =11360
+                        maximumWidth: =640
+                        Visible: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HRO_Actions_Text = Blank()),
+                                false,
+                                true
+                                )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_HRO_Context.Y + ViewSubmissions_PopUP_Container_Submission_HRO_Context.Height
+                        ZIndex: =6
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_21 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverColor: =RGBA(255, 255, 255, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_21 As icon:
+                            BorderColor: =RGBA(0, 18, 107, 1)
+                            Color: =RGBA(39, 113, 194, 1)
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(244, 244, 244, 1)
+                            Height: =35
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_21 As label:
+                            Align: =Align.Center
+                            BorderColor: =RGBA(0, 18, 107, 1)
+                            Color: =RGBA(255, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =35
+                            Size: =16
+                            Text: |-
+                                ="HRO Actions:"
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.Width
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_21 As label:
+                            Align: =Align.Right
+                            AutoHeight: =true
+                            BorderColor: =RGBA(0, 18, 107, 1)
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_AdditionalComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_AdditionalComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_HRO_Actions_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_HRO_Actions_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_21.Width
+                            Y: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_21.Y + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_21.Height
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_HRO_Context As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HRO_Context_Text = "None provided") || IsBlank(var_SelectedNomination.Packet_HRO_Context_Text),
+                                0,
+                                (ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_19.Height + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_19.Height + 5)
+                            )
+                        maximumHeight: =11360
+                        maximumWidth: =640
+                        Visible: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HRO_Context_Text = Blank()),
+                                false,
+                                true
+                                )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_Excellence.Y + ViewSubmissions_PopUP_Container_Submission_Excellence.Height
+                        ZIndex: =7
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_19 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_19 As icon:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =35
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_19 As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =35
+                            Size: =16
+                            Text: |-
+                                ="HRO Context:"
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.Width
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_19 As label:
+                            Align: =Align.Right
+                            AutoHeight: =true
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_AdditionalComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_AdditionalComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_HRO_Context_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_HRO_Context_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_19.Width
+                            Y: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_19.Y + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_19.Height
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_HinesHero_Details As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HinesHero_Details_Text = "None provided") || IsBlank(var_SelectedNomination.Packet_HinesHero_Details_Text),
+                                0,
+                                (ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_18.Height + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_18.Height + 5)
+                            )
+                        maximumHeight: =11360
+                        maximumWidth: =640
+                        Visible: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HinesHero_Details_Text = Blank()),
+                                false,
+                                true
+                                )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_HinesHero_Summary.Y + ViewSubmissions_PopUP_Container_Submission_HinesHero_Summary.Height
+                        ZIndex: =8
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_18 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_18 As icon:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =35
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_18 As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =35
+                            Size: =16
+                            Text: |-
+                                ="Hines Hero Details:"
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.Width
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_18 As label:
+                            Align: =Align.Right
+                            AutoHeight: =true
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_AdditionalComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_AdditionalComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_HinesHero_Details_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_HinesHero_Details_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_18.Width
+                            Y: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_18.Y + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_18.Height
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_HinesHero_Summary As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HinesHero_Summary_Text = "None provided") || IsBlank(var_SelectedNomination.Packet_HinesHero_Summary_Text),
+                                0,
+                                (ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_17.Height + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_17.Height + 5)
+                            )
+                        maximumHeight: =11360
+                        maximumWidth: =640
+                        Visible: |-
+                            =If(
+                                (var_SelectedNomination.Packet_HinesHero_Summary_Text = Blank()),
+                                false,
+                                true
+                                )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_Excellence.Y + ViewSubmissions_PopUP_Container_Submission_Excellence.Height
+                        ZIndex: =9
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_17 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_17 As icon:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =35
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_17 As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Semibold
+                            Height: =35
+                            Size: =16
+                            Text: |-
+                                ="Hines Hero Summary:"
+                            VerticalAlign: =VerticalAlign.Top
+                            Width: =Parent.Width
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_17 As label:
+                            Align: =Align.Right
+                            AutoHeight: =true
+                            Height: |-
+                                =If(
+                                    (IsBlank(var_SelectedNomination.Packet_HinesHero_Summary_Text) || (var_SelectedNomination.Packet_HinesHero_Summary_Text = "None provided")),
+                                    0,
+                                    If(Len(var_SelectedNomination.Packet_HinesHero_Summary_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_HinesHero_Summary_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_HinesHero_Summary_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_17.Width
+                            Y: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_17.Y + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_17.Height
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_Excellence As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
+                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
+                                0
+                            )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_Respect.Y + ViewSubmissions_PopUP_Container_Submission_Respect.Height
+                        ZIndex: =10
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_3 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_3 As icon.Mail:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =65
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            Y: =5
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_3 As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height
+                            Size: =30
+                            Text: ="E"
+                            Width: =43
+                            X: =5
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_3 As label:
+                            Align: =Align.Right
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_ExcellenceComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_ExcellenceComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_ExcellenceComments_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_ExcellenceComments_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =592
+                            X: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_3.X + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_3.Width
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_Respect As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
+                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
+                                0
+                            )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_Advocacy.Y + ViewSubmissions_PopUP_Container_Submission_Advocacy.Height
+                        ZIndex: =11
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_2 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            DisplayMode: =DisplayMode.View
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: =If(Len(var_SelectedNomination.Packet_RespectComments_Text) > 300, 250, 100)
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon_2 As icon.Mail:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =65
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            Y: =5
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_2 As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height
+                            Size: =30
+                            Text: ="R"
+                            Width: =43
+                            X: =5
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_2 As label:
+                            Align: =Align.Right
+                            DisplayMode: =DisplayMode.View
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_RespectComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_RespectComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_RespectComments_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_RespectComments_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =592
+                            X: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_2.X + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_2.Width
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_Advocacy As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
+                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
+                                0
+                            )
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_Commitment.Y + ViewSubmissions_PopUP_Container_Submission_Commitment.Height
+                        ZIndex: =12
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            DisplayMode: =DisplayMode.View
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Icon As icon.Mail:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =65
+                            Icon: =Icon.Mobile
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            Y: =5
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Fill: =RGBA(255, 255, 255, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height
+                            Size: =30
+                            Text: ="A"
+                            Width: =43
+                            X: =5
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected As label:
+                            Align: =Align.Right
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_AdvocacyComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_AdvocacyComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_AdvocacyComments_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_AdvocacyComments_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =592
+                            X: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label.X + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label.Width
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_Commitment As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
+                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
+                                0
+                            )
+                        RadiusBottomLeft: =3
+                        RadiusBottomRight: =3
+                        RadiusTopLeft: =3
+                        RadiusTopRight: =3
+                        Width: =Parent.Width
+                        X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
+                        Y: =ViewSubmissions_PopUP_Container_Submission_Integrity.Y + ViewSubmissions_PopUP_Container_Submission_Integrity.Height
+                        ZIndex: =13
+
+                        ViewSubmissions_PopUP_Container_Interactions_OfficePhone_Button As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            DisplayMode: =DisplayMode.View
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate( "msteams://teams.microsoft.com/l/call/0/0?users=", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Start a voice or video call to " & var_selectedUser.GivenName & " on Teams"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_OfficePhone_Icon As icon.Mail:
+                            Color: =RGBA(39, 113, 194, 1)
+                            Height: =65
+                            Icon: =Icon.Phone
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            Y: =5
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_OfficePhone_Label As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height
+                            Size: =30
+                            Text: ="C"
+                            Width: =41
+                            X: =5
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_OfficePhone_Selected As label:
+                            Align: =Align.Right
+                            Height: |-
+                                =//If(Len(var_SelectedNomination.Commitment_Comments) > 300, 170, 100)
+                                If(
+                                    (var_SelectedNomination.Packet_CommitmentComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_CommitmentComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |-
+                                =If(var_SelectedNomination.Packet_CommitmentComments_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(var_SelectedNomination.Packet_CommitmentComments_Text,
+                                                "<p>", ""),
+                                            "</p>", ""),
+                                        "<div>",""),
+                                        "</div>",""
+                                    )
+                                )
+                            Width: =594
+                            X: =46
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_Integrity As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
+                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
+                                0
+                            )
+                        RadiusBottomLeft: =3
+                        RadiusBottomRight: =3
+                        RadiusTopLeft: =3
+                        RadiusTopRight: =3
+                        Width: =Parent.Width
+                        Y: =ViewSubmissions_PopUP_Container_Submission_ICAREBoolean.Y + ViewSubmissions_PopUP_Container_Submission_ICAREBoolean.Height
+                        ZIndex: =14
+
+                        ViewSubmissions_PopUP_Container_Interactions_Email_Button As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            DisplayMode: =DisplayMode.View
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate("mailto:", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Send " & var_selectedUser.GivenName & " an email in Outlook"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_Email_Icon As icon.Mail:
+                            Color: =RGBA(184, 0, 0, 1)
+                            Height: =65
+                            Icon: =Icon.Mail
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            Y: =5
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_Email_Label As label:
+                            Align: =Align.Center
+                            Color: =RGBA(255, 0, 0, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height
+                            Size: =30
+                            Text: ="I"
+                            Width: =44
+                            X: =5
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_Email_Selected As label:
+                            Align: =Align.Right
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_IntegrityComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_IntegrityComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |
+                                =If(
+                                    var_SelectedNomination.Packet_IntegrityComments_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(
+                                                    var_SelectedNomination.Packet_IntegrityComments_Text,
+                                                    "<p>", ""
+                                                ),
+                                                "</p>", ""
+                                            ),
+                                            "<div>", ""
+                                        ),
+                                        "</div>", ""
+                                    )
+                                )
+                            Width: =591
+                            X: =ViewSubmissions_PopUP_Container_Interactions_Email_Label.X + ViewSubmissions_PopUP_Container_Interactions_Email_Label.Width
+                            ZIndex: =4
+
+                    ViewSubmissions_PopUP_Container_Submission_ICAREBoolean As groupContainer.manualLayoutContainer:
+                        BorderThickness: =1
+                        Height: |-
+                            =If(
+                                var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
+                                0,
+                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height
+                            )
+                        maximumHeight: =11360
+                        maximumWidth: =640
+                        RadiusBottomLeft: =3
+                        RadiusBottomRight: =3
+                        RadiusTopLeft: =3
+                        RadiusTopRight: =3
+                        Visible: |-
+                            =If(
+                                var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
+                                false,
+                                true)
+                        Width: =Parent.Width
+                        ZIndex: =15
+
+                        ViewSubmissions_PopUP_Container_Interactions_Email_Button_1 As button:
+                            AutoDisableOnSelect: =false
+                            BorderColor: =RGBA(255, 255, 255, 1)
+                            BorderThickness: =5
+                            Color: =RGBA(255, 255, 255, 0)
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            DisabledFill: =RGBA(244, 244, 244, 1)
+                            DisplayMode: =DisplayMode.View
+                            Fill: =RGBA(56, 96, 178, 0)
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height - 10
+                            HoverBorderColor: =RGBA(9, 33, 98, 1)
+                            HoverColor: =RGBA(255, 255, 255, 1)
+                            HoverFill: =RGBA(186, 202, 226, 0.75)
+                            OnSelect: |-
+                                =Launch(Concatenate("mailto:", var_selectedUser.Mail))
+                            PaddingBottom: =0
+                            PaddingLeft: =0
+                            PaddingRight: =0
+                            PaddingTop: =0
+                            RadiusBottomLeft: =25
+                            RadiusBottomRight: =25
+                            RadiusTopLeft: =25
+                            RadiusTopRight: =25
+                            Size: =24
+                            Text: =""
+                            Tooltip: ="Send " & var_selectedUser.GivenName & " an email in Outlook"
+                            Width: =Parent.Width - 10
+                            X: =5
+                            Y: =5
+                            ZIndex: =1
+
+                        ViewSubmissions_PopUP_Container_Interactions_Email_Icon_1 As icon:
+                            BorderColor: =RGBA(0, 18, 107, 1)
+                            Color: =RGBA(184, 0, 0, 1)
+                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                            DisabledColor: =RGBA(244, 244, 244, 1)
+                            Height: =35
+                            Icon: =Icon.Mail
+                            Visible: =false
+                            Width: =65
+                            X: =15
+                            ZIndex: =2
+
+                        ViewSubmissions_PopUP_Container_Interactions_Email_Label_1 As label:
+                            BorderColor: =RGBA(0, 18, 107, 1)
+                            Color: =RGBA(255, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Font: =Font.'Courier New'
+                            FontWeight: =FontWeight.Bold
+                            Height: =Parent.Height
+                            Size: =30
+                            Text: ="I*CARE Values"
+                            Width: =325
+                            X: =5
+                            ZIndex: =3
+
+                        ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1 As label:
+                            Align: =Align.Right
+                            BorderColor: =RGBA(0, 18, 107, 1)
+                            Color: =RGBA(0, 0, 0, 1)
+                            DisabledColor: =RGBA(166, 166, 166, 1)
+                            Height: |-
+                                =If(
+                                    (var_SelectedNomination.Packet_IntegrityComments_Text = "None provided"),
+                                    35,
+                                    If(Len(var_SelectedNomination.Packet_IntegrityComments_Text) > 300, 100, 60)
+                                )
+                            Overflow: =Overflow.Scroll
+                            PaddingRight: =15
+                            Size: =12
+                            Text: |
+                                =If(
+                                    var_SelectedNomination.Packet_IntegrityComments_Text = "<p></p>",
+                                    "None provided",
+                                    Substitute(
+                                        Substitute(
+                                            Substitute(
+                                                Substitute(
+                                                    var_SelectedNomination.Packet_IntegrityComments_Text,
+                                                    "<p>", ""
+                                                ),
+                                                "</p>", ""
+                                            ),
+                                            "<div>", ""
+                                        ),
+                                        "</div>", ""
+                                    )
+                                )
+                            Width: =Parent.Width - ViewSubmissions_PopUP_Container_Interactions_Email_Label_1.Width - ViewSubmissions_PopUP_Container_Interactions_Email_Label_1.X
+                            X: =ViewSubmissions_PopUP_Container_Interactions_Email_Label_1.X + ViewSubmissions_PopUP_Container_Interactions_Email_Label_1.Width
+                            ZIndex: =4
+
+                ViewSubmissions_PopUP_Container_Demographics As groupContainer.manualLayoutContainer:
+                    Height: |
+                        =(ViewSubmissions_PopUP_Selected_Label_Name_Value.Height) + (ViewSubmissions_PopUP_Selected_Label_Location_Value.Height) + (ViewSubmissions_PopUP_Selected_Label_SubmissionDate_Value.Height) + (ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value.Height) + 25
+                    Width: =Parent.Width
+                    ZIndex: =3
+
+                    ViewSubmissions_PopUP_Selected_Label_SubmittedBy As label:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Semibold
+                        Height: =15
+                        Italic: =true
+                        Size: =12
+                        Text: |-
+                            ="Submitted By:"
+                        Tooltip: ="City"
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =140
+                        X: =ViewSubmissions_PopUP_Selected_Label_Name_Value.X
+                        Y: =ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value.Y
+                        ZIndex: =1
+
+                    ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =
+                        Italic: =true
+                        Size: =12
+                        Text: =If(var_SelectedNomination.Submitter_Email_Text = "<p></p>", "Missing", Substitute(Substitute(var_SelectedNomination.Submitter_Email_Text, "<p>", ""),"</p>", ""))
+                        Tooltip: ="City"
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =352
+                        X: =ViewSubmissions_PopUP_Selected_Label_SubmittedBy.X + ViewSubmissions_PopUP_Selected_Label_SubmittedBy.Width
+                        Y: =ViewSubmissions_PopUP_Selected_Label_Name_Value.Y + ViewSubmissions_PopUP_Selected_Label_Name_Value.Height
+                        ZIndex: =2
+
+                    ViewSubmissions_PopUP_Selected_Label_SubmissionDate As label:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Semibold
+                        Height: =15
+                        Italic: =true
+                        Size: =12
+                        Text: |-
+                            ="Submission Date:"
+                        Tooltip: ="Department"
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =140
+                        X: =ViewSubmissions_PopUP_Selected_Label_Name_Value.X
+                        Y: =ViewSubmissions_PopUP_Selected_Label_SubmissionDate_Value.Y
+                        ZIndex: =3
+
+                    ViewSubmissions_PopUP_Selected_Label_SubmissionDate_Value As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =
+                        Italic: =true
+                        Size: =12
+                        Text: =var_SelectedNomination.ItemCreated_DateTime
+                        Tooltip: ="Department"
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value.Width
+                        X: =ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value.X
+                        Y: =ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value.Y + ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value.Height
+                        ZIndex: =4
+
+                    ViewSubmissions_PopUP_Selected_Label_Location As label:
+                        AutoHeight: =true
+                        FontWeight: =FontWeight.Semibold
+                        Height: =15
+                        Italic: =true
+                        Size: =12
+                        Text: |-
+                            ="Location:"
+                        Tooltip: ="Job/Position Title"
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =140
+                        X: =ViewSubmissions_PopUP_Selected_Label_SubmissionDate.X
+                        Y: =ViewSubmissions_PopUP_Selected_Label_Location_Value.Y
+                        ZIndex: =5
+
+                    ViewSubmissions_PopUP_Selected_Label_Location_Value As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 18, 107, 1)
+                        Height: =
+                        Italic: =true
+                        Size: =12
+                        Text: =var_SelectedNomination.Packet_EventLocation_Text
+                        Tooltip: ="Job/Position Title"
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value.Width
+                        X: =ViewSubmissions_PopUP_Selected_Label_SubmittedBy_Value.X
+                        Y: =ViewSubmissions_PopUP_Selected_Label_SubmissionDate_Value.Y + ViewSubmissions_PopUP_Selected_Label_SubmissionDate_Value.Height
+                        ZIndex: =6
+
+                    ViewSubmissions_PopUP_Selected_Image As image:
+                        AutoDisableOnSelect: =false
+                        BorderThickness: =5
+                        Fill: =RGBA(180, 214, 250, 1)
+                        Height: =150
+                        Image: |-
+                            =If(
+                                !IsBlank(var_selectedUser.Id),
+                                Office365Users.UserPhotoV2(var_selectedUser.Id)
+                            )
+                        RadiusBottomLeft: =25
+                        RadiusBottomRight: =25
+                        RadiusTopLeft: =25
+                        RadiusTopRight: =25
+                        Tooltip: ="Photo"
+                        Visible: |
+                            =If(var_PopUP_People = 1, true, false)
+                        Width: =150
+                        X: =7
+                        Y: =10
+                        ZIndex: =7
+
+                    ViewSubmissions_PopUP_Selected_Label_Name_Value As label:
+                        AutoHeight: =true
+                        Color: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FontWeight: =FontWeight.Bold
+                        Height: =
+                        PaddingLeft: =10
+                        Size: =25
+                        Text: |-
+                            =//var_selectedUser.GivenName & " " & var_selectedUser.Surname
+                            var_selectedUser.DisplayName
+                        Tooltip: ="Name"
+                        Visible: =If(var_PopUP_People = 1, true, false)
+                        Width: =475
+                        X: =160
+                        Y: =8
+                        ZIndex: =8
+
+                    Image3 As image:
+                        Height: =ViewSubmissions_PopUP_Selected_Image.Height
+                        Image: ='placeholder-person'
+                        Visible: |-
+                            =If(
+                                IsBlank(ViewSubmissions_PopUP_Selected_Image.Image),
+                                true,
+                                false
+                            )
+                        Width: =ViewSubmissions_PopUP_Selected_Image.Width
+                        X: =ViewSubmissions_PopUP_Selected_Image.X
+                        Y: =ViewSubmissions_PopUP_Selected_Image.Y
+                        ZIndex: =9
+

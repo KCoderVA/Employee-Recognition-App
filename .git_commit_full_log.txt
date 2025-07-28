@@ -1,0 +1,728 @@
+---
+commit 4ace88a7e0ed267f18b024b81f2643585d7d0b32
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-09
+Initial commit - Employee Recognition workspace setup
+A	.github/copilot-instructions.md
+A	.gitignore
+A	.vscode/settings.json
+A	.vscode/tasks.json
+A	COMPREHENSIVE_EVALUATION.md
+A	EXTENSION_ANALYSIS.md
+A	EmployeeRecognitionApp_20250709193309.zip
+A	Employee_Recognition_PowerPlatform.code-workspace
+A	Flow_SafetyCheckChatbot_20250709193640.zip
+A	Flow_TriageAndApprovalRouting_20250709193448.zip
+A	MIGRATION_VERIFICATION.md
+A	OPTIMIZATION_COMPLETE.md
+A	PROJECT_MIGRATION_PLAN.md
+A	README.md
+A	archive/2025.07.03_AwardTriageAndApprovalRouting_exportedZip.zip
+A	archive/2025.07.03_EmployeeRecogonitionApp_exportedZip.zip
+A	assets/excel/2025.03.19 HRO Champion List 2025 (version 1).xlsx
+A	assets/excel/2025.07.03 ExportedStarfishList_SharepointQuery.xlsx
+A	assets/excel/578_HeRO.xlsx
+A	assets/excel/578_Starfish.xlsx
+A	assets/excel/GREAT CATCH PROGRAM, HERO AWARD PROGRAM & SAFETY STORIES.xlsx
+A	assets/excel/Starfish Award Nomination Form.xlsx
+A	assets/images/2025.04.09 AwardRouting Infographic.PNG
+A	docs/2025.03.19 Beeck Keizo R. shared HRO Champion List 2025 (version 1) with you.msg
+A	docs/2025.05.07 Award App Request (offline copy).docx
+A	docs/App's SharePoint Page.url
+A	docs/ApprovalTablePreview.html
+A	docs/Change Order Tracker.url
+A	docs/Employee Recognition App.url
+A	docs/Employee_Recognition_App_Flow_Map.md
+A	docs/Employee_Recognition_App_PowerPoint_Outline.md
+A	docs/Employee_Recognition_App_Presentation.html
+A	docs/Extracted_HTML_Code.html
+A	docs/Flow_Approval_SyntaxExperiment.md
+A	docs/HRO Award Nomination #85.pdf
+A	docs/LLM Generated - User Survey.docx
+A	docs/PreviewAdaptiveCard.html
+A	docs/Visio_Flowchart_Specifications.md
+A	docs/Whole Health Award SharePoint.url
+A	docs/flow-maps/App_FlowMapping.vsdx
+A	docs/flow-maps/Hines Awards Website Flow Chart HERO AWARD.vsdx
+A	docs/training/v0.9 - Employee Recognition App - Demo Presentation.pptx
+A	environments/development.json
+A	environments/production.json
+A	security/compliance-framework.md
+A	src/power-apps/2025.05.28 - 578 Employee Recognition App (PowerApps Export).zip
+A	src/power-apps/EmployeeRecognitionApp_Unpacked/Microsoft.PowerApps/apps/1053001401656249196/1053001401656249196.json
+A	src/power-apps/EmployeeRecognitionApp_Unpacked/Microsoft.PowerApps/apps/1053001401656249196/N5ad2ebf9-af3e-41b5-aad4-cda3987bd219-logoSmallFile
+A	src/power-apps/EmployeeRecognitionApp_Unpacked/Microsoft.PowerApps/apps/1053001401656249196/N8323c274-c36d-45b7-b6c8-f3b79044453a-identity.json
+A	src/power-apps/EmployeeRecognitionApp_Unpacked/manifest.json
+A	src/power-apps/README.md
+A	src/power-apps/app_Variables_and_Collections.yml
+A	src/power-automate/2025.03.18 GreatCatch_PowerAutomateFlow.zip
+A	src/power-automate/2025.07.02 PowerAutomate Flow Syntax Extracts
+A	src/power-automate/GreatCatch_PowerAutomateFlow_20250313002348.zip
+A	src/power-automate/PowerAutomate Compose DynamicMarkdownTable
+A	src/power-automate/README.md
+A	src/sharepoint/README.md
+A	src/sharepoint/lists/employee-nominations.md
+A	testing/ApprovalTableBody.txt
+A	testing/FinalMarkdownHROTable.txt
+A	testing/FinalMarkdownHinesHeroTable.txt
+A	testing/FinalMarkdownICareTable.txt
+A	testing/FixedComposeHROTable.txt
+A	testing/FixedComposeHinesHeroTable.txt
+A	testing/FixedComposeICareTable.txt
+A	testing/IndividualTableRows.txt
+A	testing/MasterFinalMarkdownTable.txt
+A	testing/PowerPoint_Content_Script.txt
+A	testing/consolidatedVariableSyntax.txt
+A	testing/keyVariables.txt
+A	testing/test
+
+---
+commit 0625d698ea5355bed62cd7f6780dcb7dfc6ae314
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-09
+Complete implementation of advanced recommendations
+R100	EmployeeRecognitionApp_20250709193309.zip	App_EmployeeRecognition_20250709193309.zip
+A	ChangeLog_Requests_EmployeeRecognitionApp.docx
+A	IMPLEMENTATION_COMPLETE.md
+A	List_SharePointExport_578_Starfish.csv
+M	README.md
+A	archive/2025.07.09_EmployeeRecognitionFolder_archive.zip
+A	docs/cicd-pipeline-strategy.md
+A	docs/monitoring-analytics-framework.md
+M	environments/development.json
+M	environments/production.json
+A	environments/staging.json
+A	environments/testing.json
+M	security/compliance-framework.md
+M	src/sharepoint/README.md
+A	src/sharepoint/lists/admin-settings.md
+A	src/sharepoint/lists/audit-log.md
+A	src/sharepoint/lists/award-categories.md
+M	src/sharepoint/lists/employee-nominations.md
+A	src/sharepoint/lists/user-profiles.md
+A	testing/power-apps-test-studio-guide.md
+A	testing/testing-strategy.md
+
+---
+commit e540d0433a6d9612836f91848c6f7226a7163eca
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Major project updates: Complete CHANGELOG.md creation and workspace organization
+M	.gitignore
+M	.vscode/settings.json
+M	.vscode/tasks.json
+A	CHANGELOG.md
+M	ChangeLog_Requests_EmployeeRecognitionApp.docx
+A	WORKSPACE_SAVED.md
+A	archive/2025.07.09_Workspace_EmployeeRecognitionPowerPlatform_Archive.code-workspace
+A	archive/PowerPlatform_Workspace_Complete_2025-07-09_1549.zip
+A	docs/DEVELOPMENT_GUIDE.md
+A	environments/config.psm1
+A	scripts/PowerPlatformUtils.psm1
+A	scripts/deploy.ps1
+A	src/solution.xml
+
+---
+commit 613bd287409259464ec6ede1fce252a0ba1865db
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Organize workspace for GitHub repository setup
+M	.gitignore
+D	ChangeLog_Requests_EmployeeRecognitionApp.docx
+R100	App_EmployeeRecognition_20250709193309.zip	releases/v0.8.x/App_EmployeeRecognition_v0.8.x_20250709.zip
+R100	Flow_SafetyCheckChatbot_20250709193640.zip	releases/v0.8.x/Flow_SafetyCheckChatbot_v0.8.x_20250709.zip
+R100	Flow_TriageAndApprovalRouting_20250709193448.zip	releases/v0.8.x/Flow_TriageAndApprovalRouting_v0.8.x_20250709.zip
+A	releases/v0.8.x/RELEASE_NOTES.md
+R100	List_SharePointExport_578_Starfish.csv	releases/v0.8.x/SharePoint_StarfishList_Export_20250709.csv
+
+---
+commit d3d3a87e20bf29de7f1c6f0aedd1c77c47e4f069
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Complete GitHub repository preparation
+A	.github/ISSUE_TEMPLATE/bug_report.md
+A	.github/ISSUE_TEMPLATE/feature_request.md
+A	CONTRIBUTING.md
+A	PROJECT_ORGANIZATION.md
+M	README.md
+A	SECURITY.md
+
+---
+commit c1c6f8959392789c2f7d310f23dac079a21c955e
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Clean up redundant documentation files
+D	COMPREHENSIVE_EVALUATION.md
+M	CONTRIBUTING.md
+D	EXTENSION_ANALYSIS.md
+D	IMPLEMENTATION_COMPLETE.md
+D	MIGRATION_VERIFICATION.md
+D	OPTIMIZATION_COMPLETE.md
+D	PROJECT_MIGRATION_PLAN.md
+M	README.md
+D	WORKSPACE_SAVED.md
+M	releases/v0.8.x/RELEASE_NOTES.md
+
+---
+commit 33ab933b64efbd6c993a0bc74d2de0ebd9519082
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Comprehensive documentation update reflecting all repository improvements
+M	CHANGELOG.md
+M	PROJECT_ORGANIZATION.md
+M	README.md
+A	README_OLD.md
+M	SECURITY.md
+
+---
+commit e6109d9634498a15612e619d0d8951e0ed061daf
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Remove backup README file - maintain clean repository structure
+D	README_OLD.md
+
+---
+commit fcc65f8695d5c173cda8ecd346f36136ac60b80e
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Add comprehensive repository transformation summary
+A	REPOSITORY_TRANSFORMATION.md
+
+---
+commit 82f2c2f9cbf90cdeb6698562b466145571f54e09
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Add GitHub repository setup automation scripts
+A	.github/pull_request_template.md
+M	Employee_Recognition_PowerPlatform.code-workspace
+M	README.md
+A	README_NEW.md
+M	REPOSITORY_TRANSFORMATION.md
+A	scripts/connect-github.ps1
+A	scripts/github-setup-guide.ps1
+
+---
+commit afa49e83501a921262ec5afc5cb718dda609ba89
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Add MIT License for open source project
+A	LICENSE
+
+---
+commit fc516b93d4e65fafbe2db10489111dc0333d4c3e
+Author: Kyle Coder
+Date: 2025-07-10
+Initial commit
+A	.gitignore
+A	LICENSE
+A	README.md
+
+---
+commit 7de639f0efd25e9c9c067957f859ccbb87a7ff03
+Author: Kyle Coder
+Date: 2025-07-10
+Update issue templates
+A	.github/ISSUE_TEMPLATE/bug_report.md
+A	.github/ISSUE_TEMPLATE/feature_request.md
+
+---
+commit b8db740c0cc5649c7262b93ae3db09960a6547b0
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Add Apache 2.0 license headers to all source and documentation files
+M	.github/ISSUE_TEMPLATE/bug_report.md
+M	.github/ISSUE_TEMPLATE/feature_request.md
+M	.github/copilot-instructions.md
+M	.github/pull_request_template.md
+M	CHANGELOG.md
+M	CONTRIBUTING.md
+M	LICENSE
+A	NOTICE
+M	PROJECT_ORGANIZATION.md
+M	README.md
+M	SECURITY.md
+M	docs/Flow_Approval_SyntaxExperiment.md
+M	docs/Visio_Flowchart_Specifications.md
+M	docs/monitoring-analytics-framework.md
+M	releases/v0.8.x/RELEASE_NOTES.md
+M	scripts/connect-github.ps1
+M	scripts/deploy.ps1
+M	scripts/github-setup-guide.ps1
+M	security/compliance-framework.md
+M	src/power-apps/README.md
+M	src/power-automate/README.md
+M	src/sharepoint/README.md
+M	src/sharepoint/lists/admin-settings.md
+M	src/sharepoint/lists/audit-log.md
+M	src/sharepoint/lists/award-categories.md
+M	src/sharepoint/lists/employee-nominations.md
+M	src/sharepoint/lists/user-profiles.md
+M	testing/power-apps-test-studio-guide.md
+M	testing/testing-strategy.md
+
+---
+commit a29c40ec29fa73fee752290f4d31bcf0e2ca4f28
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Update documentation files with manual edits
+M	docs/Flow_Approval_SyntaxExperiment.md
+M	docs/Visio_Flowchart_Specifications.md
+
+---
+commit 52441d5b72cf16536a61b6ea12faade465493a7d
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Merge remote repository with comprehensive local project
+---
+commit 7d0486b2cb581f5acda2b3aef804c5319cc45579
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Add comprehensive repository optimization and automation tools
+A	.github/ISSUE_TEMPLATE/documentation_improvement.md
+A	.github/ISSUE_TEMPLATE/power_platform_issue.md
+A	.github/markdown-link-check.json
+A	.github/workflows/repository-health.yml
+A	DEVELOPMENT_TASKS.md
+A	GITHUB_OPTIMIZATION_PLAN.md
+A	scripts/prepare-release.ps1
+A	scripts/repo-health-check.ps1
+
+---
+commit 19b0b786889cb866d6a4165e1929e03727aa433d
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Add comprehensive award types and organizational structure information
+M	NOTICE
+A	PROJECT_PROFILE.md
+M	README.md
+
+---
+commit 5abd178767849a422d164cff63993b1d5569bc6b
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Implement comprehensive CHANGELOG enforcement system with multi-layered validation
+M	.github/markdown-link-check.json
+A	.github/workflows/changelog-enforcement.yml
+A	.github/workflows/changelog-validation.yml
+M	.github/workflows/repository-health.yml
+A	.gitmessage
+M	.vscode/tasks.json
+M	CHANGELOG.md
+M	DEVELOPMENT_TASKS.md
+M	NOTICE
+M	PROJECT_PROFILE.md
+A	PowerApps canvas app coding standards and guidelines.pdf
+M	README.md
+A	docs/CHANGELOG_ENFORCEMENT.md
+A	scripts/install-pre-commit-hook.ps1
+A	scripts/pre-commit-hook.ps1
+M	scripts/prepare-release.ps1
+M	scripts/repo-health-check.ps1
+A	scripts/safe-commit.ps1
+A	scripts/update-changelog.ps1
+A	scripts/validate-changelog.ps1
+
+---
+commit e5d5895bd146718a7dbde536d3cdb7a3a6cfed64
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Fix safe-commit script cleanup - remove duplicate code
+M	scripts/safe-commit.ps1
+
+---
+commit c7aabc9b7d5190ceb796d213f27a91c38be92078
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+Add comprehensive CHANGELOG enforcement implementation summary and documentation
+A	docs/CHANGELOG_ENFORCEMENT_SUMMARY.md
+
+---
+commit 1f371a6f88f3a531428d7009010bc6a6971d29d5
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+feat: Implement repository manager organization and Power Apps web-only development support
+M	.github/workflows/changelog-enforcement.yml
+M	.gitignore
+M	.gitmessage
+M	.vscode/tasks.json
+M	CHANGELOG.md
+D	DEVELOPMENT_TASKS.md
+D	GITHUB_OPTIMIZATION_PLAN.md
+D	PROJECT_ORGANIZATION.md
+D	PowerApps canvas app coding standards and guidelines.pdf
+M	README.md
+D	README_NEW.md
+D	REPOSITORY_TRANSFORMATION.md
+A	Repository-Manager.bat
+D	archive/2025.07.09_EmployeeRecognitionFolder_archive.zip
+M	docs/CHANGELOG_ENFORCEMENT_SUMMARY.md
+A	docs/POWER_APPS_WEB_REFERENCE.md
+R100	PROJECT_PROFILE.md	docs/PROJECT_PROFILE.md
+A	docs/REPOSITORY_MANAGER_MIGRATION.md
+A	docs/WEB_ONLY_DEVELOPMENT_SUMMARY.md
+A	docs/WORKSPACE_VERIFICATION_COMPLETE.md
+R100	releases/v0.8.x/SharePoint_StarfishList_Export_20250709.csv	releases/v0.7.x/SharePoint_StarfishList_Export_20250709.csv
+R100	src/power-apps/app_Variables_and_Collections.yml	releases/v0.7.x/app_Variables_and_Collections.yml
+D	releases/v0.8.x/App_EmployeeRecognition_v0.8.x_20250709.zip
+R100	src/power-apps/EmployeeRecognitionApp_Unpacked/Microsoft.PowerApps/apps/1053001401656249196/1053001401656249196.json	releases/v0.8.x/EmployeeRecognitionApp_v0.8.3/Microsoft.PowerApps/apps/1053001401656249196/1053001401656249196.json
+R100	src/power-apps/EmployeeRecognitionApp_Unpacked/Microsoft.PowerApps/apps/1053001401656249196/N5ad2ebf9-af3e-41b5-aad4-cda3987bd219-logoSmallFile	releases/v0.8.x/EmployeeRecognitionApp_v0.8.3/Microsoft.PowerApps/apps/1053001401656249196/N5ad2ebf9-af3e-41b5-aad4-cda3987bd219-logoSmallFile
+R100	src/power-apps/EmployeeRecognitionApp_Unpacked/Microsoft.PowerApps/apps/1053001401656249196/N8323c274-c36d-45b7-b6c8-f3b79044453a-identity.json	releases/v0.8.x/EmployeeRecognitionApp_v0.8.3/Microsoft.PowerApps/apps/1053001401656249196/N8323c274-c36d-45b7-b6c8-f3b79044453a-identity.json
+R100	src/power-apps/EmployeeRecognitionApp_Unpacked/manifest.json	releases/v0.8.x/EmployeeRecognitionApp_v0.8.3/manifest.json
+D	releases/v0.8.x/Flow_SafetyCheckChatbot_v0.8.x_20250709.zip
+D	releases/v0.8.x/Flow_TriageAndApprovalRouting_v0.8.x_20250709.zip
+A	releases/v0.9.x/RELEASE_NOTES.md
+A	repository_manager/GitHub-Repository-Manager.bat
+A	repository_manager/GitHub-Repository-Manager.ps1
+A	repository_manager/QUICK_START_GUIDE.md
+A	repository_manager/README.md
+A	repository_manager/WORKSPACE_CLEANUP_SYSTEM.md
+A	repository_manager/dual-repo-manager.ps1
+M	scripts/safe-commit.ps1
+M	scripts/update-changelog.ps1
+M	scripts/validate-changelog.ps1
+D	src/power-apps/2025.05.28 - 578 Employee Recognition App (PowerApps Export).zip
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/README.md
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/AboutInco.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/EditLinkIcon.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/EditLocationIcon.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/EditUserIcon.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/EmergencyIcon.jpg
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/TeamsCal5.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/US_Department_of_Veterans_Affairs_logo.svg.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/clipart1186662.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/microsoft_teams.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/placeholder-person.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/Images/veterans-png_2845991.png
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/SampleImage.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Assets/logo.jpg
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/CanvasManifest.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/ComponentReferences.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/ControlTemplates.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Entropy/AppCheckerResult.sarif
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Entropy/Entropy.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Entropy/checksum.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/App.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/CONSTRUCTION_Screen.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Components/Component1.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Components/Component1.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/App.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/CONSTRUCTION_Screen.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/Component1.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/Loading_Screen.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/Screen_NewSubmission.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/Screen_Submission_ICARE.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/Screen_Submissions_HROSafetyStory.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/Screen_Submissions_HinesHero.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/Submission_Screen_Nursing.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/Update_Screen.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/EditorState/ViewSubmissions_Screen.editorstate.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Loading_Screen.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Screen_NewSubmission.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Screen_Submission_ICARE.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Screen_Submissions_HROSafetyStory.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Screen_Submissions_HinesHero.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Submission_Screen_Nursing.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Themes.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/Update_Screen.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/Src/ViewSubmissions_Screen.fx.yaml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/PcfControlTemplates/Button_0.0.45.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/PcfControlTemplates/Dropdown_0.0.45.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/PcfControlTemplates/Radio_0.0.25.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/PcfControlTemplates/Text_0.0.51.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/PcfConversions/PowerApps_CoreControls_ButtonCanvas.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/PcfConversions/PowerApps_CoreControls_DropdownCanvas.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/PcfConversions/PowerApps_CoreControls_RadioGroupCanvas.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/PcfConversions/PowerApps_CoreControls_TextCanvas.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/TableDefinitions/578_Starfish.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/TableDefinitions/List_DeskAdmin.json
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/Wadl/Office365Users.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/Wadl/PowerAppsforMakers.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/addMedia_2.2.1.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/arrow_2.3.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/button_2.2.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/checkbox_2.1.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/combobox_2.4.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/datepicker_2.6.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/dropdown_2.3.1.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/fluidGrid_2.3.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/form_2.4.4.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/gallery_2.15.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/groupContainer_1.3.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/htmlViewer_2.1.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/icon_2.5.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/image_2.2.3.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/label_2.5.1.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/radio_2.3.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/rectangle_2.3.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/text_2.3.2.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/timer_2.1.0.xml
+A	src/power-apps/EmployeeRecognitionApp_v0.9.0/Source/pkgs/toggleSwitch_2.1.0.xml
+M	src/power-apps/README.md
+
+---
+commit 7619c211dfc7a2eba00a9cf3e118f0759b4d691f
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+docs: Finalize v0.9.0 documentation for GitHub publication
+M	CHANGELOG.md
+M	README.md
+M	releases/v0.9.x/RELEASE_NOTES.md
+
+---
+commit 2d5d7fafae4920d69604d414e60952d54d91b2c9
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+feat: Enhanced .gitignore for developer-only files exclusion
+M	.gitignore
+D	.gitmessage
+D	.vscode/settings.json
+D	.vscode/tasks.json
+D	Employee_Recognition_PowerPlatform.code-workspace
+D	Repository-Manager.bat
+D	archive/2025.07.03_AwardTriageAndApprovalRouting_exportedZip.zip
+D	archive/2025.07.03_EmployeeRecogonitionApp_exportedZip.zip
+D	archive/2025.07.09_Workspace_EmployeeRecognitionPowerPlatform_Archive.code-workspace
+D	archive/PowerPlatform_Workspace_Complete_2025-07-09_1549.zip
+D	assets/excel/2025.03.19 HRO Champion List 2025 (version 1).xlsx
+D	assets/excel/2025.07.03 ExportedStarfishList_SharepointQuery.xlsx
+D	assets/excel/578_HeRO.xlsx
+D	assets/excel/578_Starfish.xlsx
+D	assets/excel/GREAT CATCH PROGRAM, HERO AWARD PROGRAM & SAFETY STORIES.xlsx
+D	assets/excel/Starfish Award Nomination Form.xlsx
+D	assets/images/2025.04.09 AwardRouting Infographic.PNG
+D	docs/2025.03.19 Beeck Keizo R. shared HRO Champion List 2025 (version 1) with you.msg
+D	docs/2025.05.07 Award App Request (offline copy).docx
+D	docs/App's SharePoint Page.url
+D	docs/ApprovalTablePreview.html
+D	docs/CHANGELOG_ENFORCEMENT.md
+D	docs/CHANGELOG_ENFORCEMENT_SUMMARY.md
+D	docs/Change Order Tracker.url
+D	docs/Employee Recognition App.url
+D	docs/Employee_Recognition_App_Presentation.html
+D	docs/Extracted_HTML_Code.html
+D	docs/Flow_Approval_SyntaxExperiment.md
+D	docs/HRO Award Nomination #85.pdf
+D	docs/LLM Generated - User Survey.docx
+D	docs/PreviewAdaptiveCard.html
+D	docs/REPOSITORY_MANAGER_MIGRATION.md
+D	docs/WORKSPACE_VERIFICATION_COMPLETE.md
+D	docs/Whole Health Award SharePoint.url
+D	docs/flow-maps/App_FlowMapping.vsdx
+D	docs/flow-maps/Hines Awards Website Flow Chart HERO AWARD.vsdx
+D	docs/training/v0.9 - Employee Recognition App - Demo Presentation.pptx
+D	environments/config.psm1
+D	environments/development.json
+D	environments/production.json
+D	environments/staging.json
+D	environments/testing.json
+D	releases/v0.7.x/SharePoint_StarfishList_Export_20250709.csv
+D	releases/v0.7.x/app_Variables_and_Collections.yml
+D	releases/v0.8.x/EmployeeRecognitionApp_v0.8.3/Microsoft.PowerApps/apps/1053001401656249196/1053001401656249196.json
+D	releases/v0.8.x/EmployeeRecognitionApp_v0.8.3/Microsoft.PowerApps/apps/1053001401656249196/N5ad2ebf9-af3e-41b5-aad4-cda3987bd219-logoSmallFile
+D	releases/v0.8.x/EmployeeRecognitionApp_v0.8.3/Microsoft.PowerApps/apps/1053001401656249196/N8323c274-c36d-45b7-b6c8-f3b79044453a-identity.json
+D	releases/v0.8.x/EmployeeRecognitionApp_v0.8.3/manifest.json
+D	releases/v0.8.x/RELEASE_NOTES.md
+D	releases/v0.9.x/RELEASE_NOTES.md
+D	repository_manager/GitHub-Repository-Manager.bat
+D	repository_manager/GitHub-Repository-Manager.ps1
+D	repository_manager/QUICK_START_GUIDE.md
+D	repository_manager/README.md
+D	repository_manager/WORKSPACE_CLEANUP_SYSTEM.md
+D	repository_manager/dual-repo-manager.ps1
+D	scripts/PowerPlatformUtils.psm1
+D	scripts/connect-github.ps1
+D	scripts/deploy.ps1
+D	scripts/github-setup-guide.ps1
+D	scripts/install-pre-commit-hook.ps1
+D	scripts/pre-commit-hook.ps1
+D	scripts/prepare-release.ps1
+D	scripts/repo-health-check.ps1
+D	scripts/safe-commit.ps1
+D	scripts/update-changelog.ps1
+D	scripts/validate-changelog.ps1
+D	security/compliance-framework.md
+D	src/power-automate/2025.03.18 GreatCatch_PowerAutomateFlow.zip
+D	src/power-automate/2025.07.02 PowerAutomate Flow Syntax Extracts
+D	src/power-automate/GreatCatch_PowerAutomateFlow_20250313002348.zip
+D	src/power-automate/PowerAutomate Compose DynamicMarkdownTable
+D	testing/ApprovalTableBody.txt
+D	testing/FinalMarkdownHROTable.txt
+D	testing/FinalMarkdownHinesHeroTable.txt
+D	testing/FinalMarkdownICareTable.txt
+D	testing/FixedComposeHROTable.txt
+D	testing/FixedComposeHinesHeroTable.txt
+D	testing/FixedComposeICareTable.txt
+D	testing/IndividualTableRows.txt
+D	testing/MasterFinalMarkdownTable.txt
+D	testing/PowerPoint_Content_Script.txt
+D	testing/consolidatedVariableSyntax.txt
+D	testing/keyVariables.txt
+D	testing/power-apps-test-studio-guide.md
+D	testing/test
+D	testing/testing-strategy.md
+
+---
+commit 1dc6a2c707fd9997a6b862ab6be47dae28277b00
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+feat: Comprehensive repository and workspace improvements
+A	.github/ISSUE_TEMPLATE/feature_request.yml
+M	CONTRIBUTING.md
+A	PROJECT_STATUS.md
+M	README.md
+A	Repository-Manager.bat
+A	docs/Employee_Recognition_App_Presentation.html
+A	docs/REPOSITORY_MANAGER_MIGRATION.md
+A	src/power-automate/2025.07.02 PowerAutomate Flow Syntax Extracts
+A	src/power-automate/PowerAutomate Compose DynamicMarkdownTable
+
+---
+commit 2f37112d733495f52801f77d9cea1274c07edceb
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-10
+feat: Comprehensive repository and workspace improvements
+A	.vscode/settings.json
+A	.vscode/tasks.json
+
+---
+commit b692188ed1243f7431ef24ef8aac3e9af97ca435
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-16
+Add license headers to all workspace files
+M	.github/ISSUE_TEMPLATE/feature_request.yml
+M	.github/copilot-instructions.md
+M	.github/workflows/changelog-enforcement.yml
+M	.github/workflows/repository-health.yml
+M	.gitignore
+M	.vscode/settings.json
+M	CHANGELOG.md
+M	CONTRIBUTING.md
+A	LICENSE_HEADER_EXPORT_GUIDE.md
+M	PROJECT_STATUS.md
+M	README.md
+M	docs/DEVELOPMENT_GUIDE.md
+M	docs/Employee_Recognition_App_Flow_Map.md
+M	docs/Employee_Recognition_App_PowerPoint_Outline.md
+M	docs/POWER_APPS_WEB_REFERENCE.md
+M	docs/REPOSITORY_MANAGER_MIGRATION.md
+M	docs/WEB_ONLY_DEVELOPMENT_SUMMARY.md
+M	docs/cicd-pipeline-strategy.md
+
+---
+commit 56dd34d7ee5b2c5a8261984fdbc9df4ba5531d27
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-16
+feat: Create comprehensive workspace inventory and exportable Copilot package
+M	.github/copilot-instructions.md
+M	.gitignore
+M	.vscode/tasks.json
+M	CHANGELOG.md
+M	PROJECT_STATUS.md
+M	README.md
+D	Repository-Manager.bat
+M	SECURITY.md
+A	WORKSPACE_INVENTORY.html
+A	copilot-export/.github/copilot-instructions.md
+A	copilot-export/.github/workflows/changelog-enforcement.yml
+A	copilot-export/.github/workflows/changelog-validation.yml
+A	copilot-export/.github/workflows/repository-health.yml
+A	copilot-export/Install-CopilotPackage.ps1
+A	copilot-export/PACKAGE_CONTENTS.md
+A	copilot-export/QUICK_REFERENCE.md
+A	copilot-export/README.md
+
+---
+commit 1df810eb1d628fd60556e358b13720c1d99779e8
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-16
+feat: Add automated local git commit workflow to Copilot instructions
+M	.github/copilot-instructions.md
+
+---
+commit ad1a53fad184b630a70339a41e3708bf8ac5c2a9
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-16
+Update CHANGELOG.md - Version 0.9.18 (feature)
+M	CHANGELOG.md
+
+---
+commit 57f8656719bc9235d21c3b9584f41f6fade60bfa
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-16
+docs: enhance autonomous commit protocol with detailed message generation
+M	.github/copilot-instructions.md
+M	CHANGELOG.md
+M	README.md
+
+---
+commit 6213b0a5509598e6fe21e5cd309ba461f38258bc
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-22
+fix: implement permanent VS Code task execution ban to resolve chronic workflow interruptions
+M	.github/copilot-instructions.md
+M	.vscode/settings.json
+M	CHANGELOG.md
+A	docs/VA_SECURITY_UPDATE_ANALYSIS.md
+
+---
+commit 26022944960d03ab6f0ca8954288a120e5cc6873
+Author: Kyle.Coder@VA.gov
+Date: 2025-07-22
+docs: add Version 0.9.22 CHANGELOG entry for VS Code task execution ban
+M	CHANGELOG.md
+
+---
+commit ecbb01fd075b9e5c8bbbd23f089c0ca770308697
+Author: Kyle J. Coder
+Date: 2025-07-22
+v0.9.23: Major Organizational Release - Complete Documentation Alignment
+M	.github/copilot-instructions.md
+M	.gitignore
+M	.vscode/settings.json
+M	CHANGELOG.md
+M	CONTRIBUTING.md
+M	NOTICE
+M	PROJECT_STATUS.md
+M	README.md
+M	SECURITY.md
+D	WORKSPACE_INVENTORY.html
+R100	LICENSE_HEADER_EXPORT_GUIDE.md	docs/LICENSE_HEADER_EXPORT_GUIDE.md
+A	docs/MARKDOWN_ERROR_SOLUTIONS.md
+M	docs/VA_SECURITY_UPDATE_ANALYSIS.md
+
+---
+commit 6891f8a9828fc8740cbc66d5b5a0668b936d56fd
+Author: Kyle J. Coder
+Date: 2025-07-23
+Remove copilot-export folder from public repository
+M	.gitignore
+M	CHANGELOG.md
+M	PROJECT_STATUS.md
+D	copilot-export/.github/copilot-instructions.md
+D	copilot-export/.github/workflows/changelog-enforcement.yml
+D	copilot-export/.github/workflows/changelog-validation.yml
+D	copilot-export/.github/workflows/repository-health.yml
+D	copilot-export/Install-CopilotPackage.ps1
+D	copilot-export/PACKAGE_CONTENTS.md
+D	copilot-export/QUICK_REFERENCE.md
+D	copilot-export/README.md
+A	docs/PowerApps_Development_Workflow_Analysis.html
+
+---
+commit 537dec06b7d1c0cbebc34baed52462ca77675bbf
+Author: Kyle J. Coder
+Date: 2025-07-24
+fix: Update workspace location path reference for network migration
+M	CHANGELOG.md
+A	PowerApps_Development_Workflow_Analysis.html
+M	docs/PROJECT_PROFILE.md
+
+---
+commit 045035d74980ee43e95740f719eedd491b59b401
+Author: Kyle J. Coder
+Date: 2025-07-25
+feat: Weekend development completion with interactive JavaScript enhancements
+M	CHANGELOG.md
+A	COMPREHENSIVE_PROJECT_ANALYSIS.html
+D	PowerApps_Development_Workflow_Analysis.html
+A	WEEKEND_SHUTDOWN_REPORT.md

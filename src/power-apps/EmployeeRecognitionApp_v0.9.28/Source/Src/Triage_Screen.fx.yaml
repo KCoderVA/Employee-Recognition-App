@@ -1,0 +1,1327 @@
+"Triage_Screen As screen.'printableLayout_A4Landscape_ver1.0'":
+    Height: =794
+    Width: =1123
+
+    btn_Print As label:
+        Align: =Align.Center
+        BorderThickness: =1
+        Color: =RGBA(109, 49, 162, 1)
+        Fill: =RGBA(180, 214, 250, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =32
+        OnSelect: =Print()
+        Size: =13
+        TabIndex: =0
+        Text: ="Print"
+        Visible: =Not(Parent.Printing)
+        Width: =96
+        X: =1027
+        Y: =32
+        ZIndex: =1
+
+    btn_GoHome As label:
+        Align: =Align.Center
+        BorderThickness: =1
+        Color: =RGBA(109, 49, 162, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =RGBA(180, 214, 250, 1)
+        FontWeight: =FontWeight.Bold
+        Height: =32
+        OnSelect: =Navigate(Loading_Screen);
+        Size: =13
+        TabIndex: =0
+        Text: ="Go Home"
+        Visible: =Not(Parent.Printing)
+        Width: =96
+        X: =1027
+        ZIndex: =2
+
+    lbl_TriageTeamScreen As Text:
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        Fill: =
+        FontColor: =
+        Height: =32
+        Size: =20
+        Text: ="Triage Team Screen"
+        Weight: ='TextCanvas.Weight'.Bold
+        Width: =182
+        X: =0
+        Y: =0
+        ZIndex: =3
+
+    Form2 As form.PowerApps_CoreControls_Form:
+        DataSource: ='578_Starfish'
+        Height: =612
+        Item: =gal_Untriaged.Selected
+        NumberOfColumns: =2
+        UseFluentV9Cards: =true
+        Visible: |
+            =true
+        Width: =1123
+        Y: =180
+        ZIndex: =4
+
+        TriageStage_AwaitingActionFrom_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Triage_AssignedTo"
+            Default: =ThisItem.TriageStage_AwaitingActionFrom
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,Triage_AssignedTo)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Triage_AssignedTo)
+            Required: =false
+            Update: =DataCardValue30.Value
+            Width: =594
+            X: =1
+            Y: =3
+            ZIndex: =1
+
+            DataCardKey34 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue30 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey34.Y + DataCardKey34.Height + 4
+                ZIndex: =2
+
+            ErrorMessage34 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue30.Y + DataCardValue30.Height
+                ZIndex: =3
+
+            StarVisible34 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey34.Y
+                ZIndex: =4
+
+        TriageStage_Comments_Text_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Triage_ActionComments"
+            Default: =ThisItem.TriageStage_Comments_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,Triage_ActionComments)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Triage_ActionComments)
+            Required: =false
+            Update: =DataCardValue31.Value
+            Width: =594
+            X: =0
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey35 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue31 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey35.Y + DataCardKey35.Height + 4
+                ZIndex: =2
+
+            ErrorMessage35 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue31.Y + DataCardValue31.Height
+                ZIndex: =3
+
+            StarVisible35 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey35.Y
+                ZIndex: =4
+
+        TriageStage_Status_Text_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Triage_Status"
+            Default: =ThisItem.TriageStage_Status_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,Triage_Status)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Triage_Status)
+            Required: =false
+            Update: =DataCardValue32.Value
+            Width: =594
+            X: =1
+            Y: =4
+            ZIndex: =1
+
+            DataCardKey36 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue32 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey36.Y + DataCardKey36.Height + 4
+                ZIndex: =2
+
+            ErrorMessage36 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue32.Y + DataCardValue32.Height
+                ZIndex: =3
+
+            StarVisible36 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey36.Y
+                ZIndex: =4
+
+        TriageStage_ActionTakenBy_Text_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Triage_ActionBy"
+            Default: =ThisItem.TriageStage_ActionTakenBy_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,Triage_ActionBy)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Triage_ActionBy)
+            Required: =false
+            Update: =DataCardValue33.Value
+            Width: =594
+            X: =0
+            Y: =5
+            ZIndex: =1
+
+            DataCardKey37 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue33 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey37.Y + DataCardKey37.Height + 4
+                ZIndex: =2
+
+            ErrorMessage37 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue33.Y + DataCardValue33.Height
+                ZIndex: =3
+
+            StarVisible37 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey37.Y
+                ZIndex: =4
+
+        ItemTitle_Text_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Title"
+            Default: =ThisItem.ItemTitle_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,Title)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Title)
+            Required: =false
+            Update: =DataCardValue25.Value
+            Width: =594
+            X: =0
+            Y: =0
+            ZIndex: =5
+
+            DataCardKey26 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue25 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey26.Y + DataCardKey26.Height + 4
+                ZIndex: =2
+
+            ErrorMessage26 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue25.Y + DataCardValue25.Height
+                ZIndex: =3
+
+            StarVisible26 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey26.Y
+                ZIndex: =4
+
+        Packet_Submitted_DateTime_DataCard1 As typedDataCard.fluentV9DateTimeEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_2"
+            Default: =ThisItem.Packet_Submitted_DateTime
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,field_2)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            Required: =false
+            Update: =If(Not IsBlank(DateValue2.SelectedDate), DateTime(Year(DateValue2.SelectedDate), Month(DateValue2.SelectedDate), Day(DateValue2.SelectedDate), Value(HourValue2.Selected.Value), Value(MinuteValue2.Selected.Value), Second(DateValue2.SelectedDate)))
+            Width: =594
+            X: =1
+            Y: =0
+            ZIndex: =5
+
+            DataCardKey28 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DateValue2 As 'Date picker'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Required: =Parent.Required
+                SelectedDate: =Parent.Default
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Width: =(Parent.Width - 48) / 2
+                X: =24
+                Y: =DataCardKey28.Y + DataCardKey28.Height + 4
+                ZIndex: =2
+
+            HourValue2 As Dropdown.pcfdataset:
+                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                DefaultSelectedItems: =[Text(Hour(Parent.Default),"00")]
+                DisplayMode: =Parent.DisplayMode
+                Height: =28
+                Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Width: =DateValue2.Width / 2 - 10
+                X: =DateValue2.X + DateValue2.Width + 10
+                Y: =DateValue2.Y + 1
+                ZIndex: =3
+
+            Separator2 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =HourValue2.Height
+                Text: |-
+                    =":"
+                Width: =10
+                X: =HourValue2.X + HourValue2.Width
+                Y: =HourValue2.Y
+                ZIndex: =4
+
+            MinuteValue2 As Dropdown.pcfdataset:
+                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                DefaultSelectedItems: =[Text(Minute(Parent.Default),"00")]
+                DisplayMode: =Parent.DisplayMode
+                Height: =28
+                Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"]
+                Required: =false
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Width: =HourValue2.Width
+                X: =HourValue2.X + HourValue2.Width + Separator2.Width
+                Y: =HourValue2.Y + 1
+                ZIndex: =5
+
+            ErrorMessage28 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DateValue2.Y + DateValue2.Height
+                ZIndex: =6
+
+            StarVisible28 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =20
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey28.Y
+                ZIndex: =7
+
+        Submitter_Email_Text_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_3"
+            Default: =ThisItem.Submitter_Email_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,field_3)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, field_3)
+            Required: =false
+            Update: =DataCardValue26.Value
+            Width: =594
+            X: =0
+            Y: =1
+            ZIndex: =5
+
+            DataCardKey29 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue26 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey29.Y + DataCardKey29.Height + 4
+                ZIndex: =2
+
+            ErrorMessage29 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue26.Y + DataCardValue26.Height
+                ZIndex: =3
+
+            StarVisible29 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey29.Y
+                ZIndex: =4
+
+        Submitter_NameEmail_Text_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_4"
+            Default: =ThisItem.Submitter_NameEmail_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,field_4)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, field_4)
+            Required: =false
+            Update: =DataCardValue27.Value
+            Width: =594
+            X: =1
+            Y: =1
+            ZIndex: =5
+
+            DataCardKey30 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue27 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey30.Y + DataCardKey30.Height + 4
+                ZIndex: =2
+
+            ErrorMessage30 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue27.Y + DataCardValue27.Height
+                ZIndex: =3
+
+            StarVisible30 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey30.Y
+                ZIndex: =4
+
+        Nominee_NameEmail_Text_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_5"
+            Default: =ThisItem.Nominee_NameEmail_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,field_5)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, field_5)
+            Required: =false
+            Update: =DataCardValue28.Value
+            Width: =594
+            X: =0
+            Y: =2
+            ZIndex: =5
+
+            DataCardKey31 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue28 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey31.Y + DataCardKey31.Height + 4
+                ZIndex: =2
+
+            ErrorMessage31 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue28.Y + DataCardValue28.Height
+                ZIndex: =3
+
+            StarVisible31 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey31.Y
+                ZIndex: =4
+
+        Packet_EventLocation_Text_DataCard1 As typedDataCard.fluentV9TextualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_6"
+            Default: =ThisItem.Packet_EventLocation_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,field_6)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, field_6)
+            Required: =false
+            Update: =DataCardValue29.Value
+            Width: =594
+            X: =1
+            Y: =2
+            ZIndex: =5
+
+            DataCardKey32 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DataCardValue29 As 'Text input'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Value: =Parent.Default
+                Width: =Parent.Width - 48
+                X: =24
+                Y: =DataCardKey32.Y + DataCardKey32.Height + 4
+                ZIndex: =2
+
+            ErrorMessage32 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DataCardValue29.Y + DataCardValue29.Height
+                ZIndex: =3
+
+            StarVisible32 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey32.Y
+                ZIndex: =4
+
+        Packet_Event_DateTime_DataCard1 As typedDataCard.fluentV9DateTimeEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="field_7"
+            Default: =ThisItem.Packet_Event_DateTime
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@'578_Starfish'],DataSourceInfo.DisplayName,field_7)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =70
+            Required: =false
+            Update: =If(Not IsBlank(DateValue3.SelectedDate), DateTime(Year(DateValue3.SelectedDate), Month(DateValue3.SelectedDate), Day(DateValue3.SelectedDate), Value(HourValue3.Selected.Value), Value(MinuteValue3.Selected.Value), Second(DateValue3.SelectedDate)))
+            Width: =594
+            X: =0
+            Y: =3
+            ZIndex: =5
+
+            DataCardKey33 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =22
+                Text: =Parent.DisplayName
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - 48
+                Wrap: =false
+                X: =24
+                Y: =10
+                ZIndex: =1
+
+            "DateValue3 As 'Date picker'":
+                AccessibleLabel: =Parent.DisplayName
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =Parent.DisplayMode
+                Fill: =
+                FontColor: =
+                Height: =32
+                Required: =Parent.Required
+                SelectedDate: =Parent.Default
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Width: =(Parent.Width - 48) / 2
+                X: =24
+                Y: =DataCardKey33.Y + DataCardKey33.Height + 4
+                ZIndex: =2
+
+            HourValue3 As Dropdown.pcfdataset:
+                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                DefaultSelectedItems: =[Text(Hour(Parent.Default),"00")]
+                DisplayMode: =Parent.DisplayMode
+                Height: =28
+                Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
+                Required: =Parent.Required
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Width: =DateValue3.Width / 2 - 10
+                X: =DateValue3.X + DateValue3.Width + 10
+                Y: =DateValue3.Y + 1
+                ZIndex: =3
+
+            Separator3 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =HourValue3.Height
+                Text: |-
+                    =":"
+                Width: =10
+                X: =HourValue3.X + HourValue3.Width
+                Y: =HourValue3.Y
+                ZIndex: =4
+
+            MinuteValue3 As Dropdown.pcfdataset:
+                AccessibleLabel: =If(Parent.Required, Substitute("{0}. Required.", "{0}", Parent.DisplayName), Parent.DisplayName)
+                DefaultSelectedItems: =[Text(Minute(Parent.Default),"00")]
+                DisplayMode: =Parent.DisplayMode
+                Height: =28
+                Items: =["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59"]
+                Required: =false
+                ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
+                Width: =HourValue3.Width
+                X: =HourValue3.X + HourValue3.Width + Separator3.Width
+                Y: =HourValue3.Y + 1
+                ZIndex: =5
+
+            ErrorMessage33 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =30
+                Text: =Parent.Error
+                Visible: =And(!IsBlank(Parent.Error), Parent.DisplayMode=DisplayMode.Edit)
+                Width: =Parent.Width - 48
+                Wrap: =true
+                X: =24
+                Y: =DateValue3.Y + DateValue3.Height
+                ZIndex: =6
+
+            StarVisible33 As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =20
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                X: =0
+                Y: =DataCardKey33.Y
+                ZIndex: =7
+
+    ctn_SearchBar As groupContainer.manualLayoutContainer:
+        Height: =79
+        maximumHeight: =11360
+        maximumWidth: =640
+        Width: =Parent.Width - 180
+        X: =60
+        Y: =30
+        ZIndex: =5
+
+        Starfish_Submission_PopUP_Search_Textbox_6 As text:
+            BorderColor: =RGBA(168, 0, 0, 1)
+            BorderThickness: =3
+            Color: =RGBA(0, 0, 0, 1)
+            Default: |-
+                =//""
+                //RGBA(255, 255, 255, 0)
+                If(
+                    IsBlank(col_selectedUserProfile),
+                    "",
+                    var_selectedUser.Mail
+                )
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            FocusedBorderThickness: =4
+            Height: =60
+            HintText: ="...Search by  EMAIL  or  'LAST NAME, FIRST NAME'"
+            HoverBorderColor: =RGBA(0, 18, 107, 1)
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: =Set(var_resetSearchParameter,false)
+            PressedBorderColor: =ViewSubmissions_BrowseGallery_2.Fill
+            Reset: =var_resetSearchParameter
+            Size: =21
+            Tooltip: ="LAST NAME,   First Name"
+            Width: =Parent.Width - Starfish_Submission_PopUP_Search_Icon_X_7.Width - Starfish_Submission_PopUP_Search_Icon_X_7.Width + 10
+            X: =Starfish_Submission_PopUP_Search_Icon_Magnifier_6.X + Starfish_Submission_PopUP_Search_Icon_Magnifier_6.Width
+            Y: =(Parent.Height / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        Starfish_Submission_PopUP_Search_Icon_Magnifier_6 As icon:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(179, 179, 179, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Height: =53
+            Icon: =Icon.Search
+            Width: =61
+            X: =10
+            Y: =(Parent.Height / 2) - (Self.Height / 2)
+            ZIndex: =2
+
+        Starfish_Submission_PopUP_Search_Icon_X_7 As icon:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(179, 179, 179, 1)
+            DisabledBorderColor: =RGBA(255, 255, 255, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =50
+            Icon: =Icon.Cancel
+            OnSelect: |-
+                =//Set(var_resetSearchParameter, true);
+                Clear(col_selectedUserProfile);
+                Clear(col_selectedUser_Manager);
+                Set(var_selectedUser, Blank());
+                Set(var_selectedUser_Manager, Blank());
+                Reset(Starfish_Submission_PopUP_Search_Textbox_6);
+            Width: =49
+            X: =Starfish_Submission_PopUP_Search_Textbox_6.Width + Starfish_Submission_PopUP_Search_Icon_Magnifier_6.Width - Self.Width + 5
+            Y: =(Parent.Height / 2) - (Self.Height / 2)
+            ZIndex: =3
+
+        Starfish_Submission_PopUP_Search_Seperator_6 As rectangle:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(0, 18, 107, 1)
+            Height: =1
+            Width: =Parent.Width
+            ZIndex: =4
+
+    "gal_Untriaged As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver5.0'":
+        '#CopilotOverlayLabel': ="Filtered"
+        AccessibleLabel: ="User look up search results"
+        BorderColor: =RGBA(0, 18, 107, 1)
+        DelayItemLoading: =true
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =642
+        Items: |-
+            =If(
+                !IsBlank(Trim(Starfish_Submission_PopUP_Search_Textbox_6.Text)),
+                Filter(
+                    '578_Starfish',
+                    IsBlank(TriageStage_ActionTakenBy_Text) || TriageStage_ActionTakenBy_Text = ""
+                    ),
+                Sort(
+                    Filter(
+                        '578_Starfish',
+                        (IsBlank(TriageStage_ActionTakenBy_Text) || TriageStage_ActionTakenBy_Text = "") && (Trim(Starfish_Submission_PopUP_Search_Textbox_6.Text) = ThisRecord.Submitter_Email_Text)
+                        ),
+                    ID,
+                    SortOrder.Ascending
+                )
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        ShowNavigation: =true
+        TemplatePadding: =0
+        TemplateSize: |-
+            =//116
+            If(
+                gbl_userIsAdmin = true,
+                (ViewSubmissions_BrowseGallery_Text_NomineeName_1.Height
+                    + ViewSubmissions_BrowseGallery_Text_AwardType_1.Height
+                    + ViewSubmissions_BrowseGallery_Text_SubmissionDateTime_1.Height
+                    + ViewSubmissions_BrowseGallery_Text_IsAdmin_SubmitterEmail_1.Height
+                    + 10),
+                (ViewSubmissions_BrowseGallery_Text_NomineeName_1.Height
+                + ViewSubmissions_BrowseGallery_Text_AwardType_1.Height
+                + ViewSubmissions_BrowseGallery_Text_SubmissionDateTime_1.Height
+                + 3)
+            )
+        Width: =1003
+        Y: =149
+        ZIndex: =6
+
+        NextArrow4_1 As icon:
+            AccessibleLabel: =Self.Tooltip
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(166, 166, 166, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            Height: =Parent.TemplateHeight / 2
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(ViewSubmissions_BrowseGallery_Button_10)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =Parent.TemplateHeight / 2
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =1
+
+        Separator5_1 As rectangle:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderThickness: =1
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =2
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =2
+
+        Rectangle5_1 As rectangle:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(0, 18, 107, 1)
+            Height: =Parent.TemplateHeight - Separator5_1.Height
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            ZIndex: =3
+
+        ViewSubmissions_BrowseGallery_Text_IsAdmin_SubmitterEmail_1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: |-
+                =//Self.Size * 1.8
+                If(
+                    (gbl_userIsAdmin = true),
+                    (Self.Size * 1.8),
+                    0
+                )
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Submitter_Email_Text
+            VerticalAlign: =VerticalAlign.Top
+            Visible: |-
+                =If(
+                    gbl_userIsAdmin = true,
+                    true,
+                    false
+                    )
+            Width: =Parent.Width - (ViewSubmissions_BrowseGallery_Label_AwardType_1.X + ViewSubmissions_BrowseGallery_Label_AwardType_1.Width)
+            X: =171
+            Y: =ViewSubmissions_BrowseGallery_Text_AwardType_1.Y + ViewSubmissions_BrowseGallery_Text_AwardType_1.Height
+            ZIndex: =4
+
+        ViewSubmissions_BrowseGallery_Label_IsAdmin_SubmitterEmail_1 As label:
+            Height: |-
+                =//Self.Size * 1.8
+                If(
+                    (gbl_userIsAdmin = true),
+                    (Self.Size * 1.8),
+                    0
+                )
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: |-
+                ="Submitter:"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: |-
+                =If(
+                    gbl_userIsAdmin = true,
+                    true,
+                    false
+                    )
+            Width: =166
+            X: =ViewSubmissions_BrowseGallery_Label_AwardType_1.X
+            Y: =ViewSubmissions_BrowseGallery_Text_IsAdmin_SubmitterEmail_1.Y
+            ZIndex: =5
+
+        ViewSubmissions_BrowseGallery_Text_AwardType_1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: |-
+                =If(
+                    (ThisItem.Packet_EventLocation_Text = "None provided"),
+                    ThisItem.Packet_AwardType_Text,
+                    ThisItem.Packet_EventLocation_Text
+                )
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - (ViewSubmissions_BrowseGallery_Label_AwardType_1.Width + ViewSubmissions_BrowseGallery_Label_AwardType_1.X)
+            X: =171
+            Y: =ViewSubmissions_BrowseGallery_Text_NomineeName_1.Y + ViewSubmissions_BrowseGallery_Text_NomineeName_1.Height
+            ZIndex: =6
+
+        ViewSubmissions_BrowseGallery_Label_AwardType_1 As label:
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: |-
+                =//"Event Location:"
+                
+                If(
+                    (ThisItem.Packet_EventLocation_Text = "None provided"),
+                    "Award Type:",
+                    "Event Location:"
+                )
+            VerticalAlign: =VerticalAlign.Top
+            Width: =166
+            X: =5
+            Y: =ViewSubmissions_BrowseGallery_Text_AwardType_1.Y
+            ZIndex: =7
+
+        ViewSubmissions_BrowseGallery_Text_NomineeName_1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =24
+            Text: =IfError(Office365Users.UserProfile(ThisItem.Nominee_NameEmail_Text).DisplayName, " NONE FOUND")
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - (ViewSubmissions_BrowseGallery_Label_NomineeName_1.Width + ViewSubmissions_BrowseGallery_Label_NomineeName_1.X)
+            X: =170
+            Y: =ViewSubmissions_BrowseGallery_Text_SubmissionDateTime_1.Y + ViewSubmissions_BrowseGallery_Text_SubmissionDateTime_1.Height
+            ZIndex: =8
+
+        ViewSubmissions_BrowseGallery_Label_NomineeName_1 As label:
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: |-
+                ="Nominee Name:"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =166
+            X: =4
+            Y: =(ViewSubmissions_BrowseGallery_Text_NomineeName_1.Height / 2) + (ViewSubmissions_BrowseGallery_Text_NomineeName_1.Y / 2)
+            ZIndex: =9
+
+        ViewSubmissions_BrowseGallery_Text_SubmissionDateTime_1 As label:
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Text: =ThisItem.Packet_Submitted_DateTime
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - (ViewSubmissions_BrowseGallery_Label_SubmissionDateTime_1.Width - ViewSubmissions_BrowseGallery_Label_SubmissionDateTime_1.X)
+            X: =162
+            Y: |-
+                =/*If(
+                    (gbl_userIsAdmin = true), 
+                    (((Parent.TemplateHeight - (Self.Size * 1.8 + ViewSubmissions_BrowseGallery_Text_NomineeName.Size * 1.8 + 2 + ViewSubmissions_BrowseGallery_Text_EventLocation.Size * 1.8)) / 2) - 10), 
+                    (((Parent.TemplateHeight - (Self.Size * 1.8 + ViewSubmissions_BrowseGallery_Text_NomineeName.Size * 1.8 + 2 + ViewSubmissions_BrowseGallery_Text_EventLocation.Size * 1.8)) / 2))
+                )*/
+                If(
+                    gbl_HostIsWindows = true,
+                    (Parent.TemplateHeight - Parent.TemplateHeight + 3)
+                
+                )
+            ZIndex: =10
+
+        ViewSubmissions_BrowseGallery_Label_SubmissionDateTime_1 As label:
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =16
+            Text: |-
+                ="Submitted:"
+            VerticalAlign: =VerticalAlign.Top
+            Width: =166
+            X: =4
+            Y: =ViewSubmissions_BrowseGallery_Text_SubmissionDateTime_1.Y
+            ZIndex: =11
+
+        ViewSubmissions_BrowseGallery_Button_10 As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderThickness: =1
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(255, 255, 255, 0)
+            FontWeight: =FontWeight.Semibold
+            Height: =gal_Untriaged.TemplateHeight
+            HoverBorderColor: =RGBA(9, 33, 98, 1)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =RGBA(186, 202, 226, 0.75)
+            OnSelect: |-
+                =Select(Parent);
+                Set(var_PopUP_People, 1);
+                Set(var_selectedUser, Office365Users.UserProfile(ThisItem.Nominee_NameEmail_Text));
+                ClearCollect(col_selectedUserNominee, Office365Users.UserProfile(ThisItem.Nominee_NameEmail_Text));
+                Set(var_SelectedNomination, ThisItem);
+                ClearCollect(col_SelectedNomination_HROPrinciple, ThisItem.Packet_HROPrinciple_Text)
+            RadiusBottomLeft: =25
+            RadiusBottomRight: =25
+            RadiusTopLeft: =25
+            RadiusTopRight: =25
+            Size: =24
+            Text: =""
+            Tooltip: ="See detailed information about this nomination!"
+            Width: =Parent.Width - 2
+            X: =1
+            ZIndex: =12
+
