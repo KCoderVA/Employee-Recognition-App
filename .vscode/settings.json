@@ -51,7 +51,7 @@
         "*.json": "${basename}.schema.json"
     },
     "security.workspace.trust.enabled": true,
-    "extensions.ignoreRecommendations": true,
+    "extensions.ignoreRecommendations": false,
     "extensions.disabled": [
         "ms-vscode.cmake-tools",
         "ms-vscode.cpptools",
@@ -73,7 +73,6 @@
         "ms-mssql.mssql",
         "ms-mssql.sql-bindings-vscode",
         "ms-mssql.sql-database-projects-vscode",
-        "ms-vscode.live-server",
         "github.codespaces",
         "github.remotehub",
         "ms-vscode.azure-repos",

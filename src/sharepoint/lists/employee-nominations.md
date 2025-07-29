@@ -26,45 +26,45 @@
 ## Column Schema
 
 ### Core Fields
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| Title | Single Line Text | Yes | Nomination title/summary |
-| NomineeEmail | Single Line Text | Yes | Email of nominated employee |
-| NomineeName | Single Line Text | Yes | Full name of nominee |
-| NominatorEmail | Single Line Text | Yes | Email of person submitting |
-| NominatorName | Single Line Text | Yes | Full name of nominator |
-| AwardType | Choice | Yes | HeRO, Great Catch, Starfish, I-CARE |
-| SubmissionDate | Date/Time | Yes | When nomination was submitted |
-| Status | Choice | Yes | Pending, In Review, Approved, Rejected |
+| Column Name    | Type             | Required | Description                            |
+| -------------- | ---------------- | -------- | -------------------------------------- |
+| Title          | Single Line Text | Yes      | Nomination title/summary               |
+| NomineeEmail   | Single Line Text | Yes      | Email of nominated employee            |
+| NomineeName    | Single Line Text | Yes      | Full name of nominee                   |
+| NominatorEmail | Single Line Text | Yes      | Email of person submitting             |
+| NominatorName  | Single Line Text | Yes      | Full name of nominator                 |
+| AwardType      | Choice           | Yes      | HeRO, Great Catch, Starfish, I-CARE    |
+| SubmissionDate | Date/Time        | Yes      | When nomination was submitted          |
+| Status         | Choice           | Yes      | Pending, In Review, Approved, Rejected |
 
 ### Award-Specific Fields
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| HROPrinciple1 | Multiple Lines Text | No | First HRO principle (for HRO awards) |
-| HROPrinciple2 | Multiple Lines Text | No | Second HRO principle (for HRO awards) |
-| ContextDescription | Multiple Lines Text | No | Context section (HRO awards) |
-| ActionsDescription | Multiple Lines Text | No | Actions section (HRO awards) |
-| ResultsDescription | Multiple Lines Text | No | Results section (HRO awards) |
-| ICareValue | Choice | No | I, C, A, R, E value (for I-CARE awards) |
-| SafetyImpact | Multiple Lines Text | No | Safety impact description |
+| Column Name        | Type                | Required | Description                             |
+| ------------------ | ------------------- | -------- | --------------------------------------- |
+| HROPrinciple1      | Multiple Lines Text | No       | First HRO principle (for HRO awards)    |
+| HROPrinciple2      | Multiple Lines Text | No       | Second HRO principle (for HRO awards)   |
+| ContextDescription | Multiple Lines Text | No       | Context section (HRO awards)            |
+| ActionsDescription | Multiple Lines Text | No       | Actions section (HRO awards)            |
+| ResultsDescription | Multiple Lines Text | No       | Results section (HRO awards)            |
+| ICareValue         | Choice              | No       | I, C, A, R, E value (for I-CARE awards) |
+| SafetyImpact       | Multiple Lines Text | No       | Safety impact description               |
 
 ### Workflow Fields
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| ApprovalStage | Choice | No | Triage, Committee, Final |
-| AssignedReviewer | Person/Group | No | Current reviewer |
-| ReviewComments | Multiple Lines Text | No | Reviewer feedback |
-| ApprovalDate | Date/Time | No | Date of approval |
-| RejectionReason | Multiple Lines Text | No | Reason if rejected |
+| Column Name      | Type                | Required | Description              |
+| ---------------- | ------------------- | -------- | ------------------------ |
+| ApprovalStage    | Choice              | No       | Triage, Committee, Final |
+| AssignedReviewer | Person/Group        | No       | Current reviewer         |
+| ReviewComments   | Multiple Lines Text | No       | Reviewer feedback        |
+| ApprovalDate     | Date/Time           | No       | Date of approval         |
+| RejectionReason  | Multiple Lines Text | No       | Reason if rejected       |
 
 ### Metadata Fields
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| SubmissionID | Single Line Text | Yes | Unique identifier |
-| Department | Single Line Text | No | Nominee's department |
-| ServiceLine | Single Line Text | No | Nominee's service line |
-| Priority | Choice | No | Low, Medium, High, Urgent |
-| Tags | Multiple Lines Text | No | Searchable keywords |
+| Column Name  | Type                | Required | Description               |
+| ------------ | ------------------- | -------- | ------------------------- |
+| SubmissionID | Single Line Text    | Yes      | Unique identifier         |
+| Department   | Single Line Text    | No       | Nominee's department      |
+| ServiceLine  | Single Line Text    | No       | Nominee's service line    |
+| Priority     | Choice              | No       | Low, Medium, High, Urgent |
+| Tags         | Multiple Lines Text | No       | Searchable keywords       |
 
 ## Choice Field Values
 
@@ -158,6 +158,22 @@
 - **Active**: 12 months in primary list
 - **Archive**: 7 years in separate archive list
 - **Purge**: After 7 years per VA policy
+
+## How to Import/Set Up This List in SharePoint
+
+**Version Applicability:**
+This template is designed for use with Employee Recognition App v0.9.x and later. For best results, use the provided CSV or XLSX template from the public repository release.
+
+**Import Steps:**
+1. Open your SharePoint site and navigate to the desired location for the list.
+2. Click **New > List** and select **From Excel** (or **From CSV**).
+3. Upload the provided template file (see repository `src/sharepoint/lists/` for the latest version).
+4. Review the column mapping and ensure all fields match the schema below.
+5. Complete the import and verify the list structure matches the documentation.
+6. Set permissions and enable versioning/audit as required by your organization.
+
+**Note:**
+If you encounter issues with column types or data, refer to the troubleshooting section in the main project documentation or contact your SharePoint administrator.
 
 ---
 

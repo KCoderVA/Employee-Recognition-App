@@ -1,8 +1,17 @@
+# Employee Recognition App
+
+## What's New in v0.9.49
+## Version 0.9.49
+- Refined Power Fx reset logic for complex screens (27 resettable controls, 320-character formula, 4 iterations)
+- Advanced YAML screen analysis and automation (1,200+ lines analyzed)
+- Maintained full VA Healthcare ALM and security compliance
+
+See [CHANGELOG.md](CHANGELOG.md) for full details.
 # Employee Recognition Application
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
 
-[![Version](https://img.shields.io/badge/Version-0.9.47-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.9.49-green)](./CHANGELOG.md)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](./CHANGELOG.md)
 [![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen)](./docs/)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)
@@ -16,9 +25,33 @@
 
 A production-ready **Power Platform application** that transforms traditional paper-based employee recognition into an intelligent, automated digital workflow. Developed through 3+ months of iterative design with complete stakeholder collaboration, achieving **16 approvals** from Award Committee review with comprehensive GitHub automation and CI/CD workflows.
 
-**Current Version:** v0.9.47 (July 28, 2025)  
-**Status:** Production Ready – Documentation, Formatting, and Compliance Update  
+**Current Version:** v0.9.49 (July 29, 2025)
+**Status:** Production Ready – Major Triage, UI, and Workflow Enhancements
 **Release Notes:** See [CHANGELOG.md](./CHANGELOG.md)
+## Quick Start
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/KCoderVA/Employee-Recognition-App.git
+   cd Employee-Recognition-App
+   ```
+2. **Open in VS Code:**
+   ```bash
+   code .
+   ```
+3. **Install prerequisites:**
+   - Power Platform CLI ([Microsoft Learn](https://learn.microsoft.com/power-platform/developer/cli/introduction))
+   - VS Code with Power Platform extensions
+   - Git for version control
+   - PowerShell 7+ for automation scripts
+4. **Review documentation:**
+   - See [docs/](./docs/) for guides and technical references
+   - See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines
+5. **Run a health check:**
+   ```powershell
+   pwsh -ExecutionPolicy Bypass -File ./scripts/repo-health-check.ps1
+   ```
+
 
 ---
 
@@ -99,12 +132,12 @@ For local development, additional management tools are available:
 ### VS Code Tasks
 Access automation through VS Code tasks (`Ctrl+Shift+P` → "Tasks: Run Task"):
 
-| Task | Description |
-|------|-------------|
-| 📦 **Package Power App** | Create deployment-ready .msapp packages |
-| 📤 **Unpack Power App** | Extract source files for version control |
-| � **Generate Project Report** | Complete project file analysis |
-| �️ **Show Active Extensions** | Display workspace-optimized extensions |
+| Task                          | Description                              |
+| ----------------------------- | ---------------------------------------- |
+| 📦 **Package Power App**       | Create deployment-ready .msapp packages  |
+| 📤 **Unpack Power App**        | Extract source files for version control |
+| � **Generate Project Report** | Complete project file analysis           |
+| �️ **Show Active Extensions**  | Display workspace-optimized extensions   |
 - **VS Code Integration** - Built-in tasks for CHANGELOG management and validation
 
 ## Project Structure
@@ -215,12 +248,12 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 ## Documentation
 
 ### Core Documentation
-| Document | Description |
-|----------|-------------|
-| [`CHANGELOG.md`](CHANGELOG.md) | Complete 95-version development history |
-| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Contribution guidelines and best practices |
-| [`SECURITY.md`](SECURITY.md) | Security policy and compliance framework |
-| [`PROJECT_ORGANIZATION.md`](PROJECT_ORGANIZATION.md) | Repository structure and organization |
+| Document                                             | Description                                |
+| ---------------------------------------------------- | ------------------------------------------ |
+| [`CHANGELOG.md`](CHANGELOG.md)                       | Complete 95-version development history    |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md)                 | Contribution guidelines and best practices |
+| [`SECURITY.md`](SECURITY.md)                         | Security policy and compliance framework   |
+| [`PROJECT_ORGANIZATION.md`](PROJECT_ORGANIZATION.md) | Repository structure and organization      |
 
 ### Technical Guides
 - **[Development Guide](docs/DEVELOPMENT_GUIDE.md)** - Technical development procedures
@@ -241,9 +274,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 **License**: Apache License, Version 2.0 - See [LICENSE](LICENSE) for details
 
 **Contact Information**:
-- **Team Email**: HINClinicalAnalytics@va.gov
 - **GitHub Repository**: https://github.com/KCoderVA/Employee-Recognition-App
-- **SharePoint Site**: https://dvagov.sharepoint.com/sites/vhahin/svc/ci *(VA network access required)*
 - **Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
 - **Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
 

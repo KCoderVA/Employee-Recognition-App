@@ -17,7 +17,7 @@
 -->
 
 ## 🔒 Overview
-This security policy governs the Employee Recognition Application, a comprehensive Power Platform solution handling sensitive employee information within the VA healthcare system. This policy ensures compliance with VA IT security standards, FISMA requirements, Privacy Act considerations, and HIPAA regulations where applicable.
+This security policy governs the Employee Recognition App, a comprehensive Power Platform solution handling sensitive employee information within the VA healthcare system. This policy ensures compliance with VA IT security standards, FISMA requirements, Privacy Act considerations, and HIPAA regulations where applicable.
 
 ## 📋 Related Documentation
 - **[README.md](README.md)** - Complete project overview including security features
@@ -29,15 +29,23 @@ This security policy governs the Employee Recognition Application, a comprehensi
 
 We provide comprehensive security support for the following versions:
 
-| Version | Support Status | Security Updates | End of Life |
-|---------|---------------|------------------|-------------|
-| 0.9.x   | ✅ **Full Support** | Active monitoring & immediate patches | TBD |
-| 0.8.x   | ✅ **Full Support** | Active monitoring & immediate patches | TBD |
-| 0.7.x   | ⚠️ **Limited Support** | Critical vulnerabilities only | December 2025 |
-| 0.6.x   | ❌ **End of Life** | No security updates | July 2025 |
-| < 0.6   | ❌ **Unsupported** | No security updates | Immediate |
+| Version | Support Status        | Security Updates                      | End of Life   |
+| ------- | --------------------- | ------------------------------------- | ------------- |
+| 0.9.x   | ✅ **Full Support**    | Active monitoring & immediate patches | TBD           |
+| 0.8.x   | ✅ **Full Support**    | Active monitoring & immediate patches | TBD           |
+| 0.7.x   | ⚠️ **Limited Support** | Critical vulnerabilities only         | December 2025 |
+| 0.6.x   | ❌ **End of Life**     | No security updates                   | July 2025     |
+| < 0.6   | ❌ **Unsupported**     | No security updates                   | Immediate     |
 
-**Current Production Version**: 0.9.47 (Documentation, Formatting, and Compliance Update)
+**Current Production Version**: 0.9.49 (Major Triage, UI, and Workflow Enhancements)
+## How to Report a Security Issue
+
+If you discover a security vulnerability, please:
+- **Do not** create a public GitHub issue.
+- Contact the project team directly through secure VA channels or via the GitHub Security tab.
+- Provide a clear description, impact, and steps to reproduce.
+- For urgent matters, follow VA incident reporting procedures.
+
 
 ### Recent Security Enhancements (v0.9.21-0.9.23)
 - **Enterprise Security Restrictions**: 50+ permanent administrator-privilege operation restrictions
@@ -48,7 +56,7 @@ We provide comprehensive security support for the following versions:
 
 ## 🚨 Vulnerability Reporting Process
 
-The Employee Recognition Application processes sensitive employee data and maintains enterprise-level security standards in compliance with VA IT security policies and federal regulations.
+The Employee Recognition App processes sensitive employee data and maintains enterprise-level security standards in compliance with VA IT security policies and federal regulations.
 
 ### How to Report
 
@@ -122,11 +130,11 @@ The following are outside the scope of this security policy:
 ## Response Timeline
 
 | Severity Level | Initial Response | Resolution Target |
-|---------------|------------------|-------------------|
-| Critical      | 24 hours         | 72 hours          |
-| High          | 48 hours         | 1 week            |
-| Medium        | 1 week           | 2 weeks           |
-| Low           | 2 weeks          | 1 month           |
+| -------------- | ---------------- | ----------------- |
+| Critical       | 24 hours         | 72 hours          |
+| High           | 48 hours         | 1 week            |
+| Medium         | 1 week           | 2 weeks           |
+| Low            | 2 weeks          | 1 month           |
 
 ## Security Updates
 
@@ -153,7 +161,7 @@ For security-related questions or concerns:
 
 ## Acknowledgments
 
-We appreciate responsible disclosure of security vulnerabilities and recognize contributors who help improve the security of the Employee Recognition Application.
+We appreciate responsible disclosure of security vulnerabilities and recognize contributors who help improve the security of the Employee Recognition App.
 
 ---
 

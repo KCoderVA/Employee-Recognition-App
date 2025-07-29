@@ -1,3 +1,13 @@
+#######################################################################
+# Plain-English Summary (Not a substitute for the full license text):
+#
+# This project is licensed under the Apache License, Version 2.0.
+# You are free to use, modify, and distribute this software, as long as you:
+#   - Include the original copyright and license
+#   - State any changes you make
+#   - Do not hold the authors liable for any damages
+# See the full license text below for all terms and conditions.
+#######################################################################
 Apache License
 Version 2.0, January 2004
 http://www.apache.org/licenses/
@@ -186,7 +196,7 @@ APPENDIX: How to apply the Apache License to your work.
    the file format. You may also include this information in a
    separate written agreement or other document.
 
-   Copyright 2025 Kyle J. Coder
+  Copyright 2025 Kyle J. Coder
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

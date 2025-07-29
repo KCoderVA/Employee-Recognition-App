@@ -11,8 +11,8 @@
                 description="Complete Power Platform solution for employee recognition and awards management"
                 languagecode="1033" />
         </Descriptions>
-        <Version>1.0.0.0</Version>
-        <Managed>0</Managed>
+        <Version>0.9.48</Version>
+        <Managed>1</Managed>
         <Publisher>
             <UniqueName>VAHealthcare</UniqueName>
             <LocalizedNames>

@@ -26,58 +26,58 @@
 ## Column Schema
 
 ### Core Audit Fields
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| Title | Single Line Text | Yes | Auto-generated audit entry ID |
-| EventDateTime | Date/Time | Yes | When the event occurred |
-| EventType | Choice | Yes | Login, Create, Update, Delete, Approve, etc. |
-| EventCategory | Choice | Yes | User Action, System Event, Security, Error |
-| UserEmail | Single Line Text | Yes | Email of user who performed action |
-| UserDisplayName | Single Line Text | Yes | Display name of acting user |
-| ActionDescription | Multiple Lines Text | Yes | Detailed description of what happened |
-| SourceComponent | Choice | Yes | PowerApp, Flow, SharePoint, Teams, etc. |
+| Column Name       | Type                | Required | Description                                  |
+| ----------------- | ------------------- | -------- | -------------------------------------------- |
+| Title             | Single Line Text    | Yes      | Auto-generated audit entry ID                |
+| EventDateTime     | Date/Time           | Yes      | When the event occurred                      |
+| EventType         | Choice              | Yes      | Login, Create, Update, Delete, Approve, etc. |
+| EventCategory     | Choice              | Yes      | User Action, System Event, Security, Error   |
+| UserEmail         | Single Line Text    | Yes      | Email of user who performed action           |
+| UserDisplayName   | Single Line Text    | Yes      | Display name of acting user                  |
+| ActionDescription | Multiple Lines Text | Yes      | Detailed description of what happened        |
+| SourceComponent   | Choice              | Yes      | PowerApp, Flow, SharePoint, Teams, etc.      |
 
 ### Target and Context
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| TargetEntity | Single Line Text | No | Entity affected (Nomination, User, Setting) |
-| TargetEntityID | Single Line Text | No | ID of affected entity |
-| TargetEntityTitle | Single Line Text | No | Title/name of affected entity |
-| BeforeValues | Multiple Lines Text | No | Values before change (JSON) |
-| AfterValues | Multiple Lines Text | No | Values after change (JSON) |
-| ChangeFields | Multiple Lines Text | No | Comma-separated list of changed fields |
-| ParentEntityID | Single Line Text | No | Parent entity if applicable |
+| Column Name       | Type                | Required | Description                                 |
+| ----------------- | ------------------- | -------- | ------------------------------------------- |
+| TargetEntity      | Single Line Text    | No       | Entity affected (Nomination, User, Setting) |
+| TargetEntityID    | Single Line Text    | No       | ID of affected entity                       |
+| TargetEntityTitle | Single Line Text    | No       | Title/name of affected entity               |
+| BeforeValues      | Multiple Lines Text | No       | Values before change (JSON)                 |
+| AfterValues       | Multiple Lines Text | No       | Values after change (JSON)                  |
+| ChangeFields      | Multiple Lines Text | No       | Comma-separated list of changed fields      |
+| ParentEntityID    | Single Line Text    | No       | Parent entity if applicable                 |
 
 ### Technical Details
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| SessionID | Single Line Text | No | User session identifier |
-| IPAddress | Single Line Text | No | User IP address |
-| UserAgent | Multiple Lines Text | No | Browser/client information |
-| DeviceType | Choice | No | Desktop, Mobile, Tablet, Unknown |
-| RequestID | Single Line Text | No | System request identifier |
-| CorrelationID | Single Line Text | No | Cross-system correlation ID |
-| Duration | Number | No | Action duration in milliseconds |
+| Column Name   | Type                | Required | Description                      |
+| ------------- | ------------------- | -------- | -------------------------------- |
+| SessionID     | Single Line Text    | No       | User session identifier          |
+| IPAddress     | Single Line Text    | No       | User IP address                  |
+| UserAgent     | Multiple Lines Text | No       | Browser/client information       |
+| DeviceType    | Choice              | No       | Desktop, Mobile, Tablet, Unknown |
+| RequestID     | Single Line Text    | No       | System request identifier        |
+| CorrelationID | Single Line Text    | No       | Cross-system correlation ID      |
+| Duration      | Number              | No       | Action duration in milliseconds  |
 
 ### Result and Status
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| ResultStatus | Choice | Yes | Success, Warning, Error, Failed |
-| ErrorMessage | Multiple Lines Text | No | Error details if applicable |
-| ErrorCode | Single Line Text | No | System error code |
-| WarningMessage | Multiple Lines Text | No | Warning details if applicable |
-| AdditionalData | Multiple Lines Text | No | Extra context data (JSON) |
-| Severity | Choice | Yes | Low, Medium, High, Critical |
+| Column Name    | Type                | Required | Description                     |
+| -------------- | ------------------- | -------- | ------------------------------- |
+| ResultStatus   | Choice              | Yes      | Success, Warning, Error, Failed |
+| ErrorMessage   | Multiple Lines Text | No       | Error details if applicable     |
+| ErrorCode      | Single Line Text    | No       | System error code               |
+| WarningMessage | Multiple Lines Text | No       | Warning details if applicable   |
+| AdditionalData | Multiple Lines Text | No       | Extra context data (JSON)       |
+| Severity       | Choice              | Yes      | Low, Medium, High, Critical     |
 
 ### Security and Compliance
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| SecurityLevel | Choice | Yes | Public, Internal, Confidential, Restricted |
-| ComplianceFlags | Multiple Lines Text | No | Compliance-related tags |
-| DataClassification | Choice | No | Public, Internal, Confidential, Restricted |
-| PIIInvolved | Yes/No | Yes | Contains personally identifiable information |
-| RetentionCategory | Choice | Yes | Standard, Extended, Permanent |
-| ArchiveDate | Date/Time | No | When to archive this entry |
+| Column Name        | Type                | Required | Description                                  |
+| ------------------ | ------------------- | -------- | -------------------------------------------- |
+| SecurityLevel      | Choice              | Yes      | Public, Internal, Confidential, Restricted   |
+| ComplianceFlags    | Multiple Lines Text | No       | Compliance-related tags                      |
+| DataClassification | Choice              | No       | Public, Internal, Confidential, Restricted   |
+| PIIInvolved        | Yes/No              | Yes      | Contains personally identifiable information |
+| RetentionCategory  | Choice              | Yes      | Standard, Extended, Permanent                |
+| ArchiveDate        | Date/Time           | No       | When to archive this entry                   |
 
 ## Choice Field Values
 
@@ -118,8 +118,21 @@
 - Integration Event
 
 ### SourceComponent Choices
+## How to Import/Set Up This List in SharePoint
+
+**Version Applicability:**
+This template is for Employee Recognition App v0.9.x and later. Use the CSV/XLSX template provided in the repository.
+
+**Import Steps:**
+1. In SharePoint, create a new list from Excel or CSV.
+2. Upload the audit-log template file.
+3. Map columns to match the schema below.
+4. Complete the import and check the list structure.
+5. Set permissions and enable audit/versioning as needed.
+
+**Note:**
+For compliance, ensure audit log access is restricted to authorized users only.
 - Power Apps Canvas
-- Power Automate Flow
 - SharePoint List
 - Teams Integration
 - Email System

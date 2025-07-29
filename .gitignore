@@ -101,7 +101,6 @@ settings.local.*
 
 # Exclude specific Power Apps and Power Automate version folders (private, not for public repo)
 src/power-apps/EmployeeRecognitionApp_v0.9.0/
-src/power-apps/EmployeeRecognitionApp_v0.9.26/
 src/power-automate/2025.07.02 PowerAutomate Flow Syntax Extracts/
 src/power-automate/PowerAutomate Compose DynamicMarkdownTable/
 *.msapp
@@ -139,6 +138,15 @@ docs/flow-maps/
 docs/**/*Preview*.html
 docs/**/*Experiment*.md
 docs/**/*Extracted*.html
+# Ignore all subordinate folders in /docs/ but not the actual /docs/ itself or its top-level files
+docs/flow-maps/
+docs/links/
+docs/llm_analysis/
+
+docs/REFERENCE/
+docs/STATUS/
+docs/training/
+docs/working_docs/
 
 # Private Analysis Documents (Local Only - Never Share)
 # ONLY protect the final analysis documents in docs/project_analysis_documents/

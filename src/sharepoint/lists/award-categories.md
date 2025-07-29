@@ -26,56 +26,56 @@
 ## Column Schema
 
 ### Core Category Fields
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| Title | Single Line Text | Yes | Award category display name |
-| CategoryCode | Single Line Text | Yes | Unique identifier code |
-| Description | Multiple Lines Text | Yes | Detailed award description |
-| Purpose | Multiple Lines Text | Yes | Purpose and intent of the award |
-| IsActive | Yes/No | Yes | Whether category is currently available |
-| SortOrder | Number | Yes | Display order in application |
-| IconUrl | Hyperlink | No | URL to award category icon |
-| Color | Single Line Text | No | Hex color code for UI theming |
+| Column Name  | Type                | Required | Description                             |
+| ------------ | ------------------- | -------- | --------------------------------------- |
+| Title        | Single Line Text    | Yes      | Award category display name             |
+| CategoryCode | Single Line Text    | Yes      | Unique identifier code                  |
+| Description  | Multiple Lines Text | Yes      | Detailed award description              |
+| Purpose      | Multiple Lines Text | Yes      | Purpose and intent of the award         |
+| IsActive     | Yes/No              | Yes      | Whether category is currently available |
+| SortOrder    | Number              | Yes      | Display order in application            |
+| IconUrl      | Hyperlink           | No       | URL to award category icon              |
+| Color        | Single Line Text    | No       | Hex color code for UI theming           |
 
 ### Workflow Configuration
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| RequiresApproval | Yes/No | Yes | Requires approval workflow |
-| ApprovalStages | Multiple Lines Text | No | JSON array of approval stages |
-| AutoApprove | Yes/No | Yes | Can be auto-approved |
-| ApprovalTimeoutDays | Number | No | Days before approval times out |
-| EscalationRules | Multiple Lines Text | No | Escalation configuration |
-| NotificationTemplate | Single Line Text | No | Email template to use |
+| Column Name          | Type                | Required | Description                    |
+| -------------------- | ------------------- | -------- | ------------------------------ |
+| RequiresApproval     | Yes/No              | Yes      | Requires approval workflow     |
+| ApprovalStages       | Multiple Lines Text | No       | JSON array of approval stages  |
+| AutoApprove          | Yes/No              | Yes      | Can be auto-approved           |
+| ApprovalTimeoutDays  | Number              | No       | Days before approval times out |
+| EscalationRules      | Multiple Lines Text | No       | Escalation configuration       |
+| NotificationTemplate | Single Line Text    | No       | Email template to use          |
 
 ### Form Configuration
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| FormFields | Multiple Lines Text | Yes | JSON configuration of form fields |
-| RequiredFields | Multiple Lines Text | No | Comma-separated required field names |
-| ConditionalLogic | Multiple Lines Text | No | JSON rules for conditional fields |
-| ValidationRules | Multiple Lines Text | No | Custom validation configuration |
-| HelpText | Multiple Lines Text | No | Help text for this award type |
-| CharacterLimits | Multiple Lines Text | No | Field character limit overrides |
+| Column Name      | Type                | Required | Description                          |
+| ---------------- | ------------------- | -------- | ------------------------------------ |
+| FormFields       | Multiple Lines Text | Yes      | JSON configuration of form fields    |
+| RequiredFields   | Multiple Lines Text | No       | Comma-separated required field names |
+| ConditionalLogic | Multiple Lines Text | No       | JSON rules for conditional fields    |
+| ValidationRules  | Multiple Lines Text | No       | Custom validation configuration      |
+| HelpText         | Multiple Lines Text | No       | Help text for this award type        |
+| CharacterLimits  | Multiple Lines Text | No       | Field character limit overrides      |
 
 ### Business Rules
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| EligibilityCriteria | Multiple Lines Text | No | Who can submit this award type |
-| SubmissionLimits | Multiple Lines Text | No | Frequency/quantity limits |
-| ReviewerRoles | Multiple Lines Text | No | Roles that can review this type |
-| ManagerApprovalRequired | Yes/No | Yes | Requires manager approval |
-| CommitteeReviewRequired | Yes/No | Yes | Requires committee review |
-| PublicRecognition | Yes/No | Yes | Award is publicly recognized |
+| Column Name             | Type                | Required | Description                     |
+| ----------------------- | ------------------- | -------- | ------------------------------- |
+| EligibilityCriteria     | Multiple Lines Text | No       | Who can submit this award type  |
+| SubmissionLimits        | Multiple Lines Text | No       | Frequency/quantity limits       |
+| ReviewerRoles           | Multiple Lines Text | No       | Roles that can review this type |
+| ManagerApprovalRequired | Yes/No              | Yes      | Requires manager approval       |
+| CommitteeReviewRequired | Yes/No              | Yes      | Requires committee review       |
+| PublicRecognition       | Yes/No              | Yes      | Award is publicly recognized    |
 
 ### Compliance and Tracking
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| ComplianceFlags | Multiple Lines Text | No | Compliance requirements |
-| TrackingRequired | Yes/No | Yes | Requires detailed tracking |
-| ReportingCategory | Single Line Text | No | Category for reporting purposes |
-| DataRetentionYears | Number | Yes | Years to retain nomination data |
-| PIIDataCollected | Yes/No | Yes | Collects personally identifiable info |
-| ApprovalHistory | Yes/No | Yes | Maintain detailed approval history |
+| Column Name        | Type                | Required | Description                           |
+| ------------------ | ------------------- | -------- | ------------------------------------- |
+| ComplianceFlags    | Multiple Lines Text | No       | Compliance requirements               |
+| TrackingRequired   | Yes/No              | Yes      | Requires detailed tracking            |
+| ReportingCategory  | Single Line Text    | No       | Category for reporting purposes       |
+| DataRetentionYears | Number              | Yes      | Years to retain nomination data       |
+| PIIDataCollected   | Yes/No              | Yes      | Collects personally identifiable info |
+| ApprovalHistory    | Yes/No              | Yes      | Maintain detailed approval history    |
 
 ## Pre-configured Award Categories
 
@@ -273,6 +273,21 @@
 - Index on CategoryCode and IsActive fields
 - Regular cleanup of unused form field configurations
 - Monitor and optimize complex conditional logic
+
+## How to Import/Set Up This List in SharePoint
+
+**Version Applicability:**
+This template is for Employee Recognition App v0.9.x and later. Use the CSV/XLSX template provided in the repository.
+
+**Import Steps:**
+1. In SharePoint, create a new list from Excel or CSV.
+2. Upload the award-categories template file.
+3. Map columns to match the schema below.
+4. Complete the import and check the list structure.
+5. Set permissions as appropriate.
+
+**Note:**
+If you need to customize award types, update the list after import and document changes for future upgrades.
 
 ---
 

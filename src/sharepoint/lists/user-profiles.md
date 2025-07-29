@@ -15,6 +15,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
+# User Profiles List
+<!--
+   Copyright 2025 Kyle J. Coder
+-->
+
+## How to Import/Set Up This List in SharePoint
+
+**Version Applicability:**
+This template is compatible with Employee Recognition App v0.9.x and later. Use the provided CSV/XLSX template for import.
+
+**Import Steps:**
+1. Open SharePoint and select **New > List > From Excel/CSV**.
+2. Upload the user-profiles template from the repository.
+3. Map columns as described below.
+4. Complete the import and verify the list structure.
+5. Set permissions and enable privacy controls as needed.
+
+**Note:**
+For privacy and compliance, review user data after import and restrict access as required.
 
 ## List Configuration
 
@@ -26,45 +45,45 @@
 ## Column Schema
 
 ### Core Profile Fields
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| Title | Single Line Text | Yes | Employee display name |
-| UserEmail | Single Line Text | Yes | Employee email address (unique) |
-| EmployeeID | Single Line Text | Yes | VA employee ID number |
-| FirstName | Single Line Text | Yes | Employee first name |
-| LastName | Single Line Text | Yes | Employee last name |
-| Department | Single Line Text | No | Employee department |
-| ServiceLine | Single Line Text | No | Employee service line |
-| JobTitle | Single Line Text | No | Employee job title |
-| ManagerEmail | Single Line Text | No | Direct manager's email |
-| IsActive | Yes/No | Yes | Active employee status |
+| Column Name  | Type             | Required | Description                     |
+| ------------ | ---------------- | -------- | ------------------------------- |
+| Title        | Single Line Text | Yes      | Employee display name           |
+| UserEmail    | Single Line Text | Yes      | Employee email address (unique) |
+| EmployeeID   | Single Line Text | Yes      | VA employee ID number           |
+| FirstName    | Single Line Text | Yes      | Employee first name             |
+| LastName     | Single Line Text | Yes      | Employee last name              |
+| Department   | Single Line Text | No       | Employee department             |
+| ServiceLine  | Single Line Text | No       | Employee service line           |
+| JobTitle     | Single Line Text | No       | Employee job title              |
+| ManagerEmail | Single Line Text | No       | Direct manager's email          |
+| IsActive     | Yes/No           | Yes      | Active employee status          |
 
 ### Role and Permissions
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| UserRole | Choice | Yes | Standard, Manager, Committee, Admin |
-| PermissionLevel | Choice | Yes | Read, Contribute, Edit, FullControl |
-| CommitteeAssignments | Multiple Lines Text | No | Assigned committees (JSON) |
-| DelegatedApprovals | Multiple Lines Text | No | Delegation settings |
-| LastLoginDate | Date/Time | No | Last app access date |
+| Column Name          | Type                | Required | Description                         |
+| -------------------- | ------------------- | -------- | ----------------------------------- |
+| UserRole             | Choice              | Yes      | Standard, Manager, Committee, Admin |
+| PermissionLevel      | Choice              | Yes      | Read, Contribute, Edit, FullControl |
+| CommitteeAssignments | Multiple Lines Text | No       | Assigned committees (JSON)          |
+| DelegatedApprovals   | Multiple Lines Text | No       | Delegation settings                 |
+| LastLoginDate        | Date/Time           | No       | Last app access date                |
 
 ### Preferences and Settings
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| EmailNotifications | Yes/No | Yes | Receive email notifications |
-| TeamsNotifications | Yes/No | Yes | Receive Teams notifications |
-| PreferredLanguage | Choice | No | Language preference |
-| TimeZone | Choice | No | User time zone |
-| DashboardLayout | Multiple Lines Text | No | Custom dashboard settings |
+| Column Name        | Type                | Required | Description                 |
+| ------------------ | ------------------- | -------- | --------------------------- |
+| EmailNotifications | Yes/No              | Yes      | Receive email notifications |
+| TeamsNotifications | Yes/No              | Yes      | Receive Teams notifications |
+| PreferredLanguage  | Choice              | No       | Language preference         |
+| TimeZone           | Choice              | No       | User time zone              |
+| DashboardLayout    | Multiple Lines Text | No       | Custom dashboard settings   |
 
 ### Audit and Tracking
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| ProfileCreated | Date/Time | Yes | Profile creation date |
-| ProfileUpdated | Date/Time | No | Last profile update |
-| UpdatedBy | Person/Group | No | Who updated the profile |
-| AccessCount | Number | No | Total app access count |
-| LastNominationDate | Date/Time | No | Last nomination submitted |
+| Column Name        | Type         | Required | Description               |
+| ------------------ | ------------ | -------- | ------------------------- |
+| ProfileCreated     | Date/Time    | Yes      | Profile creation date     |
+| ProfileUpdated     | Date/Time    | No       | Last profile update       |
+| UpdatedBy          | Person/Group | No       | Who updated the profile   |
+| AccessCount        | Number       | No       | Total app access count    |
+| LastNominationDate | Date/Time    | No       | Last nomination submitted |
 
 ## Choice Field Values
 

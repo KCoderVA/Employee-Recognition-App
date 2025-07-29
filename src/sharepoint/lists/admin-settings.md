@@ -26,45 +26,45 @@
 ## Column Schema
 
 ### Core Configuration Fields
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| Title | Single Line Text | Yes | Setting name/key |
-| SettingCategory | Choice | Yes | General, Notifications, Approvals, Security |
-| SettingValue | Multiple Lines Text | Yes | Configuration value (JSON/text) |
-| DataType | Choice | Yes | String, Number, Boolean, JSON, Array |
-| Description | Multiple Lines Text | Yes | Setting purpose and usage |
-| IsActive | Yes/No | Yes | Whether setting is currently active |
-| Environment | Choice | Yes | Development, Testing, Production, All |
+| Column Name     | Type                | Required | Description                                 |
+| --------------- | ------------------- | -------- | ------------------------------------------- |
+| Title           | Single Line Text    | Yes      | Setting name/key                            |
+| SettingCategory | Choice              | Yes      | General, Notifications, Approvals, Security |
+| SettingValue    | Multiple Lines Text | Yes      | Configuration value (JSON/text)             |
+| DataType        | Choice              | Yes      | String, Number, Boolean, JSON, Array        |
+| Description     | Multiple Lines Text | Yes      | Setting purpose and usage                   |
+| IsActive        | Yes/No              | Yes      | Whether setting is currently active         |
+| Environment     | Choice              | Yes      | Development, Testing, Production, All       |
 
 ### Validation and Constraints
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| DefaultValue | Multiple Lines Text | No | Default value if not set |
-| ValidationType | Choice | No | None, Range, List, Regex, Custom |
-| ValidationRule | Multiple Lines Text | No | Validation pattern or rule |
-| MinValue | Number | No | Minimum allowed value |
-| MaxValue | Number | No | Maximum allowed value |
-| AllowedValues | Multiple Lines Text | No | Comma-separated allowed values |
-| IsSensitive | Yes/No | Yes | Contains sensitive information |
+| Column Name    | Type                | Required | Description                      |
+| -------------- | ------------------- | -------- | -------------------------------- |
+| DefaultValue   | Multiple Lines Text | No       | Default value if not set         |
+| ValidationType | Choice              | No       | None, Range, List, Regex, Custom |
+| ValidationRule | Multiple Lines Text | No       | Validation pattern or rule       |
+| MinValue       | Number              | No       | Minimum allowed value            |
+| MaxValue       | Number              | No       | Maximum allowed value            |
+| AllowedValues  | Multiple Lines Text | No       | Comma-separated allowed values   |
+| IsSensitive    | Yes/No              | Yes      | Contains sensitive information   |
 
 ### Management and Auditing
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| Owner | Person/Group | Yes | Setting owner/responsible party |
-| LastModified | Date/Time | Yes | Last modification date |
-| ModifiedBy | Person/Group | Yes | Who last modified the setting |
-| ChangeReason | Multiple Lines Text | No | Reason for last change |
-| ApprovalRequired | Yes/No | Yes | Requires approval to change |
-| ApprovedBy | Person/Group | No | Who approved the change |
-| VersionNumber | Number | Yes | Setting version number |
+| Column Name      | Type                | Required | Description                     |
+| ---------------- | ------------------- | -------- | ------------------------------- |
+| Owner            | Person/Group        | Yes      | Setting owner/responsible party |
+| LastModified     | Date/Time           | Yes      | Last modification date          |
+| ModifiedBy       | Person/Group        | Yes      | Who last modified the setting   |
+| ChangeReason     | Multiple Lines Text | No       | Reason for last change          |
+| ApprovalRequired | Yes/No              | Yes      | Requires approval to change     |
+| ApprovedBy       | Person/Group        | No       | Who approved the change         |
+| VersionNumber    | Number              | Yes      | Setting version number          |
 
 ### Dependencies and References
-| Column Name | Type | Required | Description |
-|------------|------|----------|-------------|
-| DependsOn | Multiple Lines Text | No | Other settings this depends on |
-| AffectedComponents | Multiple Lines Text | No | Components using this setting |
-| RelatedFlows | Multiple Lines Text | No | Power Automate flows affected |
-| Documentation | Hyperlink | No | Link to detailed documentation |
+| Column Name        | Type                | Required | Description                    |
+| ------------------ | ------------------- | -------- | ------------------------------ |
+| DependsOn          | Multiple Lines Text | No       | Other settings this depends on |
+| AffectedComponents | Multiple Lines Text | No       | Components using this setting  |
+| RelatedFlows       | Multiple Lines Text | No       | Power Automate flows affected  |
+| Documentation      | Hyperlink           | No       | Link to detailed documentation |
 
 ## Choice Field Values
 
@@ -245,6 +245,21 @@
 - Critical settings backed up to Azure Key Vault
 - Configuration export/import procedures documented
 - Environment rebuild procedures tested quarterly
+
+## How to Import/Set Up This List in SharePoint
+
+**Version Applicability:**
+This template is intended for Employee Recognition App v0.9.x and later. Use the provided CSV/XLSX template for import.
+
+**Import Steps:**
+1. Go to your SharePoint site and select **New > List > From Excel/CSV**.
+2. Upload the admin-settings template from the repository.
+3. Map columns as described below.
+4. Complete the import and verify the list structure.
+5. Adjust permissions and settings as needed for your environment.
+
+**Note:**
+For advanced configuration or troubleshooting, see the main documentation or contact your SharePoint admin.
 
 ---
 
