@@ -14,9 +14,17 @@ employee recognition solution development project for the Hines Award Committee.
 **Project Stakeholder**: Christina Conway (Health System Specialist)
 **Executive Sponsor**: James Doelling (Executive Director/CEO)
 
-**Current Version**: v0.9.49 (July 29, 2025)
-**Project Status**: Production Ready – Major Triage, UI, and Workflow Enhancements
-**Last Updated**: July 29, 2025
+
+Employee Recognition App – NOTICE
+
+Version: 0.9.49
+
+Latest update (v0.9.49):
+- Refined Power Fx reset logic for complex screens (27 resettable controls, 320-character formula, 4 iterations)
+- Advanced YAML screen analysis and automation (1,200+ lines analyzed)
+- Maintained full VA Healthcare ALM and security compliance
+
+This software is provided under the Apache License, Version 2.0. See LICENSE for details.
 
 
 ---

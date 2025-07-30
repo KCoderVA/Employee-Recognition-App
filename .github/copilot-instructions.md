@@ -387,6 +387,9 @@ This is a **production-ready Power Platform Employee Recognition application** w
 # Import PowerPlatform utilities module
 Import-Module ./scripts/PowerPlatformUtils.psm1
 
+# Authenticate to VA USGov environment (REQUIRED for CLI operations)
+pac auth create --environment "e95f1b23-abaf-45ee-821d-b7ab251ab3bf" --tenant "e95f1b23-abaf-45ee-821d-b7ab251ab3bf" --cloud "UsGov" --name "VA-EmployeeRecognition-Kyle"
+
 # Check development environment status
 Get-PowerPlatformStatus
 
@@ -394,7 +397,61 @@ Get-PowerPlatformStatus
 pac canvas pack --sources ./src/power-apps/EmployeeRecognitionApp_v0.9.0/Source --msapp ./releases/v0.9.x/
 ```
 
+### VA USGov Power Platform Environment Reference
+
+| Parameter                | Value                                                                  |
+| ------------------------ | ---------------------------------------------------------------------- |
+| Environment ID           | e95f1b23-abaf-45ee-821d-b7ab251ab3bf                                   |
+| Tenant ID                | e95f1b23-abaf-45ee-821d-b7ab251ab3bf                                   |
+| Organization Unique Name | org34322538                                                            |
+| Organization Friendly    | Department of Veterans Affairs (default)                               |
+| Cloud                    | UsGov                                                                  |
+| Authority                | https://login.microsoftonline.com/e95f1b23-abaf-45ee-821d-b7ab251ab3bf |
+| User                     | Kyle.Coder@va.gov                                                      |
+
+---
+
+### How to Set Up CLI Authorization for Future Users (VA USGov)
+
+1. **Install Power Platform CLI:**
+   - Download and install from: https://aka.ms/PowerPlatformCLI
+
+2. **Open PowerShell and run:**
+   ```powershell
+   pac auth create --environment "e95f1b23-abaf-45ee-821d-b7ab251ab3bf" --tenant "e95f1b23-abaf-45ee-821d-b7ab251ab3bf" --cloud "UsGov" --name "<YOUR_PROFILE_NAME>"
+   ```
+   - Replace `<YOUR_PROFILE_NAME>` with a friendly name (e.g., your email or team name).
+   - Sign in with your VA credentials when prompted.
+
+3. **Verify your connection:**
+   ```powershell
+   pac auth who
+   ```
+   - Confirm the output matches the environment and user info above.
+
+4. **Troubleshooting:**
+   - If you get an environment error, try using just the GUID for `--environment`.
+   - Always use `--cloud "UsGov"` for government tenants.
+   - For multiple profiles, use `pac auth list` and `pac auth select --index <n>`.
+
+5. **Reference:**
+   - [Power Platform CLI Docs](https://aka.ms/PowerPlatformCLI)
+
+---
+
 ## Code Standards & Patterns
+
+### Power Platform CLI Authentication (VA USGov)
+
+**Required CLI authentication for all automation and deployment:**
+
+```powershell
+pac auth create --environment "e95f1b23-abaf-45ee-821d-b7ab251ab3bf" --tenant "e95f1b23-abaf-45ee-821d-b7ab251ab3bf" --cloud "UsGov" --name "VA-EmployeeRecognition-Kyle"
+```
+
+This is the only supported and tested method for VA USGov tenants. Do not use deprecated --url or --kind parameters.
+
+---
 
 ### Power Platform Naming Conventions
 - **Solution Prefix**: `vah` (VA Healthcare) for all components
