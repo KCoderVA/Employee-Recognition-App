@@ -1,3 +1,58 @@
+## Version 0.9.50 (2025-07-30)
+**Release Type:** Major Automation, Compliance, and Documentation Update  
+**Date:** 2025-07-30  
+**Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
+
+### Summary
+- **Workspace Automation & Safety**
+  - Completely refactored `workspace-cleanup.ps1` for robust, safe, and auditable workspace cleanup.
+  - Added strict folder and explicit file exemption logic to prevent accidental archiving of protected/public files.
+  - Implemented global empty directory cleanup with user confirmation and dry-run (WhatIf) support.
+  - Enhanced logging: all log entries are now timestamped and sorted for auditability.
+  - Improved error handling, read-only attribute management, and overwrite protection for archived files.
+  - Maintained compliance with VA Healthcare security and audit requirements.
+
+- **Documentation & Compliance**
+  - Updated all public-facing documents to reference v0.9.50 and reflect the latest project status.
+  - Refined and expanded documentation in `README.md`, `PROJECT_STATUS.md`, `SECURITY.md`, and `NOTICE`.
+  - Ensured all documentation and status files are fully aligned with the current application architecture, security controls, and compliance framework.
+  - Added/updated Apache 2.0 license headers and copyright blocks.
+
+- **Repository Health & Release Preparation**
+  - Validated repository structure, file organization, and documentation cross-references.
+  - Confirmed all badge links, version tags, and status indicators are current.
+  - Prepared repository for final daily commit and public release.
+
+### Technical Details
+- `scripts/workspace-cleanup.ps1`: Major refactor for safety, compliance, and auditability.
+- All log entries now include precise timestamps and are sorted for traceability.
+- Exemption logic for both folders and explicit files is strictly enforced.
+- Documentation files updated: `README.md`, `PROJECT_STATUS.md`, `SECURITY.md`, `NOTICE`.
+- All version references and badges updated to v0.9.50.
+
+### Impact Assessment
+- Significantly reduces risk of accidental data loss or non-compliance during workspace cleanup.
+- Provides a fully auditable, timestamped log of all cleanup actions.
+- Ensures all public documentation is accurate, up-to-date, and compliant with VA Healthcare and open source standards.
+- Repository is ready for end-of-day closeout and public push to GitHub.
+
+### Commit Message
+
+feat: major automation, compliance, and documentation update (v0.9.50)
+
+- Refactored workspace-cleanup.ps1 for robust, safe, and auditable workspace cleanup
+- Enforced strict folder and explicit file exemption logic for archiving
+- Implemented global empty directory cleanup with user confirmation and dry-run support
+- Enhanced logging: all log entries are timestamped and sorted
+- Improved error handling, read-only attribute management, and overwrite protection
+- Updated all public documentation for v0.9.50 and current project status
+- Validated repository structure, badges, and compliance for release readiness
+
+Technical details:
+- Major script refactor for safety and compliance
+- Documentation and status files updated for v0.9.50
+- All changes fully traceable and audit-ready
+
 <!--
   Employee Recognition App Changelog
   Copyright 2025 Kyle J. Coder

@@ -1,19 +1,20 @@
 # Employee Recognition App
 
-## What's New in v0.9.49
-## Version 0.9.49
-- Refined Power Fx reset logic for complex screens (27 resettable controls, 320-character formula, 4 iterations)
-- Advanced YAML screen analysis and automation (1,200+ lines analyzed)
-- Maintained full VA Healthcare ALM and security compliance
+## What's New in v0.9.50
+## Version 0.9.50
+- Major refactor of workspace-cleanup.ps1 for robust, safe, and auditable workspace cleanup
+- Strict folder and explicit file exemption logic for archiving
+- Global empty directory cleanup with user confirmation and dry-run support
+- Enhanced logging: all log entries are timestamped and sorted
+- Documentation and compliance updates across all public files
+- Repository validated and prepared for public release
 
 See [CHANGELOG.md](CHANGELOG.md) for full details.
 # Employee Recognition Application
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
-
-[![Version](https://img.shields.io/badge/Version-0.9.49-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-0.9.50-green)](./CHANGELOG.md)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](./CHANGELOG.md)
-[![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen)](./docs/)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
 
@@ -25,42 +26,11 @@ See [CHANGELOG.md](CHANGELOG.md) for full details.
 
 A production-ready **Power Platform application** that transforms traditional paper-based employee recognition into an intelligent, automated digital workflow. Developed through 3+ months of iterative design with complete stakeholder collaboration, achieving **16 approvals** from Award Committee review with comprehensive GitHub automation and CI/CD workflows.
 
-**Current Version:** v0.9.49 (July 29, 2025)
-**Status:** Production Ready – Major Triage, UI, and Workflow Enhancements
+**Current Version:** v0.9.50 (July 30, 2025)
+**Status:** Production Ready – Major Automation, Compliance, and Documentation Update
 **Release Notes:** See [CHANGELOG.md](./CHANGELOG.md)
-## Quick Start
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/KCoderVA/Employee-Recognition-App.git
-   cd Employee-Recognition-App
-   ```
-2. **Open in VS Code:**
-   ```bash
-   code .
-   ```
-3. **Install prerequisites:**
-   - Power Platform CLI ([Microsoft Learn](https://learn.microsoft.com/power-platform/developer/cli/introduction))
-   - VS Code with Power Platform extensions
-   - Git for version control
-   - PowerShell 7+ for automation scripts
-4. **Review documentation:**
-   - See [docs/](./docs/) for guides and technical references
-   - See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines
-5. **Run a health check:**
-   ```powershell
-   pwsh -ExecutionPolicy Bypass -File ./scripts/repo-health-check.ps1
-   ```
-
 
 ---
-
-### 🏆 Award Types Supported
-- **HeRO Awards** - Healthcare Recognition & Outcomes excellence
-- **Great Catch** - Safety and process improvement recognition
-- **Starfish Awards** - Peer-to-peer recognition and collaboration
-- **I CARE Values** - Values-based recognition aligned with organizational mission
-
 ### ⭐ Key Features
 - **Smart Workflows** - Award-specific forms with dynamic question sets
 - **Automated Approvals** - Multi-level routing with intelligent triage
@@ -75,7 +45,7 @@ A production-ready **Power Platform application** that transforms traditional pa
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Power Apps    │───▶│ Power Automate  │───▶│   SharePoint    │
+│   Power Apps    │──▶│ Power Automate  │───▶│   SharePoint    │
 │  Canvas App     │    │     Flows       │    │     Lists       │
 │                 │    │                 │    │                 │
 │ • Award Forms   │    │ • Auto Routing  │    │ • Data Storage  │
