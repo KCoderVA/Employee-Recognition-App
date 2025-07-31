@@ -1,6 +1,6 @@
 ## Version 0.9.50 (2025-07-30)
-**Release Type:** Major Automation, Compliance, and Documentation Update  
-**Date:** 2025-07-30  
+**Release Type:** Major Automation, Compliance, and Documentation Update
+**Date:** 2025-07-30
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
