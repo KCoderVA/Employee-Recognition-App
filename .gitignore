@@ -1,5 +1,5 @@
 # =============================================================================
-# Employee Recognition App - GitHub Repository .gitignore
+# Employee Recognition App - GitHub Repository .gitignore (v1.0.0)
 # =============================================================================
 #
 #    Copyright 2025 Kyle J. Coder
@@ -17,55 +17,44 @@
 #    limitations under the License.
 #
 # =============================================================================
-# This file excludes VS Code settings, workspace files, archives, testing data,
-# and developer-specific files from GitHub while maintaining them locally.
-# GitHub workflows and automation files are INCLUDED for CI/CD functionality.
+# This file manages what is included in the public GitHub repository while
+# maintaining development files locally. The src/ folder and core documentation
+# are included for public distribution.
+# =============================================================================
 
 # ================================
-# GitHub Workflows & Automation (Included for CI/CD)
+# INCLUDE: Public Release Content
 # ================================
-# .github/ folder IS included for automation workflows
-# Individual workflow files are tracked for repository management
-# CRITICAL: Never exclude .github/copilot-instructions.md from repository
-
-# ================================
-# WORKSPACE SAFETY - Critical Files (NEVER AUTO-DELETE)
-# ================================
-# These files should NEVER be cleaned up by automation
-!.github/copilot-instructions.md
+# Explicitly include source code and documentation for public release
+!src/
+!src/**
 !README.md
 !CHANGELOG.md
 !LICENSE
 !SECURITY.md
 !CONTRIBUTING.md
-!PROJECT_STATUS.md
-!*.code-workspace
-!.vscode/workspace-safety.config
-!scripts/pre-commit-safety-hook.ps1
+!.github/
+!.github/**
 
 # ================================
-# VS Code & Development Environment (Local Only)
+# EXCLUDE: Development Environment
 # ================================
+# VS Code and development environment files
 .vscode/
 *.code-workspace
-.vscode/settings.json
-.vscode/tasks.json
-.vscode/launch.json
-.vscode/extensions.json
-.vscode/settings.json.bak
 
 # ================================
-# Testing & Development Data (Local Only)
+# EXCLUDE: Local Assets & Data
 # ================================
-testing/
-**/test
-**/tests
-*.test.*
-*_test.*
+# Local assets not intended for public distribution
+assets/
+environments/
+security/
 
 # ================================
-# Archive & Backup Files (Local Only)
+# EXCLUDE: Archives & Backups
 # ================================
+# Archive folders and backup files
 archive/
 *.backup
 *.bak
@@ -75,35 +64,26 @@ archive/
 *_backup.*
 *_archive.*
 *_old.*
-*_exportedZip.zip
 
 # ================================
-# Scripts & Automation (Local Only)
+# EXCLUDE: Scripts & Automation (Local Development Only)
 # ================================
+# Local development scripts and automation tools (HIDDEN from public)
 scripts/
-.gitmessage
-.git/hooks/pre-commit
+scripts/**
 repository_manager/
+.gitmessage
+.git/hooks/
+
+# NOTE: Public PowerShell scripts in src/v1.0.x/v1.0.0/powershell/ are INCLUDED via src/** above
 
 # ================================
-# Security & Environment Configuration (Local Only)
+# EXCLUDE: Power Platform Binaries & Connections
 # ================================
-security/
-environments/
-*.env
-.env.*
-config.local.*
-settings.local.*
-
-# ================================
-# Power Platform Specific (Local Only)
-# ================================
-
-# Exclude specific Power Apps and Power Automate version folders (private, not for public repo)
-src/power-apps/EmployeeRecognitionApp_v0.9.0/
-src/power-automate/2025.07.02 PowerAutomate Flow Syntax Extracts/
-src/power-automate/PowerAutomate Compose DynamicMarkdownTable/
+# Power Platform files excluded from public release
 *.msapp
+!src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.0_FullRelease.msapp
+!src/v1.0.x/v1.0.0/power-apps/.msapp/
 Connections/
 DataSources/
 other/
@@ -115,47 +95,33 @@ releases/
 src/power-apps/**/Source/Connections/
 src/power-apps/**/Source/DataSources/
 src/power-apps/**/Source/Other/
-**/*_exportedZip.zip
-**/*_PowerAutomateFlow*.zip
+
+# Exclude private Power Apps versions
+src/power-apps/EmployeeRecognitionApp_v0.9.0/
+src/power-automate/2025.07.02 PowerAutomate Flow Syntax Extracts/
+src/power-automate/PowerAutomate Compose DynamicMarkdownTable/
 
 # ================================
-# Documentation Management (Local Only)
+# EXCLUDE: Documentation & Analysis (Local Only)
 # ================================
+# Local documentation and analysis files
 docs/CHANGELOG_ENFORCEMENT.md
 docs/CHANGELOG_ENFORCEMENT_SUMMARY.md
-CHANGELOG_draft.md
 docs/legacy/
-docs/**/DRAFT_*
-docs/**/TODO_*
-docs/**/*.msg
-docs/**/*.url
-docs/**/*.pdf
-docs/**/*.docx
-docs/**/*.pptx
-docs/**/*.vsdx
-docs/training/
-docs/flow-maps/
-docs/**/*Preview*.html
-docs/**/*Experiment*.md
-docs/**/*Extracted*.html
-# Ignore all subordinate folders in /docs/ but not the actual /docs/ itself or its top-level files
 docs/flow-maps/
 docs/links/
 docs/llm_analysis/
-
 docs/REFERENCE/
 docs/STATUS/
 docs/training/
 docs/working_docs/
-
-# Private Analysis Documents (Local Only - Never Share)
-# ONLY protect the final analysis documents in docs/project_analysis_documents/
 docs/project_analysis_documents/
-docs/project_analysis_documents/**
-
-# ================================
-# Project Management Files (Local Only)
-# ================================
+docs/**/DRAFT_*
+docs/**/TODO_*
+docs/**/*Preview*.html
+docs/**/*Experiment*.md
+docs/**/*Extracted*.html
+CHANGELOG_draft.md
 PROJECT_ORGANIZATION.md
 REPOSITORY_TRANSFORMATION.md
 DEVELOPMENT_TASKS.md
@@ -164,14 +130,19 @@ WORKSPACE_*.md
 *_MIGRATION_*.md
 
 # ================================
-# Copilot Export Package (Local Only - Not for Public Distribution)
+# EXCLUDE: Testing & Development Data
 # ================================
-copilot-export/
-copilot-export/**
+# Testing files and development data
+testing/
+**/test
+**/tests
+*.test.*
+*_test.*
 
 # ================================
-# Reference Materials & Assets (Local Only)
+# EXCLUDE: Binary Files & Archives
 # ================================
+# Binary files, documents, and archives
 *.pdf
 *.docx
 *.doc
@@ -182,15 +153,37 @@ copilot-export/**
 *.msg
 *.vsdx
 *.vsd
-reference/
-guidelines/
-assets/excel/
-assets/images/
-assets/documents/
+*.zip
+*.rar
+*.7z
+*.tar.gz
+**/*_exportedZip.zip
+**/*_PowerAutomateFlow*.zip
 
 # ================================
-# OS Generated Files
+# EXCLUDE: Environment & Configuration
 # ================================
+# Environment and configuration files
+*.env
+.env.*
+config.local.*
+settings.local.*
+copilot-export/
+
+# ================================
+# EXCLUDE: Logs & Debug Files
+# ================================
+# Log files and debug output
+logs/
+*.log
+debug.log
+error.log
+*.zip.bak
+
+# ================================
+# EXCLUDE: OS Generated Files
+# ================================
+# Operating system generated files
 .DS_Store
 .DS_Store?
 Thumbs.db
@@ -198,16 +191,7 @@ ehthumbs.db
 Desktop.ini
 
 # ================================
-# Large Binary Files & Archives
-# ================================
-*.zip
-*.rar
-*.7z
-*.tar.gz
-*.msapp
-
-# ================================
-# Node.js (if applicable)
+# EXCLUDE: Node.js (if applicable)
 # ================================
 node_modules/
 npm-debug.log*
@@ -215,7 +199,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # ================================
-# Python (if applicable)
+# EXCLUDE: Python (if applicable)
 # ================================
 __pycache__/
 *.pyc
@@ -226,16 +210,8 @@ env/
 venv/
 
 # ================================
-# Logs & Debug Files
+# EXCLUDE: Database Files (if applicable)
 # ================================
-logs/
-*.log
-debug.log
-error.log
-*.zip.bak
-*_exportedZip.zip
-
-# SQL Server files (if applicable)
 *.mdf
 *.ldf
 *.ndf

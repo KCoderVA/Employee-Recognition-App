@@ -1,3 +1,88 @@
+
+## Version 1.0.1 (2025-01-28)
+
+**Release Type:** Production Release
+**Date:** 2025-01-28
+**Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
+
+### Summary
+Employee Recognition App v1.0.1 is a corrective public release following the resolution of a tag/commit mismatch in v1.0.0. This release ensures that the public repository accurately reflects the current production-ready state of the application with proper version alignment and clean release management.
+
+### Changes in v1.0.1
+- **Release Management**: Corrected version tagging and release alignment
+- **Documentation**: Updated all version references to v1.0.1
+- **Quality Assurance**: Verified all release artifacts match current production state
+- **GitHub Release**: Clean public release with proper commit and tag synchronization
+
+### Technical Updates
+- Updated README.md version badge to v1.0.1
+- Corrected all file paths and version references throughout documentation
+- Ensured consistent versioning across all project files
+- Validated release commit matches intended production state
+
+---
+
+## Version 1.0.0 (2025-08-04) [SUPERSEDED]
+
+**Release Type:** Production Release (Superseded by v1.0.1)
+**Date:** 2025-08-04
+**Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
+
+### Summary
+The Employee Recognition App v1.0.0 marked the first public release of a fully production-ready Power Platform solution for VA Healthcare. This version was superseded by v1.0.1 due to a tag/commit alignment issue that required corrective action for proper release management.
+
+#### Major Changes & Improvements Since v0.9.50
+- **Production Pilot Launch:** App is now live and accessible via direct links and SharePoint integration for all users.
+- **Documentation & Compliance:** All documentation, compliance, and status files updated and aligned for v1.0.0 public release.
+- **Directory Structure Finalized:** Project folders, source, and release artifacts organized for clarity and traceability.
+- **Enhanced Automation:** Power Automate flows improved for reliability, triage, and Patient Safety Event detection (Teams ChatBot integration).
+- **Teams & Outlook Integration:** Native notifications and collaboration for award workflows.
+- **SharePoint Data Layer:** Secure, auditable storage with privacy controls and comprehensive audit trails.
+- **User Experience:** Embedded video tutorial, in-app feedback, and bug reporting features added.
+- **Accessibility & Error Resolution:** All known PowerApps YAML and Power Automate flow errors resolved; accessibility improved.
+- **Release Artifacts:** All source, deployment, and documentation files versioned and archived for full traceability.
+- **Security & Compliance:** Full compliance with VA Healthcare, FISMA, Privacy Act, and HIPAA requirements.
+
+#### Technical Details
+- **Source code:** `src/power-apps/EmployeeRecognitionApp_v1.0.0/Source/`
+- **Ready-to-deploy package:** `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.0_FullRelease.msapp`
+- **Public PowerShell scripts:** `src/v1.0.x/v1.0.0/powershell/`
+- **Documentation:** All files updated and aligned for v1.0.0 public release
+- **Power Automate flows:** Validated and error-free for production use
+
+#### Impact Assessment
+- Enables full production use for employee recognition workflows
+- Provides a stable, auditable, and compliant foundation for future enhancements
+- Supports onboarding, training, and stakeholder engagement for VA Healthcare
+
+#### Commit Message
+```
+release: Employee Recognition App v1.0.0 – Production Release
+
+- Launched first public production-ready version for healthcare organizations
+- All documentation, compliance, and status files updated for v1.0.0 public release
+- Directory structure and release artifacts organized for public GitHub distribution
+- Ready-to-deploy .msapp package included: src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.0_FullRelease.msapp
+- Public PowerShell scripts available: src/v1.0.x/v1.0.0/powershell/
+- Enhanced Power Automate flows, Teams/Outlook integration, and SharePoint data layer
+- Embedded video tutorial, in-app feedback, and bug reporting features
+- All known issues resolved; repository is clean and audit-ready
+- Full compliance with VA Healthcare, FISMA, Privacy Act, and HIPAA requirements
+- Complete source code and documentation for public use and contribution
+
+Technical details:
+- All changes since v0.9.50 are fully traceable and audit-ready
+- Public repository structure optimized for immediate deployment and development
+```
+
+#### Looking Ahead
+- **Version 1.1.0 (Anticipated August 18, 2025):**
+  - Facility-wide public affairs campaign and messaging
+  - Future-proofing of background automations and permissions
+  - GitHub repository packaged solution preparation
+  - Additional enhancements based on feedback from this production pilot
+
+---
 ## Version 0.9.50 (2025-07-30)
 **Release Type:** Major Automation, Compliance, and Documentation Update
 **Date:** 2025-07-30

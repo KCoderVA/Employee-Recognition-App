@@ -1,0 +1,43 @@
+
+
+# Employee Recognition App – Public Script Library
+
+This directory contains public-facing PowerShell scripts and modules for workspace automation, validation, deployment, and compliance. These scripts are provided as part of the Employee Recognition App v1.0.0 release for end users, administrators, and solution implementers.
+
+> **Note:** This folder is a curated, public copy of the original project scripts. Only files in this directory are intended for public use and support. Do not use or expose scripts from the private root `scripts/` folder.
+
+## 📑 Script Reference Table
+
+| Script Name                                | Description                                                          |
+| ------------------------------------------ | -------------------------------------------------------------------- |
+| diagnose-yaml-issues.ps1                   | Diagnoses YAML issues in app source files                            |
+| fix-form-accessibility-properties.ps1      | Fixes accessibility properties in Power Apps forms                   |
+| fix-orphaned-properties.ps1                | Repairs orphaned properties in app source                            |
+| fix-remaining-orphaned-properties.ps1      | Final pass to fix orphaned properties                                |
+| fix-yaml-properties.ps1                    | Fixes YAML property formatting issues                                |
+| PowerApp_Recursive_Variable_Extraction.ps1 | Extracts Power Fx variables/components recursively for documentation |
+| PowerPlatformUtils.psm1                    | Power Platform utility functions module                              |
+| prepare-release.ps1                        | Prepares release artifacts                                           |
+| Test-VASecurityCompliance.ps1              | Checks for VA Healthcare security compliance                         |
+| update-changelog.ps1                       | Updates CHANGELOG.md with new entries                                |
+| validate-changelog.ps1                     | Checks and fixes CHANGELOG format                                    |
+
+## 📝 Usage & Help
+
+Each script includes a standard header with usage, synopsis, and examples. Run any script with `-?` or `-Help` for detailed instructions:
+
+```powershell
+pwsh -ExecutionPolicy Bypass -File ./workspace-cleanup.ps1 -Help
+```
+
+## 🔐 Security & Compliance
+
+All scripts in this directory are reviewed for security and compliance with VA Healthcare and federal requirements. For more information, see the main [SECURITY.md](../../../docs/SECURITY.md).
+
+## 📦 Contribution & Support
+
+To suggest improvements or report issues, please use the GitHub repository's Issues or Security tab. For private or sensitive concerns, follow the project's security reporting process.
+
+---
+
+*This script library is part of the Employee Recognition App v1.0.0 public release. Last updated: August 4, 2025.*

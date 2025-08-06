@@ -1,0 +1,802 @@
+CONSTRUCTION_Screen As screen:
+    Height: |-
+        =//gbl_screenHeightValue
+        1200
+    OnVisible: |-
+        =Set(gbl_appFirstOnStart, true);
+        
+        Set(var_PopUP_Starfish_Submission_Q0, Blank());
+        Set(var_PopUP_Starfish_Submission_Q1, Blank());
+        Set(var_PopUP_Starfish_Submission_Q2, Blank());
+        Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank());
+        Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank());
+        Set(var_PopUP_Starfish_Submission_Q3, Blank());
+        Set(var_PopUP_Starfish_Submission_Q3b, Blank());
+        Set(var_PopUP_Starfish_Submission_Q3c, Blank());
+        Set(var_PopUP_HinesHero_Submission_Q3c, Blank());
+        Set(var_PopUP_Starfish_Submission_Q4, Blank());
+        Set(var_PopUP_Starfish_Submission_Q4a, Blank());
+        Set(var_PopUp_Q4a_ClinicalBoolean_Text, Blank());
+        Set(var_PopUP_Starfish_Submission_Q5, Blank());
+        Set(var_PopUP_Starfish_Submission_Q6, Blank());
+        Set(var_PopUP_Starfish_Submission_Q7, Blank());
+        Set(var_PopUP_Starfish_Submission_Q8, Blank());
+        Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank());
+        
+        Set(var_PopUP_People, 0);
+        Set(var_PopUP_Office, 0);
+        Set(var_PopUP_Emergency, 0);
+        Set(var_PopUP_Resources, 0);
+        Set(var_PopUP_About, 0);
+    Width: |-
+        =//gbl_screenWidthValue
+        900
+
+    Construction_Redirect_Timer As timer:
+        AutoPause: =false
+        Duration: =5000
+        Height: =44
+        OnTimerEnd: |-
+            =ClearCollect(col_userCurrentProfile, Office365Users.MyProfile());
+            ClearCollect(col_selectedUserProfile, Blank());
+            ClearCollect(col_selectedUser_Manager, Blank());
+            ClearCollect(col_PopUP_Starfish_Submission_NurseBoolean_Response, Blank());
+            
+            
+            Set(gbl_appFirstOnStart, false);
+            Navigate(Loading_Screen, ScreenTransition.None);
+        Text: =Text(Time(0, 0, Self.Value/1000), "ss")
+        Visible: |-
+            =If(
+                gbl_userIsAdmin = true,
+                true,
+                false
+            )
+        Width: =91
+        X: =(Construction_Bug_Icon.Width + Construction_Bug_Icon.X) - ((Construction_Bug_Icon.Width / 2) + (Self.Width / 2))
+        Y: =1075
+        ZIndex: =1
+
+    Construction_Bug_Icon As icon.Bug:
+        Height: =234
+        Icon: =Icon.Bug
+        Width: =246
+        X: |-
+            =If(
+                gbl_HostIsWindows,
+                (gbl_screenWidthValue / 2) - (Self.Width / 2),
+                (App.MinScreenWidth / 2) - (Self.Width / 2)
+            )
+        Y: =Construction_Subtitle_Label.Y + Construction_Subtitle_Label.Height + 50
+        ZIndex: =2
+
+    Construction_Subtitle_Label As label:
+        Align: =Align.Center
+        Height: =245
+        Size: =21
+        Text: |-
+            ="Beware of Bugs!
+            
+            Click here to notify the developer of a bug or error in a seperate window. You will be re-direct back to the application's landing page in 5 seconds."
+        Width: =545
+        X: |-
+            =If(
+                gbl_HostIsWindows,
+                (gbl_screenWidthValue / 2) - (Self.Width / 2),
+                (App.MinScreenWidth / 2) - (Self.Width / 2)
+            )
+        Y: =Construction_Title_Label.Height + (Construction_Title_Label.Y * 2)
+        ZIndex: =3
+
+    Construction_TopLevel_Button As button:
+        AutoDisableOnSelect: =false
+        Fill: =RGBA(0, 0, 0, 0)
+        Height: =gbl_screenHeightValue
+        HoverFill: =
+        OnSelect: |-
+            =//ClearCollect(col_CollectionName, { TestColumnName3: Filter(col_forAllVariables_ForceReset, !IsBlank(Name)) });
+            //LookUp(col_forAllVariables_ForceReset, !IsBlank(Value), Update(col_forAllVariables_ForceReset, Value, Blank())
+            
+            Launch("mailto:Kyle.Coder@va.gov?subject=ATTN:%20578%20Awards%20App%20RE:%20Reporting%20a%20BUG%20or%20PROBLEM!&body=I%20am%20experiencing%20an%20issue%20with%20your%20application%20(%20https://make.gov.powerapps.us/environments/Default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/apps/f14182d6-e4ef-42bf-8dd2-0a628377cb77/details).%20The%20details%20of%20this%20bug%20or%20problem%20are:", {}, LaunchTarget.New)
+            
+            //Launch("https://apps.gov.powerapps.us/play/e/default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/a/f14182d6-e4ef-42bf-8dd2-0a628377cb77?tenantId=e95f1b23-abaf-45ee-821d-b7ab251ab3bf&hint=361aa4ec-99b2-4d29-b485-8f905db4f09b&sourcetime=1743600913427")
+        Size: =24
+        Text: =""
+        Width: =gbl_screenWidthValue
+        ZIndex: =4
+
+    Construction_Title_Label As label:
+        Align: =Align.Center
+        AutoHeight: =true
+        FontWeight: =FontWeight.Bold
+        Height: =313
+        Size: =50
+        Text: |-
+            ="This app is
+            still under
+            CONSTRUCTION"
+        Width: =Parent.Width
+        X: |-
+            =If(
+                gbl_HostIsWindows,
+                (gbl_screenWidthValue / 2) - (Self.Width / 2),
+                (App.MinScreenWidth / 2) - (Self.Width / 2)
+            )
+        Y: =Construction_Home_Icon.Y + Construction_Home_Icon.Height
+        ZIndex: =5
+
+    Construction_AppInfo_HTMLText As htmlViewer:
+        AutoHeight: =true
+        Fill: =RGBA(214, 221, 224, 0.89)
+        Height: =1500
+        HtmlText: |
+            ="<h3>App Current Settings:</h3>"
+                & "<b>&nbsp;&nbsp;&nbsp;&nbsp;gbl_CurrentDateTime.Value:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & gbl_CurrentDateTime
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;App.ActiveScreen.Size:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.ActiveScreen.Size
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;gbl_HostIsWindows.Value:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & gbl_HostIsWindows
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;gbl_HostIsMobile.Value:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & gbl_HostIsMobile
+                & "<br><h3>Size Settings:</h3>"
+                & "<b>&nbsp;&nbsp;&nbsp;&nbsp;App.MinScreenHeight:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.MinScreenHeight
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;App.DesignWidth:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.DesignWidth
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;App.ActiveScreen.Height:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.ActiveScreen.Height        
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;App.Height:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.Height
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;gbl_screenHeightValue.Value:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & gbl_screenHeightValue
+            
+                & "<br><b><br>&nbsp;&nbsp;&nbsp;&nbsp;App.MinScreenWidth:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.MinScreenWidth
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;App.DesignWidth:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.DesignWidth
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;App.ActiveScreen.Width:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.ActiveScreen.Width
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;App.Width:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & App.Width
+                & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;gbl_screenWidthValue.Value:</b>"
+                    & "<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>"
+                    & gbl_screenWidthValue
+        Size: =16
+        Visible: |-
+            =If(
+                gbl_userIsAdmin = true,
+                true,
+                false
+            )
+        Width: =gbl_screenWidthValue / 2
+        X: =(gbl_screenWidthValue / 2) - 10
+        Y: =(gbl_screenHeightValue - Self.Height) - 10
+        ZIndex: =6
+
+    Construction_ChangeSize_Icon As icon:
+        BorderThickness: =3
+        Height: =90
+        HoverColor: =RGBA(9, 33, 98, 1)
+        HoverFill: =RGBA(39, 113, 194, 1)
+        Icon: =Icon.CollapseView
+        OnSelect: |-
+            =If(
+                //Host is on Web Browser:
+                    (gbl_HostIsMobile = true && gbl_HostIsWindows = false ),
+                        (Set(gbl_HostIsMobile, false)
+                        && Set(gbl_HostIsWindows, true));
+                        (Set(gbl_screenWidthValue,
+                            (Max(App.Width, App.MinScreenWidth, 1123)))
+                        && Set(gbl_screenHeightValue,
+                            (Max(App.Height, App.MinScreenHeight, 794)))),
+                // Host is on Mobile:        
+                    (gbl_HostIsWindows = true && gbl_HostIsMobile = false),
+                        (Set(gbl_HostIsMobile, true) & Set(gbl_HostIsWindows, false));
+                        (Set(gbl_screenWidthValue,
+                            (Max(App.Width, App.MinScreenWidth, 640)))
+                        && Set(gbl_screenHeightValue,
+                            (Max(App.Height, App.MinScreenHeight, 1136))))
+            );
+            /*If(
+                Host.OSType = "Windows",
+                    Set(gbl_HostIsMobile, true);
+                    Set(gbl_HostIsWindows, false);
+                    Set(gbl_screenWidthValue, 640),
+                    Set(gbl_HostIsWindows, true);
+                    Set(gbl_HostIsMobile, false);
+                    Set(gbl_screenWidthValue, 1200)
+            );*/
+            
+            //ViewSubmissions_Screen:
+                // Max(App.Width, App.MinScreenWidth) //640
+                // Max(App.Height, App.MinScreenHeight) // 1136
+            //Submission_Screens:
+                // Width = 900
+                // Height = 1200
+            //Blank_PrintScreen:
+                // Width = 1123
+                // Height = 794
+        PaddingBottom: =5
+        PaddingTop: =5
+        Width: =120
+        X: =Construction_Home_Icon.X + Self.Width
+        Y: =Construction_Home_Icon.Y
+        ZIndex: =7
+
+    Construction_Home_Icon As icon.Bus:
+        BorderThickness: =3
+        Height: =90
+        HoverColor: =RGBA(9, 33, 98, 1)
+        HoverFill: =RGBA(39, 113, 194, 1)
+        Icon: =Icon.Home
+        OnSelect: =Navigate(Loading_Screen);
+        Width: =120
+        X: =5
+        Y: =5
+        ZIndex: =8
+
+    Construction_AddNewUser As icon:
+        BorderColor: =RGBA(0, 18, 107, 1)
+        BorderThickness: =3
+        Color: =RGBA(0, 18, 107, 1)
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(244, 244, 244, 1)
+        Height: =90
+        HoverColor: =RGBA(9, 33, 98, 1)
+        HoverFill: =RGBA(39, 113, 194, 1)
+        Icon: =Icon.AddUser
+        OnSelect: |+
+            =//Launch("https://dvagov.sharepoint.com/:l:/s/vhahin/svc/ci/TelehealthTeamApp/FIgr--jV9zJMoYqHcIIA-WsB6Sq8p3_2w-tWd9xP8J0rpg?nav=ODZhYjVmMzUtMzM0ZC00NDdjLTgxOGYtYzdlNWNjYjNiNTg2");
+            If(
+                gbl_Admin_AddNewUser > 0,
+                Set(gbl_Admin_AddNewUser, Blank()),
+                Set(gbl_Admin_AddNewUser, 1)
+            );
+            ResetForm(Form1);
+            //Select(Starfish_Submission_PopUP_Search_Icon_X_6);
+            ClearCollect(col_selectedUserProfile, Blank());
+            ClearCollect(col_selectedUser_Manager, Blank());
+            Set(var_selectedUser, Blank());
+            Set(var_selectedUser_Manager, Blank());
+            
+        PaddingBottom: =5
+        PaddingTop: =5
+        Visible: =gbl_userIsAdmin
+        Width: =120
+        X: =Construction_ChangeSize_Icon.X + Self.Width
+        Y: =Construction_Home_Icon.Y
+        ZIndex: =9
+
+    Form1 As form:
+        DataSource: =List_DeskAdmin
+        DefaultMode: =FormMode.New
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =1049
+        Visible: |-
+            =If(
+                gbl_Admin_AddNewUser < 1 || IsBlank(gbl_Admin_AddNewUser),
+                false,
+                true
+            )
+        Width: =640
+        Y: =87
+        ZIndex: =10
+
+        DataCard1 As typedDataCard.blankCard:
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =3
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =225
+            Width: =640
+            X: =0
+            Y: =1
+            ZIndex: =1
+
+            Starfish_Submission_PopUP_Container_Search_1 As groupContainer.manualLayoutContainer:
+                Height: =79
+                maximumHeight: =11360
+                maximumWidth: =640
+                Visible: =Parent.Visible
+                Width: =Parent.Width - 40
+                X: =20
+                ZIndex: =12
+
+                Starfish_Submission_PopUP_Search_Textbox_5 As text:
+                    BorderColor: =RGBA(168, 0, 0, 1)
+                    BorderThickness: =3
+                    Default: |-
+                        =If(
+                            IsBlank(col_selectedUserProfile),
+                            "",
+                            var_selectedUser.Mail
+                        )
+                    DisabledColor: =RGBA(0, 0, 0, 1)
+                    Height: =60
+                    HintText: ="...Search by  EMAIL  or  'LAST NAME, FIRST NAME'"
+                    HoverFill: =RGBA(255, 255, 255, 1)
+                    OnSelect: =Set(var_resetSearchParameter,false)
+                    PressedBorderColor: =ViewSubmissions_BrowseGallery_3.Fill
+                    Reset: =var_resetSearchParameter
+                    Size: =21
+                    Tooltip: ="LAST NAME,   First Name"
+                    Width: =Parent.Width - Starfish_Submission_PopUP_Search_Icon_X_6.Width - Starfish_Submission_PopUP_Search_Icon_X_6.Width + 10
+                    X: =Starfish_Submission_PopUP_Search_Icon_Magnifier_5.X + Starfish_Submission_PopUP_Search_Icon_Magnifier_5.Width
+                    Y: =(Parent.Height / 2) - (Self.Height / 2)
+                    ZIndex: =1
+
+                Starfish_Submission_PopUP_Search_Icon_Magnifier_5 As icon:
+                    Color: =RGBA(179, 179, 179, 1)
+                    Height: =53
+                    Icon: =Icon.Search
+                    Width: =61
+                    X: =10
+                    Y: =(Parent.Height / 2) - (Self.Height / 2)
+                    ZIndex: =2
+
+                Starfish_Submission_PopUP_Search_Icon_X_6 As icon:
+                    Color: =RGBA(179, 179, 179, 1)
+                    DisabledBorderColor: =RGBA(255, 255, 255, 1)
+                    Fill: =RGBA(255, 255, 255, 1)
+                    Height: =50
+                    Icon: =Icon.Cancel
+                    OnSelect: |-
+                        =//Set(var_resetSearchParameter, true);
+                        Clear(col_selectedUserProfile);
+                        Clear(col_selectedUser_Manager);
+                        Set(var_selectedUser, Blank());
+                        Set(var_selectedUser_Manager, Blank());
+                        Reset(Starfish_Submission_PopUP_Search_Textbox_5);
+                        Reset(DataCardValue23);
+                    Width: =49
+                    X: =Starfish_Submission_PopUP_Search_Textbox_5.Width + Starfish_Submission_PopUP_Search_Icon_Magnifier_5.Width - Self.Width + 5
+                    Y: =(Parent.Height / 2) - (Self.Height / 2)
+                    ZIndex: =3
+
+                Starfish_Submission_PopUP_Search_Seperator_5 As rectangle:
+                    Fill: =RGBA(0, 18, 107, 1)
+                    Height: =1
+                    Width: =Parent.Width
+                    ZIndex: =4
+
+            ViewSubmissions_BrowseGallery_3 As gallery.PeoplePickerGallery:
+                '#CopilotOverlayLabel': ="Filtered"
+                AccessibleLabel: ="User look up search results"
+                Height: |-
+                    =//519
+                    If(
+                        ViewSubmissions_BrowseGallery_3.AllItemsCount = 1,
+                            (120 * 1),
+                        ViewSubmissions_BrowseGallery_3.AllItemsCount = 2,
+                            (120 * 2),
+                        ViewSubmissions_BrowseGallery_3.AllItemsCount = 3,
+                            (120 * 3),
+                        ViewSubmissions_BrowseGallery_3.AllItemsCount = 4,
+                            (120 * 4),
+                        ViewSubmissions_BrowseGallery_3.AllItemsCount > 4,
+                            519
+                    )
+                Items: |-
+                    =If(
+                        !IsBlank(Trim(Starfish_Submission_PopUP_Search_Textbox_5.Text)),
+                        Office365Users.SearchUser(
+                            {
+                                searchTerm: Trim(Starfish_Submission_PopUP_Search_Textbox_5.Text),
+                                top: 25
+                            }
+                        )
+                    )
+                Layout: =Layout.Vertical
+                ShowNavigation: =true
+                TemplatePadding: =0
+                TemplateSize: =107
+                Visible: =Parent.Visible
+                Width: =Parent.Width - 40
+                X: =20
+                Y: =Starfish_Submission_PopUP_Container_Search_1.Y + Starfish_Submission_PopUP_Container_Search_1.Height + 20
+                ZIndex: =13
+
+                ViewSubmissions_BrowseGallery_Background_8 As rectangle:
+                    BorderColor: =ViewSubmissions_BrowseGallery_Label_Name_7.Color
+                    BorderThickness: =If(ThisItem.UserPrincipalName in col_myPeople.UserPrincipalName, .5, 0)
+                    Fill: =RGBA(0,0,0,0)
+                    Height: =Parent.TemplateHeight
+                    HoverFill: =RGBA(0,0,0,0)
+                    OnSelect: =Select(ViewSubmissions_BrowseGallery_Label_Name_7)
+                    Width: =Parent.TemplateWidth
+                    ZIndex: =1
+
+                ViewSubmissions_BrowseGallery_Image_Placeholder_7 As icon:
+                    Color: =RGBA(9, 33, 98, 1)
+                    Fill: =RGBA(241, 244, 249, 1)
+                    Height: =ViewSubmissions_BrowseGallery_Image_User_7.Height
+                    Icon: =Icon.Person
+                    OnSelect: =Select(ViewSubmissions_BrowseGallery_Label_Name_7)
+                    PaddingBottom: =15
+                    PaddingLeft: =15
+                    PaddingRight: =15
+                    PaddingTop: =15
+                    PressedFill: =RGBA(255, 255, 255, 0.3)
+                    Width: =ViewSubmissions_BrowseGallery_Image_User_7.Width
+                    X: =ViewSubmissions_BrowseGallery_Image_User_7.X
+                    Y: =ViewSubmissions_BrowseGallery_Image_User_7.Y
+                    ZIndex: =2
+
+                ViewSubmissions_BrowseGallery_Image_User_7 As image:
+                    Height: =Self.Width
+                    Image: =If(!IsBlank(ThisItem.Id), Office365Users.UserPhotoV2(ThisItem.Id))
+                    OnSelect: =Select(ViewSubmissions_BrowseGallery_Label_Name_7)
+                    RadiusBottomLeft: =20
+                    RadiusBottomRight: =20
+                    RadiusTopLeft: =20
+                    RadiusTopRight: =20
+                    Width: =ViewSubmissions_BrowseGallery_3.TemplateHeight - 30
+                    X: =13
+                    Y: =14
+                    ZIndex: =3
+
+                ViewSubmissions_BrowseGallery_Label_Name_7 As label:
+                    BorderColor: =Self.Color
+                    FocusedBorderThickness: =2
+                    FontWeight: =FontWeight.Bold
+                    Height: =80
+                    OnSelect: |-
+                        =/*Select user, clear search contents and if this user hasn't been added to col_myPeople collection, add them*/
+                        Concurrent(
+                        Set(var_selectedUser, ThisItem),
+                        Reset(Starfish_Submission_PopUP_Search_Textbox_5),
+                        If(Not(ThisItem.UserPrincipalName in col_myPeople.UserPrincipalName), Collect(col_myPeople, ThisItem)))
+                    Overflow: =Overflow.Scroll
+                    Size: =35
+                    TabIndex: =0
+                    Text: =ThisItem.DisplayName 
+                    Width: =529
+                    Wrap: =false
+                    X: =71
+                    Y: =14
+                    ZIndex: =4
+
+                ViewSubmissions_BrowseGallery_Label_Phone_7 As label:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    Color: =RGBA(9, 33, 98, 1)
+                    FocusedBorderThickness: =2
+                    FontWeight: =FontWeight.Bold
+                    Height: =41
+                    OnSelect: =
+                    Size: =18
+                    Text: =ThisItem.TelephoneNumber
+                    Width: =221
+                    Wrap: =false
+                    X: =379
+                    Y: =12
+                    ZIndex: =5
+
+                ViewSubmissions_BrowseGallery_Seperator_8 As rectangle:
+                    Fill: =RGBA(0, 0, 0, 0)
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth - 20
+                    X: =10
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =6
+
+                ViewSubmissions_BrowseGallery_Button_9 As button:
+                    BorderColor: =RGBA(9, 33, 98, 1)
+                    BorderThickness: =5
+                    Fill: |-
+                        =If(
+                            IsBlank(var_selectedUser),
+                            RGBA(255, 255, 255, 0),
+                            ThisItem.IsSelected,
+                            RGBA(186, 202, 226, 0.75)
+                        )
+                        //ThisItem.IsSelected,
+                        //RGBA(186, 202, 226, 0.75),
+                        //RGBA(255, 255, 255, 0)
+                    Height: =ViewSubmissions_BrowseGallery_Background_8.Height - 10
+                    HoverBorderColor: =RGBA(9, 33, 98, 1)
+                    HoverFill: =RGBA(186, 202, 226, 0.75)
+                    OnSelect: |-
+                        =Set(var_selectedUser, ThisItem);
+                        ClearCollect(col_selectedUserProfile, var_selectedUser);
+                        
+                        Set(var_selectedUser_Manager, Office365Users.Manager(ThisItem.Id));
+                        ClearCollect(col_selectedUser_Manager, var_selectedUser_Manager);
+                    RadiusBottomLeft: =25
+                    RadiusBottomRight: =25
+                    RadiusTopLeft: =25
+                    RadiusTopRight: =25
+                    Size: =24
+                    Text: =""
+                    Tooltip: ="Select " & ThisItem.GivenName
+                    Width: =Parent.Width - 10
+                    X: =5
+                    Y: =5
+                    ZIndex: =7
+
+                ViewSubmissions_BrowseGallery_Icon_Chat_7 As icon:
+                    Color: =RGBA(54, 176, 75, 1)
+                    Height: =40
+                    Icon: =Icon.Message
+                    OnSelect: |-
+                        =If(
+                            !IsBlank(gbl_HostIsWindows),
+                            Launch(
+                                "https://teams.microsoft.com/l/chat/0/0?users="&ViewSubmissions_BrowseGallery_3.Selected.Mail,
+                                {},
+                                LaunchTarget.New
+                            ),
+                            Launch(
+                                "msteams://teams.microsoft.com/l/chat/0/0?users="&ViewSubmissions_BrowseGallery_3.Selected.Mail,
+                                {},
+                                LaunchTarget.New
+                            )
+                        )
+                    Tooltip: ="Chat with " & ThisItem.GivenName & " on Teams"
+                    Visible: =false
+                    Width: =40
+                    X: =560
+                    Y: =53
+                    ZIndex: =8
+
+                ViewSubmissions_BrowseGallery_Icon_Email_7 As icon:
+                    Color: =RGBA(184, 0, 0, 1)
+                    Height: =40
+                    Icon: =Icon.Mail
+                    OnSelect: |-
+                        =Launch("MailTo:"&ThisItem.Mail)
+                    Tooltip: ="Send an email to " & ThisItem.GivenName & " in Outlook"
+                    Visible: =false
+                    Width: =40
+                    X: =560
+                    Y: =54
+                    ZIndex: =9
+
+                ViewSubmissions_BrowseGallery_Icon_Call_7 As icon:
+                    Color: =RGBA(39, 113, 194, 1)
+                    Height: =40
+                    Icon: =Icon.Phone
+                    OnSelect: |-
+                        =If(
+                            (gbl_HostIsWindows = true || gbl_HostIsWindows = false),
+                            Launch(
+                                "https://teams.microsoft.com/l/call/0/0?users="&ViewSubmissions_BrowseGallery_3.Selected.Mail,
+                                {},
+                                LaunchTarget.New
+                            ),
+                            Launch(
+                                "msteams://teams.microsoft.com/l/call/0/0?users="&ViewSubmissions_BrowseGallery_3.Selected.Mail,
+                                {},
+                                LaunchTarget.New
+                            )
+                        )
+                    Tooltip: ="Call " & ThisItem.GivenName & " on Teams"
+                    Visible: =false
+                    Width: =40
+                    X: =560
+                    Y: =54
+                    ZIndex: =10
+
+                ViewSubmissions_BrowseGallery_Icon_Select_7 As icon:
+                    FocusedBorderThickness: =5
+                    Height: =40
+                    Icon: =Icon.ArrowRight
+                    OnSelect: =Select(ViewSubmissions_BrowseGallery_Button_9)
+                    Tooltip: ="Select " & ThisItem.GivenName
+                    Width: =72
+                    X: =528
+                    Y: =33
+                    ZIndex: =11
+
+        AccessLevel_Choice_DataCard1 As typedDataCard.comboBoxEditCard:
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =3
+            DataField: ="AccessLevel_Choice"
+            Default: =ThisItem.AccessLevel_Choice
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@List_DeskAdmin],DataSourceInfo.DisplayName,AccessLevel_Choice)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            Required: =false
+            Update: =DataCardValue23.Selected
+            Visible: |-
+                =If(
+                    IsBlank(var_selectedUser),
+                    false,
+                    true
+                )
+            Width: =640
+            X: =0
+            Y: =2
+            ZIndex: =1
+
+            DataCardKey24 As label:
+                AutoHeight: =true
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue23 As combobox:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                DefaultSelectedItems: =Parent.Default
+                DisplayFields: =["Value"]
+                DisplayMode: =Parent.DisplayMode
+                Height: =70
+                IsSearchable: =false
+                Items: =Choices([@List_DeskAdmin].AccessLevel_Choice)
+                PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+                SearchFields: =["Value"]
+                SelectMultiple: =false
+                Size: =21
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey24.Y + DataCardKey24.Height + 5
+                ZIndex: =2
+
+            ErrorMessage24 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue23.Y + DataCardValue23.Height
+                ZIndex: =3
+
+            StarVisible24 As label:
+                Align: =Align.Center
+                Height: =DataCardKey24.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey24.Y
+                ZIndex: =4
+
+            ButtonCanvas1_2 As Button:
+                AcceptsFocus: =true
+                AccessibleLabel: =""
+                Align: =""
+                Appearance: ="Primary"
+                BasePaletteColor: =
+                BorderColor: =
+                BorderStyle: =""
+                ContentLanguage: =""
+                DisplayMode: =DisplayMode.Edit
+                Font: =""
+                FontColor: =
+                FontItalic: =false
+                FontSize: =0
+                FontStrikethrough: =false
+                FontUnderline: =false
+                FontWeight: =FontWeight.Normal
+                Height: =52
+                Icon: =""
+                IconRotation: =0
+                IconStyle: ="Outline"
+                Layout: ="Icon before"
+                OnSelect: |-
+                    =SubmitForm(Form1);
+                    ResetForm(Form1);
+                    Set(gbl_Admin_AddNewUser, Blank());
+                TabIndex: =0
+                Text: ="Submit New"
+                Tooltip: =""
+                VerticalAlign: =""
+                Visible: |-
+                    =If(
+                        IsBlank(var_selectedUser.Mail),
+                        false,
+                        true
+                    )
+                Width: =154
+                X: =(Parent.Width / 2) - (Self.Width / 2)
+                Y: =DataCardValue23.Y + DataCardValue23.Height + 25
+                ZIndex: =5
+
+        Email_Text_DataCard1 As typedDataCard.textualEditCard:
+            BorderStyle: =BorderStyle.Solid
+            DataField: ="Email_Text"
+            Default: =ThisItem.Email_Text
+            DisplayMode: =Parent.DisplayMode
+            DisplayName: =DataSourceInfo([@List_DeskAdmin],DataSourceInfo.DisplayName,Email_Text)
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =50
+            MaxLength: =DataSourceInfo([@List_DeskAdmin], DataSourceInfo.MaxLength, Email_Text)
+            Required: =true
+            Update: =DataCardValue24.Text
+            Visible: =false
+            Width: =640
+            X: =0
+            Y: =0
+            ZIndex: =11
+
+            DataCardKey25 As label:
+                AutoHeight: =true
+                Height: =48
+                Size: =21
+                Text: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                Wrap: =false
+                X: =30
+                Y: =10
+                ZIndex: =1
+
+            DataCardValue24 As text:
+                BorderColor: =If(IsBlank(Parent.Error), Parent.BorderColor, Color.Red)
+                Default: |-
+                    =If(
+                        IsBlank(col_selectedUserProfile),
+                        "",
+                        Lower(var_selectedUser.Mail)
+                    )
+                DelayOutput: =true
+                DisplayMode: =Parent.DisplayMode
+                Height: =70
+                MaxLength: =Parent.MaxLength
+                PaddingLeft: =5
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =21
+                Tooltip: =Parent.DisplayName
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardKey25.Y + DataCardKey25.Height + 5
+                ZIndex: =2
+
+            ErrorMessage25 As label:
+                AutoHeight: =true
+                Height: =10
+                Live: =Live.Assertive
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =24
+                Text: =Parent.Error
+                Visible: =Parent.DisplayMode=DisplayMode.Edit
+                Width: =Parent.Width - 60
+                X: =30
+                Y: =DataCardValue24.Y + DataCardValue24.Height
+                ZIndex: =3
+
+            StarVisible25 As label:
+                Align: =Align.Center
+                Height: =DataCardKey25.Height
+                Size: =21
+                Text: ="*"
+                Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
+                Width: =30
+                Wrap: =false
+                Y: =DataCardKey25.Y
+                ZIndex: =4
+
