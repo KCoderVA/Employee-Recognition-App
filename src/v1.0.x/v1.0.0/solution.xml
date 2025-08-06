@@ -11,7 +11,7 @@
                 description="Complete Power Platform solution for employee recognition and awards management"
                 languagecode="1033" />
         </Descriptions>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Managed>1</Managed>
         <Publisher>
             <UniqueName>VAHealthcare</UniqueName>
@@ -23,7 +23,7 @@
                     languagecode="1033" />
         <Descriptions>
             <Description
-                description="Production Pilot (v1.0.0): Embedded video tutorial, feedback, bug reporting, Power Automate enhancements, Patient Safety Event flow, SharePoint/intranet links, and more. Complete Power Platform solution for employee recognition and awards management."
+                description="Production Pilot (v1.0.1): Public release with corrected version alignment and comprehensive documentation. Complete Power Platform solution for employee recognition and awards management featuring embedded video tutorial, feedback system, bug reporting, Power Automate enhancements, Patient Safety Event flow, and SharePoint/intranet integration."
                 languagecode="1033" />
         </Descriptions>
             <Addresses>

@@ -7,42 +7,68 @@ function Get-PowerPlatformStatus {
 
     # Check PAC CLI
     try {
-        $pacVersion = pac --version
-        Write-Host "✅ PAC CLI: $pacVersion" -ForegroundColor Green
-    } catch {
-        Write-Host "❌ PAC CLI: Not installed" -ForegroundColor Red
+        $pacOutput = & pac --version 2>$null | Out-String
+        if ($pacOutput) {
+            # Extract just the version line (first line usually contains the version)
+            $versionLine = ($pacOutput -split "`n" | Where-Object { $_ -match "Microsoft PowerPlatform CLI Version" })[0]
+            if ($versionLine) {
+                # Extract just the version number portion
+                if ($versionLine -match "Version:\s*([\d\.\+\w]+)") {
+                    $cleanVersion = $matches[1]
+                    Write-Host "✅ PAC CLI: Version $cleanVersion" -ForegroundColor Green
+                }
+                else {
+                    Write-Host "✅ PAC CLI: Installed and available" -ForegroundColor Green
+                }
+            }
+            else {
+                Write-Host "✅ PAC CLI: Installed (version info unavailable)" -ForegroundColor Green
+            }
+        }
+        else {
+            Write-Host "❌ PAC CLI: Not responding" -ForegroundColor Red
+        }
+    }
+    catch {
+        Write-Host "❌ PAC CLI: Not installed or not in PATH" -ForegroundColor Red
     }
 
     # Check authentication
     try {
-        $authList = pac auth list 2>$null
-        if ($authList -match "No profiles found") {
+        $authOutput = & pac auth list 2>$null | Out-String
+        if ($authOutput -match "No profiles found" -or [string]::IsNullOrWhiteSpace($authOutput)) {
             Write-Host "❌ Authentication: No profiles" -ForegroundColor Red
-        } else {
+        }
+        else {
             Write-Host "✅ Authentication: Profiles found" -ForegroundColor Green
         }
-    } catch {
+    }
+    catch {
         Write-Host "❌ Authentication: Error checking" -ForegroundColor Red
     }
 
     # Check source files
-    $appPath = "./src/power-apps/EmployeeRecognitionApp_Unpacked"
+    $appPath = "./src/v1.0.x/v1.0.0"
     if (Test-Path $appPath) {
         Write-Host "✅ Power App Source: Found" -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host "❌ Power App Source: Missing" -ForegroundColor Red
     }
 
     # Check git status
     try {
-        $gitStatus = git status --porcelain 2>$null
+        $gitStatus = & git status --porcelain 2>$null
         if ($gitStatus) {
-            Write-Host "⚠️  Git: Uncommitted changes" -ForegroundColor Yellow
-        } else {
+            $changeCount = ($gitStatus | Measure-Object).Count
+            Write-Host "⚠️  Git: $changeCount uncommitted changes" -ForegroundColor Yellow
+        }
+        else {
             Write-Host "✅ Git: Clean working directory" -ForegroundColor Green
         }
-    } catch {
-        Write-Host "❌ Git: Not initialized" -ForegroundColor Red
+    }
+    catch {
+        Write-Host "❌ Git: Not initialized or not in PATH" -ForegroundColor Red
     }
 }
 
@@ -77,9 +103,9 @@ function New-PowerPlatformBackup {
     # Create backup manifest
     $manifest = @{
         BackupName = $BackupName
-        Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-        Contents = @("src", "docs", "assets")
-        CreatedBy = $env:USERNAME
+        Timestamp  = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        Contents   = @("src", "docs", "assets")
+        CreatedBy  = $env:USERNAME
     } | ConvertTo-Json
 
     Set-Content -Path "$backupPath/backup_manifest.json" -Value $manifest
@@ -94,9 +120,10 @@ function Test-PowerPlatformSources {
 
     # Check for required source structure
     $requiredPaths = @(
-        "./src/power-apps",
-        "./src/power-automate",
-        "./src/sharepoint"
+        "./src/v1.0.x/v1.0.0/power-apps",
+        "./src/v1.0.x/v1.0.0/power-automate",
+        "./src/v1.0.x/v1.0.0/sharepoint",
+        "./src/v1.0.x/v1.0.0/powershell"
     )
 
     foreach ($path in $requiredPaths) {
@@ -106,7 +133,7 @@ function Test-PowerPlatformSources {
     }
 
     # Check for unpacked app
-    $appPath = "./src/power-apps/EmployeeRecognitionApp_Unpacked"
+    $appPath = "./src/v1.0.x/v1.0.0/power-apps/.unpacked"
     if (!(Test-Path $appPath)) {
         $issues += "Power App not unpacked at: $appPath"
     }
@@ -114,7 +141,8 @@ function Test-PowerPlatformSources {
     # Report results
     if ($issues.Count -eq 0) {
         Write-Host "✅ All source checks passed" -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host "❌ Issues found:" -ForegroundColor Red
         foreach ($issue in $issues) {
             Write-Host "  - $issue" -ForegroundColor Red

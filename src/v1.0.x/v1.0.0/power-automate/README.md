@@ -26,6 +26,13 @@ This folder contains Power Automate flows for the Employee Recognition App v1.0.
 - `exports/` – Exported flow packages (.zip files for import)
 - `syntax-extracts/` – Code snippets and syntax experiments
 
+Each flow folder in `.unpacked/` contains:
+- `*_definition.json` – Complete flow definition and logic
+- `*_connections.json` – Connection mappings and references
+- `*_apis.json` – API connector mappings
+- `*_manifest.json` – Flow metadata and properties
+- `README.md` – Detailed documentation for the specific flow
+
 ## Flow Components
 
 ### Triage and Approval Flow
@@ -73,4 +80,4 @@ This folder contains Power Automate flows for the Employee Recognition App v1.0.
 - Comply with VA Healthcare and organizational security policies
 
 ---
-*Last updated: January 28, 2025 for v1.0.1 Production Pilot release.*
+*Last updated: August 5, 2025 for v1.0.1 Production Pilot release.*

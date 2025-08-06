@@ -2,22 +2,17 @@
 # Employee Recognition App – Release Notes v1.0.1 (Public Release)
 
 ## 📋 Release Overview
-- **Version:** 1.0.0
-- **Release Date:** August 4, 2025
-- **Release Type:** Production Pilot (Public Release)
+- **Version:** 1.0.1
+- **Release Date:** August 5, 2025
+- **Release Type:** Production Release (Public Release)
 - **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ## 🚀 Release Highlights
-- **Production Pilot:** The Employee Recognition App is now live for VA Healthcare users, supporting digital employee recognition, automated approvals, and secure data management. This release is the first public, production-ready version.
-- **Stability & Compliance:** All features, workflows, and documentation have been validated for production deployment, with full compliance to VA Healthcare, FISMA, and ALM standards.
-- **Major New Features:**
-  - Embedded video tutorial in the app's Help/Info tab (SharePoint hosted)
-  - Microsoft Forms integration for user feedback and feature requests
-  - Power Automate flows: safety net for missed submissions, improved triage, and new Patient Safety Event detection with Teams ChatBot
-  - Updated SharePoint homepage and intranet links
-  - In-app bug reporting for direct developer alerts
-  - Finalized triage, approval, and award workflows
-  - Accessibility, documentation, and automation improvements
+- **Public Release:** Version 1.0.1 corrects tag/commit alignment issues from v1.0.0 and ensures proper version consistency across all project files and documentation.
+- **Version Alignment:** All references updated from v1.0.0 to v1.0.1 for clean public release management.
+- **Documentation:** Enhanced README files for Power Automate flows with comprehensive usage instructions.
+- **File Organization:** Improved Power Automate flow structure with cleaner directory paths for better Git compatibility.
+- **Complete Solution:** Full production-ready Power Platform solution for VA Healthcare digital employee recognition with automated approvals and secure data management.
   - All supporting documentation, versioning, and release artifacts updated
 - **Release Artifacts:** All source, deployment, and documentation files are versioned and archived for traceability.
 

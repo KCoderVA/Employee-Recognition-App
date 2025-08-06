@@ -1,8 +1,14 @@
 
 
-# Employee Recognition App – Public Script Library
+# Employee Recognition App – Pub## 📦 Contribution & Support
 
-This directory contains public-facing PowerShell scripts and modules for workspace automation, validation, deployment, and compliance. These scripts are provided as part of the Employee Recognition App v1.0.0 release for end users, administrators, and solution implementers.
+To suggest improvements or report issues, please use the GitHub repository's Issues or Security tab. For private or sensitive concerns, follow the project's security reporting process.
+
+---
+
+*This script library is part of the Employee Recognition App v1.0.1 public release. Last updated: August 5, 2025.*ipt Library
+
+This directory contains public-facing PowerShell scripts and modules for workspace automation, validation, deployment, and compliance. These scripts are provided as part of the Employee Recognition App v1.0.1 release for end users, administrators, and solution implementers.
 
 > **Note:** This folder is a curated, public copy of the original project scripts. Only files in this directory are intended for public use and support. Do not use or expose scripts from the private root `scripts/` folder.
 
@@ -40,4 +46,4 @@ To suggest improvements or report issues, please use the GitHub repository's Iss
 
 ---
 
-*This script library is part of the Employee Recognition App v1.0.0 public release. Last updated: August 4, 2025.*
+*This script library is part of the Employee Recognition App v1.0.1 public release. Last updated: August 5, 2025.*

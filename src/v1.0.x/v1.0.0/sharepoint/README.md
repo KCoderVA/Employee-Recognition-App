@@ -1,5 +1,5 @@
 
-# SharePoint Lists & Data Layer (v1.0.0 Production Pilot)
+# SharePoint Lists & Data Layer (v1.0.1 Production Pilot)
 
 <!--
    Copyright 2025 Kyle J. Coder
@@ -17,7 +17,7 @@
    limitations under the License.
 -->
 
-This folder contains SharePoint list definitions and data integration assets for the Employee Recognition App v1.0.0 Production Pilot. SharePoint provides secure, auditable storage for all award nominations and approvals.
+This folder contains SharePoint list definitions and data integration assets for the Employee Recognition App v1.0.1 Production Pilot. SharePoint provides secure, auditable storage for all award nominations and approvals.
 
 ## Structure
 
@@ -50,4 +50,4 @@ This folder contains SharePoint list definitions and data integration assets for
 - Test permissions and access controls in all environments
 
 ---
-*Last updated: August 4, 2025 for v1.0.0 Production Pilot release.*
+*Last updated: August 5, 2025 for v1.0.1 Production Pilot release.*

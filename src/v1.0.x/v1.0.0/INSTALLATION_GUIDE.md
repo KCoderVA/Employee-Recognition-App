@@ -54,4 +54,4 @@ For step-by-step setup, configuration, and troubleshooting, see the `docs/` fold
 
 ---
 
-*This guide is for the Employee Recognition App v1.0.1 public release. Last updated: January 28, 2025.*
+*This guide is for the Employee Recognition App v1.0.1 public release. Last updated: August 5, 2025.*
