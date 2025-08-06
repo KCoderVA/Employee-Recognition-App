@@ -1,6 +1,24 @@
-# VA Healthcare Security Compliance Checker
-# Copyright 2025 Kyle J. Coder
-# Licensed under the Apache License, Version 2.0
+
+# ============================================================================
+#  Script: Test-VASecurityCompliance.ps1
+#  Author: Kyle J. Coder
+#  License: Apache License, Version 2.0 (see https://www.apache.org/licenses/LICENSE-2.0)
+#  Copyright 2025 Kyle J. Coder
+#
+#  DESCRIPTION (For End Users):
+#    Checks if system operations comply with VA Healthcare enterprise security restrictions.
+#    Validates that requested operations do not require administrator privileges and suggests user-scope alternatives when available.
+#
+#  USAGE:
+#    1. Run this script in PowerShell with the required parameters.
+#    2. Use -Operation to specify the type (winget, powershell, system, extension).
+#    3. Use -Command to specify the command to validate.
+#    4. Review the output for compliance status and recommendations.
+#
+#  EDUCATIONAL NOTES:
+#    - Demonstrates PowerShell compliance checking, JSON config loading, and enterprise security best practices.
+#    - Section and sub-section comments are provided throughout for clarity.
+# ============================================================================
 
 <#
 .SYNOPSIS
@@ -25,6 +43,10 @@
     Returns: Approved - user-scope operation
 #>
 
+
+# =====================
+# PARAMETER DEFINITION
+# =====================
 param(
     [Parameter(Mandatory = $true)]
     [ValidateSet("winget", "powershell", "system", "extension")]
@@ -34,8 +56,12 @@ param(
     [string]$Command
 )
 
-# Load restricted operations configuration
-$RestrictionsPath = "$PSScriptRoot\..\\.vscode\restricted-operations.json"
+
+# =====================
+# MAIN SCRIPT LOGIC
+# =====================
+# SECTION: Load restricted operations configuration
+$RestrictionsPath = "$PSScriptRoot\..\.vscode\restricted-operations.json"
 if (Test-Path $RestrictionsPath) {
     $Restrictions = Get-Content $RestrictionsPath | ConvertFrom-Json
 }
@@ -44,6 +70,8 @@ else {
     return $false
 }
 
+
+# SECTION: Compliance check function
 function Test-VASecurityCompliance {
     param($Operation, $Command)
 
@@ -146,10 +174,11 @@ function Test-VASecurityCompliance {
     return $Result
 }
 
-# Execute the compliance check
+
+# SECTION: Execute the compliance check
 $ComplianceResult = Test-VASecurityCompliance -Operation $Operation -Command $Command
 
-# Output results
+# SECTION: Output results
 Write-Host "VA Healthcare Security Compliance Check" -ForegroundColor Cyan
 Write-Host "Operation: $Operation" -ForegroundColor White
 Write-Host "Command: $Command" -ForegroundColor White
@@ -168,3 +197,10 @@ else {
 }
 
 return $ComplianceResult
+
+# ============================================================================
+#  FOOTER (For maintainers and advanced users):
+#    - This script is part of the Employee Recognition App Power Platform ALM toolkit.
+#    - For advanced customization, see VA Healthcare security policy documentation.
+#    - For license and contribution details, see the project root LICENSE file.
+# ============================================================================

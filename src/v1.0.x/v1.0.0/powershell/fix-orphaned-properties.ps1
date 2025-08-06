@@ -1,42 +1,81 @@
-# Fix Orphaned Accessibility Properties
-# This script removes orphaned AccessibleLabel and Tooltip properties that cause PA3003 parsing errors
-# SCOPE: Only processes files in test\.unpacked directory
 
+# ============================================================================
+#  Script: fix-orphaned-properties.ps1
+#  Author: Kyle J. Coder
+#  License: Apache License, Version 2.0 (see https://www.apache.org/licenses/LICENSE-2.0)
+#  Copyright 2025 Kyle J. Coder
+#
+#  DESCRIPTION (For End Users):
+#    This script removes orphaned AccessibleLabel and Tooltip properties that
+#    cause PowerApps PA3003 parsing errors. It only processes files in the
+#    test.unpacked directory to avoid modifying working files.
+#
+#  USAGE:
+#    1. Run this script from the project root directory.
+#    2. Use -DryRun to preview changes without modifying files.
+#    3. Use -Verbose for detailed output.
+#    4. Review the summary and safety confirmation at the end.
+#
+#  EDUCATIONAL NOTES:
+#    - Demonstrates PowerShell file parsing, regex, and safe batch editing.
+#    - Section and sub-section comments are provided throughout for clarity.
+# ============================================================================
+
+
+# =====================
+# PARAMETER DEFINITION
+# =====================
+# -DryRun: Preview changes only
+# -Verbose: Show detailed output
 param(
     [switch]$DryRun = $false,
     [switch]$Verbose = $false
 )
 
-# Define the target directory - ONLY test\.unpacked
+
+# =====================
+# INITIALIZATION
+# =====================
+# Define the target directory - ONLY test.unpacked
 $TargetDirectory = "test\.unpacked\Src"
 $ScriptLocation = Get-Location
 
+
+# =====================
+# MAIN SCRIPT LOGIC
+# =====================
 Write-Host "🔧 PowerApps Orphaned Properties Fix Script" -ForegroundColor Cyan
 Write-Host "📁 Target Directory: $TargetDirectory" -ForegroundColor Yellow
 Write-Host "📍 Working Directory: $ScriptLocation" -ForegroundColor Yellow
+
 
 if ($DryRun) {
     Write-Host "🔍 DRY RUN MODE - No files will be modified" -ForegroundColor Green
 }
 
-# Verify target directory exists and is correct
+
+# SECTION: Verify target directory exists and is correct
 $FullTargetPath = Join-Path $ScriptLocation $TargetDirectory
 if (-not (Test-Path $FullTargetPath)) {
     Write-Host "❌ ERROR: Target directory not found: $FullTargetPath" -ForegroundColor Red
     exit 1
 }
 
+
 Write-Host "✅ Target directory confirmed: $FullTargetPath" -ForegroundColor Green
 
-# Get all YAML files in the target directory
+
+# SECTION: Get all YAML files in the target directory
 $YamlFiles = Get-ChildItem -Path $FullTargetPath -Filter "*.fx.yaml" -File
 Write-Host "🔍 Found $($YamlFiles.Count) YAML files to process" -ForegroundColor Cyan
 
-# Statistics tracking
+
+# SECTION: Statistics tracking
 $TotalOrphanedRemoved = 0
 $FilesModified = 0
 
-# Process each YAML file
+
+# SECTION: Process each YAML file
 foreach ($file in $YamlFiles) {
     Write-Host "`n📄 Processing: $($file.Name)" -ForegroundColor Yellow
 
@@ -99,7 +138,8 @@ foreach ($file in $YamlFiles) {
     }
 }
 
-# Display summary
+
+# SECTION: Display summary and safety confirmation
 Write-Host "`n📊 SUMMARY REPORT" -ForegroundColor Cyan
 Write-Host "=================" -ForegroundColor Cyan
 Write-Host "Files Processed: $($YamlFiles.Count)" -ForegroundColor White
@@ -124,3 +164,10 @@ Write-Host "`n🔒 SAFETY CONFIRMATION:" -ForegroundColor Magenta
 Write-Host "   ✅ Only files in test\.unpacked directory were processed" -ForegroundColor Green
 Write-Host "   ✅ Original working files remain untouched" -ForegroundColor Green
 Write-Host "   ✅ Only orphaned properties were removed (properly nested ones preserved)" -ForegroundColor Green
+
+# ============================================================================
+#  FOOTER (For maintainers and advanced users):
+#    - This script is part of the Employee Recognition App Power Platform ALM toolkit.
+#    - For advanced customization, see Power Apps YAML schema documentation.
+#    - For license and contribution details, see the project root LICENSE file.
+# ============================================================================

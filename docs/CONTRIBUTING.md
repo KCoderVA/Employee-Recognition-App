@@ -1,5 +1,5 @@
 
-# Contributing to Employee Recognition App (v1.0.0 Public Release)
+# Contributing to Employee Recognition App (v1.0.2)
 
 <!--
    Copyright 2025 Kyle J. Coder

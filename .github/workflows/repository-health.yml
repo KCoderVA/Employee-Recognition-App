@@ -1,24 +1,30 @@
 # =============================================================================
-# Repository Health Check - GitHub Actions Workflow
-# =============================================================================
+#  WORKFLOW: repository-health.yml
+#  Author: Kyle J. Coder
+#  License: Apache License, Version 2.0 (see https://www.apache.org/licenses/LICENSE-2.0)
+#  Copyright 2025 Kyle J. Coder
 #
-#    Copyright 2025 Kyle J. Coder
+#  DESCRIPTION (For End Users):
+#    This GitHub Actions workflow performs a comprehensive repository health check
+#    for the Employee Recognition App. It validates structure, documentation, license
+#    compliance, security, and Git repository health, and generates a health report.
 #
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
+#  USAGE:
+#    - Runs automatically on push, pull request, or weekly schedule.
+#    - Can be triggered manually via workflow_dispatch.
+#    - Review the generated health report artifact for recommendations.
 #
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
-#
+#  EDUCATIONAL NOTES:
+#    - Demonstrates best practices for CI/CD health validation in open source projects.
+#    - Section comments are provided throughout for clarity.
+#    - Designed for maintainability and extensibility for other Power Platform repos.
 # =============================================================================
 
 name: Repository Health Check
+
+# =====================
+# MAIN WORKFLOW DEFINITION
+# =====================
 
 on:
   push:
@@ -35,28 +41,45 @@ jobs:
     runs-on: ubuntu-latest
     name: Repository Health Assessment
 
+    # =====================
+    # STEPS: Health Check Sequence
+    # =====================
+
     steps:
+      # SECTION: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # SECTION: Check repository structure
       - name: Check repository structure
         run: |
           echo "🏗️ Checking repository structure..."
 
           # Required files check
-          required_files=("README.md" "LICENSE" "NOTICE" "CHANGELOG.md" "CONTRIBUTING.md" "SECURITY.md")
+
+          # Allow NOTICE, CONTRIBUTING.md, and SECURITY.md to be in either root or docs/
+          required_files=("README.md" "LICENSE" "CHANGELOG.md")
+          optional_docs=("NOTICE" "CONTRIBUTING.md" "SECURITY.md")
           missing_files=()
 
+          # Check required files in root
           for file in "${required_files[@]}"; do
             if [ ! -f "$file" ]; then
               missing_files+=("$file")
             fi
           done
 
+          # Check optional docs in root or docs/
+          for doc in "${optional_docs[@]}"; do
+            if [ ! -f "$doc" ] && [ ! -f "docs/$doc" ]; then
+              missing_files+=("$doc (root or docs/)" )
+            fi
+          done
+
           if [ ${#missing_files[@]} -eq 0 ]; then
-            echo "✅ All required files present"
+            echo "✅ All required files present (including docs in root or docs/)"
           else
             echo "❌ Missing required files: ${missing_files[*]}"
             exit 1
@@ -79,6 +102,7 @@ jobs:
             exit 1
           fi
 
+      # SECTION: Validate documentation
       - name: Validate documentation
         run: |
           echo "📚 Validating documentation..."
@@ -112,6 +136,7 @@ jobs:
             echo "⚠️ Consider adding license headers to more files"
           fi
 
+      # SECTION: Check for sensitive data
       - name: Check for sensitive data
         run: |
           echo "🔒 Checking for sensitive data..."
@@ -138,6 +163,7 @@ jobs:
             echo "❌ Please review and remove any actual sensitive data"
           fi
 
+      # SECTION: Validate links in documentation
       - name: Validate links in documentation
         run: |
           echo "🔗 Checking links in documentation..."
@@ -159,6 +185,7 @@ jobs:
             echo "ℹ️ npm not available, skipping link check"
           fi
 
+      # SECTION: Check Git repository health
       - name: Check Git repository health
         run: |
           echo "📝 Checking Git repository health..."
@@ -186,6 +213,7 @@ jobs:
             echo "✅ No large files detected"
           fi
 
+      # SECTION: Generate health report
       - name: Generate health report
         run: |
           echo "📊 Generating repository health report..."
@@ -218,6 +246,7 @@ jobs:
 
           echo "✅ Health report generated"
 
+      # SECTION: Upload health report
       - name: Upload health report
         uses: actions/upload-artifact@v4
         if: always()

@@ -1,62 +1,81 @@
-# CHANGELOG Update Script
 
-<#
-   Copyright 2025 Kyle J. Coder
+# ============================================================================
+#  SCRIPT: update-changelog.ps1
+#  Author: Kyle J. Coder
+#  License: Apache License, Version 2.0 (see https://www.apache.org/licenses/LICENSE-2.0)
+#  Copyright 2025 Kyle J. Coder
+#
+#  DESCRIPTION (For End Users):
+#    This script interactively or programmatically updates the CHANGELOG.md file
+#    for the Employee Recognition App. It helps ensure all changes are properly
+#    documented, versioned, and traceable for compliance and release management.
+#
+#  USAGE:
+#    1. Run this script from the project root directory.
+#    2. Use -Version to specify the release version (optional, will prompt if not provided).
+#    3. Use -Type to specify the change type (feature, bugfix, etc.).
+#    4. Use -Interactive to enable/disable prompts (default: true).
+#    5. Review the summary and next steps at the end.
+#
+#  EDUCATIONAL NOTES:
+#    - Demonstrates PowerShell scripting for documentation automation and compliance.
+#    - Section and sub-section comments are provided throughout for clarity.
+#    - Designed for maintainability and ease of extension.
+# ============================================================================
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-#>
-
+# =====================
+# PARAMETER DEFINITION
+# =====================
 param(
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory = $false)]
     [string]$Version = "",
 
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory = $false)]
     [string]$Type = "feature", # feature, bugfix, security, documentation, infrastructure
 
-    [Parameter(Mandatory=$false)]
+    [Parameter(Mandatory = $false)]
     [switch]$Interactive = $true
 )
 
+
+# =====================
+# MAIN SCRIPT LOGIC
+# =====================
 Write-Host "📝 CHANGELOG Update Manager - Employee Recognition App" -ForegroundColor Green
 Write-Host "=" * 60 -ForegroundColor Green
 Write-Host ""
 
-# Check if CHANGELOG.md exists
+
+# SECTION: Check if CHANGELOG.md exists
 if (!(Test-Path "CHANGELOG.md")) {
     Write-Host "❌ CHANGELOG.md not found!" -ForegroundColor Red
     Write-Host "Please ensure you're in the project root directory." -ForegroundColor Yellow
     exit 1
 }
 
-# Get current git status
+
+# SECTION: Get current git status
 $gitStatus = git status --porcelain 2>$null
 if ($LASTEXITCODE -ne 0) {
     Write-Host "⚠️ Not in a git repository or git not available" -ForegroundColor Yellow
 }
 
-# Show current changes if any
+# SECTION: Show current changes if any
 if ($gitStatus) {
     Write-Host "📋 Current Uncommitted Changes:" -ForegroundColor Cyan
     git status --short
     Write-Host ""
 }
 
-# Interactive mode for gathering change information
+# ...existing code...
+
+# SECTION: Interactive mode for gathering change information
 if ($Interactive) {
     Write-Host "🎯 CHANGELOG Entry Configuration" -ForegroundColor Yellow
     Write-Host "-" * 40 -ForegroundColor Yellow
 
-    # Get version number
+    # SUBSECTION: Get version number
     if (-not $Version) {
         $currentVersion = "0.8.3" # Default current version
         try {
@@ -64,7 +83,8 @@ if ($Interactive) {
             if ($changelogContent -match "## Version (\d+\.\d+\.\d+)") {
                 $currentVersion = $matches[1]
             }
-        } catch {
+        }
+        catch {
             Write-Host "⚠️ Could not determine current version, using default" -ForegroundColor Yellow
         }
 
@@ -80,7 +100,7 @@ if ($Interactive) {
         if (-not $Version) { $Version = $versionSuggestion }
     }
 
-    # Get change type
+    # SUBSECTION: Get change type
     if ($Type -eq "feature") {
         Write-Host "`nChange Type Options:" -ForegroundColor Cyan
         Write-Host "1. feature     - New functionality or enhancement" -ForegroundColor White
@@ -107,13 +127,13 @@ if ($Interactive) {
         }
     }
 
-    # Get change summary
+    # SUBSECTION: Get change summary
     $changeSummary = Read-Host "`nEnter a brief summary of changes"
     if (-not $changeSummary) {
         $changeSummary = "Repository updates and improvements"
     }
 
-    # Get detailed changes
+    # SUBSECTION: Get detailed changes
     Write-Host "`nEnter detailed changes (press Enter twice when done):" -ForegroundColor Cyan
     $detailedChanges = @()
     do {
@@ -128,14 +148,17 @@ if ($Interactive) {
     }
 }
 
-# Format the date
+
+# SECTION: Format the date
 $currentDate = Get-Date -Format "yyyy-MM-dd"
 $currentDateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
-# Read current CHANGELOG content
+
+# SECTION: Read current CHANGELOG content
 $changelogContent = Get-Content "CHANGELOG.md" -Raw
 
-# Create new entry
+
+# SECTION: Create new entry
 $newEntry = @"
 
 ## Version $Version - $currentDate
@@ -173,13 +196,15 @@ $($detailedChanges -join "`n")
 
 "@
 
-# Find the insertion point (after the project information section)
+
+# SECTION: Find the insertion point (after the project information section)
 $insertionPattern = "(## 🔗 Related Documentation.*?(?=## |$))"
 if ($changelogContent -match $insertionPattern) {
     $beforeMatch = $changelogContent.Substring(0, $matches[0].Index + $matches[0].Length)
     $afterMatch = $changelogContent.Substring($matches[0].Index + $matches[0].Length)
     $newChangelogContent = $beforeMatch + $newEntry + $afterMatch
-} else {
+}
+else {
     # Fallback: insert after the first ## heading
     $lines = $changelogContent -split "`n"
     $insertIndex = 0
@@ -191,31 +216,36 @@ if ($changelogContent -match $insertionPattern) {
     }
 
     if ($insertIndex -gt 0) {
-        $beforeLines = $lines[0..($insertIndex-1)]
-        $afterLines = $lines[$insertIndex..($lines.Count-1)]
+        $beforeLines = $lines[0..($insertIndex - 1)]
+        $afterLines = $lines[$insertIndex..($lines.Count - 1)]
         $newLines = $beforeLines + ($newEntry -split "`n") + $afterLines
         $newChangelogContent = $newLines -join "`n"
-    } else {
+    }
+    else {
         $newChangelogContent = $changelogContent + $newEntry
     }
 }
 
-# Write updated CHANGELOG
+
+# SECTION: Write updated CHANGELOG
 try {
     Set-Content -Path "CHANGELOG.md" -Value $newChangelogContent -Encoding UTF8
     Write-Host "✅ CHANGELOG.md updated successfully!" -ForegroundColor Green
     Write-Host "📋 Added entry for Version $Version" -ForegroundColor Cyan
-} catch {
+}
+catch {
     Write-Host "❌ Failed to update CHANGELOG.md: $($_.Exception.Message)" -ForegroundColor Red
     exit 1
 }
 
-# Show the new entry
+
+# SECTION: Show the new entry
 Write-Host "`n📝 New CHANGELOG Entry:" -ForegroundColor Yellow
 Write-Host "-" * 50 -ForegroundColor Yellow
 Write-Host $newEntry -ForegroundColor White
 
-# Ask if user wants to commit these changes
+
+# SECTION: Ask if user wants to commit these changes
 if ($Interactive) {
     Write-Host "`n🤔 Next Steps:" -ForegroundColor Yellow
     $commitChoice = Read-Host "Do you want to commit these CHANGELOG updates now? (y/N)"
@@ -238,17 +268,21 @@ $changeSummary
 
         if ($LASTEXITCODE -eq 0) {
             Write-Host "✅ CHANGELOG committed successfully!" -ForegroundColor Green
-        } else {
+        }
+        else {
             Write-Host "❌ Failed to commit CHANGELOG" -ForegroundColor Red
         }
     }
 }
 
+
+# SECTION: Completion message
 Write-Host "`n🎯 CHANGELOG Update Complete!" -ForegroundColor Green
 Write-Host "Version $Version has been documented with detailed change tracking." -ForegroundColor Cyan
 Write-Host ""
 
-# Update project version in other files if needed
+
+# SECTION: Update project version in other files if needed
 $filesToUpdate = @("README.md", "PROJECT_PROFILE.md")
 foreach ($file in $filesToUpdate) {
     if (Test-Path $file) {
@@ -260,10 +294,18 @@ foreach ($file in $filesToUpdate) {
                 Set-Content -Path $file -Value $updatedContent -Encoding UTF8
                 Write-Host "✅ Updated version reference in $file" -ForegroundColor Green
             }
-        } catch {
+        }
+        catch {
             Write-Host "⚠️ Could not update version in $file" -ForegroundColor Yellow
         }
     }
 }
 
+
+# ============================================================================
+#  FOOTER (For maintainers and advanced users):
+#    - This script is part of the Employee Recognition App Power Platform ALM toolkit.
+#    - For advanced customization, see PowerShell documentation automation and compliance docs.
+#    - For license and contribution details, see the project root LICENSE file.
+# ============================================================================
 Write-Host "`n💡 Remember to run 'Safe Commit with CHANGELOG Check' task for future commits!" -ForegroundColor Yellow

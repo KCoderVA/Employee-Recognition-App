@@ -1,20 +1,35 @@
-<#
-.SYNOPSIS
-    Recursively scans a user-specified folder for PowerApps/Power Fx variables, collections, connections, data sources, and component variables.
-    Outputs a detailed, organized markdown report to the workspace root with a timestamped filename.
-.DESCRIPTION
-    - Prompts the user for a root folder to scan.
-    - Searches all .fx.yaml, .yml, .json, .xml, .sarif, .txt, .csv, and other text files.
-    - Extracts Power Fx variables/collections (Set, UpdateContext, ClearCollect, Collect, Clear, etc.), JSON/XML property names, and more.
-    - Includes both functional and commented-out items, with a dedicated section for items only found in comments.
-    - Groups and sorts results by file type/source, then by type, then alphabetically.
-    - Progress and summary info included at the top of the report.
-.NOTES
-    Author: GitHub Copilot for KCoderVA
-    Date: $(Get-Date -Format yyyy-MM-dd)
-#>
 
+# ============================================================================
+#  Script: PowerApp_Recursive_Variable_Extraction.ps1
+#  Author: Kyle J. Coder
+#  License: Apache License, Version 2.0 (see https://www.apache.org/licenses/LICENSE-2.0)
+#  Copyright 2025 Kyle J. Coder
+#
+#  DESCRIPTION (For End Users):
+#    Recursively scans a user-specified folder for PowerApps/Power Fx variables,
+#    collections, connections, data sources, and component variables. Outputs a
+#    detailed, organized markdown report to the workspace root with a timestamped filename.
+#
+#  USAGE:
+#    1. Run this script in PowerShell. You will be prompted for a root folder to scan.
+#    2. The script will search all supported text files and generate a markdown report.
+#    3. Review the output file in the workspace root for results and summary.
+#
+#  EDUCATIONAL NOTES:
+#    - Demonstrates recursive file search, Power Fx pattern extraction, and report generation.
+#    - Section and sub-section comments are provided throughout for clarity.
+# ============================================================================
+
+
+# =====================
+# PARAMETER DEFINITION
+# =====================
 param()
+
+
+# =====================
+# MAIN SCRIPT LOGIC
+# =====================
 
 function Prompt-ForRootFolder {
     $root = Read-Host 'Enter the root folder path to scan (e.g. C:\MyApp\src\power-apps\AppName)'
@@ -25,9 +40,11 @@ function Prompt-ForRootFolder {
     return $root
 }
 
+
 function Get-Timestamp {
     return (Get-Date -Format 'yyyyMMddHHmmss')
 }
+
 
 function Get-TextFilesRecursive {
     param($Root)
@@ -88,7 +105,10 @@ function Extract-VariablesFromXml {
     return $results | Sort-Object -Unique
 }
 
-# Main
+
+# =====================
+# MAIN EXECUTION
+# =====================
 $root = Prompt-ForRootFolder
 $timestamp = Get-Timestamp
 $workspaceRoot = (Get-Location).Path
@@ -257,4 +277,12 @@ if ($otherVars.Count -gt 0) {
 # Write to file
 @($header + $fxSection + $commentSection + $byFileHeader + $fxByFile + $jsonByFile + $xmlByFile + $otherByFile) | Set-Content -Path $outputFile -Encoding UTF8
 
+
 Write-Host "Extraction complete. Output saved to $outputFile" -ForegroundColor Green
+
+# ============================================================================
+#  FOOTER (For maintainers and advanced users):
+#    - This script is part of the Employee Recognition App Power Platform ALM toolkit.
+#    - For advanced customization, see Power Fx and YAML schema documentation.
+#    - For license and contribution details, see the project root LICENSE file.
+# ============================================================================

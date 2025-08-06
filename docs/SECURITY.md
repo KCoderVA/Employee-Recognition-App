@@ -1,5 +1,5 @@
 
-# Security Policy & Compliance Framework (v1.0.0)
+# Security Policy & Compliance Framework (v1.0.2)
 
 <!--
    Copyright 2025 Kyle J. Coder
@@ -34,7 +34,7 @@ The Employee Recognition App is a Power Platform solution for the VA healthcare 
 | 0.9.x   | ⚠️ **Limited Support** | Critical vulnerabilities only         | December 2025 |
 | < 0.9   | ❌ **Unsupported**     | No security updates                   | Immediate     |
 
-**Current Production Version:** 1.0.0 (Production Pilot – All new features, security enhancements, and compliance updates)
+**Current Production Version:** 1.0.2 (Documentation & Automation Enhancement Release)
 
 ## How to Report a Security Issue
 
