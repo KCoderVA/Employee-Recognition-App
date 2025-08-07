@@ -1,0 +1,153 @@
+{
+  "197f11aa-ac28-4411-94a0-0ffcdbe73618": {
+    "appActions": [
+      "MyProfile",
+      "UserProfile",
+      "UserPhoto_V2",
+      "Manager",
+      "SearchUser"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office 365 Users",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1751/1.0.1751.4213/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Users"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "197f11aa-ac28-4411-94a0-0ffcdbe73618"
+  },
+  "38ae43a2-81ed-464c-bdb9-d6cc96206478": {
+    "appActions": [
+      "providers/PowerPlatform.Governance/Operations/Read",
+      "providers/PowerPlatform.Governance/Operations/Write"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1732/1.0.1732.4070/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp": {
+        "dataSources": {
+          "578_Starfish": {
+            "tableName": "26a559b3-e174-4b37-becc-a7863c2d96e6"
+          },
+          "App_Users_Admins": {
+            "tableName": "6494c437-3f2f-4125-8da9-ad9b8494f823"
+          },
+          "App_Users_HROTeam": {
+            "tableName": "8dbf7031-2c1b-4ce0-aa21-56da99839bb8"
+          },
+          "App_Users_NursingTeam": {
+            "tableName": "c8ce5f43-5ad5-43ce-8cdf-befc10150ceb"
+          },
+          "App_Users_PublicAffairsTeam": {
+            "tableName": "dd122e11-54ea-48c9-9823-d79df8001c1b"
+          },
+          "App_Users_StarfishTeam": {
+            "tableName": "cb96e7d1-8e7b-48c0-b673-0b9963294177"
+          },
+          "App_Users_TriageTeam": {
+            "tableName": "82c7181b-5856-41d8-a8d6-c0cd078a30ee"
+          },
+          "CompletedPackets_NoFurtherActionNeeded": {
+            "tableName": "958e7ff2-d572-4755-a6b7-b371e49ac1f9"
+          },
+          "SubmittedPackets_forTriage": {
+            "tableName": "195929ba-f21f-45a1-8442-bce39932202b"
+          },
+          "TriagedPackets_forHROTeam": {
+            "tableName": "e63f7ddf-d89b-4e0d-8ac9-f9d6ac13f714"
+          },
+          "TriagedPackets_forNursingTeam": {
+            "tableName": "1cffae26-2b7d-490e-b3d9-7dace4049b7a"
+          },
+          "TriagedPackets_forPublicAffairsTeam": {
+            "tableName": "9f7fc073-bffe-4daa-805c-53c30d52ef29"
+          },
+          "TriagedPackets_forStarfishTeam": {
+            "tableName": "d84e7893-89da-4a56-aeb8-26f34abdd750"
+          },
+          "TriagedPackets_forUNKNOWN": {
+            "tableName": "1c30f7b8-15e7-4eed-8307-6350d01861ea"
+          }
+        }
+      },
+      "https://dvagov.sharepoint.com/sites/vhahin/svc/ci/TelehealthTeamApp": {
+        "dataSources": {
+          "List_DeskAdmin": {
+            "tableName": "e8fb2b88-f7d5-4c32-a18a-87708200f96b"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "578_Starfish",
+      "List_DeskAdmin",
+      "App_Users_Admins",
+      "App_Users_HROTeam",
+      "App_Users_NursingTeam",
+      "App_Users_PublicAffairsTeam",
+      "App_Users_StarfishTeam",
+      "App_Users_TriageTeam",
+      "SubmittedPackets_forTriage",
+      "TriagedPackets_forHROTeam",
+      "TriagedPackets_forNursingTeam",
+      "TriagedPackets_forPublicAffairsTeam",
+      "TriagedPackets_forStarfishTeam",
+      "TriagedPackets_forUNKNOWN",
+      "CompletedPackets_NoFurtherActionNeeded"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "38ae43a2-81ed-464c-bdb9-d6cc96206478"
+  },
+  "6606f1f7-9fc4-4c4c-8fa5-0d2d25c36ef7": {
+    "appActions": [
+      "Get-AppVersions"
+    ],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Power Apps for Makers",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1758/1.0.1758.4260/powerappsforappmakers/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_powerappsforappmakers",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "PowerAppsforMakers"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "6606f1f7-9fc4-4c4c-8fa5-0d2d25c36ef7"
+  },
+  "70aaeced-8e59-4ec0-b94f-a7ac599838a8": {
+    "appActions": [],
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Standard approvals",
+      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1758/1.0.1758.4260/approvals/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_approvals",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Standardapprovals"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "70aaeced-8e59-4ec0-b94f-a7ac599838a8"
+  }
+}

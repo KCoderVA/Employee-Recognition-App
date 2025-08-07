@@ -1,6 +1,3 @@
-
-# Security Policy & Compliance Framework (v1.0.2)
-
 <!--
    Copyright 2025 Kyle J. Coder
 
@@ -16,6 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
+
+
+# Security Policy & Compliance Framework (v1.0.2)
 
 ## 🔒 Overview
 The Employee Recognition App is a Power Platform solution for the VA healthcare system, designed to handle sensitive employee information with the highest standards of security and compliance. This policy ensures alignment with VA IT security standards, FISMA, Privacy Act, and HIPAA where applicable.
@@ -36,25 +36,18 @@ The Employee Recognition App is a Power Platform solution for the VA healthcare 
 
 **Current Production Version:** 1.0.2 (Documentation & Automation Enhancement Release)
 
-## How to Report a Security Issue
-
-If you discover a security vulnerability:
-- **Do NOT** create a public GitHub issue.
-- Contact the project team via secure VA channels or the GitHub Security tab.
-- Provide a clear description, impact, and steps to reproduce.
-- For urgent matters, follow VA incident reporting procedures.
-
 ## 🚨 Vulnerability Reporting Process
 
 This app processes sensitive employee data and maintains enterprise-level security standards in compliance with VA IT security policies and federal regulations.
 
 ### How to Report
+If you discover a security vulnerability:
 
 **For Critical Security Issues:**
-- Do NOT create a public GitHub issue
-- Contact the project team via secure VA channels
-- Email: [Insert secure VA contact method]
-- Follow VA incident reporting procedures
+- **Do NOT** create a public GitHub issue.
+- Contact the project team via secure VA channels or the GitHub Security tab.
+- Provide a clear description, impact, and steps to reproduce.
+- For urgent matters, follow VA incident reporting procedures.
 
 **For Non-Critical Security Concerns:**
 - Create a private security advisory on GitHub
@@ -76,6 +69,7 @@ This security policy covers:
 - ✅ Power Apps Canvas Application
 - ✅ Power Automate Flows
 - ✅ SharePoint Lists and Permissions
+- ✅ PowerShell Scripts/Modules
 - ✅ Microsoft Approvals Integration
 - ✅ Teams/Outlook Integration
 - ✅ Data handling and storage
@@ -141,7 +135,7 @@ The following are outside the scope of this security policy:
 
 For security-related questions or concerns:
 - **Project Lead**: Kyle J. Coder
-- **VA IT Security**: [Follow VA procedures]
+- **VA IT Security**: [Follow VA internal procedures]
 - **Emergency Contact**: [VA IT Security Team]
 
 ## Acknowledgments

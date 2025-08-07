@@ -1,6 +1,3 @@
-
-# Contributing to Employee Recognition App (v1.0.2)
-
 <!--
    Copyright 2025 Kyle J. Coder
 
@@ -16,6 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
+
+
+# Contributing to Employee Recognition App (v1.0.2)
 
 Thank you for your interest in contributing to the Employee Recognition App! This guide provides everything you need to get started, contribute effectively, and follow best practices for this Power Platform solution.
 
@@ -50,10 +50,9 @@ This project follows VA and open source standards for professional conduct. All 
 
 ### Setup Steps
 1. Fork and clone the repository
-2. Install required VS Code extensions (see `.vscode/extensions.json`)
-3. Configure your Power Platform environment connection
-4. Review project documentation in `/docs/`
-5. Run initial health check: `pwsh -ExecutionPolicy Bypass -File ./scripts/repo-health-check.ps1`
+2. Configure your Power Platform environment connection
+3. Review project documentation in `/docs/`
+4. Run initial health check: `pwsh -ExecutionPolicy Bypass -File ./scripts/repo-health-check.ps1`
 
 ## Development Process
 
@@ -203,4 +202,4 @@ Contributors to this project help improve the employee recognition process for a
 
 ---
 
-*This project is developed in support of the VA healthcare mission and follows all applicable VA IT policies and procedures. Last updated: August 4, 2025 for v1.0.0 public release.*
+*This project is developed in support of the VA's healthcare and operational missions, and follows all applicable VA IT policies and procedures. Last updated: August 4, 2025 for v1.0.0 public release.*

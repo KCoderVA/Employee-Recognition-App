@@ -1,10 +1,24 @@
+<!--
+   Copyright 2025 Kyle J. Coder
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
 
 # Copilot Instructions
 
-## Last Updated: 2025-07-28
-## Changelog
-- 2025-07-28: Added versioning, script reference table, extension management, troubleshooting, and formatting improvements.
-- 2025-07-22: Initial release.
+## Last Updated: 2025-08-07
 
 ## 📑 Script Reference Table
 | Script Name            | Location | Description                                |
@@ -37,25 +51,6 @@ A: Edit `.vscode/restricted-operations.json` and document changes in the Changel
 Periodically review this file and remove any instructions or script references that are no longer relevant or have been superseded by new workflows or tools.
 
 ---
-**[⬆️ Back to Top](#copilot-instructions)**
-
-<!--
-   Copyright 2025 Kyle J. Coder
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
-
-<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
 
 ## 📊 Copilot Instructions Summary
 

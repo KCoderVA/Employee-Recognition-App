@@ -23,20 +23,6 @@
 # =============================================================================
 
 # ================================
-# INCLUDE: Public Release Content
-# ================================
-# Explicitly include source code and documentation for public release
-!src/
-!src/**
-!README.md
-!CHANGELOG.md
-!LICENSE
-!SECURITY.md
-!CONTRIBUTING.md
-!.github/
-!.github/**
-
-# ================================
 # EXCLUDE: Development Environment
 # ================================
 # VS Code and development environment files
@@ -74,16 +60,13 @@ scripts/**
 repository_manager/
 .gitmessage
 .git/hooks/
-
-# NOTE: Public PowerShell scripts in src/v1.0.x/v1.0.0/powershell/ are INCLUDED via src/** above
+# NOTE: Some public PowerShell scripts are in src/v1.0.x/v1.0.0/powershell/ and are INCLUDED via inclusion exemption at the bottom
 
 # ================================
 # EXCLUDE: Power Platform Binaries & Connections
 # ================================
 # Power Platform files excluded from public release
 *.msapp
-!src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.0_FullRelease.msapp
-!src/v1.0.x/v1.0.0/power-apps/.msapp/
 Connections/
 DataSources/
 other/
@@ -92,19 +75,12 @@ temp/
 dist/
 build/
 releases/
-src/power-apps/**/Source/Connections/
-src/power-apps/**/Source/DataSources/
-src/power-apps/**/Source/Other/
-
-# Exclude private Power Apps versions
-src/power-apps/EmployeeRecognitionApp_v0.9.0/
-src/power-automate/2025.07.02 PowerAutomate Flow Syntax Extracts/
-src/power-automate/PowerAutomate Compose DynamicMarkdownTable/
 
 # ================================
 # EXCLUDE: Documentation & Analysis (Local Only)
 # ================================
 # Local documentation and analysis files
+docs/**
 docs/CHANGELOG_ENFORCEMENT.md
 docs/CHANGELOG_ENFORCEMENT_SUMMARY.md
 docs/legacy/
@@ -216,3 +192,19 @@ venv/
 *.ldf
 *.ndf
 
+# ================================
+# EXCEPTIONS: Public Release Content
+# ================================
+# Explicitly include source code and documentation for public release
+!.github/**
+!.github/copilot-instructions(public).md
+!docs/NOTICE
+!docs/CONTRIBUTING.md
+!docs/PROJECT_STATUS.md
+!docs/SECURITY.md
+!src/**
+!LICENSE
+!CHANGELOG.md
+!README.md
+# Explicitly exclude the following from public release
+.github/copilot-instructions.md

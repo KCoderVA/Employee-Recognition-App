@@ -1,4 +1,3 @@
-
 Employee Recognition Application – Power Platform Project
 Copyright 2025 Kyle J. Coder
 
@@ -6,44 +5,79 @@ This product includes software developed by Kyle J. Coder for the Edward Hines J
 
 Original work created as part of the Advanced Analytics & Informatics team for the Hines Award Committee.
 
-**Developer:** Kyle J. Coder (Developer/Program Analyst)
-**Organization:** Edward Hines Jr. VA Hospital (Station #578), VISN #12
-**Team:** Advanced Analytics & Informatics
-**Customer:** Hines Award Committee
-**Project Stakeholder:** Christina Conway (Health System Specialist)
+**Organization:** Edward Hines Jr. VA Hospital (Station 578), VISN 12, Veterans Health Administration (VHA), U.S Department of Veterans Affairs (VA)
+**Development Team:** Advanced Analytics & Clinical Informatics
+**Developer:** Kyle J. Coder (Program Analyst)
+**Primary Stakeholder:** Christina Conway (Health Systems Specialist)
 **Executive Sponsor:** James Doelling (Executive Director/CEO)
 
 ---
 
-Employee Recognition App – NOTICE
+## Employee Recognition App – NOTICE
 
-Version: 1.0.0 (Production Pilot – Public Release)
-Latest update (v1.0.0):
-- Full Power Platform solution for digital employee recognition, automated approvals, and secure data management
-- Power Apps Canvas App for award submissions and management
-- Automated triage, approval, and patient safety workflows (Power Automate)
-- Secure SharePoint integration for data, audit trails, and compliance
-- Professional documentation, user training, and public script library
-- Multi-environment deployment, security compliance, and ALM best practices
-- Award Committee and stakeholder approval achieved
+**Version:** 1.0.1 (Production Release – Full Deployment Ready)
+**Release Date:** August 7, 2025
+**Project Timeline:** April 9, 2025 – August 7, 2025
+**Total Releases:** 95+ incremental development releases
 
-This software is provided under the Apache License, Version 2.0. See LICENSE for details.
+### Latest Release (v1.0.1):
+- **Production-ready Power Platform solution** with enterprise-grade ALM workflows
+- **Multi-award support:** Nine different recognition programs consolidated into one submission platform
+- **Power Apps Canvas App** Simple, mobile-friendly, responsive design, accessibility compliant
+- **Automated workflows:** Triage, multi-level approval routing, and AI safety chatbot integration
+- **Secure data management:** SharePoint integration with audit trails and privacy controls
+- **Enterprise architecture:** Multi-environment deployment (dev/test/staging/prod)
+- **Comprehensive automation:** 32 VS Code tasks, 17 PowerShell scripts, 3 GitHub Actions
+- **Security compliance:** 50+ VA Healthcare enterprise restrictions and protocols
+- **Complete documentation:** User guides, admin documentation, and public script library
+
+### Technical Architecture:
+- **Power Platform Solution** with "vah" publisher prefix (VA Healthcare)
+- **Canvas App Source Control:** Unpacked source files for version control best practices
+- **Power Automate Flows:** Advanced approval routing and notification workflows
+- **SharePoint Lists:** Structured data storage with content types and audit capabilities
+- **GitHub Repository:** Public release with Apache 2.0 licensing
+- **CI/CD Pipeline:** Automated CHANGELOG enforcement and repository health validation
+
+### Deployment Artifacts:
+- **Application Package:** `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.1_FullRelease.msapp`
+- **Source Code:** Complete unpacked Power Apps source in `src/power-apps/`
+- **Power Automate Flows:** Deployment-ready flow definitions in `src/power-automate/`
+- **SharePoint Configuration:** List templates and content types in `src/sharepoint/`
+- **Documentation Suite:** User guides, technical documentation, and training materials
+
+### Power Platform Environment:
+- **Target Environment:** VA USGov Cloud (USGov)
+- **Organization:** Department of Veterans Affairs (default)
+- **Authentication:** Power Platform CLI with USGov cloud configuration
+
+### Quality Assurance:
+- **Repository Health:** Comprehensive validation and compliance checking
+- **CHANGELOG Enforcement:** Mandatory documentation for all changes
+- **Security Review:** VA Healthcare enterprise security compliance
+- **Testing Coverage:** Multi-device, integration, and user acceptance testing
+- **Code Standards:** Power Fx best practices and delegation-aware patterns
 
 ---
 
-**Project Summary:**
-The Employee Recognition Application is a comprehensive Power Platform solution for the VA healthcare system, supporting digital employee recognition, automated multi-level approvals, and secure, auditable data management. The project features:
-- Power Apps Canvas App (mobile-first, multi-award, accessible)
-- Power Automate flows for triage, approval, notifications, and patient safety
-- SharePoint lists for secure data storage, audit, and permissions
-- Public documentation and script library for end users and admins
-- Enterprise architecture: multi-environment deployment, security compliance, and lifecycle management
+**License Information:**
+This software is provided under the Apache License, Version 2.0. See LICENSE file for complete terms and conditions.
 
-All code, documentation, and architecture are the intellectual property of Kyle J. Coder and are licensed under the Apache License, Version 2.0.
+**Intellectual Property:**
+All code, documentation, architecture, and related materials are the intellectual property of Kyle J. Coder and are licensed under the Apache License, Version 2.0 for public use and distribution.
 
-For questions regarding licensing or attribution requirements, contact:
-Kyle J. Coder, VHA Informatics Data Team
+**Project Repository:** https://github.com/KCoderVA/Employee-Recognition-App
+**Public Release:** Open source with comprehensive documentation and script library
+**Enterprise Support:** Designed for VA Healthcare environments with security compliance
 
-Project Repository: https://github.com/KCoderVA/Employee-Recognition-App
-Development Timeline: April 9, 2025 – August 4, 2025
-Version History: 1.0.0 public release (95+ incremental releases)
+**Contact Information:**
+For questions regarding licensing, attribution requirements, or technical implementation:
+- [PREFERRED] GitHub Repository: https://github.com/KCoderVA/Employee-Recognition-App
+- [VA INTERNAL ONLY] SharePoint Site: https://dvagov.sharepoint.com/sites/vhahin/svc/ci/
+- [ALTERNATE] Team's Email: HINClinicalAnalytics@va.gov
+
+**Third-Party Components:**
+This solution leverages Microsoft Power Platform services (Power Apps, Power Automate, SharePoint) and requires appropriate Microsoft licensing for deployment and operation.
+
+**Compliance Notice:**
+This application has been developed in accordance with VA Healthcare security policies, enterprise architecture standards, and federal government software development guidelines.
