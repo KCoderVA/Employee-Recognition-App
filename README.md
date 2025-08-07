@@ -2,8 +2,8 @@
 # Employee Recognition App
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
-![Version](https://img.shields.io/badge/Version-1.0.3-green)](./CHANGELOG.md)
-[![Status](https://img.shields.io/badge/Status-Production%20Ready-success)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-1.0.3-green)](./CHANGELOG.md)
+[![Implementation](https://img.shields.io/badge/Implementation%20-PowerShell-green)](./src/v1.0.x/v1.0.0/powershell/README.md)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
 
