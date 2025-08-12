@@ -131,23 +131,5 @@
     "dependencies": {},
     "dependents": [],
     "id": "6606f1f7-9fc4-4c4c-8fa5-0d2d25c36ef7"
-  },
-  "70aaeced-8e59-4ec0-b94f-a7ac599838a8": {
-    "appActions": [],
-    "connectionRef": {
-      "apiTier": "Standard",
-      "displayName": "Standard approvals",
-      "iconUri": "https://connectorsiconsfairfax.z5.web.core.usgovcloudapi.net/v1.0.1758/1.0.1758.4260/approvals/icon.png",
-      "id": "/providers/microsoft.powerapps/apis/shared_approvals",
-      "parameterHints": {},
-      "parameterHintsV2": {}
-    },
-    "datasets": {},
-    "dataSources": [
-      "Standardapprovals"
-    ],
-    "dependencies": {},
-    "dependents": [],
-    "id": "70aaeced-8e59-4ec0-b94f-a7ac599838a8"
   }
 }

@@ -2,14 +2,14 @@
 # Employee Recognition App
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
-[![Version](https://img.shields.io/badge/Version-1.0.3-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-1.0.4-green)](./CHANGELOG.md)
 [![Implementation](https://img.shields.io/badge/Implementation%20-PowerShell-green)](./src/v1.0.x/v1.0.0/powershell/README.md)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
 
 ---
 
-## Project Overview (Currently: v1.0.3 | Published: August 7, 2025)
+## Project Overview (Currently: v1.0.4 | Published: August 12, 2025)
 
 The Employee Recognition App is a production-ready Power Platform application that transforms traditional paper-based employee recognition into an intelligent, automated digital workflow. Developed with full stakeholder collaboration, 100+ incremental releases, and comprehensive GitHub automation with CI/CD workflows. Features seven distinct award recognition types allowing consolidated submission, automated routing/triage, ChatBot safety checks, automated documentation storage, and enterprise-grade security compliance for VA Healthcare environments.
 
@@ -27,12 +27,13 @@ The Employee Recognition App is a production-ready Power Platform application th
 
 ---
 
-## 🚀 What's New in v1.0.3
-- **.gitignore Optimization:** Fixed critical rule conflicts preventing `.msapp` deployment artifacts from being tracked in the public repository
-- **Repository File Management:** Resolved invalid syntax error `!src/** */` → `!src/**` and added specific override `!src/**/*.msapp` for Power Platform artifacts
-- **Documentation Enhancement:** Updated all supporting documentation files and scripts with comprehensive current information and exact quantified metrics
-- **Version Alignment:** All documentation and references updated to reflect v1.0.3 release status
-- **Repository Health:** Enhanced file inclusion/exclusion balance ensuring proper source control for deployment artifacts
+## 🚀 What's New in v1.0.4
+- **Visual Modernization:** Complete refresh with modern approved VA seal, logos, and professional visual assets replacing placeholder content
+- **Tutorial Integration:** SharePoint-hosted end user tutorial video with embedded access buttons on Update/Help screen and submission popups
+- **Enhanced Loading Experience:** Professional animated progress bars and spinning loaders improving user engagement during app interactions
+- **Navigation Improvements:** All hyperlink URLs validated and 404 errors resolved for seamless user navigation
+- **Display Logic Fixes:** Resolved dynamic variable conflicts on "View Submissions" screen preventing ICARE Values self-hiding behavior
+- **User Experience Enhancement:** Comprehensive interface improvements maintaining production stability with enhanced usability and visual appeal
 
 See [CHANGELOG.md](CHANGELOG.md) for full details.
 
@@ -62,7 +63,7 @@ The Employee Recognition App is built on a comprehensive Power Platform foundati
 │   ├── 📂 v1.0.x/v1.0.0/                   # v1.0.1 release artifacts and documentation
 │   │   ├── 📂 power-apps/                  # Canvas app files for deployment
     │   │   ├── 📂 .unpacked/               # Unpacked raw source code files
-│   │   │   └── 📂 .msapp/                  # Ready-to-deploy application packages (v1.0.1_FullRelease.msapp)
+│   │   │   └── 📂 .msapp/                  # Ready-to-deploy application packages (v1.0.4_FullRelease.msapp)
 │   │   ├── 📂 powershell/                  # Public PowerShell scripts and utilities (14 production scripts)
 │   │   ├── 📂 power-automate/              # Flow definitions and deployment configurations
 │   │   ├── 📂 sharepoint/                  # List templates and content type configurations
@@ -106,7 +107,8 @@ pac auth create --environment [your-environment-id] --tenant [your-tenant-id]
 
 ### Download Ready-to-Use App
 For immediate deployment without source code modifications:
-- **Pre-built Application Package**: `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.1_FullRelease.msapp`
+- **Pre-built Application Package**: `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.4_FullRelease.msapp`
+- **Enhanced Features**: Modern VA branding, integrated tutorial videos, animated loading components
 - **Public PowerShell Scripts**: Available in `src/v1.0.x/v1.0.0/powershell/` (14 production-ready scripts)
 - **Deployment Utilities**: CLI automation and validation scripts for enterprise environments
 - **Installation Documentation**: Complete step-by-step setup instructions in [INSTALLATION_GUIDE.md](src/v1.0.x/v1.0.0/INSTALLATION_GUIDE.md)
@@ -165,7 +167,7 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines, code standa
 **Project Lead:** Kyle J. Coder (Developer/Program Analyst)
 **Primary Stakeholder:** Christina Conway (Health Systems Specialist)
 **Executive Sponsor:** James Doelling (Executive Director/CEO)
-**Project Timeline:** April 9, 2025 – August 7, 2025 (121 days of active development)
+**Project Timeline:** April 9, 2025 – August 12, 2025 (125 days of active development)
 **Total Releases:** 100+ incremental development releases with complete traceability
 **Repository Statistics:** 1,879 lines in CHANGELOG.md documenting complete project history
 **License:** Apache License, Version 2.0 – See [LICENSE](LICENSE) for complete terms and conditions

@@ -1,4 +1,4 @@
-# Power Apps Canvas App (v1.0.1)
+# Power Apps Canvas App (v1.0.4)
 
 <!--
    Copyright 2025 Kyle J. Coder
@@ -16,22 +16,25 @@
    limitations under the License.
 -->
 
-This folder contains the **Employee Recognition Canvas App** (v1.0.1), a comprehensive Power Apps solution for digital employee recognition across multiple award types including HeRO, Great Catch, Starfish, and I CARE awards.
+This folder contains the **Employee Recognition Canvas App** (v1.0.4), a comprehensive Power Apps solution for digital employee recognition across multiple award types including HeRO, Great Catch, Starfish, and I CARE awards. This version features enhanced user experience with modern visual assets, integrated tutorial videos, and improved loading animations.
 
 ## Folder Structure
 
 ### `.msapp/` - Packaged Application
-- **`v1.0.1_FullRelease.msapp`** - Complete packaged Power Apps file ready for import
-  - Production-ready canvas app with all features enabled
-  - Includes embedded video tutorials and user guidance
-  - Pre-configured for VA Healthcare environments
+- **`v1.0.4_FullRelease.msapp`** - Complete packaged Power Apps file ready for import
+  - Production-ready canvas app with enhanced visual assets and modern VA branding
+  - Integrated tutorial video with SharePoint hosting and embedded access buttons
+  - Animated loading components with professional progress indicators
+  - Fixed dynamic display variables and validated hyperlink navigation
   - Integrated with Power Automate flows and SharePoint backend
 
 ### `.unpacked/` - Source Code (Developer Access)
-- Complete source code for the canvas app in editable format
-- Power Fx formulas, screen definitions, and control configurations
-- Asset files including images, icons, and media resources
-- Component definitions and reusable elements
+- Complete source code for the canvas app in editable format with v1.0.4 enhancements
+- Power Fx formulas, screen definitions, and control configurations with improved display logic
+- Modern visual asset files including updated VA seal, logos, and approved imagery
+- Animated loading components and professional progress indicator implementations
+- Tutorial video integration components with SharePoint connectivity
+- Component definitions and reusable elements with enhanced user experience features
 
 ## Application Features
 
@@ -44,16 +47,21 @@ This folder contains the **Employee Recognition Canvas App** (v1.0.1), a compreh
 - **Accessibility** - Screen reader compatible and ADA compliant design
 
 ### User Experience Features
-- **Intuitive Navigation** - Easy-to-use interface for all skill levels
-- **Progress Indicators** - Clear visual feedback during form completion
+- **Modern Visual Design** - Updated VA seal, logos, and professional imagery replacing placeholder content
+- **Integrated Tutorial System** - SharePoint-hosted tutorial video with embedded access buttons on Update/Help screen and submission popups
+- **Enhanced Loading Experience** - Animated progress bars and spinning loaders for improved user engagement
+- **Validated Navigation** - All hyperlinks tested and 404 errors resolved for seamless user experience
+- **Improved Display Logic** - Fixed dynamic variable conflicts on "View Submissions" screen for proper ICARE Values rendering
+- **Intuitive Navigation** - Easy-to-use interface optimized for all skill levels with enhanced visual feedback
+- **Progress Indicators** - Clear visual feedback during form completion with professional animations
 - **Validation & Error Handling** - Real-time form validation with helpful error messages
 - **Submission Confirmation** - Clear confirmation and next steps after submission
-- **Status Tracking** - Users can view the status of their nominations
+- **Status Tracking** - Users can view the status of their nominations with enhanced visual presentation
 
 ## Installation Options
 
 ### Option 1: Import Packaged App (Recommended)
-1. **Download** the `v1.0.1_FullRelease.msapp` file
+1. **Download** the `v1.0.4_FullRelease.msapp` file
 2. **Open Power Apps** (https://make.powerapps.com)
 3. **Import Canvas App**:
    - Go to Apps → Import Canvas App
@@ -61,10 +69,13 @@ This folder contains the **Employee Recognition Canvas App** (v1.0.1), a compreh
    - Click "Import" and follow the wizard
 4. **Configure Connections**:
    - Update SharePoint connection to your environment
+   - Configure tutorial video SharePoint hosting location
    - Set up Power Automate flow connections
    - Configure any environment-specific variables
 5. **Test & Publish**:
-   - Test all functionality in your environment
+   - Test all functionality including tutorial video access
+   - Validate loading animations and visual asset display
+   - Verify hyperlink navigation and form submission flows
    - Publish the app when ready for users
 
 ### Option 2: Source Code Development
@@ -157,7 +168,15 @@ For developers who want to modify or extend the app:
 
 ## Version History
 
-### v1.0.1 (Current Release)
+### v1.0.4 (Current Release)
+- Enhanced user experience with modern visual assets and VA branding
+- Integrated SharePoint-hosted tutorial video with embedded access buttons
+- Added animated loading components and professional progress indicators
+- Fixed dynamic display variable conflicts on "View Submissions" screen
+- Validated and corrected all hyperlink navigation to eliminate 404 errors
+- Replaced placeholder imagery with production-approved visual assets
+
+### v1.0.1 (Previous Release)
 - Corrected version alignment and tagging
 - Updated all documentation and references
 - Improved file organization and structure
@@ -171,4 +190,4 @@ For developers who want to modify or extend the app:
 
 ---
 
-*This Power Apps solution is part of the Employee Recognition App v1.0.1 public release. For comprehensive documentation, support, and updates, visit the [GitHub repository](https://github.com/KCoderVA/Employee-Recognition-App).*
+*This Power Apps solution is part of the Employee Recognition App v1.0.4 enhanced user experience release. For comprehensive documentation, support, and updates, visit the [GitHub repository](https://github.com/KCoderVA/Employee-Recognition-App).*

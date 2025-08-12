@@ -5378,7 +5378,12 @@
                 ZIndex: =50
 
         Starfish_Submission_PopUP_Q9_Container1_1 As groupContainer.manualLayoutContainer:
-            Height: =Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Height + Starfish_Submission_PopUP_Q3_Container1_Button_Yes_7.Height + Starfish_Submission_PopUP_Q3_Container1_Label_Question_8.Height + HtmlText3.Height + 20
+            Height: |-
+                =If(
+                    Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Text = "Do you know which specific award you want to begin today?",
+                    (Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Height + Starfish_Submission_PopUP_Q3_Container1_Button_Yes_7.Height + Starfish_Submission_PopUP_Q3_Container1_Label_Question_8.Height + Starfish_Submission_PopUP_Q3_Container1_Label_Question_10.Height + Starfish_Submission_PopUP_Q3_Container1_Button_TutorialVideo.Height + HtmlText3.Height + 60),
+                    (Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Height + Starfish_Submission_PopUP_Q3_Container1_Button_Yes_7.Height + Starfish_Submission_PopUP_Q3_Container1_Label_Question_8.Height + Starfish_Submission_PopUP_Q3_Container1_Label_Question_10.Height + HtmlText3.Height + 20)
+                )
             Width: =880
             X: =10
             Y: =233
@@ -5407,6 +5412,73 @@
                 Y: =Starfish_Submission_PopUP_Q3_Container1_Label_Question_8.Y + Starfish_Submission_PopUP_Q3_Container1_Label_Question_8.Height
                 ZIndex: =1
 
+            Starfish_Submission_PopUP_Q3_Container1_Button_TutorialVideo As button:
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(56, 96, 178, 1)
+                FontWeight: =FontWeight.Semibold
+                Height: |-
+                    =//100
+                    If(
+                        (var_PopUP_Starfish_Submission_Q0_N = 1),
+                        0,
+                        (var_PopUP_Starfish_Submission_Q0_Y = 1),
+                        0,
+                        (var_PopUP_Starfish_Submission_Q0_Y = Blank() || (var_PopUP_Starfish_Submission_Q0_N = Blank())),
+                        50
+                    )
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                OnSelect: |-
+                    =Launch("https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/_layouts/15/stream.aspx?id=%2Fsites%2FHinesEmployeeEngagementandWholeHealth%2FEmployeeRecognitionApp%2FShared%20Documents%2FRecordedTutorial_EmployeeRecognitionApp%28take3%29%2Emp4", {}, LaunchTarget.New);
+                Size: =18
+                Text: ="Watch Tutorial Video"
+                Visible: |-
+                    =//true
+                    If(
+                        (var_PopUP_Starfish_Submission_Q0_N = 1),
+                        false,
+                        (var_PopUP_Starfish_Submission_Q0_Y = 1),
+                        false,
+                        (var_PopUP_Starfish_Submission_Q0_Y = Blank() || (var_PopUP_Starfish_Submission_Q0_N = Blank())),
+                        true
+                    )
+                Width: =320
+                X: =((Parent.Width / 2) - (Self.Width / 2))
+                Y: =Starfish_Submission_PopUP_Q3_Container1_Label_Question_10.Y + Starfish_Submission_PopUP_Q3_Container1_Label_Question_10.Height
+                ZIndex: =2
+
+            Starfish_Submission_PopUP_Q3_Container1_Label_Question_10 As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 18, 107, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: |-
+                    =If(
+                        Self.Visible = true,
+                        80,
+                        0
+                    )
+                Size: =20
+                Text: |-
+                    =If(var_PopUP_Starfish_Submission_Q0_N = Blank() && var_PopUP_Starfish_Submission_Q0_Y = Blank(), 
+                        Concatenate("OR, you can click the button below to watch a quick tutorial video about how to use this tool in another browser window:"),
+                        //Concatenate("You may also click the 'MORE INFO' button to find out more about each specific award-type.")
+                        ""
+                    )
+                VerticalAlign: =VerticalAlign.Top
+                Visible: |-
+                    =If(
+                        Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Text = "Do you know which specific award you want to begin today?",
+                        true,
+                        false
+                    )
+                Width: =Parent.Width - 20
+                X: =Parent.X
+                Y: =Starfish_Submission_PopUP_Q3_Container1_Label_Question_8.Y + Starfish_Submission_PopUP_Q3_Container1_Label_Question_8.Height + 20
+                ZIndex: =3
+
             Starfish_Submission_PopUP_Q3_Container1_Label_Question_8 As label:
                 Align: =Align.Center
                 AutoHeight: =true
@@ -5433,7 +5505,7 @@
                 Width: =Parent.Width - 20
                 X: =Parent.X
                 Y: =Starfish_Submission_PopUP_Q3_Container1_Button_Yes_7.Y + Starfish_Submission_PopUP_Q3_Container1_Button_Yes_7.Height + 10
-                ZIndex: =2
+                ZIndex: =4
 
             Starfish_Submission_PopUP_Q3_Container1_Label_Question_7 As label:
                 Align: =Align.Center
@@ -5451,7 +5523,7 @@
                 Visible: =Parent.Visible
                 Width: =Parent.Width - 20
                 X: =10
-                ZIndex: =3
+                ZIndex: =5
 
             Starfish_Submission_PopUP_Q3_Container1_Button_Yes_7 As button:
                 Height: |-
@@ -5506,7 +5578,7 @@
                 Width: =280
                 X: =((Parent.Width / 2) - (Self.Width) - 50)
                 Y: =Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Y + Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Height
-                ZIndex: =4
+                ZIndex: =6
 
             Starfish_Submission_PopUP_Q3_Container1_Button_No_7 As button:
                 Height: |-
@@ -5561,7 +5633,7 @@
                 Width: =280
                 X: =((Parent.Width / 2) - (Self.Width ) + Starfish_Submission_PopUP_Q3_Container1_Button_Yes_7.Width) + 50
                 Y: =Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Y + Starfish_Submission_PopUP_Q3_Container1_Label_Question_7.Height
-                ZIndex: =5
+                ZIndex: =7
 
         Starfish_Submission_PopUP_Q0_Button_Next As button:
             BorderThickness: =If(var_PopUP_Starfish_Submission_Q0_Y = 0, 0, 2)

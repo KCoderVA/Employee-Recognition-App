@@ -803,7 +803,7 @@
       "MetaDataIDKey": "",
       "Name": "Construction_AppInfo_HTMLText",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -2727,7 +2727,7 @@
       "MetaDataIDKey": "",
       "Name": "Construction_TopLevel_Button",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

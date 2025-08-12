@@ -649,7 +649,7 @@
 
         ViewSubmission_IsAdmin_Testing_Icon As icon.Bus:
             Height: =30
-            Icon: =Icon.Bus
+            Icon: =Icon.Bug
             OnSelect: |-
                 =// Administrator-only button, to clear identities and settings to view app functions as regular user for testing, then refreshes app and navigates back to Loading_Screen
                 
@@ -690,8 +690,8 @@
                 ="ADMIN ONLY: Reset application & reload in 'Testing' mode..."
             Visible: =gbl_userIsAdmin
             Width: =30
-            X: =54
-            Y: =27
+            X: =147
+            Y: =5
             ZIndex: =4
 
         Group2 As group:
@@ -916,7 +916,8 @@
                     =About_Toolbar_Tab_MyAwards_Button.Fill
                 Height: =105
                 OnSelect: |-
-                    =Launch( "https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/SitePages/Hines-Employee-Recognition.aspx", {}, LaunchTarget.New);
+                    =Launch( "https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth", {}, LaunchTarget.New);
+                    //Launch("https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/SitePages/Hines-Employee-Recognition.aspx", {}, LaunchTarget.New);
                 PaddingBottom: =0
                 PaddingTop: =0
                 RadiusBottomLeft: =100
@@ -1350,6 +1351,7 @@
                         + (ViewSubmissions_PopUP_Container_Submission_Excellence.Height)
                         + (ViewSubmissions_PopUP_Container_Interactions_Teams.Height)
                         + (ViewSubmissions_PopUP_Container_Submission_HinesHero_Summary.Height)
+                        + (ViewSubmissions_PopUP_Container_Submission_HinesHero_Details.Height)
                         + (ViewSubmissions_PopUP_Container_Submission_AdditionalComments.Height)
                         + (ViewSubmissions_PopUP_Container_Submission_HRO_Context.Height)
                         + (ViewSubmissions_PopUP_Container_Submission_HRO_Actions.Height)
@@ -1476,7 +1478,9 @@
                             )
                         Width: =Parent.Width
                         X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
-                        Y: =ViewSubmissions_PopUP_Container_Submission_AdditionalComments.Y + ViewSubmissions_PopUP_Container_Submission_AdditionalComments.Height
+                        Y: |-
+                            =//ViewSubmissions_PopUP_Container_Submission_AdditionalComments.Y + ViewSubmissions_PopUP_Container_Submission_AdditionalComments.Height
+                            ViewSubmissions_PopUP_Container_Submission_HRO_Results.Y + ViewSubmissions_PopUP_Container_Submission_HRO_Results.Height
                         ZIndex: =3
 
                         ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Button_16 As button:
@@ -1541,7 +1545,15 @@
                             Overflow: =Overflow.Scroll
                             PaddingRight: =15
                             Size: =12
-                            Text: =Concat(col_SelectedNomination_HROPrinciple, ThisRecord.Value, ", ")
+                            Text: |-
+                                =If(
+                                    IsBlank(col_SelectedNomination_HROPrinciple), 
+                                        "",
+                                    Concat(
+                                        col_SelectedNomination_HROPrinciple,
+                                        ThisRecord.Value,
+                                        ", ")
+                                )
                             Width: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Width
                             Y: =ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Y + ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Label_16.Height
                             ZIndex: =4
@@ -1567,9 +1579,9 @@
                                 (!IsBlank(var_SelectedNomination.Packet_HRO_Context_Text) || !IsBlank(var_SelectedNomination.Packet_HRO_Actions_Text) || !IsBlank(var_SelectedNomination.Packet_HRO_Results_Text)),
                                     (ViewSubmissions_PopUP_Container_Submission_HRO_Results.Y + ViewSubmissions_PopUP_Container_Submission_HRO_Results.Height),
                                 (!IsBlank(var_SelectedNomination.Packet_HinesHero_Details_Text) || !IsBlank(var_SelectedNomination.Packet_HinesHero_Summary_Text)),
-                                    (ViewSubmissions_PopUP_Container_Submission_HinesHero_Details.Y + ViewSubmissions_PopUP_Container_Submission_HinesHero_Details.Height),
+                                    (ViewSubmissions_PopUP_Container_Submission_HinesHero_Details.Y + ViewSubmissions_PopUP_Container_Submission_HinesHero_Summary.Height),
                                 (var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award"),
-                                    (ViewSubmissions_PopUP_Container_Submission_Excellence.Y + ViewSubmissions_PopUP_Container_Submission_Excellence.Height),
+                                    (ViewSubmissions_PopUP_Container_Submission_ICAREBoolean.Y),
                                 (Parent.Height - Self.Height)
                             )
                         ZIndex: =4
@@ -2171,8 +2183,8 @@
                         Height: |-
                             =If(
                                 var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
-                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
-                                0
+                                0,
+                                ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_3.Height
                             )
                         Width: =Parent.Width
                         X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
@@ -2262,8 +2274,8 @@
                         Height: |-
                             =If(
                                 var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
-                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
-                                0
+                                0,
+                                ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected_2.Height
                             )
                         Width: =Parent.Width
                         X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
@@ -2354,8 +2366,8 @@
                         Height: |-
                             =If(
                                 var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
-                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
-                                0
+                                0,
+                                ViewSubmissions_PopUP_Container_Interactions_MobilePhone_Selected.Height
                             )
                         Width: =Parent.Width
                         X: =ViewSubmissions_PopUP_Container_Submission_Integrity.X
@@ -2447,8 +2459,8 @@
                         Height: |-
                             =If(
                                 var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
-                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
-                                0
+                                0,
+                                ViewSubmissions_PopUP_Container_Interactions_OfficePhone_Selected.Height
                             )
                         RadiusBottomLeft: =3
                         RadiusBottomRight: =3
@@ -2512,6 +2524,7 @@
 
                         ViewSubmissions_PopUP_Container_Interactions_OfficePhone_Selected As label:
                             Align: =Align.Right
+                            AutoHeight: =true
                             Height: |-
                                 =//If(Len(var_SelectedNomination.Commitment_Comments) > 300, 170, 100)
                                 If(
@@ -2544,8 +2557,8 @@
                         Height: |-
                             =If(
                                 var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
-                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
-                                0
+                                0,
+                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected.Height
                             )
                         RadiusBottomLeft: =3
                         RadiusBottomRight: =3
@@ -2608,6 +2621,7 @@
 
                         ViewSubmissions_PopUP_Container_Interactions_Email_Selected As label:
                             Align: =Align.Right
+                            AutoHeight: =true
                             Height: |-
                                 =If(
                                     (var_SelectedNomination.Packet_IntegrityComments_Text = "None provided"),
@@ -2644,8 +2658,8 @@
                         Height: |-
                             =If(
                                 var_SelectedNomination.Packet_AwardType_Text = "Starfish Award" || "Daisy Award" || "Bee Award",
-                                0,
-                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height
+                                ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1.Height,
+                                0
                             )
                         maximumHeight: =11360
                         maximumWidth: =640
@@ -2721,6 +2735,7 @@
 
                         ViewSubmissions_PopUP_Container_Interactions_Email_Selected_1 As label:
                             Align: =Align.Right
+                            AutoHeight: =true
                             BorderColor: =RGBA(0, 18, 107, 1)
                             Color: =RGBA(0, 0, 0, 1)
                             DisabledColor: =RGBA(166, 166, 166, 1)
@@ -2733,7 +2748,7 @@
                             Overflow: =Overflow.Scroll
                             PaddingRight: =15
                             Size: =12
-                            Text: |
+                            Text: |-
                                 =If(
                                     var_SelectedNomination.Packet_IntegrityComments_Text = "<p></p>",
                                     "None provided",

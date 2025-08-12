@@ -631,9 +631,7 @@
         Height: =75
         HoverColor: =RGBA(23, 102, 93, 1)
         HoverFill: =RGBA(239, 245, 203, 1)
-        OnSelect: |-
-            =//Launch("https://dvagov.sharepoint.com/sites/vhaaughub"); Exit();
-            Navigate(Update_Screen);
+        OnSelect: =Navigate(Update_Screen);
         RadiusBottomLeft: =0
         RadiusBottomRight: =0
         RadiusTopLeft: =20
@@ -751,8 +749,9 @@
 
                 Image6 As image:
                     BorderThickness: =3
+                    Fill: =RGBA(255, 255, 255, 1)
                     Height: =140
-                    Image: =EditUserIcon
+                    Image: =
                     ImagePosition: =ImagePosition.Fill
                     RadiusBottomLeft: =50
                     RadiusBottomRight: =50
@@ -780,13 +779,29 @@
                     Height: =170
                     HoverFill: =RGBA(255, 255, 255, 0.75)
                     OnSelect: |-
-                        =//Launch("https://dvagov.sharepoint.com/:v:/r/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/Shared%20Documents/Tutorial%20Video%20of%20%27578%20Employee%20Recognition%20App%27.mp4?csf=1&web=1&e=34UBhw&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NX19", {}, LaunchTarget.New);
-                        
-                        Launch("https://dvagov-my.sharepoint.com/:v:/g/personal/kyle_coder_va_gov/EUIBQeFlM6NMkeVn4gzDr7kBkrT143tTa7pu9i9RMex4vw?e=3IvmFK&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifSwicGxheWJhY2tPcHRpb25zIjp7InN0YXJ0VGltZUluU2Vjb25kcyI6NC4wOH19", {}, LaunchTarget.New);
+                        =Launch("https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/_layouts/15/stream.aspx?id=%2Fsites%2FHinesEmployeeEngagementandWholeHealth%2FEmployeeRecognitionApp%2FShared%20Documents%2FRecordedTutorial_EmployeeRecognitionApp%28take3%29%2Emp4", {}, LaunchTarget.New);
                     Size: =24
                     Text: =""
                     Width: =640
                     ZIndex: =3
+
+                Image6_4 As image:
+                    BorderColor: =RGBA(0, 18, 107, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: |
+                        =140 * .79
+                    Image: =icon_Video
+                    ImagePosition: =ImagePosition.Fill
+                    RadiusBottomLeft: =5
+                    RadiusBottomRight: =5
+                    RadiusTopLeft: =5
+                    RadiusTopRight: =5
+                    Width: |
+                        =135 * .79
+                    X: =34
+                    Y: =29
+                    ZIndex: =12
 
             About_FluidGrid_Awards_Container As groupContainer.manualLayoutContainer:
                 BorderColor: =ColorFade(Self.Fill, -15%)
@@ -806,8 +821,9 @@
 
                 Image6_1 As image:
                     BorderThickness: =3
+                    Fill: =RGBA(255, 255, 255, 1)
                     Height: =140
-                    Image: =EditLocationIcon
+                    Image: =
                     ImagePosition: =ImagePosition.Fill
                     RadiusBottomLeft: =50
                     RadiusBottomRight: =50
@@ -842,6 +858,18 @@
                     Width: =634
                     ZIndex: =3
 
+                Image6_7 As image:
+                    BorderColor: =RGBA(0, 18, 107, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =170
+                    Image: =stamp_WholeHealth_CircleOfLife
+                    Width: =169 - 6
+                    X: =6
+                    Y: |
+                        =-5
+                    ZIndex: =13
+
             About_FluidGrid_StarfishAward_Container As groupContainer.manualLayoutContainer:
                 BorderColor: =ColorFade(Self.Fill, -15%)
                 BorderThickness: =5
@@ -860,8 +888,9 @@
 
                 Image6_2 As image:
                     BorderThickness: =3
+                    Fill: =RGBA(255, 255, 255, 1)
                     Height: =140
-                    Image: =EmergencyIcon
+                    Image: =
                     ImagePosition: =ImagePosition.Fill
                     RadiusBottomLeft: =50
                     RadiusBottomRight: =50
@@ -896,6 +925,17 @@
                     Width: =634
                     ZIndex: =3
 
+                Image6_8 As image:
+                    BorderColor: =RGBA(0, 18, 107, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =140 * .90
+                    Image: ='logo_ICARE-noBackground'
+                    Width: =135 * .90
+                    X: =26
+                    Y: =12
+                    ZIndex: =14
+
             About_FluidGrid_HRO_Container As groupContainer.manualLayoutContainer:
                 BorderColor: =ColorFade(Self.Fill, -15%)
                 BorderThickness: =5
@@ -914,8 +954,9 @@
 
                 Image6_3 As image:
                     BorderThickness: =3
+                    Fill: =RGBA(255, 255, 255, 1)
                     Height: =140
-                    Image: =EditLinkIcon
+                    Image: =
                     ImagePosition: =ImagePosition.Fill
                     RadiusBottomLeft: =50
                     RadiusBottomRight: =50
@@ -944,11 +985,21 @@
                     HoverFill: =RGBA(255, 255, 255, 0.75)
                     OnSelect: |-
                         =Launch("https://dvagov.sharepoint.com/sites/VHAHINHRO/SitePages/Home.aspx", {}, LaunchTarget.New);
-                        Navigate(CONSTRUCTION_Screen, BorderStyle.None)
                     Size: =24
                     Text: =""
                     Width: =634
                     ZIndex: =3
+
+                Image6_9 As image:
+                    BorderColor: =RGBA(0, 18, 107, 1)
+                    DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                    DisabledFill: =RGBA(244, 244, 244, 1)
+                    Height: =140 * .9
+                    Image: ='icon_HRO-Pillars'
+                    Width: =135 * .9
+                    X: =26
+                    Y: =23
+                    ZIndex: =15
 
     "'About_BottomButton_Help/About_Container' As groupContainer.manualLayoutContainer":
         BorderColor: =RGBA(9, 33, 98, 1)
@@ -1212,16 +1263,4 @@
                     Text: =
                     Width: =144
                     ZIndex: =3
-
-    StreamVideo1 As Stream:
-        Height: |-
-            =//475
-            0
-        StreamUrl: |-
-            ="https://dvagov-my.sharepoint.com/:v:/g/personal/kyle_coder_va_gov/EWOUIZCJFMNGlcpJE85YVQEBuOxnHrOEdSF_F3TgN8aa5w"
-        Visible: =false
-        Width: =640
-        X: =0
-        Y: =960
-        ZIndex: =17
 

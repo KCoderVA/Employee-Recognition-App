@@ -941,7 +941,7 @@
       "MetaDataIDKey": "",
       "Name": "Image3",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 8,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -9874,7 +9874,14 @@
     "ViewSubmission_IsAdmin_Testing_Icon": {
       "AllowAccessToGlobals": true,
       "ControlPropertyState": [
-        "Icon",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "Icon",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
         "Color",
         "DisabledColor",
         "PressedColor",
@@ -9954,7 +9961,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmission_IsAdmin_Testing_Icon",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 6,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -10213,7 +10220,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmission_StartNewPacket_Background_Button",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 4,
+      "ParentIndex": 5,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -10942,7 +10949,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmission_StartNewPacket_Icon",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 5,
+      "ParentIndex": 6,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -15742,7 +15749,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Interactions_Calendar",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 12,
+      "ParentIndex": 13,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -19086,7 +19093,7 @@
         {
           "Category": "Design",
           "PropertyName": "AutoHeight",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "User"
         },
         {
           "Category": "Design",
@@ -19104,10 +19111,24 @@
         "Live",
         "LineHeight",
         "Overflow",
-        "AutoHeight",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "",
+          "InvariantPropertyName": "AutoHeight",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
         "Wrap",
         "IsErrorMessage",
-        "Text",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "If(\n    var_SelectedNomination.Packet_IntegrityComments_Text = \"<p></p>\",\n    \"None provided\",\n    Substitute(\n        Substitute(\n            Substitute(\n                Substitute(\n                    var_SelectedNomination.Packet_IntegrityComments_Text,\n                    \"<p>\", \"\"\n                ),\n                \"</p>\", \"\"\n            ),\n            \"<div>\", \"\"\n        ),\n        \"</div>\", \"\"\n    )\n)\n",
+          "InvariantPropertyName": "Text",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
         "Tooltip",
         "Role",
         "ContentLanguage",
@@ -19181,7 +19202,7 @@
         {
           "Category": "Data",
           "PropertyName": "Text",
-          "RuleProviderType": "Unknown"
+          "RuleProviderType": "User"
         },
         {
           "Category": "Data",
@@ -33743,7 +33764,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Interactions_Teams",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 6,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -37044,7 +37065,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_AdditionalComments",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 13,
+      "ParentIndex": 14,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -37220,7 +37241,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_Advocacy",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 9,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -37423,7 +37444,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_Commitment",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 10,
+      "ParentIndex": 2,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -37614,7 +37635,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_Excellence",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 7,
+      "ParentIndex": 5,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -37787,7 +37808,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_HinesHero_Details",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 5,
+      "ParentIndex": 11,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -38033,7 +38054,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_HinesHero_Summary",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 6,
+      "ParentIndex": 12,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -38285,7 +38306,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_HRO",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 14,
+      "ParentIndex": 7,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -38456,7 +38477,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_HRO_Actions",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 9,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -38709,7 +38730,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_HRO_Context",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 4,
+      "ParentIndex": 10,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -38962,7 +38983,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_HRO_Results",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 8,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -39215,7 +39236,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_ICAREBoolean",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -39498,7 +39519,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_Integrity",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 11,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -39689,7 +39710,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Container_Submission_Respect",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 8,
+      "ParentIndex": 4,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -41765,7 +41786,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Selected_Image",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 7,
+      "ParentIndex": 1,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -42098,7 +42119,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Selected_Label_Location",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 2,
+      "ParentIndex": 7,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -42476,7 +42497,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Selected_Label_Location_Value",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 6,
+      "ParentIndex": 8,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -42861,7 +42882,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Selected_Label_Name_Value",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 3,
+      "ParentIndex": 0,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -43232,7 +43253,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Selected_Label_SubmissionDate",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 1,
+      "ParentIndex": 5,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -43610,7 +43631,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Selected_Label_SubmissionDate_Value",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 5,
+      "ParentIndex": 6,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -43981,7 +44002,7 @@
       "MetaDataIDKey": "",
       "Name": "ViewSubmissions_PopUP_Selected_Label_SubmittedBy",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 0,
+      "ParentIndex": 3,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

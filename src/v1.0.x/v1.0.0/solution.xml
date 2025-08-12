@@ -8,10 +8,10 @@
         </LocalizedNames>
         <Descriptions>
             <Description
-                description="Complete Power Platform solution for employee recognition and awards management"
+                description="Enhanced User Experience Release (v1.0.4): Modern visual assets with approved VA seal and logos, integrated SharePoint-hosted tutorial video with embedded access buttons, animated loading components with professional progress indicators, validated hyperlink navigation with 404 error fixes, and resolved dynamic display variable conflicts on submission review screens. Complete Power Platform solution for employee recognition and awards management featuring comprehensive user guidance, enhanced visual branding, and improved user engagement while maintaining full production stability."
                 languagecode="1033" />
         </Descriptions>
-        <Version>1.0.1</Version>
+        <Version>1.0.4</Version>
         <Managed>1</Managed>
         <Publisher>
             <UniqueName>VAHealthcare</UniqueName>
@@ -21,11 +21,7 @@
             <Descriptions>
                 <Description description="Department of Veterans Affairs Healthcare"
                     languagecode="1033" />
-        <Descriptions>
-            <Description
-                description="Production Pilot (v1.0.1): Public release with corrected version alignment and comprehensive documentation. Complete Power Platform solution for employee recognition and awards management featuring embedded video tutorial, feedback system, bug reporting, Power Automate enhancements, Patient Safety Event flow, and SharePoint/intranet integration."
-                languagecode="1033" />
-        </Descriptions>
+            </Descriptions>
             <Addresses>
                 <Address>
                     <AddressNumber>1</AddressNumber>
@@ -57,6 +53,8 @@
             <RootComponent type="380" schemaName="vah_SharePointSiteUrl" behavior="0" />
             <RootComponent type="380" schemaName="vah_NotificationEmailFrom" behavior="0" />
             <RootComponent type="380" schemaName="vah_MaxAttachmentSize" behavior="0" />
+            <RootComponent type="380" schemaName="vah_TutorialVideoUrl" behavior="0" />
+            <RootComponent type="380" schemaName="vah_LoadingAnimationEnabled" behavior="0" />
         </RootComponents>
         <MissingDependencies />
     </SolutionManifest>

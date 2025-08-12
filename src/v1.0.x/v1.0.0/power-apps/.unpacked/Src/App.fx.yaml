@@ -18,21 +18,21 @@ App As appinfo:
         // hint                | 361aa4ec-99b2-4d29-b485-8f905db4f09b                     | Used internally by PowerApps for navigation, session context, or deeplinks (may be omitted)
         // sourcetime          | 1750776424383                                            | Timestamp/session identifier for session or cache-busting (may be omitted)
         /////////////////////////////
-
-
-
+        
+        
+        
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL IDENTIFY THE CURRENT USER BY Windows ActiveDirectory EMAIL ADDRESS, USED TO GENERATE NEARLY ALL OTHER USER AND AUTHORIZATION PARAMETERS OR VARIABLES
             Set(
                 gbl_userCurrentEmail,
                 Lower(User().Email)
             );
-
+        
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL PICK UP ADDITIONAL Windows ActiveDirectory DEMOGRAPHICS BASED ON THE EMAIL ADDRESS IDENTIFIED IN "gbl_userCurrentEmail"
             Set(
                 gbl_userCurrentProfile,
                 Office365Users.MyProfile()
             );
-
+        
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL PICK UP ADDITIONAL Windows ActiveDirectory DEMOGRAPHICS BASED ON THE APPLICATION'S ACCESS PERMISSIONS, CONTAINED WITHIN THE RESPECTIVE SharePoint LISTS:
             Set(
                 gbl_userIsTriage,
@@ -43,7 +43,7 @@ App As appinfo:
                     )
                 )
             );
-
+        
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL SET A VARIABLE TO DETERMINE SPECIAL ACCESS FOR APP ADMINISTRATORS TO IMPACT OBJECTS, CONTROLS, VIEWS, FORMULA, OR FUNCTIONS ONLY WHEN THE CURRENT USER IS IDENTIFIED AS AN APP ADMINISTRATOR (VIA THE USER BEING ADDED OR REMOVED FROM THIS SharePoint LIST: "https://dvagov.sharepoint.com/sites/vhahin/svc/ci/TelehealthTeamApp/Lists/DeskAdmins/AllItems.aspx"). NOTE: THIS "gbl_userIsAdmin" VARIABLE ONLY IMPACTS THE INTERNAL APP COMPONENTS, WHILE BEING ADDED TO THE SHAREPOINT LIST DOES NOT GRANT A USER OFFICIAL "Power Apps Ownership" PERMISSIONS TO PROGRAM OR DEVELOP THIS APP
             Set(
                 gbl_userIsAdmin,
@@ -99,14 +99,14 @@ App As appinfo:
                     )
                 )
             );
-
-
+        
+        
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL SET A VARIABLE TO ALLOW CERTAIN FUNCTIONS ONLY ON THE FIRST TIME THE APPLICATION LOADS, AND TURNED OFF ON RE-NAVIGATIONS
             Set(
                 gbl_appFirstOnStart,
                 true
             );
-
+        
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL SET A VARIABLE TO DETECT THE HOST OPERATING SYSTEM ("Windows" or "Mobile"), USED TO ALTER FUTURE DEEPLINKS AND USER INTERFACE LAYOUTS
         If(
             Host.OSType = "Windows",
@@ -130,7 +130,7 @@ App As appinfo:
                     //&& Param("hostClientType") = "web"
             );
         */
-
+        
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL INITIALIZE AND SET A COMBINATION OF COLLECTIONS & VARIABLE TO DETECT THE CURRENT APPLICATION VERSION HISTORY (via "PowerAppsForMakers" connector) AND ALLOW IN-APP DISPLAY OF PUBLICATION DATE AND PUBLICATION VERSION NUMBER
             ClearCollect(
                 col_appVersionNumbers,
@@ -147,7 +147,7 @@ App As appinfo:
                 gbl_appVersionNumber,
                 Concatenate(
                     "1.0.",
-                    "0"//CountRows(col_appVersionsUngrouped)
+                    "4"//CountRows(col_appVersionsUngrouped)
                     )
             );
             Set(
@@ -172,3 +172,4 @@ App As appinfo:
         OnNew: =false
         OnSave: =false
         OnView: =false
+
