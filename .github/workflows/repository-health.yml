@@ -85,13 +85,28 @@ jobs:
             exit 1
           fi
 
-          # Directory structure check
+          # Directory structure check with detailed debugging
+          echo "🔍 Checking directory structure..."
+          echo "📂 Current directory: $(pwd)"
+          echo "📂 Full directory listing:"
+          find . -maxdepth 1 -type d | sort
+
           required_dirs=("src" "docs" ".github" "scripts")
           missing_dirs=()
 
           for dir in "${required_dirs[@]}"; do
+            echo "🔍 Checking for directory: $dir"
             if [ ! -d "$dir" ]; then
               missing_dirs+=("$dir")
+              echo "❌ Missing directory: $dir"
+              # Additional debugging
+              echo "   Attempting case-insensitive search..."
+              find . -maxdepth 1 -type d -iname "$dir" | head -5
+            else
+              echo "✅ Found directory: $dir"
+              # Show some contents for verification
+              echo "   Contents (first 5 items):"
+              ls -la "$dir" | head -6
             fi
           done
 
@@ -100,6 +115,40 @@ jobs:
           else
             echo "❌ Missing required directories: ${missing_dirs[*]}"
             exit 1
+          fi
+
+          # Additional Power Platform structure validation
+          echo "🔍 Validating Power Platform project structure..."
+
+          # Check for Power Platform source structure
+          if [ -d "src/v1.0.x/v1.0.0" ]; then
+            echo "✅ Power Platform source structure found: src/v1.0.x/v1.0.0/"
+
+            # Check individual Power Platform components
+            pp_components=("power-apps" "power-automate" "sharepoint" "powershell")
+            for component in "${pp_components[@]}"; do
+              if [ -d "src/v1.0.x/v1.0.0/$component" ]; then
+                echo "✅ Found Power Platform component: $component"
+              else
+                echo "⚠️ Missing Power Platform component: $component"
+              fi
+            done
+          else
+            echo "⚠️ Power Platform source structure not found at expected location"
+          fi
+
+          # Check for PowerShell scripts in both locations
+          root_scripts=$(find scripts -name "*.ps1" 2>/dev/null | wc -l)
+          pp_scripts=$(find src/v1.0.x/v1.0.0/powershell -name "*.ps1" 2>/dev/null | wc -l)
+
+          echo "📊 PowerShell scripts found:"
+          echo "  - Root scripts/ directory: $root_scripts scripts"
+          echo "  - Power Platform powershell/ directory: $pp_scripts scripts"
+
+          if [ $root_scripts -gt 0 ] || [ $pp_scripts -gt 0 ]; then
+            echo "✅ PowerShell automation scripts available"
+          else
+            echo "⚠️ No PowerShell scripts found"
           fi
 
       # SECTION: Validate documentation
