@@ -30,7 +30,7 @@ App As appinfo:
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL PICK UP ADDITIONAL Windows ActiveDirectory DEMOGRAPHICS BASED ON THE EMAIL ADDRESS IDENTIFIED IN "gbl_userCurrentEmail"
             Set(
                 gbl_userCurrentProfile,
-                Office365Users.MyProfile()
+                Office365Users.SearchUserV2({searchTerm:(gbl_userCurrentEmail)})
             );
         
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL PICK UP ADDITIONAL Windows ActiveDirectory DEMOGRAPHICS BASED ON THE APPLICATION'S ACCESS PERMISSIONS, CONTAINED WITHIN THE RESPECTIVE SharePoint LISTS:
@@ -134,7 +134,7 @@ App As appinfo:
         // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL INITIALIZE AND SET A COMBINATION OF COLLECTIONS & VARIABLE TO DETECT THE CURRENT APPLICATION VERSION HISTORY (via "PowerAppsForMakers" connector) AND ALLOW IN-APP DISPLAY OF PUBLICATION DATE AND PUBLICATION VERSION NUMBER
             ClearCollect(
                 col_appVersionNumbers,
-                PowerAppsforMakers.GetAppVersions("f14182d6-e4ef-42bf-8dd2-0a628377cb77")
+                PowerAppsforMakers.GetAppVersions("f14182d6-e4ef-42bf-8dd2-0a628377cb77",{'$top':("99")})
             );
             ClearCollect(
                 col_appVersionsUngrouped,
@@ -147,7 +147,8 @@ App As appinfo:
                 gbl_appVersionNumber,
                 Concatenate(
                     "1.0.",
-                    "4"//CountRows(col_appVersionsUngrouped)
+                    "5"
+                    //,"-", CountRows(col_appVersionsUngrouped)
                     )
             );
             Set(
@@ -160,8 +161,304 @@ App As appinfo:
                     properties.lifeCycleId = "Published"
                 ).properties.appVersion
             );
-            Clear(col_appVersionNumbers);
-            Clear(col_appVersionNumbers);
+            //Clear(col_appVersionNumbers);
+            //Clear(col_appVersionsUngrouped);
+        ////////////
+        /*
+            Set(
+                z_version_Properties_LifecycleID_Published,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Published"
+                ).properties.appVersion
+            );
+            Set(
+                z_version_Properties_LifecycleID_Saved,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Autosaved"
+                ).properties.appVersion
+            );
+            Set(
+                z_version_Tags_SienaVersion_Published,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Published"
+                ).tags.sienaVersion
+            );
+            Set(
+                z_version_Tags_SienaVersion_Saved,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Autosaved"
+                ).tags.sienaVersion
+            );
+            Set(
+                z_versions_Tags_SienaVersionDTVzulu_PublishedLower,
+                Left(
+                    z_version_Tags_SienaVersion_Published, 15)
+                    //Find("-", z_version_Tags_SienaVersion_Published) - 2)
+            );
+            Set(
+                z_versions_Tags_SienaVersionDTVzulu_PublishedYear,
+                Left(z_versions_Tags_SienaVersionDTVzulu_PublishedLower, 4)
+            );
+            /*Set(
+                z_versions_Tags_SienaVersionDTVlocal_Published_Converted,
+                DateTimeValue(
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,1,4) & "-" & 
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,5,2) & "-" & 
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,7,2) & " " & 
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,10,2) & ":" & 
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,12,2) & ":" & 
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,14,2),
+                    "en-US"
+                )
+            );
+            Set(
+                z_versions_Tags_SienaVersionDTVlocal_Published_SubsituteT,
+                Substitute(z_versions_Tags_SienaVersionDTVzulu_Published, "T", " ")
+            );
+            Set(
+                z_versions_Tags_SienaVersionDTVlocal_Published_SubsituteZ,
+                Substitute(z_versions_Tags_SienaVersionDTVzulu_Published, "Z", "")
+            );
+        */
+        
+        
+        
+        
+        
+        
+        
+        /*
+        // Get date/time stamp of last published version
+            Set(ZZZ_appVersionDateTime_Published,
+                LookUp(
+                    Ungroup(col_appVersionNumbers,value),
+                    properties.lifeCycleId = "Published").properties.appVersion
+            );
+        // Get date/time stamp of last autosaved version
+            Set(ZZZ_appVersionDateTime_Autosaved,
+                LookUp(
+                    Ungroup(col_appVersionNumbers,value),
+                    properties.lifeCycleId = "Autosaved").properties.appVersion
+            );
+        // Get date/time stamp of last drafted version
+            Set(ZZZ_appVersionDateTime_Draft,
+                LookUp(
+                    Ungroup(col_appVersionNumbers,value),
+                    properties.lifeCycleId = "Draft").properties.appVersion
+            );
+        // Get date/time stamp of last unpublished version
+            Set(ZZZ_appVersionDateTime_NotBlank,
+                LookUp(
+                    Ungroup(col_appVersionNumbers,value),
+                    properties.lifeCycleId <> "Published").properties.appVersion
+            );
+        Set(
+            ZZZ_varLatestDraftVersion,
+            First(
+                SortByColumns(
+                    Filter(
+                        Ungroup(col_appVersionNumbers, value),
+                        properties.lifeCycleId = "Draft"
+                    ),"type",SortOrder.Descending)
+                )
+        );
+        
+        
+        
+            
+        // Get date/time stamp of last unpublished version
+            Set(ZZZ_appVersionDateTime_Distinct,
+                Distinct(
+                    Ungroup(col_appVersionNumbers, value),
+                    properties.lifeCycleId
+                )
+            );
+        
+        
+            // === Flatten the nested 'value' table once for reuse ===
+        ClearCollect(
+            col_AppVersionsFlat,
+            Ungroup(col_appVersionNumbers, value)
+        );
+        
+        // === Get appVersion of last Published ===
+        Set(
+            ZZZ_appVersionDateTime_Published222,
+            LookUp(
+                col_AppVersionsFlat,
+                properties.lifeCycleId = "Published"
+            ).properties.appVersion
+        );
+        
+        // === Get appVersion of last Autosaved ===
+        Set(
+            ZZZ_appVersionDateTime_Autosaved222,
+            LookUp(
+                col_AppVersionsFlat,
+                properties.lifeCycleId = "Autosaved"
+            ).properties.appVersion
+        );
+        
+        // === Get appVersion of last Draft ===
+        Set(
+            ZZZ_appVersionDateTime_Draft222,
+            LookUp(
+                col_AppVersionsFlat,
+                properties.lifeCycleId = "Draft"
+            ).properties.appVersion
+        );
+        
+        // === Get appVersion of last Unpublished (anything not 'Published') ===
+        Set(
+            ZZZ_appVersionDateTime_NotPublished222,
+            LookUp(
+                col_AppVersionsFlat,
+                properties.lifeCycleId <> "Published"
+            ).properties.appVersion
+        );
+        
+        // === Get latest Draft record as a full record object ===
+        Set(
+            ZZZ_varLatestDraftVersion222,
+            First(
+                SortByColumns(
+                    Filter(
+                        col_AppVersionsFlat,
+                        properties.lifeCycleId = "Draft"
+                    ),
+                    "type",
+                    SortOrder.Descending
+                )
+            )
+        );
+        
+        // === Distinct list of all lifeCycleId values found ===
+        Set(
+            ZZZ_appVersionDateTime_Distinct222,
+            Distinct(
+                col_AppVersionsFlat,
+                properties.lifeCycleId
+            )
+        );
+        // === Get appVersion of last published SeinnaVersion ===
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionDistinct,
+            Distinct(
+                col_AppVersionsFlat,
+                tags.sienaVersion
+            )
+        );
+        
+        
+        
+        If(
+            ZZZ_appVersionDateTime_Published222 <> ZZZ_appVersionDateTime_NotPublished222,
+            Set(
+                ZZZ_UserOutOfDate,
+                true),
+            Set(
+                ZZZ_UserOutOfDate,
+                false)
+        );
+        
+        // === Get appVersion of last published SeinnaVersion ===
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionPublished22222,
+            First(
+                Filter(col_AppVersionsFlat,
+                    tags.sienaVersion
+                    )
+                    
+                    //LookUp(
+                    //    col_AppVersionsFlat,
+                    //    StartsWith(tags.sienaVersion, "2025"),
+                    //    tags.sienaVersion)
+            )
+        );
+        First(
+                SortByColumns(
+                    Filter(
+                        col_AppVersionsFlat,
+                        properties.lifeCycleId = "Published"
+                    ),
+                    "type",
+                    SortOrder.Descending
+                )
+            );
+        
+        
+        
+        // === Get appVersion of last published SeinnaVersion ===
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionUnpublished,
+            LookUp(
+                col_AppVersionsFlat,
+                tags.sienaVersion <> "Published"
+            ).tags.sienaVersion
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionPublishedLeft,
+            Left(
+                ZZZ_appVersionDateTime_SiennaVersionPublished,
+                Find("-", ZZZ_appVersionDateTime_SiennaVersionPublished) - 1)
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionPublishedDTV,
+            DateTimeValue(
+                Substitute(
+                    Substitute(ZZZ_appVersionDateTime_SiennaVersionPublished, "T", " "),
+                    "Z", ""),
+                "en-US"
+            )
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionUnPublishedLeft,
+            Left(
+                ZZZ_appVersionDateTime_SiennaVersionUnpublished,
+                Find("-", ZZZ_appVersionDateTime_SiennaVersionUnpublished) - 1)
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionUnpublishedDTV,
+            DateTimeValue(
+                Substitute(
+                    Substitute(ZZZ_appVersionDateTime_SiennaVersionUnpublished, "T", " "),
+                    "Z", ""),
+                "en-US"
+            )
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionGreaterThan,
+            If(
+                (ZZZ_appVersionDateTime_SiennaVersionPublishedDTV > ZZZ_appVersionDateTime_SiennaVersionUnpublishedDTV),
+                    ZZZ_appVersionDateTime_SiennaVersionPublishedDTV,
+                    ZZZ_appVersionDateTime_SiennaVersionUnpublishedDTV
+            )
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionOutOfDate,
+            If(
+                (ZZZ_appVersionDateTime_SiennaVersionPublishedDTV > ZZZ_appVersionDateTime_SiennaVersionUnpublishedDTV),
+                    false,
+                    true
+            )
+        );
+        */
     SizeBreakpoints: =[640, 1200, 1800, 2400]
     StartScreen: =Loading_Screen
     Theme: =PowerAppsTheme

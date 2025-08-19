@@ -53,14 +53,14 @@
     Form2 As form.PowerApps_CoreControls_Form:
         DataSource: ='578_Starfish'
         Height: =612
-        Item: =gal_Untriaged.Selected
+        Item: =Gallery1.Selected
         NumberOfColumns: =2
         UseFluentV9Cards: =true
         Visible: |
             =true
-        Width: =604
-        X: =518
-        Y: =180
+        Width: =700
+        X: =665
+        Y: =156
         ZIndex: =4
 
         TriageStage_AwaitingActionFrom_DataCard1 As typedDataCard.fluentV9TextualEditCard:
@@ -74,7 +74,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Triage_AssignedTo)
             Required: =false
             Update: =DataCardValue30.Value
-            Width: =302
+            Width: =350
             X: =1
             Y: =3
             ZIndex: =1
@@ -149,7 +149,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Triage_ActionComments)
             Required: =false
             Update: =DataCardValue31.Value
-            Width: =302
+            Width: =350
             X: =0
             Y: =4
             ZIndex: =1
@@ -224,7 +224,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Triage_Status)
             Required: =false
             Update: =DataCardValue32.Value
-            Width: =302
+            Width: =350
             X: =1
             Y: =4
             ZIndex: =1
@@ -299,7 +299,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Triage_ActionBy)
             Required: =false
             Update: =DataCardValue33.Value
-            Width: =302
+            Width: =350
             X: =0
             Y: =5
             ZIndex: =1
@@ -374,7 +374,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, Title)
             Required: =false
             Update: =DataCardValue25.Value
-            Width: =302
+            Width: =350
             X: =0
             Y: =0
             ZIndex: =5
@@ -448,7 +448,7 @@
             Height: =70
             Required: =false
             Update: =If(Not IsBlank(DateValue2.SelectedDate), DateTime(Year(DateValue2.SelectedDate), Month(DateValue2.SelectedDate), Day(DateValue2.SelectedDate), Value(HourValue2.Selected.Value), Value(MinuteValue2.Selected.Value), Second(DateValue2.SelectedDate)))
-            Width: =302
+            Width: =350
             X: =1
             Y: =0
             ZIndex: =5
@@ -562,7 +562,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, field_3)
             Required: =false
             Update: =DataCardValue26.Value
-            Width: =302
+            Width: =350
             X: =0
             Y: =1
             ZIndex: =5
@@ -637,7 +637,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, field_4)
             Required: =false
             Update: =DataCardValue27.Value
-            Width: =302
+            Width: =350
             X: =1
             Y: =1
             ZIndex: =5
@@ -712,7 +712,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, field_5)
             Required: =false
             Update: =DataCardValue28.Value
-            Width: =302
+            Width: =350
             X: =0
             Y: =2
             ZIndex: =5
@@ -787,7 +787,7 @@
             MaxLength: =DataSourceInfo([@'578_Starfish'], DataSourceInfo.MaxLength, field_6)
             Required: =false
             Update: =DataCardValue29.Value
-            Width: =302
+            Width: =350
             X: =1
             Y: =2
             ZIndex: =5
@@ -861,7 +861,7 @@
             Height: =70
             Required: =false
             Update: =If(Not IsBlank(DateValue3.SelectedDate), DateTime(Year(DateValue3.SelectedDate), Month(DateValue3.SelectedDate), Day(DateValue3.SelectedDate), Value(HourValue3.Selected.Value), Value(MinuteValue3.Selected.Value), Second(DateValue3.SelectedDate)))
-            Width: =302
+            Width: =350
             X: =0
             Y: =3
             ZIndex: =5
@@ -1084,6 +1084,7 @@
                 + ViewSubmissions_BrowseGallery_Text_SubmissionDateTime_1.Height
                 + 3)
             )
+        Visible: =false
         Width: =518
         Y: =180
         ZIndex: =6
@@ -1325,4 +1326,134 @@
             Width: =Parent.Width - 2
             X: =1
             ZIndex: =12
+
+    "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+        DelayItemLoading: =true
+        Height: =612
+        Items: |-
+            =Filter('578_Starfish',
+                IsBlank(ThisRecord.TriageStage_Completed_DateTime)
+            )
+        Layout: =Layout.Vertical
+        LoadingSpinner: =LoadingSpinner.Data
+        OnSelect: |-
+            =ThisItem.IsSelected;
+            Set(var_selectedUser,
+                ThisItem);
+            Set(var_selectedUser_Manager,
+                Office365Users.ManagerV2(ThisItem.Nominee_SupervisorEmail_Text);
+            ClearCollect(
+                col_selectedUserProfile,
+                ThisItem);
+        TemplatePadding: =0
+        TemplateSize: =104
+        Width: =555
+        Y: =156
+        ZIndex: =7
+
+        Title1 As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =14
+            Text: |-
+                =If(
+                    ThisItem.Packet_AwardType_Text = "None provided",
+                    "No specific award type selected during submission",
+                    "Award Selected:  " & ThisItem.Packet_AwardType_Text
+                )
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - 25
+            X: =7
+            Y: =(Parent.TemplateHeight - (Self.Size * 1.8 + Subtitle1.Size * 1.8)) / 2
+            ZIndex: =2
+
+        Subtitle1 As label:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(71, 69, 64, 1)
+            DisabledColor: =RGBA(186, 186, 186, 1)
+            FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+            Height: =Self.Size * 1.8
+            OnSelect: =Select(Parent)
+            PaddingBottom: =0
+            PaddingLeft: =0
+            PaddingRight: =0
+            PaddingTop: =0
+            Size: =20
+            Text: =ThisItem.Nominee_NameEmail_Text
+            VerticalAlign: =VerticalAlign.Top
+            Width: =Parent.Width - 25
+            X: =7
+            Y: =Title1.Y + Title1.Height
+            ZIndex: =3
+
+        NextArrow1 As icon.ChevronRight:
+            AccessibleLabel: =Self.Tooltip
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(166, 166, 166, 1)
+            DisabledBorderColor: =RGBA(56, 56, 56, 1)
+            DisabledColor: =RGBA(119, 119, 119, 1)
+            Height: =50
+            Icon: =Icon.ChevronRight
+            OnSelect: =Select(Parent)
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Tooltip: ="View item details"
+            Width: =50
+            X: =Parent.TemplateWidth - Self.Width - 12
+            Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+            ZIndex: =4
+
+        Separator1 As rectangle:
+            BorderColor: =RGBA(0, 0, 255, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =8
+            OnSelect: =Select(Parent)
+            Width: =Parent.TemplateWidth
+            Y: =Parent.TemplateHeight - Self.Height
+            ZIndex: =5
+
+        Rectangle1 As rectangle:
+            Height: =Separator1.Y + 3
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            ZIndex: =6
+
+        Rectangle3 As rectangle:
+            BorderThickness: =1
+            Fill: |-
+                =If(
+                    ThisItem.IsSelected,
+                    RGBA(180, 214, 250, 0.5),
+                    RGBA(0, 0, 0, 0)
+                )
+            FocusedBorderColor: =RGBA(180, 214, 250, 1)
+            Height: =Parent.TemplateHeight - 3
+            HoverFill: =RGBA(180, 214, 250, 0.5)
+            OnSelect: =Select(Parent);
+            PressedFill: =RGBA(180, 214, 250, 0.25)
+            Width: =Parent.TemplateWidth - 5
+            X: =1
+            Y: =1
+            ZIndex: =7
+
+    ButtonCanvas5 As Button:
+        DisplayMode: =DisplayMode.Edit
+        Height: =32
+        OnSelect: =SubmitForm(Form2); Reset(Gallery1); ClearCollect(col_selectedUserNominee, Blank()); Set(var_selectedUser, Blank()); Set(var_selectedUser_Manager, Blank());
+        Text: ="Submit Changes"
+        Width: =145
+        X: =779
+        Y: =116
+        ZIndex: =8
 

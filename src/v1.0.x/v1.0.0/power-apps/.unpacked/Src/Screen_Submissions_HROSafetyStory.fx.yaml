@@ -331,7 +331,9 @@
         Text: |-
             =If(
                 (IsEmpty(var_SelectedAwardType) || IsBlank(var_SelectedAwardType)),
-                "New HRO Award Packet",
+                    "New Award Nomination",
+                First(var_SelectedAwardType).Value = "Hines Hero/Happenings",
+                    "New HRO Award Nomination",
                 "New " & First(var_SelectedAwardType).Value & " Nomination"
             )
         Width: =Parent.Width - Icon_SafetyStory_Cancel.Width - Icon_SafetyStory_Accept.Width

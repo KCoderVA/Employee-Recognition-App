@@ -56,9 +56,9 @@ Loading_Screen As screen:
             FontWeight: =FontWeight.Bold
             Height: =70
             Size: =40
-            Text: ="LOADING"
+            Text: ="Loading..."
             Width: =640
-            Y: =120
+            Y: =88
             ZIndex: =1
 
         Home_Container_Label_PublicationInfo As label:
@@ -524,7 +524,7 @@ Loading_Screen As screen:
         DisabledColor: =RGBA(244, 244, 244, 1)
         Height: =39
         Icon: =Icon.Support
-        OnSelect: =Navigate(CONSTRUCTION_Screen);
+        OnSelect: =
         Visible: |-
             =If(
                 gbl_userIsAdmin = true,
@@ -567,12 +567,12 @@ Loading_Screen As screen:
     "Progress1 As 'Progress Bar'":
         BasePaletteColor: =
         DisplayMode: =DisplayMode.Edit
-        Height: =66
+        Height: =19
         Max: =Loading_Variable_Timer.Duration
         Thickness: ='Progress.Thickness'.Large
         Value: =Loading_Variable_Timer.Value
         Width: =(App.Width / 100 ) * 98
-        X: =(App.Width / 100 ) * 1
-        Y: =1070
+        X: =10
+        Y: =1086
         ZIndex: =31
 

@@ -28829,7 +28829,7 @@
       "MetaDataIDKey": "",
       "Name": "Nursing_Submission_PopUP_Container_Q0_AwardTypeChoice_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 18,
+      "ParentIndex": 19,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {
@@ -28986,7 +28986,7 @@
       "MetaDataIDKey": "",
       "Name": "Nursing_Submission_PopUP_Container_Q1_PickPerson_1",
       "OptimizeForDevices": "Off",
-      "ParentIndex": 19,
+      "ParentIndex": 18,
       "PersistMetaDataIDKey": false,
       "Properties": [
         {

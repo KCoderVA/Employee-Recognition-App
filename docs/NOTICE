@@ -15,12 +15,12 @@ Original work created as part of the Advanced Analytics & Informatics team for t
 
 ## Employee Recognition App – NOTICE
 
-**Version:** 1.0.1 (Production Release – Full Deployment Ready)
-**Release Date:** August 7, 2025
+**Version:** 1.0.6 (Production Release – UX Flow & Triage Refinement)
+**Release Date:** August 19, 2025
 **Project Timeline:** April 9, 2025 – August 7, 2025
 **Total Releases:** 95+ incremental development releases
 
-### Latest Release (v1.0.1):
+### Latest Release (v1.0.6):
 - **Production-ready Power Platform solution** with enterprise-grade ALM workflows
 - **Multi-award support:** Nine different recognition programs consolidated into one submission platform
 - **Power Apps Canvas App** Simple, mobile-friendly, responsive design, accessibility compliant
@@ -40,7 +40,7 @@ Original work created as part of the Advanced Analytics & Informatics team for t
 - **CI/CD Pipeline:** Automated CHANGELOG enforcement and repository health validation
 
 ### Deployment Artifacts:
-- **Application Package:** `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.1_FullRelease.msapp`
+- **Application Package:** `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.6.msapp`
 - **Source Code:** Complete unpacked Power Apps source in `src/power-apps/`
 - **Power Automate Flows:** Deployment-ready flow definitions in `src/power-automate/`
 - **SharePoint Configuration:** List templates and content types in `src/sharepoint/`

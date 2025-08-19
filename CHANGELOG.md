@@ -21,6 +21,40 @@ This document provides a complete, versioned history of all changes, enhancement
 
 ---
 
+## Version 1.0.6 (2025-08-19)
+
+**Release Type:** UX flow improvements, triage binding updates, and version metadata groundwork
+**Date:** 2025-08-19
+**Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
+
+### Summary
+Version 1.0.6 refines the new-submission experience from the View Submissions toolbar, cleans up external navigation, and tightens the triage workflow. It also lays the (commented) groundwork for richer in-app version metadata using the Makers API.
+
+### Changes in v1.0.6
+- ViewSubmissions_Screen toolbar buttons:
+  - HRO: Replaced external Navigate/Launch with an internal new-submission path that initializes form state deterministically (Concurrent reset/clears, ResetForm, col_SelectedAwardType = "HRO", Navigate(Screen_NewSubmission)).
+  - Hines Hero: Mirrored the HRO pattern to remove external links and drive a consistent in-app submission flow.
+- App.OnStart:
+  - Switched profile lookup to Office365Users.SearchUserV2 based on the user’s email.
+  - Added (commented) exploration for app version metadata via PowerAppsforMakers.GetAppVersions with lifecycle parsing, SienaVersion extraction, and out-of-date detection comparisons.
+- Triage_Screen:
+  - Rebound Form2.Item from gal_Untriaged.Selected to Gallery1.Selected and adjusted layout (width/positions) for the new binding.
+  - Wired submit/reset cleanup: SubmitForm(Form2); Reset(Gallery1); clear user-selection collections/variables.
+
+### Technical Updates
+- Updated YAML in `src/v1.0.x/v1.0.0/power-apps/.unpacked/Src/`:
+  - `ViewSubmissions_Screen.fx.yaml` – HRO/Hines Hero OnSelect logic overhaul to internalize new-submission flow.
+  - `App.fx.yaml` – Version metadata scaffolding (commented) and Office365Users API use updated.
+  - `Triage_Screen.fx.yaml` – Form2 bound to `Gallery1.Selected`, layout and submit/reset behavior updated.
+- New deployable package available: `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.6.msapp`.
+
+### Impact Assessment
+- Improves UX consistency by removing external hops and ensuring clean form state at submission start.
+- Prepares for future, more accurate in-app version display and freshness checks.
+- Clarifies triage data context with explicit gallery binding and post-submit cleanup for reliability.
+
+---
+
 ## Version 1.0.4 (2025-08-12)
 
 **Release Type:** Enhanced User Experience and Visual Modernization

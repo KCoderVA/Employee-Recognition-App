@@ -24,8 +24,169 @@
         HoverColor: =RGBA(221, 79, 14, 1)
         HoverFill: =RGBA(239, 245, 203, 1)
         OnSelect: |-
-            =Navigate(Screen_Submissions_HROSafetyStory, BorderStyle.None);
-            Launch("https://dvagov.sharepoint.com/sites/VHAHINHRO/SitePages/HeRO-Recognition-Program-%26-Great-Catch-Program.aspx",{},LaunchTarget.New)
+            =Concurrent(
+                Set(gbl_appFirstOnStart, false),
+                Set(var_PopUP_Starfish_Submission_Q0, 1),
+                Set(var_PopUP_Starfish_Submission_Q0_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q0_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q1, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q2, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q2_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Location_TextInputBox, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseBoolean_False, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseBoolean_True, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseBoolean_Unsure, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseType_Licensed, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseType_Unlicensed, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseType_Unsure, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank()),
+                Set(var_PopUP_Starfish_Submission_SafetyBoolean_False, Blank()),
+                Set(var_PopUP_Starfish_Submission_SafetyBoolean_True, Blank()),
+                Set(var_PopUP_Starfish_Submission_SafetyBoolean_Unsure, Blank()),
+                Set(var_PopUP_Starfish_Submission_SafetyBoolean_Response, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b_YES, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b_N, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b_NO, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b_Y, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c_YES, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c_N, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c_NO, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c_Y, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4a, Blank()),
+                Set(var_PopUp_Q4a_ClinicalBoolean_Text, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_YES, Blank()),
+                Set(var_HROPrinciple_1, Blank()),
+                Set(var_HROPrinciple_2, Blank()),
+                Set(var_HROPrinciple_3, Blank()),
+                Set(var_HROPrinciple_4, Blank()),
+                Set(var_HROPrinciple_5, Blank()),
+                Set(var_HROPrinciplesCombined2, Blank()),
+                Set(var_resetSearchParameter, Blank()),
+                Set(var_SelectedAwardType, Blank()),
+                Set(var_selectedUser, Blank()),
+                Set(var_selectedUser_Manager, Blank()),
+                Set(var_PopUP_About, Blank()),
+                Set(var_PopUP_Emergency, Blank()),
+                Set(var_PopUP_Office, Blank()),
+                Set(var_PopUP_People, Blank()),
+                Set(var_PopUP_Resources, Blank()),
+                Set(var_SelectedNomination, Blank()),
+                Set(var_PopUP_StarfishInfo, Blank()),
+                Set(var_PopUP_JPSRBoolean, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3a, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3a_N, Blank()), 
+                Set(var_PopUP_Starfish_Submission_Q3a_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3a_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3a_YES, Blank()),
+                ClearCollect(col_listStarfishSubmissions, Blank()),
+                ClearCollect(col_PopUP_Starfish_Submission_NurseBoolean_Response, Blank()),
+                ClearCollect(col_PopUP_Starfish_Submission_NurseType_Response, Blank()),
+                ClearCollect(col_SelectedAwardType, Blank()),
+                ClearCollect(col_SelectedNomination_HROPrinciple, Blank()),
+                ClearCollect(col_myPeople, Blank()),
+                ClearCollect(col_selectedUserProfile, Blank()),
+                ClearCollect(col_selectedUser_Manager, Blank()),
+                ClearCollect(col_selectedUserNominee, Blank())
+            );
+            
+            ResetForm(Form_Starfish);
+            
+            Concurrent(
+                Reset(Starfish_Submission_PopUP_Q0_Dropdown_AwardType),
+                Reset(RadioGroupCanvas1),
+                Reset(Starfish_Submission_PopUP_Container_Q2_DatePicker),
+                Reset(Starfish_Submission_PopUP_Container_Q2_Location_TextInput),
+                Reset(RadioGroupCanvas1_1),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_1),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_2),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_3),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_4),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_5),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox1),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox2),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox3),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox4),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox5)
+            );
+            
+            Set(var_PopUP_Starfish_Submission_Q0, 1);
+            Set(var_PopUP_Starfish_Submission_Q0_Y, 1);
+            Set(var_PopUP_Starfish_Submission_Q0_N, 0);
+            
+            Set(var_PopUP_Starfish_Submission_Q1, Blank());
+            Set(var_PopUP_Starfish_Submission_Q2, Blank());
+            Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank());
+            Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank());
+            Set(var_PopUP_Starfish_Submission_Q3, Blank());
+            Set(var_PopUP_Starfish_Submission_Q3b, Blank());
+            Set(var_PopUP_Starfish_Submission_Q3c, Blank());
+            Set(var_PopUP_HinesHero_Submission_Q3c, Blank());
+            Set(var_PopUP_Starfish_Submission_Q4, Blank());
+            Set(var_PopUP_Starfish_Submission_Q4a, Blank());
+            Set(var_PopUp_Q4a_ClinicalBoolean_Text, Blank());
+            Set(var_PopUP_Starfish_Submission_Q5, Blank());
+            Set(var_PopUP_Starfish_Submission_Q6, Blank());
+            Set(var_PopUP_Starfish_Submission_Q7, Blank());
+            Set(var_PopUP_Starfish_Submission_Q8, Blank());
+            Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank());
+            
+            Reset([@Starfish_Submission_PopUP_Q0_Dropdown_AwardType]);
+            ClearCollect(col_SelectedAwardType, Blank());
+            Set(var_SelectedAwardType, Blank());
+            
+            ClearCollect(col_SelectedAwardType, "HRO");
+            
+            Navigate(Screen_NewSubmission);
+            //Navigate(Screen_Submissions_HROSafetyStory, BorderStyle.None);
+            //Launch("https://dvagov.sharepoint.com/sites/VHAHINHRO/SitePages/HeRO-Recognition-Program-%26-Great-Catch-Program.aspx",{},LaunchTarget.New)
         RadiusBottomLeft: =0
         RadiusBottomRight: =0
         RadiusTopLeft: =20
@@ -47,8 +208,168 @@
         HoverColor: =RGBA(221, 79, 14, 1)
         HoverFill: =RGBA(239, 245, 203, 1)
         OnSelect: |-
-            =Navigate(Screen_Submissions_HinesHero);
-            Launch("https://dvagov.sharepoint.com/:b:/r/sites/HinesEmployeeEngagementandWholeHealth/Shared%20Documents/Hines%20Employee%20Engagement/Shared%20Documents/Employee%20Recognition/Hines%20Hero%20Info.pdf",{},LaunchTarget.New)
+            =Concurrent(
+                Set(gbl_appFirstOnStart, false),
+                Set(var_PopUP_Starfish_Submission_Q0, 1),
+                Set(var_PopUP_Starfish_Submission_Q0_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q0_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q1, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q2, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q2_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Location_TextInputBox, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseBoolean_False, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseBoolean_True, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseBoolean_Unsure, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseType_Licensed, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseType_Unlicensed, Blank()),
+                Set(var_PopUP_Starfish_Submission_NurseType_Unsure, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank()),
+                Set(var_PopUP_Starfish_Submission_SafetyBoolean_False, Blank()),
+                Set(var_PopUP_Starfish_Submission_SafetyBoolean_True, Blank()),
+                Set(var_PopUP_Starfish_Submission_SafetyBoolean_Unsure, Blank()),
+                Set(var_PopUP_Starfish_Submission_SafetyBoolean_Response, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3b_YES, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b_N, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b_NO, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b_Y, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3b_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3c_YES, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c_N, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c_NO, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c_Y, Blank()),
+                Set(var_PopUP_HinesHero_Submission_Q3c_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q4a, Blank()),
+                Set(var_PopUp_Q4a_ClinicalBoolean_Text, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q5_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q6_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q7_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q8_YES, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_N, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_YES, Blank()),
+                Set(var_HROPrinciple_1, Blank()),
+                Set(var_HROPrinciple_2, Blank()),
+                Set(var_HROPrinciple_3, Blank()),
+                Set(var_HROPrinciple_4, Blank()),
+                Set(var_HROPrinciple_5, Blank()),
+                Set(var_HROPrinciplesCombined2, Blank()),
+                Set(var_resetSearchParameter, Blank()),
+                Set(var_SelectedAwardType, Blank()),
+                Set(var_selectedUser, Blank()),
+                Set(var_selectedUser_Manager, Blank()),
+                Set(var_PopUP_About, Blank()),
+                Set(var_PopUP_Emergency, Blank()),
+                Set(var_PopUP_Office, Blank()),
+                Set(var_PopUP_People, Blank()),
+                Set(var_PopUP_Resources, Blank()),
+                Set(var_SelectedNomination, Blank()),
+                Set(var_PopUP_StarfishInfo, Blank()),
+                Set(var_PopUP_JPSRBoolean, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3a, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3a_N, Blank()), 
+                Set(var_PopUP_Starfish_Submission_Q3a_NO, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3a_Y, Blank()),
+                Set(var_PopUP_Starfish_Submission_Q3a_YES, Blank()),
+                ClearCollect(col_listStarfishSubmissions, Blank()),
+                ClearCollect(col_PopUP_Starfish_Submission_NurseBoolean_Response, Blank()),
+                ClearCollect(col_PopUP_Starfish_Submission_NurseType_Response, Blank()),
+                ClearCollect(col_SelectedAwardType, Blank()),
+                ClearCollect(col_SelectedNomination_HROPrinciple, Blank()),
+                ClearCollect(col_myPeople, Blank()),
+                ClearCollect(col_selectedUserProfile, Blank()),
+                ClearCollect(col_selectedUser_Manager, Blank()),
+                ClearCollect(col_selectedUserNominee, Blank())
+            );
+            
+            ResetForm(Form_Starfish);
+            
+            Concurrent(
+                Reset(Starfish_Submission_PopUP_Q0_Dropdown_AwardType),
+                Reset(RadioGroupCanvas1),
+                Reset(Starfish_Submission_PopUP_Container_Q2_DatePicker),
+                Reset(Starfish_Submission_PopUP_Container_Q2_Location_TextInput),
+                Reset(RadioGroupCanvas1_1),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_1),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_2),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_3),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_4),
+                Reset(Starfish_Submission_PopUP_Q3_Container2_Textbox_Details_5),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox1),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox2),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox3),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox4),
+                Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox5)
+            );
+            
+            Set(var_PopUP_Starfish_Submission_Q0, 1);
+            Set(var_PopUP_Starfish_Submission_Q0_Y, 1);
+            Set(var_PopUP_Starfish_Submission_Q0_N, 0);
+            
+            Set(var_PopUP_Starfish_Submission_Q1, Blank());
+            Set(var_PopUP_Starfish_Submission_Q2, Blank());
+            Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank());
+            Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank());
+            Set(var_PopUP_Starfish_Submission_Q3, Blank());
+            Set(var_PopUP_Starfish_Submission_Q3b, Blank());
+            Set(var_PopUP_Starfish_Submission_Q3c, Blank());
+            Set(var_PopUP_HinesHero_Submission_Q3c, Blank());
+            Set(var_PopUP_Starfish_Submission_Q4, Blank());
+            Set(var_PopUP_Starfish_Submission_Q4a, Blank());
+            Set(var_PopUp_Q4a_ClinicalBoolean_Text, Blank());
+            Set(var_PopUP_Starfish_Submission_Q5, Blank());
+            Set(var_PopUP_Starfish_Submission_Q6, Blank());
+            Set(var_PopUP_Starfish_Submission_Q7, Blank());
+            Set(var_PopUP_Starfish_Submission_Q8, Blank());
+            Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank());
+            
+            Reset([@Starfish_Submission_PopUP_Q0_Dropdown_AwardType]);
+            ClearCollect(col_SelectedAwardType, Blank());
+            Set(var_SelectedAwardType, Blank());
+            
+            ClearCollect(col_SelectedAwardType, "Hines Hero/Happenings");
+            
+            Navigate(Screen_NewSubmission);
+            //Launch("https://dvagov.sharepoint.com/:b:/r/sites/HinesEmployeeEngagementandWholeHealth/Shared%20Documents/Hines%20Employee%20Engagement/Shared%20Documents/Employee%20Recognition/Hines%20Hero%20Info.pdf",{},LaunchTarget.New);
         RadiusBottomLeft: =0
         RadiusBottomRight: =0
         RadiusTopLeft: =20

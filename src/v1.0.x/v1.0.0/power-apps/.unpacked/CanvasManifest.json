@@ -78,7 +78,7 @@
       "offlineprofilegenerationemitscolumns": false,
       "onegrid": false,
       "optimizedforteamsmeeting": false,
-      "optimizestartscreenpublishedappload": false,
+      "optimizestartscreenpublishedappload": true,
       "packagemodernruntime": false,
       "pdffunction": true,
       "powerfxdecimal": false,
@@ -92,7 +92,7 @@
       "rtlinstudiopreview": false,
       "rtlsupport": false,
       "sharepointselectsenabled": true,
-      "showclassicthemes": false,
+      "showclassicthemes": true,
       "smartemaildatacard": false,
       "supportcolumnnamesasidentifiers": true,
       "tabledoesntwraprecords": true,
@@ -108,7 +108,7 @@
       "zeroalltabindexes": false
     },
     "Author": "",
-    "BindingErrorCount": 0,
+    "BindingErrorCount": 24,
     "ConnectionString": "",
     "ContainsThirdPartyPcfControls": false,
     "DefaultConnectedDataSourceMaxGetRowsCount": 2000,
@@ -127,7 +127,7 @@
     "ManualOfflineProfileId": "",
     "Name": "578 Employee Recognition App",
     "OriginatingVersion": "1.324",
-    "ParserErrorCount": 0,
+    "ParserErrorCount": 1,
     "ShowStatusBar": true
   },
   "PublishInfo": {

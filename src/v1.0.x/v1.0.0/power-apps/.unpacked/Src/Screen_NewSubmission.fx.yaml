@@ -3,9 +3,6 @@
     OnVisible: |-
         =Concurrent(
             Set(gbl_appFirstOnStart, false),
-            Set(var_PopUP_Starfish_Submission_Q0, 1),
-            Set(var_PopUP_Starfish_Submission_Q0_N, Blank()),
-            Set(var_PopUP_Starfish_Submission_Q0_Y, Blank()),
             Set(var_PopUP_Starfish_Submission_Q1, Blank()),
             Set(var_PopUP_Starfish_Submission_Q2, Blank()),
             Set(var_PopUP_Starfish_Submission_Q2_N, Blank()),
@@ -86,7 +83,6 @@
             Set(var_HROPrinciple_5, Blank()),
             Set(var_HROPrinciplesCombined2, Blank()),
             Set(var_resetSearchParameter, Blank()),
-            Set(var_SelectedAwardType, Blank()),
             Set(var_selectedUser, Blank()),
             Set(var_selectedUser_Manager, Blank()),
             Set(var_PopUP_About, Blank()),
@@ -105,7 +101,6 @@
             ClearCollect(col_listStarfishSubmissions, Blank()),
             ClearCollect(col_PopUP_Starfish_Submission_NurseBoolean_Response, Blank()),
             ClearCollect(col_PopUP_Starfish_Submission_NurseType_Response, Blank()),
-            ClearCollect(col_SelectedAwardType, Blank()),
             ClearCollect(col_SelectedNomination_HROPrinciple, Blank()),
             ClearCollect(col_myPeople, Blank()),
             ClearCollect(col_selectedUserProfile, Blank()),
@@ -133,6 +128,19 @@
             Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox3),
             Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox4),
             Reset(Starfish_Submission_PopUP_Q9_HRO_Checkbox5)
+        );
+        
+        
+        If(
+            First(col_SelectedAwardType).Value = "Hines Hero/Happenings",
+        //    ClearCollect(col_SelectedAwardType, [{value: "Hines Hero/Happenings"}]),
+            ClearCollect(col_SelectedAwardType, ["Hines Hero/Happenings"]),
+            ClearCollect(col_SelectedAwardType, Blank())
+        );
+        If(
+            First(col_SelectedAwardType).Value = "Hines Hero/Happenings",
+            Set(var_PopUP_Starfish_Submission_Q0, 1) && Set(var_PopUP_Starfish_Submission_Q0_N, 0) && Set(var_PopUP_Starfish_Submission_Q0_Y, 1),
+            Set(var_PopUP_Starfish_Submission_Q0, 1) && Set(var_PopUP_Starfish_Submission_Q0_N, Blank()) && Set(var_PopUP_Starfish_Submission_Q0_Y, Blank())
         );
     Width: =900
 
@@ -5185,7 +5193,15 @@
                 BorderRadius: =5
                 BorderStyle: =BorderStyle.Solid
                 BorderThickness: =5
-                DefaultSelectedItems: =Blank()
+                DefaultSelectedItems: |-
+                    =If(
+                            gbl_appFirstOnStart = true && IsBlank(col_SelectedAwardType),
+                                Blank(),
+                            "Hines Hero/Happenings" in col_SelectedAwardType.Value,
+                                Filter(col_SelectedAwardType, Value = "Hines Hero/Happenings"),
+                            IsBlank(gbl_appFirstOnStart) || gbl_appFirstOnStart = false,
+                            Blank()
+                    )
                 DisplayMode: =DisplayMode.Edit
                 Fill: =RGBA(56, 96, 178, .15)
                 FontSize: =40
@@ -5193,7 +5209,7 @@
                 Items: =[("Starfish Award"), ("Nursing Daisy/Bee"), ("Safety Story"), ("HRO HeRO"), ("Great Catch"), ("Hines Hero/Happenings"), ("WOW! Recognition")]
                 OnChange: |-
                     =Set(var_SelectedAwardType, Starfish_Submission_PopUP_Q0_Dropdown_AwardType.SelectedItems);
-                    ClearCollect(col_SelectedAwardType, Starfish_Submission_PopUP_Q0_Dropdown_AwardType.SelectedItems);
+                    Collect(col_SelectedAwardType, Starfish_Submission_PopUP_Q0_Dropdown_AwardType.SelectedItems);
                 Width: =500
                 X: =40
                 Y: =0
@@ -5243,7 +5259,7 @@
                             && Notify("Viewing additional information about the facility's STARFISH AWARD in a new window..."),
                         Starfish_Submission_PopUP_Q0_Dropdown_AwardType.Selected.Value = "Hines Hero/Happenings",
                             Launch(
-                                "https://dvagov.sharepoint.com/:b:/r/sites/HinesEmployeeEngagementandWholeHealth/Shared%20Documents/Hines%20Employee%20Engagement/Shared%20Documents/Employee%20Recognition/HinesHero%20Nomination%20Flyer.pdf?csf=1&web=1&e=HkorMe",
+                                "https://dvagov.sharepoint.com/:b:/r/sites/HinesEmployeeEngagementandWholeHealth/Shared%20Documents/Hines%20Employee%20Engagement/Shared%20Documents/Employee%20Recognition/HinesHero%20Nomination%20Flyer.pdf?csf=1&web=1&e=5kjLXS",
                                 {},
                                 LaunchTarget.New)
                             && Notify("Viewing additional information about Public Affair's HINES HERO AWARD in a new window..."),
@@ -5275,9 +5291,33 @@
                             && Notify("TEST Worked, remaining on submission screen with next pop-up value")
                     )
                 Size: =24
-                Text: ="Tell me more..."
-                Width: =250
-                X: =344
+                Text: |-
+                    =If(
+                            IsBlank(var_SelectedAwardType) || IsBlank(col_SelectedAwardType),
+                                "Tell me more...",
+                            "Hines Hero/Happenings" in First(col_SelectedAwardType).Value,
+                                Concatenate(
+                                    "Tell me more about ''Hines Hero/Happenings''"
+                                    ),
+                            "Hines Hero/Happenings" in Last(col_SelectedAwardType).Value,
+                                Concatenate(
+                                    "Tell me more about the Hines Hero/Happenings"
+                                    ),
+                            "Tell me more about ''" & First(var_SelectedAwardType).Value & "''"
+                    )
+                Width: |-
+                    =If(
+                            IsBlank(var_SelectedAwardType) || IsBlank(col_SelectedAwardType),
+                                250,
+                            "Hines Hero/Happenings" in First(col_SelectedAwardType).Value,
+                                750,
+                            "Hines Hero/Happenings" in Last(col_SelectedAwardType).Value,
+                                750,
+                            750
+                    )
+                X: |-
+                    =//344
+                    (Parent.Width / 2) - (Self.Width / 2)
                 Y: =Starfish_Submission_PopUP_Q3_Container1_Label_Question_9.Y + Starfish_Submission_PopUP_Q3_Container1_Label_Question_9.Height + 5
                 ZIndex: =6
 
@@ -5537,7 +5577,16 @@
                         100
                     )
                 OnSelect: |-
-                    =Set(var_PopUP_Starfish_Submission_Q0, 1);
+                    =If(
+                        First(col_SelectedAwardType).Value = "Hines Hero/Happenings",
+                        ClearCollect(col_SelectedAwardType, "Hines Hero/Happenings"),
+                        Concurrent(
+                            ClearCollect(col_SelectedAwardType, Blank()),
+                            Set(var_SelectedAwardType, Blank())
+                            )
+                    );
+                    
+                    Set(var_PopUP_Starfish_Submission_Q0, 1);
                     Set(var_PopUP_Starfish_Submission_Q0_Y, 1);
                     Set(var_PopUP_Starfish_Submission_Q0_N, 0);
                     
@@ -5559,8 +5608,6 @@
                     Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank());
                     
                     Reset([@Starfish_Submission_PopUP_Q0_Dropdown_AwardType]);
-                    ClearCollect(col_SelectedAwardType, Blank());
-                    Set(var_SelectedAwardType, Blank());
                 Size: =24
                 Text: |-
                     ="YES,

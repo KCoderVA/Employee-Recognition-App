@@ -15,13 +15,13 @@
 -->
 
 
-# Project Status Dashboard – v1.0.4
+# Project Status Dashboard – v1.0.6
 
 ## 📊 Repository & Solution Overview
 
-**Current Version:** 1.0.4 (Enhanced User Experience Release)
-**Release Date:** August 12, 2025
-**Current Date Status:** August 12, 2025
+**Current Version:** 1.0.6 (UX Flow & Triage Refinement)
+**Release Date:** August 19, 2025
+**Current Date Status:** August 19, 2025
 **Project Timeline:** April 9, 2025 – August 12, 2025 (125 days)
 **Repository:** https://github.com/KCoderVA/Employee-Recognition-App
 **License:** Apache 2.0
@@ -50,11 +50,10 @@
 ## 🚀 Recent Milestones & Achievements
 
 **User Experience Enhancement (August 2025):**
-- Visual modernization with approved VA seal, logos, and professional imagery
-- Integrated SharePoint-hosted tutorial video with embedded access buttons
-- Enhanced loading experience with animated progress bars and professional spinners
-- Comprehensive hyperlink validation and 404 error resolution
-- Fixed dynamic display variable conflicts on "View Submissions" screen for improved data visibility
+- View Submissions toolbar: HRO and Hines Hero open an internal new-submission flow with comprehensive reset/clear state and no external link hops
+- Triage workflow: Form2 bound to Gallery1.Selected with post-submit Reset(Gallery1) and selection-state cleanup; layout tuned
+- App.OnStart groundwork (commented): version metadata exploration via PowerAppsforMakers with lifecycle and SienaVersion parsing
+- Continued visual and navigation quality from v1.0.4 retained
 
 **Repository & Quality Improvements (July-August 2025):**
 - Repository optimization and comprehensive workspace cleanup (July 2025)
@@ -84,7 +83,7 @@
 ## 🔄 Component Status
 
 ### Power Platform Components
-- **Power Apps Canvas App:** v1.0.4 production-ready with enhanced user experience and modern visual assets
+- **Power Apps Canvas App:** v1.0.6 production-ready with refined submission flow and triage improvements
   - 4 award recognition types supported: HeRO, Great Catch, Starfish, I CARE awards
   - Modern visual branding with approved VA seal and organizational logos
   - Integrated SharePoint-hosted tutorial video with embedded access buttons on Update/Help screen and submission popups
@@ -92,8 +91,8 @@
   - Resolved dynamic display variable conflicts for improved ICARE Values rendering on "View Submissions" screen
   - Validated hyperlink navigation with all 404 errors resolved for seamless user experience
   - Accessibility compliant with VA Healthcare standards and mobile-optimized responsive design
-  - Source files: `src/v1.0.x/v1.0.0/power-apps/.unpacked/` with enhanced visual assets and tutorial integration
-  - Deployment artifact: `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.4_FullRelease.msapp`
+  - Source files: `src/v1.0.x/v1.0.0/power-apps/.unpacked/` with toolbar flow and triage updates
+  - Deployment artifact: `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.6.msapp`
 
 - **Power Automate Flows:** v1.0.4 production-ready with comprehensive workflow automation and enhanced integration
   - Automated triage and routing systems for recognition submissions

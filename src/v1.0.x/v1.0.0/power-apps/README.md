@@ -1,4 +1,4 @@
-# Power Apps Canvas App (v1.0.4)
+# Power Apps Canvas App (v1.0.6)
 
 <!--
    Copyright 2025 Kyle J. Coder
@@ -16,12 +16,12 @@
    limitations under the License.
 -->
 
-This folder contains the **Employee Recognition Canvas App** (v1.0.4), a comprehensive Power Apps solution for digital employee recognition across multiple award types including HeRO, Great Catch, Starfish, and I CARE awards. This version features enhanced user experience with modern visual assets, integrated tutorial videos, and improved loading animations.
+This folder contains the **Employee Recognition Canvas App** (v1.0.6), a comprehensive Power Apps solution for digital employee recognition across multiple award types including HeRO, Great Catch, Starfish, and I CARE awards. This version refines toolbar-driven submission flows, triage form/gallery binding, and includes groundwork (commented) for version metadata.
 
 ## Folder Structure
 
 ### `.msapp/` - Packaged Application
-- **`v1.0.4_FullRelease.msapp`** - Complete packaged Power Apps file ready for import
+- **`v1.0.6.msapp`** - Complete packaged Power Apps file ready for import
   - Production-ready canvas app with enhanced visual assets and modern VA branding
   - Integrated tutorial video with SharePoint hosting and embedded access buttons
   - Animated loading components with professional progress indicators
@@ -29,7 +29,7 @@ This folder contains the **Employee Recognition Canvas App** (v1.0.4), a compreh
   - Integrated with Power Automate flows and SharePoint backend
 
 ### `.unpacked/` - Source Code (Developer Access)
-- Complete source code for the canvas app in editable format with v1.0.4 enhancements
+- Complete source code for the canvas app in editable format with v1.0.6 updates
 - Power Fx formulas, screen definitions, and control configurations with improved display logic
 - Modern visual asset files including updated VA seal, logos, and approved imagery
 - Animated loading components and professional progress indicator implementations
@@ -168,13 +168,10 @@ For developers who want to modify or extend the app:
 
 ## Version History
 
-### v1.0.4 (Current Release)
-- Enhanced user experience with modern visual assets and VA branding
-- Integrated SharePoint-hosted tutorial video with embedded access buttons
-- Added animated loading components and professional progress indicators
-- Fixed dynamic display variable conflicts on "View Submissions" screen
-- Validated and corrected all hyperlink navigation to eliminate 404 errors
-- Replaced placeholder imagery with production-approved visual assets
+### v1.0.6 (Current Release)
+- View Submissions toolbar: HRO and Hines Hero start an internal new-submission flow with deterministic reset/clear state and navigation to Screen_NewSubmission
+- Triage workflow: Form2 binds to Gallery1.Selected with submit/reset cleanup; layout tuned for data cards
+- App.OnStart groundwork (commented): Makers API version metadata exploration and SearchUserV2 profile lookup
 
 ### v1.0.1 (Previous Release)
 - Corrected version alignment and tagging
@@ -190,4 +187,4 @@ For developers who want to modify or extend the app:
 
 ---
 
-*This Power Apps solution is part of the Employee Recognition App v1.0.4 enhanced user experience release. For comprehensive documentation, support, and updates, visit the [GitHub repository](https://github.com/KCoderVA/Employee-Recognition-App).*
+*This Power Apps solution is part of the Employee Recognition App v1.0.6 release (UX flow & triage refinement). For comprehensive documentation, support, and updates, visit the [GitHub repository](https://github.com/KCoderVA/Employee-Recognition-App).*

@@ -34,7 +34,7 @@ The Employee Recognition App is a Power Platform solution for the VA healthcare 
 | 0.9.x   | ⚠️ **Limited Support** | Critical vulnerabilities only         | December 2025 |
 | < 0.9   | ❌ **Unsupported**     | No security updates                   | Immediate     |
 
-**Current Production Version:** 1.0.2 (Documentation & Automation Enhancement Release)
+**Current Production Version:** 1.0.6 (UX Flow & Triage Refinement)
 
 ## 🚨 Vulnerability Reporting Process
 
@@ -144,4 +144,4 @@ We appreciate responsible disclosure of security vulnerabilities and recognize c
 
 ---
 
-*This security policy is maintained in accordance with VA IT security requirements and is subject to regular review and updates. Last updated: August 4, 2025 for v1.0.0 public release.*
+*This security policy is maintained in accordance with VA IT security requirements and is subject to regular review and updates. Last updated: August 19, 2025 for v1.0.6 release.*
