@@ -15,11 +15,24 @@
   limitations under the License.
 -->
 
-# Employee Recognition App – Changelog
+# CHANGELOG
+
+Employee Recognition App – Changelog
 
 This document provides a complete, versioned history of all changes, enhancements, and fixes for the Employee Recognition Power Platform Application. Each entry is itemized for traceability and compliance with VA Healthcare ALM standards.
 
 ---
+
+## [Unreleased]
+
+<!-- Placeholder for upcoming changes. Categorize as needed:
+### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+-->
 
 ## Version 1.0.6 (2025-08-19)
 
