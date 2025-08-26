@@ -208,3 +208,4 @@ venv/
 !README.md
 # Explicitly exclude the following from public release
 .github/copilot-instructions.md
+RecursiveDirectoryAnalysis_*.csv
