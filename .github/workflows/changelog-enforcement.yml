@@ -20,6 +20,8 @@
 # =============================================================================
 
 name: "Enforce CHANGELOG Updates"
+permissions:
+  contents: read
 
 # =====================
 # MAIN WORKFLOW DEFINITION
