@@ -1,0 +1,48 @@
+{
+  "flowConfiguration": {
+    "schemaVersion": "1.1",
+    "configReleaseVersion": "1.0.6",
+    "lastUpdated": "2025-10-28"
+  },
+  "approvalConfiguration": {
+    "level1ApprovalTimeoutDays": 5,
+    "level2ApprovalTimeoutDays": 3,
+    "escalationThresholdDays": 5,
+    "criticalEscalationDays": 10,
+    "reminderIntervalDays": 2,
+    "maxReminders": 3
+  },
+  "milestones": {
+    "enableMilestoneTracking": true,
+    "milestoneThresholds": [5, 10, 25, 50, 100]
+  },
+  "reportingConfiguration": {
+    "monthlyReportSchedule": { "dayOfMonth": 1, "timeOfDay": "08:00", "timeZone": "Eastern Standard Time" },
+    "dailyEscalationReportSchedule": { "timeOfDay": "08:00", "timeZone": "Eastern Standard Time" }
+  },
+  "errorHandling": {
+    "enableAutoRetry": true,
+    "maxRetryAttempts": 3,
+    "retryIntervalSeconds": 10
+  },
+  "governance": {
+    "changeControlProcess": [
+      "Issue reference",
+      "Update README + config",
+      "Export updated flow",
+      "Peer review",
+      "Update CHANGELOG",
+      "Commit"
+    ],
+    "versioning": {
+      "configReleaseVersion": "1.0.6",
+      "schemaVersion": "1.1"
+    }
+  },
+  "metadata": {
+    "source": "config/flow-config.json",
+    "managedBy": "Flow Operations",
+    "hashAlgorithm": "SHA256",
+    "pendingHash": "UNCOMPUTED"
+  }
+}
