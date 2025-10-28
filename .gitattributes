@@ -1,0 +1,220 @@
+# Copyright 2025 Kyle J. Coder
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+################################################################################
+# .gitattributes - Git Line Ending and File Type Configuration
+#
+# This file ensures consistent line endings and proper file handling across
+# different operating systems and development environments (Windows, macOS, Linux).
+#
+# See: https://git-scm.com/docs/gitattributes
+################################################################################
+
+################################################################################
+################################################################################
+# Global Text Normalization
+################################################################################
+# Enforce LF endings for all text files (single directive for clarity)
+* text eol=lf
+
+# NOTE: Removed redundant '* text=auto' to avoid confusion. All unspecified files
+# treated as text with LF unless explicitly marked binary below.
+
+################################################################################
+# Explicitly Define Text Files
+################################################################################
+# PowerShell scripts - always use LF even on Windows for cross-platform compatibility
+*.ps1       text eol=lf
+*.psm1      text eol=lf
+*.psd1      text eol=lf
+
+# Shell scripts - Unix line endings
+*.sh        text eol=lf
+*.bash      text eol=lf
+
+# Markdown and documentation - LF line endings
+*.md        text eol=lf
+*.markdown  text eol=lf
+*.txt       text eol=lf
+
+# YAML and JSON configuration
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.json      text eol=lf
+*.jsonc     text eol=lf
+
+# XML files (SharePoint schemas, Power Platform solutions)
+*.xml       text eol=lf
+
+# Power Apps Canvas App source files
+*.fx.yaml           text eol=lf
+*.editorstate.json  text eol=lf
+
+# Code files
+*.js        text eol=lf
+*.ts        text eol=lf
+*.css       text eol=lf
+*.html      text eol=lf
+*.htm       text eol=lf
+
+# Git configuration files
+.gitignore      text eol=lf
+.gitattributes  text eol=lf
+.gitmodules     text eol=lf
+
+# GitHub files
+.github/**      text eol=lf
+
+################################################################################
+# Binary Files - Never Normalize
+################################################################################
+# Power Apps packages - treat as binary
+*.msapp     binary
+*.zip       binary
+
+# Images (SVG kept as text for diff readability; others binary)
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.svg       text eol=lf
+*.webp      binary
+
+# Videos
+*.mp4       binary
+*.avi       binary
+*.mov       binary
+*.wmv       binary
+
+# Documents & BI Artifacts
+*.pdf       binary
+*.doc       binary
+*.docx      binary
+*.xls       binary
+*.xlsx      binary
+*.ppt       binary
+*.pptx      binary
+*.pbix      binary
+
+# Archives
+*.tar       binary
+*.gz        binary
+*.7z        binary
+*.rar       binary
+
+# Executable files
+*.exe       binary
+*.dll       binary
+*.so        binary
+*.dylib     binary
+
+################################################################################
+# Export-Ignore (Exclude from Git Archive/Export)
+################################################################################
+# Development and testing files not needed in production archives
+.gitattributes  export-ignore
+.gitignore      export-ignore
+.github/        export-ignore
+.vscode/        export-ignore
+archive/        export-ignore
+releases/       export-ignore
+copilot-export/ export-ignore
+test/           export-ignore
+.env            export-ignore
+.env.*          export-ignore
+*.bak           export-ignore
+*.backup        export-ignore
+*.log           export-ignore
+.DS_Store       export-ignore
+Thumbs.db       export-ignore
+
+################################################################################
+# Language Statistics (Linguist Overrides)
+################################################################################
+# Override GitHub's language detection for accurate repository statistics
+
+# Documentation shouldn't count as primary language
+*.md            linguist-documentation
+*.markdown      linguist-documentation
+docs/**         linguist-documentation
+
+# Archive directory should be ignored in statistics
+archive/**      linguist-vendored
+releases/**     linguist-vendored
+copilot-export/** linguist-vendored
+test/**         linguist-vendored
+*.log           linguist-vendored
+
+# Generated files should be excluded from statistics
+*.editorstate.json  linguist-generated=true
+*_definition.json   linguist-generated=true
+*_manifest.json     linguist-generated=true
+
+# Ensure PowerShell is recognized properly
+*.ps1           linguist-language=PowerShell
+*.psm1          linguist-language=PowerShell
+
+# Power Apps YAML source files
+*.fx.yaml       linguist-language=YAML
+
+################################################################################
+# Diff and Merge Settings
+################################################################################
+# Use specific diff drivers for certain file types
+
+# Treat Power Apps packages as binary for diff/merge
+*.msapp         diff=binary merge=binary
+*.json          diff=json
+*.fx.yaml       diff=yaml
+*_definition.json diff=json
+*_manifest.json diff=json
+# Markdown: rely on platform rendering; remove custom driver placeholder
+
+################################################################################
+# Whitespace Handling
+################################################################################
+# Configure whitespace checks for text files
+################################################################################
+# Whitespace Handling (Removed non-standard 'whitespace=' attributes; rely on
+# editorconfig / linters instead. Git attributes does not natively enforce
+# granular whitespace policies — previous entries caused false lint warnings.)
+################################################################################
+
+################################################################################
+# Notes:
+################################################################################
+# 1. After modifying .gitattributes, normalize the repository if line endings changed:
+#    git add --renormalize .
+#    git commit -m "chore: normalize line endings"
+#
+# 2. For best results, ensure all team members have this file before cloning
+#
+# 3. Windows users: Set core.autocrlf=false to rely on .gitattributes instead
+#    git config --global core.autocrlf false
+#
+# 4. Validate with:
+#    git ls-files --eol | more
+#    git diff --name-only -- '*.json' | xargs git diff --word-diff
+#
+# 5. See PROJECT_MIGRATION_PLAN.md Section 6 for pre-migration checklist
+
+################################################################################
+# Optional Custom Diff Driver Notes (not yet active)
+# To enable enhanced JSON diff (function name anchors), add in .git/config:
+#   [diff "json"]
+#       xfuncname = "^\\s*\\\"(.*)\\\"\\s*:"
+# Otherwise GitHub web diff handles JSON adequately.
+################################################################################
+################################################################################

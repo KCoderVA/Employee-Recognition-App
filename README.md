@@ -2,14 +2,14 @@
 # Employee Recognition App
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
-[![Version](https://img.shields.io/badge/Version-1.0.6-green)](./CHANGELOG.md)
-[![Implementation](https://img.shields.io/badge/Implementation%20-PowerShell-green)](./src/v1.0.x/v1.0.0/powershell/README.md)
+[![Version](https://img.shields.io/badge/Version-1.0.7-green)](./CHANGELOG.md)
+[![Implementation](https://img.shields.io/badge/Implementation%20-PowerShell-green)](./src/powershell/README.md)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
 
 ---
 
-## Project Overview (Currently: v1.0.6 | Published: August 19, 2025)
+## Project Overview (Currently: v1.0.7 | Published: October 28, 2025)
 
 The Employee Recognition App is a production-ready Power Platform application that transforms traditional paper-based employee recognition into an intelligent, automated digital workflow. Developed with full stakeholder collaboration, 100+ incremental releases, and comprehensive GitHub automation with CI/CD workflows. Features seven distinct award recognition types allowing consolidated submission, automated routing/triage, ChatBot safety checks, automated documentation storage, and enterprise-grade security compliance for VA Healthcare environments.
 
@@ -24,6 +24,18 @@ The Employee Recognition App is a production-ready Power Platform application th
 - **Security & Compliance**: Enterprise-grade security with complete audit trails
 - **DevOps Pipeline**: Complete CI/CD automation and professional documentation
 - **User Experience**: Embedded video tutorials, feedback system, and bug reporting
+
+---
+
+## 🚀 What's New in v1.0.6
+## 🚀 What's New in v1.0.7
+- Documentation & Governance Focused Release (no functional Canvas App or Flow logic changes)
+- Consolidated alternative README content into the primary README (Usage, Architecture, Config, Support, Roadmap)
+- Adopted component-first source layout (`src/power-apps/v1.0.6`, `src/power-automate/v1.0.1`, `src/powershell`, `src/sharepoint`)
+- Refactored `.github/CODEOWNERS` patterns to explicit component roots; added assets ownership
+- Cleaned `.gitattributes` (removed non-standard whitespace attributes; clarified normalization policy)
+- Removed obsolete `README_alternative.md` (retained historical path references only inside `CHANGELOG.md`)
+- Updated version badge and Project Overview to 1.0.7, added legacy path preservation rationale
 
 ---
 
@@ -60,34 +72,43 @@ The Employee Recognition App is built on a comprehensive Power Platform foundati
 - **Microsoft Approvals** – Multi-level approval processes with executive routing capabilities
 - **Teams & Outlook** – Collaboration and notification systems with embedded safety chatbot integration
 
-### Directory Structure
+### Directory Structure (Component-First Model – Oct 28, 2025)
 ```
 📁 Employee Recognition App/
-├── 📂 .github/                             # GitHub workflows and automation (2 active workflows)
-│   ├── 📂 ISSUE_TEMPLATE/                  # Issue templates for consistent bug reports and feature requests
-│   └── 📂 workflows/                       # CI/CD automation (changelog-enforcement.yml, repository-health.yml)
-│   ├── 📄 copilot-instructions.md          # Instructions for using GitHub Copilot
-│   ├── 📄 pull_request_template.md         # Template for pull requests
-├── 📂 src/                                 # Source code and configurations (production-ready components)
-│   ├── 📂 v1.0.x/v1.0.0/                   # v1.0.1 release artifacts and documentation
-│   │   ├── 📂 power-apps/                  # Canvas app files for deployment
-    │   │   ├── 📂 .unpacked/               # Unpacked raw source code files
-    │   │   │   └── 📂 .msapp/                  # Ready-to-deploy application packages (v1.0.6.msapp)
-│   │   ├── 📂 powershell/                  # Public PowerShell scripts and utilities (14 production scripts)
-│   │   ├── 📂 power-automate/              # Flow definitions and deployment configurations
-│   │   ├── 📂 sharepoint/                  # List templates and content type configurations
-│   │   ├── 📄 INSTALLATION_GUIDE.md        # Complete installation and setup instructions
-│   │   ├── 📄 RELEASE_NOTES.md             # v1.0.1 release notes and feature highlights
-│   │   └── 📄 solution.xml                 # Power Platform solution package metadata
-├── 📂 docs/                                # Public documentation and guides documents)
-│   ├── 📄 NOTICE                           # Project attribution and copyright information
-│   ├── 📄 PROJECT_STATUS.md                # Detailed project status dashboard and roadmap
-│   ├── 📄 SECURITY.md                      # Security policy and compliance framework
-│   └── 📄 CONTRIBUTING.md                  # Community contribution guidelines and standards
-├── 📄 CHANGELOG.md                         # Complete development history
-├── 📄 LICENSE                              # Apache 2.0 license terms and conditions
-└── 📄 README.md                            # This comprehensive project documentation
+├── 📂 .github/                  # Workflows, issue templates, CODEOWNERS
+│   ├── 📂 workflows/            # CI/CD automation
+│   └── 📄 copilot-instructions.md
+├──  src/                      # Component-first source tree
+│   ├── 📂 power-apps/
+│   │   └── 📂 v1.0.6/           # Current Canvas App version
+│   │        ├── 📂 .unpacked/   # Source-controlled YAML/JSON/XML
+│   │        ├── 📂 .msapp/      # Packaged app artifact
+│   │        ├── � app-config.json
+│   │        └── 📄 README.md
+│   ├── 📂 power-automate/
+│   │   └── 📂 v1.0.1/           # Current flow set version
+│   │        ├── 📄 flow-config.json
+│   │        └── 📄 README.md
+│   ├── 📂 sharepoint/           # List schemas & provisioning docs
+│   │   ├── � lists/
+│   │   └── 📄 README.md
+│   ├── � powershell/           # Public automation scripts
+│   ├── 📄 INSTALLATION_GUIDE.md
+│   └── 📄 RELEASE_NOTES.md
+├── 📂 docs/                     # Extended documentation set
+│   ├── 📄 PROJECT_STATUS.md
+│   ├── 📄 PROJECT_MIGRATION_PLAN.md
+│   ├── 📄 SECURITY.md
+│   ├── 📄 CONTRIBUTING.md
+│   ├── 📄 NOTICE
+│   └── 📄 SECRET_SCANNING_CHECKLIST.md
+├── 📂 assets/                   # Non-code assets (images/videos)
+├── 📄 CHANGELOG.md              # Historical log (legacy paths retained for audit)
+├── 📄 LICENSE
+├── 📄 README.md                 # Authoritative overview (merged)
+└── (removed) README_alternative.md  # Legacy file merged then removed (Oct 28 2025)
 ```
+> Legacy `src/v1.0.x/v1.0.0/...` references remain only in CHANGELOG & historical docs for traceability.
 
 ---
 
@@ -115,12 +136,12 @@ pac auth create --environment [your-environment-id] --tenant [your-tenant-id]
 ```
 
 ### Download Ready-to-Use App
-For immediate deployment without source code modifications:
-- **Pre-built Application Package**: `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.6.msapp`
+For immediate deployment without source modifications:
+- **Pre-built Application Package**: `src/power-apps/v1.0.6/.msapp/v1.0.6.msapp`
 - **Enhanced Features**: Modern VA branding, integrated tutorial videos, animated loading components
-- **Public PowerShell Scripts**: Available in `src/v1.0.x/v1.0.0/powershell/` (14 production-ready scripts)
-- **Deployment Utilities**: CLI automation and validation scripts for enterprise environments
-- **Installation Documentation**: Complete step-by-step setup instructions in [INSTALLATION_GUIDE.md](src/v1.0.x/v1.0.0/INSTALLATION_GUIDE.md)
+- **Public PowerShell Scripts**: `src/powershell/` (pack/unpack, validation, diagnostics)
+- **Deployment Utilities**: CLI automation & validation scripts for enterprise environments
+- **Installation Documentation**: [INSTALLATION_GUIDE.md](src/INSTALLATION_GUIDE.md)
 
 ### Power Platform Environment Configuration
 **VA USGov Cloud Users:** The application is configured for VA USGov environments with specific tenant and authentication requirements:
@@ -164,10 +185,68 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines, code standa
 | [CONTRIBUTING.md](docs/CONTRIBUTING.md)                          | Contribution guidelines and best practices |
 | [SECURITY.md](docs/SECURITY.md)                                  | Security policy and compliance framework   |
 | [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)                      | Project status and roadmap                 |
-| [INSTALLATION_GUIDE.md](src/v1.0.x/v1.0.0/INSTALLATION_GUIDE.md) | Installation and setup instructions        |
-| [RELEASE_NOTES.md](src/v1.0.x/v1.0.0/RELEASE_NOTES.md)           | Release notes and highlights               |
+| [INSTALLATION_GUIDE.md](src/INSTALLATION_GUIDE.md) | Installation and setup instructions        |
+| [RELEASE_NOTES.md](src/RELEASE_NOTES.md)           | Release notes and highlights               |
 
 ---
+
+## Usage Overview
+
+### Nominators
+1. Select award directly or use "Help Me Choose" guided flow.
+2. Enter nominee, context, justification (dynamic fields per award).
+3. Track statuses from My Nominations panel.
+
+### Approvers
+1. Review queued submissions in Approvals.
+2. Act within SLA windows (Level 1: 5 days, Level 2: 3 days).
+3. Use escalation or info requests; overdue items auto-escalate.
+
+### Administrators
+1. Monitor flow runs & error logs.
+2. Adjust minimal config JSONs (avoid mid-cycle source edits).
+3. Review monthly KPIs and backlog metrics.
+
+## Architecture Snapshot
+```
+┌─────────────────────────┐
+│ Canvas App (v1.0.6)     │
+└────────────┬────────────┘
+             │
+┌────────────▼────────────┐
+│ Flows (v1.0.1)          │
+└────────────┬────────────┘
+             │
+┌────────────▼────────────┐
+│ SharePoint Data Layer   │
+└─────────────────────────┘
+```
+Independent versioning reduces coupling; minimal configs decrease drift risk.
+
+## Configuration Samples
+`src/power-apps/v1.0.6/app-config.json` (excerpt):
+```json
+{ "version": "1.0.6", "features": { "enableHelpMeChoose": true }, "validation": { "maxDescriptionLength": 4000 } }
+```
+`src/power-automate/v1.0.1/flow-config.json` (excerpt):
+```json
+{ "releaseVersion": "1.0.1", "approval": { "level1TimeoutDays": 5, "level2TimeoutDays": 3 }, "reminders": { "intervalDays": 2 } }
+```
+
+## Support & Contact
+| Purpose | Contact |
+| ------- | ------- |
+| General Project | https://github.com/KCoderVA/Employee-Recognition-App |
+| VA Internal (SharePoint) | https://dvagov.sharepoint.com/sites/vhahin/svc/ci/ |
+| Development / Analytics | HINClinicalAnalytics@va.gov |
+
+## Roadmap Highlights
+- Teams adaptive card notifications
+- Advanced Power BI dashboards
+- Bulk approval tooling
+- Certificate generation automation
+- Localization & multi-language UI
+- Extended recognition analytics
 
 ## Project Information
 
@@ -178,9 +257,19 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines, code standa
 **Executive Sponsor:** James Doelling (Executive Director/CEO)
 **Project Timeline:** April 9, 2025 – August 12, 2025 (125 days of active development)
 **Total Releases:** 100+ incremental development releases with complete traceability
-**Repository Statistics:** 1,879 lines in CHANGELOG.md documenting complete project history
+**Repository Statistics:** 1,800+ lines in CHANGELOG.md documenting complete project history (legacy paths retained for historical accuracy)
 **License:** Apache License, Version 2.0 – See [LICENSE](LICENSE) for complete terms and conditions
 **Contact:**
 - [PREFERRED] GitHub Repository: https://github.com/KCoderVA/Employee-Recognition-App
 - [VA INTERNAL ONLY] SharePoint site: https://dvagov.sharepoint.com/sites/vhahin/svc/ci/
 - [ALTERNATE] Email: HINClinicalAnalytics@va.gov
+
+---
+
+### Legacy Path Preservation Note
+Historical releases referenced a monolithic directory (`src/v1.0.x/v1.0.0/...`). During the Oct 28, 2025 restructure we adopted a component-first model (`src/power-apps/v1.0.6`, `src/power-automate/v1.0.1`, etc.). Legacy paths are intentionally retained in:
+- CHANGELOG.md entries
+- Archived release documentation
+- Older release notes
+
+They should NOT be globally replaced to preserve audit fidelity and traceability of historical build outputs. All forward-looking guidance now uses the component-first structure.

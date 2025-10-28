@@ -1,0 +1,95 @@
+# Copyright 2025 Kyle J. Coder
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# CODEOWNERS - Automatic Review Assignment
+# Defines ownership for paths. GitHub auto-requests reviews for matching changes.
+# Reference: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# NOTE: This file is NOT YAML. Tooling that parses it as YAML will show false errors.
+# yaml-language-server: disable
+# codeowners-lint: disable all
+# Formatting: pattern<space>owners; do not quote or colon-separate.
+
+#############################################
+# Global Default (fallback)
+#############################################
+* @department-of-veterans-affairs/578-engineering-leads
+
+#############################################
+# Core Application Components (version-agnostic globs)
+#############################################
+/src/power-apps/ @department-of-veterans-affairs/578-app-developers @department-of-veterans-affairs/578-power-platform
+/src/power-automate/ @department-of-veterans-affairs/578-automation-team @department-of-veterans-affairs/578-power-platform
+/src/sharepoint/ @department-of-veterans-affairs/578-sharepoint-admins
+
+#############################################
+# Automation & Scripts
+#############################################
+/scripts/ @department-of-veterans-affairs/578-automation-team
+/scripts/pre-commit-*.ps1 @department-of-veterans-affairs/578-automation-team @department-of-veterans-affairs/578-engineering-leads
+/scripts/prepare-release*.ps1 @department-of-veterans-affairs/578-automation-team @department-of-veterans-affairs/578-engineering-leads
+/src/powershell/ @department-of-veterans-affairs/578-automation-team @department-of-veterans-affairs/578-engineering-leads
+/.github/workflows/ @department-of-veterans-affairs/578-devops @department-of-veterans-affairs/578-engineering-leads
+/.github/copilot-instructions.md @department-of-veterans-affairs/578-engineering-leads
+
+#############################################
+# Documentation & Governance
+#############################################
+/docs/ @department-of-veterans-affairs/578-documentation
+/docs/SECURITY.md @department-of-veterans-affairs/578-security @department-of-veterans-affairs/578-compliance
+/docs/CONTRIBUTING.md @department-of-veterans-affairs/578-engineering-leads
+/docs/PROJECT_STATUS.md @department-of-veterans-affairs/578-engineering-leads
+/README.md @department-of-veterans-affairs/578-documentation @department-of-veterans-affairs/578-engineering-leads
+/CHANGELOG.md @department-of-veterans-affairs/578-engineering-leads
+/CONTRIBUTING.md @department-of-veterans-affairs/578-engineering-leads
+/SECURITY.md @department-of-veterans-affairs/578-security @department-of-veterans-affairs/578-compliance
+/LICENSE @department-of-veterans-affairs/578-compliance @department-of-veterans-affairs/578-legal
+/docs/NOTICE @department-of-veterans-affairs/578-compliance @department-of-veterans-affairs/578-legal
+/assets/ @department-of-veterans-affairs/578-documentation @department-of-veterans-affairs/578-app-developers
+
+#############################################
+# Development & Repo Infrastructure
+#############################################
+/.vscode/ @department-of-veterans-affairs/578-devops
+/.github/ @department-of-veterans-affairs/578-devops @department-of-veterans-affairs/578-engineering-leads
+/.gitignore @department-of-veterans-affairs/578-devops
+/.gitattributes @department-of-veterans-affairs/578-devops
+# (Removed root /CODEOWNERS entry; file located under .github/ directory)
+
+#############################################
+# Release & Deployment
+#############################################
+/src/INSTALLATION_GUIDE.md @department-of-veterans-affairs/578-documentation @department-of-veterans-affairs/578-app-developers
+/src/RELEASE_NOTES.md @department-of-veterans-affairs/578-engineering-leads
+/src/**/solution.xml @department-of-veterans-affairs/578-power-platform
+
+#############################################
+# Migration & Planning
+#############################################
+/PROJECT_MIGRATION_PLAN.md @department-of-veterans-affairs/578-engineering-leads @department-of-veterans-affairs/578-devops
+
+#############################################
+# Critical Configuration & Governance Sensitive
+#############################################
+/.github/workflows/*.yml @department-of-veterans-affairs/578-devops @department-of-veterans-affairs/578-engineering-leads
+/scripts/safe-commit.ps1 @department-of-veterans-affairs/578-automation-team @department-of-veterans-affairs/578-engineering-leads
+/scripts/repo-health-check.ps1 @department-of-veterans-affairs/578-automation-team @department-of-veterans-affairs/578-engineering-leads
+/scripts/workspace-cleanup.ps1 @department-of-veterans-affairs/578-automation-team @department-of-veterans-affairs/578-engineering-leads
+/src/power-apps/**/app-config.json @department-of-veterans-affairs/578-engineering-leads @department-of-veterans-affairs/578-app-developers
+/src/power-automate/**/flow-config.json @department-of-veterans-affairs/578-engineering-leads @department-of-veterans-affairs/578-automation-team
+
+#############################################
+# Placeholder Team References (replace post-migration)
+#############################################
+# Ensure each team slug exists in the target GitHub org before enforcing required reviews.
+# Consider consolidating if review volume becomes excessive.

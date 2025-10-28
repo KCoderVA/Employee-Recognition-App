@@ -34,8 +34,45 @@ This document provides a complete, versioned history of all changes, enhancement
 ### Security
 -->
 
-## Version 1.0.6 (2025-08-19)
+## Version 1.0.7 (2025-10-28)
 
+**Release Type:** Documentation consolidation, component-first restructure, ownership pattern updates, and repository hygiene improvements
+**Date:** 2025-10-28
+**Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
+
+### Summary
+Version 1.0.7 transitions the project from a legacy monolithic `src/v1.0.x/v1.0.0/` layout to a component-first structure, consolidates README content, corrects CODEOWNERS patterns, and removes formatting issues (emoji artifacts, tab alignment). It improves maintainability, audit clarity, and contributor onboarding without modifying functional Canvas App or Flow logic.
+
+### Changes in v1.0.7
+- **Directory Restructure:** Adopted component-first layout (`src/power-apps/v1.0.6`, `src/power-automate/v1.0.1`, `src/powershell/`, `src/sharepoint/`) replacing legacy path references in active documentation.
+- **README Consolidation:** Merged `README_alternative.md` content (Usage Overview, Architecture Snapshot, Configuration Samples, Support, Roadmap) into primary `README.md` and added legacy path preservation rationale.
+- **Badge & Path Hygiene:** Updated implementation badge link to `src/powershell/README.md`; corrected installation and release notes table links; removed broken emoji characters from directory tree.
+- **Architecture Diagram:** Normalized whitespace and removed tab characters for consistent rendering and lint compliance.
+- **Legacy Path Strategy:** Formalized decision to retain historic `src/v1.0.x/v1.0.0/...` references inside `CHANGELOG.md` only for audit fidelity; excluded from forward-looking docs.
+- **CODEOWNERS Update:** Converted wildcard depth globs (`/src/**/power-apps/`) to component-first roots (`/src/power-apps/`, etc.); removed obsolete `/CODEOWNERS` root entry; added explicit `/assets/` ownership entry; clarified comments about false YAML lint warnings.
+- **Documentation Formatting:** Fixed heading order (moved Project Information below roadmap), ensured consistent section hierarchy, and standardized directory tree indentation.
+- **Lint Noise Reduction:** Added explanatory comments to CODEOWNERS clarifying non-YAML format; removed problematic glyphs causing VS Code warnings.
+
+### Technical Updates
+- README.md: Structural merge, directory tree replacement, architecture diagram whitespace normalization, badge/link adjustments, added legacy path note.
+- .github/CODEOWNERS: Pattern refactor to component-first model; comment block for lint suppression; removal of obsolete root entry.
+- (No functional source changes) Canvas App and Flow versions remain v1.0.6 and v1.0.1 respectively; no YAML/Power Fx modifications in this release.
+- Preserved historical CHANGELOG entries verbatim to maintain original context and path references.
+
+### Impact Assessment
+- Improves contributor clarity by surfacing component boundaries explicitly.
+- Reduces friction for automation scripts by eliminating ambiguous deep wildcard patterns.
+- Strengthens audit integrity via explicit legacy path preservation policy.
+- Enhances readability and accessibility of documentation (removed broken characters, consistent headings).
+- Prepares repository for future modular version increments without refactoring historical release notes.
+
+### Follow-Up (Deferred)
+- Refactor PowerShell modules and CI workflow checks to remove any remaining hardcoded legacy paths.
+- Optional `.gitattributes` cleanup (further binary pattern consolidation) pending separate maintenance ticket.
+
+---
+
+## Version 1.0.6 (2025-08-19)
 **Release Type:** UX flow improvements, triage binding updates, and version metadata groundwork
 **Date:** 2025-08-19
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
