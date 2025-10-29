@@ -21,6 +21,9 @@
 # =============================================================================
 
 name: Repository Health Check
+permissions:
+  contents: read
+  pull-requests: write
 
 # =====================
 # MAIN WORKFLOW DEFINITION

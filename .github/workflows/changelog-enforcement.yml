@@ -20,6 +20,9 @@
 # =============================================================================
 
 name: "Enforce CHANGELOG Updates"
+permissions:
+  contents: read
+  pull-requests: write
 
 # =====================
 # MAIN WORKFLOW DEFINITION
@@ -99,11 +102,11 @@ jobs:
           # Check if changes require CHANGELOG update
           SIGNIFICANT_CHANGES=false
 
-          # Check for source code changes
-          if echo "$CHANGED_FILES" | grep -E '\.(md|js|ts|py|ps1|json|yml|yaml)$|^(src|docs|scripts|\.github)/'; then
-            # Exclude certain files that don't require CHANGELOG
-            EXCLUDED_PATTERN='(README\.md|\.gitignore|package-lock\.json)$'
-            if echo "$CHANGED_FILES" | grep -vE "$EXCLUDED_PATTERN" | grep -E '\.(md|js|ts|py|ps1|json|yml|yaml)$|^(src|docs|scripts|\.github)/'; then
+          # Check for source code changes (exclude workflow-only updates under .github/workflows)
+          if echo "$CHANGED_FILES" | grep -E '\.(md|js|ts|py|ps1|json|yml|yaml)$|^(src|docs|scripts)/'; then
+            # Exclude non-impacting files and workflow YAMLs from CHANGELOG requirement
+            EXCLUDED_PATTERN='(^\.github/workflows/.*|README\.md|\.gitignore|package-lock\.json)$'
+            if echo "$CHANGED_FILES" | grep -vE "$EXCLUDED_PATTERN" | grep -E '\.(md|js|ts|py|ps1|json|yml|yaml)$|^(src|docs|scripts)/'; then
               SIGNIFICANT_CHANGES=true
             fi
           fi
@@ -112,7 +115,7 @@ jobs:
             echo "❌ CHANGELOG.md must be updated!"
             echo "::error::Significant changes detected but CHANGELOG.md was not updated"
             echo "Files that require CHANGELOG documentation:"
-            echo "$CHANGED_FILES" | grep -vE "$EXCLUDED_PATTERN" | grep -E '\.(md|js|ts|py|ps1|json|yml|yaml)$|^(src|docs|scripts|\.github)/' | sed 's/^/  - /'
+            echo "$CHANGED_FILES" | grep -vE "$EXCLUDED_PATTERN" | grep -E '\.(md|js|ts|py|ps1|json|yml|yaml)$|^(src|docs|scripts)/' | sed 's/^/  - /'
             echo ""
             echo "Please update CHANGELOG.md under the [Unreleased] section before merging."
             exit 1
@@ -226,7 +229,7 @@ jobs:
             echo "✅ Breaking changes are documented in CHANGELOG.md"
           fi
 
-  # =====================
+ # =====================
   # JOB: Comment on PR with CHANGELOG status
   # =====================
   pr-comment:
@@ -242,28 +245,24 @@ jobs:
           script: |
             const { owner, repo, number } = context.issue;
 
-            let message = "## 📋 CHANGELOG.md Status\\n\\n";
-
-            if (context.workflow_run && context.workflow_run.conclusion === 'success') {
-              message += "✅ **CHANGELOG.md validation passed!**\\n\\n";
-              message += "- CHANGELOG.md exists and is properly formatted\\n";
-              message += "- Changes are appropriately documented\\n";
-              message += "- Format follows Keep a Changelog standards\\n";
-            } else {
-              message += "❌ **CHANGELOG.md validation failed!**\\n\\n";
-              message += "Please ensure:\\n";
-              message += "- CHANGELOG.md exists in the repository root\\n";
-              message += "- Your changes are documented under `## [Unreleased]`\\n";
-              message += "- Use proper categories: Added, Changed, Deprecated, Removed, Fixed, Security\\n";
-              message += "- Follow [Keep a Changelog](https://keepachangelog.com/) format\\n";
-            }
-
-            message += "\\n---\\n";
-            message += "*This check ensures proper documentation of all significant changes.*";
+            const success = (context.workflow_run && context.workflow_run.conclusion === 'success');
+            const lines = [
+              '## 📋 CHANGELOG.md Status',
+              '',
+              success ? '✅ **CHANGELOG.md validation passed!**' : '❌ **CHANGELOG.md validation failed!**',
+              '',
+              success ? '- CHANGELOG.md exists and is properly formatted' : 'Please ensure:',
+              success ? '- Changes are appropriately documented' : '- CHANGELOG.md exists in the repository root',
+              success ? '- Format follows Keep a Changelog standards' : '- Your changes are documented under `## [Unreleased]`',
+              success ? '' : '- Use proper categories: Added, Changed, Deprecated, Removed, Fixed, Security',
+              success ? '' : '- Follow [Keep a Changelog](https://keepachangelog.com/) format',
+              '---',
+              '*This check ensures proper documentation of all significant changes.*'
+            ].filter(Boolean);
 
             await github.rest.issues.createComment({
               owner,
               repo,
               issue_number: number,
-              body: message
+              body: lines.join('\n')
             });

@@ -23,7 +23,7 @@ This document provides a complete, versioned history of all changes, enhancement
 
 ---
 
-## [Unreleased]
+## [Unreleased] (2025-10-29)
 
 <!-- Placeholder for upcoming changes. Categorize as needed:
 ### Added
@@ -33,6 +33,39 @@ This document provides a complete, versioned history of all changes, enhancement
 ### Fixed
 ### Security
 -->
+
+### Added
+- New `.github/workflows/README.md` providing plain-language and technical documentation for all automation workflows (CHANGELOG enforcement, repository health, mirror sync) plus recommendations for future CI/CD enhancements (secret scanning, dependency updates, packaging automation, action lint, docs lint, release notes generation).
+- Path-specific modular Copilot instruction files under `.github/instructions/` (`actions.instructions.md`, `code-review-pr.instructions.md`, `concept-explainer.instructions.md`, `debugging.instructions.md`, `docs.instructions.md`, `power-apps.instructions.md`, `power-automate.instructions.md`, `release-management.instructions.md`, `scripts.instructions.md`, `sharepoint.instructions.md`, `testing.instructions.md`) enabling context-aware guidance.
+- Draft universal consolidation file `.github/copilot-instructions_v2.md` (kept separate pending activation) summarizing cross-cutting policies & resilience protocols.
+- Orphan archive file `.github/orphaned-instructions.md` preserving verbatim legacy task/script catalogs, environment table, CLI onboarding steps, and standard response phrases for audit traceability.
+- New PowerShell utility & maintenance scripts added under `src/powershell/scripts/` (CLI filtering & project utilities, YAML diagnostics & fix sequences, accessibility/orphaned property correction, variable extraction, release preparation, CHANGELOG update & validation, VA security compliance test) each with full Apache headers & educational sections.
+- Automated Apache 2.0 license header insertion across new non-`src` artifacts via `add-license-headers.ps1` (script referenced in v2 instructions).
+
+### Changed
+- Updated `changelog-enforcement.yml` to exclude workflow-only changes (`.github/workflows/*`) from mandatory CHANGELOG updates, reducing noise for internal automation tweaks.
+- Refactored PR comment generation in `changelog-enforcement.yml` to use newline-aware array construction (eliminates literal `\n` artifacts and improves readability of status comments).
+- Legacy monolithic `.github/copilot-instructions.md` annotated with migration maps, container dividers, and commented blocks per section; migrated bullets now wrapped while orphan items intentionally left functional for pending disposition.
+- Instruction governance transitioned from single-file model to domain-scoped architecture (docs, scripts, release, actions, Power Apps, Power Automate, SharePoint, testing, code review, debugging, concept explainer) improving maintenance granularity.
+- Commit / cancellation / recovery protocols centralized and de-duplicated; redundant narrative removed from active guidance and preserved verbatim in orphan archive & v2 appendix.
+
+### Fixed
+- Resolved formatting issue where PR comment displayed escaped newline sequences instead of proper Markdown line breaks.
+- Eliminated prior instruction duplication risk by consolidating terminal automation & quick command trigger rules into `scripts.instructions.md` with single authoritative copy.
+- Removed stray tab / glyph artifacts during instruction file generation (consistent markdown rendering & lint compatibility).
+
+### Impact
+- Improves contributor experience by preventing unnecessary changelog failures for pure workflow maintenance.
+- Enhances transparency and onboarding through centralized workflow documentation.
+- Lays groundwork for adopting advanced automation (artifact packaging, security scanning, dependency hygiene) in future releases without altering existing functional app logic.
+- Establishes scalable, path-specific instruction ALM framework supporting precise Copilot context resolution and lower future merge friction.
+- Preserves 100% of legacy instructional content (either migrated, summarized, or archived verbatim) ensuring audit continuity pre-activation.
+- Introduces maintainable remediation tooling for YAML/accessibility issues reducing manual correction time in future app iterations.
+
+### Notes
+- No functional Canvas App or Power Automate logic changes included in these Unreleased updates.
+- Future consideration: implement recommended workflows incrementally (e.g., secret scanning + packaging automation) and record adoption under subsequent version entries.
+- Pending decision: activation (rename) of `copilot-instructions_v2.md` & archival of legacy file after orphan disposition (KEEP / MOVE / ARCHIVE / DROP choices) finalized.
 
 ## Version 1.0.7 (2025-10-28)
 
