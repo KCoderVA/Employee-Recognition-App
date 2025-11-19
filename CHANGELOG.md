@@ -23,6 +23,35 @@ This document provides a complete, versioned history of all changes, enhancement
 
 ---
 
+## Version 1.1.0 (2025-11-19)
+
+**Release Type:** New analytics component, documentation expansion, and configuration hardening
+**Date:** 2025-11-19
+**Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
+
+### Summary
+Version 1.1.0 introduces the initial Analytics & Reporting component for the Employee Recognition App, establishes a secure Power BI development pattern, and hardens workspace configuration for large-document editing. This release focuses on analytics architecture, documentation, and repository hygiene; no functional changes were made to the core Canvas App screens or Power Automate flows.
+
+### Added
+- **Analytics Component (`src/analytics/`):** New documentation hub (`README.md`, `QUICK_START.md`) outlining analytics objectives, KPIs, data sources, roadmap, and governance for Power BI-based dashboards.
+- **Power BI Assets (`src/analytics/powerbi/`):** Introduced Power BI directory structure and a sanitized template file `development/dashboard_v0.1.0.pbit` suitable for public distribution (no PHI or live data).
+- **Power BI Governance:** Documented VA Power BI Gov dataset identifiers, access patterns, and security expectations across analytics docs, including clear separation between safe templates and PHI-bearing development artifacts.
+
+### Changed
+- **README.md:** Bumped project version badge and overview to v1.1.0 and explicitly called out the new analytics and reporting component while keeping the existing component-first architecture description intact.
+- **.vscode/settings.json:** Tuned markdown validation, preview behavior, extension affinity, and memory/search settings (`files.maxMemoryForLargeFilesMB`, `search.maxResults`) to reduce out-of-memory crashes when working with large documentation sets.
+- **.gitignore:** Strengthened ignore rules so that all `.pbix` files and `src/analytics/data-extracts/**` remain excluded even with `!src/**` includes, while explicitly re-allowing sanitized `.pbit` templates. Added `*.lnk` to prevent Windows shortcuts from entering the repository.
+
+### Fixed
+- **Analytics PHI Protection:** Resolved a rule-precedence issue where a later `!src/**` pattern could have re-included Power BI `.pbix` and `data-extracts` assets. Follow-up overrides now guarantee these paths stay ignored in all cases.
+
+### Impact
+- Establishes a robust, security-aware foundation for analytics and reporting without changing existing app behavior.
+- Ensures PHI and operational data used for analytics remain local-only, while sanitized templates and documentation are safely tracked in GitHub.
+- Improves editor stability and developer experience when working with high-volume markdown and configuration files.
+
+---
+
 ## [Unreleased] (2025-10-29)
 
 <!-- Placeholder for upcoming changes. Categorize as needed:

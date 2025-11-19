@@ -90,5 +90,11 @@
     "markdown.preview.typographer": false,
     "typescript.suggest.autoImports": false,
     "markdown.preview.scrollEditorWithPreview": false,
-    "markdown.preview.scrollPreviewWithEditor": false
+    "markdown.preview.scrollPreviewWithEditor": false,
+    // Memory optimization to prevent OOM crashes
+    "extensions.experimental.affinity": {
+        "ms-powerplatform.vscode-power-platform": 1
+    },
+    "files.maxMemoryForLargeFilesMB": 4096,
+    "search.maxResults": 20000
 }

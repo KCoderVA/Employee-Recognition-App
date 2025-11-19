@@ -18,14 +18,14 @@ limitations under the License.
 # Employee Recognition App
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
-[![Version](https://img.shields.io/badge/Version-1.0.7-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-1.1.0-green)](./CHANGELOG.md)
 [![Implementation](https://img.shields.io/badge/Implementation%20-PowerShell-green)](./src/powershell/README.md)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
 
 ---
 
-## Project Overview (Currently: v1.0.7 | Published: October 28, 2025)
+## Project Overview (Currently: v1.1.0 | Published: November 19, 2025)
 
 The Employee Recognition App is a production-ready Power Platform application that transforms traditional paper-based employee recognition into an intelligent, automated digital workflow. Developed with full stakeholder collaboration, 100+ incremental releases, and comprehensive GitHub automation with CI/CD workflows. Features seven distinct award recognition types allowing consolidated submission, automated routing/triage, ChatBot safety checks, automated documentation storage, and enterprise-grade security compliance for VA Healthcare environments.
 
@@ -36,12 +36,18 @@ The Employee Recognition App is a production-ready Power Platform application th
 - **Automated Workflows**: Multi-level approvals with intelligent triage and routing
 - **Mobile-First Design**: Responsive and accessible across all devices and platforms
 - **Enterprise Integration**: Teams and Outlook integration with a "Patient Safety Event" ChatBot
-- **Analytics & Reporting**: Comprehensive dashboard for recognition metrics and insights
+- **Analytics & Reporting**: Comprehensive dashboards for recognition metrics and insights (Power BI analytics component introduced in v1.1.0)
 - **Security & Compliance**: Enterprise-grade security with complete audit trails
 - **DevOps Pipeline**: Complete CI/CD automation and professional documentation
 - **User Experience**: Embedded video tutorials, feedback system, and bug reporting
 
 ---
+
+## 🚀 What's New in v1.1.0
+- Introduced a new analytics and reporting component (`src/analytics/`) with detailed README and quick-start documentation describing Power BI-based KPIs for submission volumes, processing times, and outcomes.
+- Added initial Power BI development assets and governance, including a sanitized `.pbit` template (`src/analytics/powerbi/development/dashboard_v0.1.0.pbit`) and reinforced `.gitignore` protections for all `.pbix` and `data-extracts` files containing PHI.
+- Enhanced repository hygiene and editor stability with updated `.vscode/settings.json` memory/search tuning and extended `.gitignore` rules (including `.lnk` shortcuts and analytics-specific overrides).
+- Documented analytics roadmap and integration strategy for future executive dashboards and automated alerts while keeping all current changes non-breaking to the core Canvas App and flows.
 
 ## 🚀 What's New in v1.0.6
 ## 🚀 What's New in v1.0.7

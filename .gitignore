@@ -137,6 +137,16 @@ testing/
 **/*_PowerAutomateFlow*.zip
 
 # ================================
+# EXCLUDE: Power BI Files with PHI/Sensitive Data
+# ================================
+# Power BI development files containing real PHI and sensitive information
+*.pbix
+src/analytics/data-extracts/
+src/analytics/powerbi/development/*.pbix
+# NOTE: .pbit template files are ALLOWED (sanitized, no PHI)
+!src/analytics/powerbi/development/*.pbit
+
+# ================================
 # EXCLUDE: Environment & Configuration
 # ================================
 # Environment and configuration files
@@ -165,6 +175,7 @@ error.log
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+*.lnk
 
 # ================================
 # EXCLUDE: Node.js (if applicable)
@@ -203,6 +214,10 @@ venv/
 !docs/PROJECT_STATUS.md
 !docs/SECURITY.md
 !src/**
+# Re-exclude sensitive analytics files (must come after !src/**)
+src/analytics/data-extracts/**
+src/analytics/powerbi/development/*.pbix
+!src/analytics/powerbi/development/*.pbit
 !LICENSE
 !CHANGELOG.md
 !README.md
