@@ -14,24 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-
 # Employee Recognition App
 
 [![Power Platform](https://img.shields.io/badge/Power%20Platform-Canvas%20App-blue)](https://powerapps.microsoft.com/)
-[![Version](https://img.shields.io/badge/Version-1.1.0-green)](./CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-1.1.2-green)](./CHANGELOG.md)
 [![Implementation](https://img.shields.io/badge/Implementation%20-PowerShell-green)](./src/powershell/README.md)
 [![GitHub Automation](https://img.shields.io/badge/CI%2FCD-Automated-blue)](./.github/workflows/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue)](https://opensource.org/licenses/Apache-2.0)
 
 ---
 
-## Project Overview (Currently: v1.1.0 | Published: November 19, 2025)
+## Project Overview (Currently: v1.1.2 | Published: January 13, 2026)
 
 The Employee Recognition App is a production-ready Power Platform application that transforms traditional paper-based employee recognition into an intelligent, automated digital workflow. Developed with full stakeholder collaboration, 100+ incremental releases, and comprehensive GitHub automation with CI/CD workflows. Features seven distinct award recognition types allowing consolidated submission, automated routing/triage, ChatBot safety checks, automated documentation storage, and enterprise-grade security compliance for VA Healthcare environments.
 
 ---
 
 ## ⭐ Key Features
+
 - **Smart Forms**: Award-specific forms with dynamic question sets and intelligent validation
 - **Automated Workflows**: Multi-level approvals with intelligent triage and routing
 - **Mobile-First Design**: Responsive and accessible across all devices and platforms
@@ -43,14 +43,26 @@ The Employee Recognition App is a production-ready Power Platform application th
 
 ---
 
+## 🚀 What's New in v1.1.2
+
+- **Complete Triage Screen Overhaul**: +955 lines (+65% growth) with dynamic form visibility, combo box team routing, and auto-populated Action By field with real-time user lookup
+- **Office 365 API Modernization**: Migrated from deprecated `SearchUserV2` to modern `SearchUser` API for improved reliability and forward compatibility
+- **Platform Upgrade**: MSAppStructureVersion updated from 2.0 to 2.4.0, DocVersion 1.346→1.347, groupContainer control upgraded 1.3.0→1.4.0
+- **Enhanced Grid Layouts**: New `LayoutGridColumns` and `LayoutGridRows` properties for improved responsive design
+- **Version Archival**: v1.0.6 moved to archive structure at `archive/src/power-apps/v1.0.x/v1.0.6/` with complete preservation
+- **Copilot Flags Disabled**: Set `CopilotControlGeneratedAppInfoEnabled` and `CopilotPanelEnabledForCanvas` to false for manual control
+
 ## 🚀 What's New in v1.1.0
+
 - Introduced a new analytics and reporting component (`src/analytics/`) with detailed README and quick-start documentation describing Power BI-based KPIs for submission volumes, processing times, and outcomes.
 - Added initial Power BI development assets and governance, including a sanitized `.pbit` template (`src/analytics/powerbi/development/dashboard_v0.1.0.pbit`) and reinforced `.gitignore` protections for all `.pbix` and `data-extracts` files containing PHI.
 - Enhanced repository hygiene and editor stability with updated `.vscode/settings.json` memory/search tuning and extended `.gitignore` rules (including `.lnk` shortcuts and analytics-specific overrides).
 - Documented analytics roadmap and integration strategy for future executive dashboards and automated alerts while keeping all current changes non-breaking to the core Canvas App and flows.
 
 ## 🚀 What's New in v1.0.6
+
 ## 🚀 What's New in v1.0.7
+
 - Documentation & Governance Focused Release (no functional Canvas App or Flow logic changes)
 - Consolidated alternative README content into the primary README (Usage, Architecture, Config, Support, Roadmap)
 - Adopted component-first source layout (`src/power-apps/v1.0.6`, `src/power-automate/v1.0.1`, `src/powershell`, `src/sharepoint`)
@@ -62,6 +74,7 @@ The Employee Recognition App is a production-ready Power Platform application th
 ---
 
 ## 🚀 What's New in v1.0.6
+
 - View Submissions toolbar improvements: HRO and Hines Hero now initialize a clean in-app new-submission flow (no external links), resetting variables/controls and navigating to Screen_NewSubmission.
 - Triage workflow: Form2 now binds to Gallery1.Selected; submit resets Gallery1 and clears selection state; layout tuned.
 - App version groundwork: Commented version metadata scaffolding using PowerAppsforMakers.GetAppVersions; profile lookup updated to SearchUserV2.
@@ -71,6 +84,7 @@ See [CHANGELOG.md](CHANGELOG.md) for full details.
 ---
 
 ## ⭐ Previously in v1.0.4
+
 - **Visual Modernization:** Complete refresh with modern approved VA seal, logos, and professional visual assets replacing placeholder content
 - **Tutorial Integration:** SharePoint-hosted end user tutorial video with embedded access buttons on Update/Help screen and submission popups
 - **Enhanced Loading Experience:** Professional animated progress bars and spinning loaders improving user engagement during app interactions
@@ -85,6 +99,7 @@ See [CHANGELOG.md](CHANGELOG.md) for full details.
 ## Solution Architecture
 
 The Employee Recognition App is built on a comprehensive Power Platform foundation with enterprise-grade automation:
+
 - **Power Apps Canvas App** – Mobile-first responsive design supporting 4 award recognition types with accessibility compliance
 - **Power Automate Flows** – Automated triage, multi-level approval routing, and AI safety chatbot integration
 - **SharePoint Lists** – Secure data storage with structured content types, privacy controls, and comprehensive audit trails
@@ -95,6 +110,7 @@ The Employee Recognition App is built on a comprehensive Power Platform foundati
 - **Teams & Outlook** – Collaboration and notification systems with embedded safety chatbot integration
 
 ### Directory Structure (Component-First Model – Oct 28, 2025)
+
 ```
 📁 Employee Recognition App/
 ├── 📂 .github/                  # Workflows, issue templates, CODEOWNERS
@@ -130,6 +146,7 @@ The Employee Recognition App is built on a comprehensive Power Platform foundati
 ├── 📄 README.md                 # Authoritative overview (merged)
 └── (removed) README_alternative.md  # Legacy file merged then removed (Oct 28 2025)
 ```
+
 > Legacy `src/v1.0.x/v1.0.0/...` references remain only in CHANGELOG & historical docs for traceability.
 
 ---
@@ -137,6 +154,7 @@ The Employee Recognition App is built on a comprehensive Power Platform foundati
 ## Getting Started
 
 ### Implementation & Deployment Prerequisites
+
 - **Power Platform CLI** – [Microsoft Learn](https://learn.microsoft.com/power-platform/developer/cli/introduction) (required for packaging and deployment)
 - **Visual Studio Code** with recommended Power Platform extensions (Power Platform Tools, Power Apps CLI)
 - **Power Platform Environment** (admin access required for solution import and configuration)
@@ -145,6 +163,7 @@ The Employee Recognition App is built on a comprehensive Power Platform foundati
 - **PowerShell 5.1+** (for automation scripts and deployment utilities)
 
 ### Quick Setup
+
 ```bash
 # Clone the repository
 git clone https://github.com/KCoderVA/Employee-Recognition-App.git
@@ -158,7 +177,9 @@ pac auth create --environment [your-environment-id] --tenant [your-tenant-id]
 ```
 
 ### Download Ready-to-Use App
+
 For immediate deployment without source modifications:
+
 - **Pre-built Application Package**: `src/power-apps/v1.0.6/.msapp/v1.0.6.msapp`
 - **Enhanced Features**: Modern VA branding, integrated tutorial videos, animated loading components
 - **Public PowerShell Scripts**: `src/powershell/` (pack/unpack, validation, diagnostics)
@@ -166,6 +187,7 @@ For immediate deployment without source modifications:
 - **Installation Documentation**: [INSTALLATION_GUIDE.md](src/INSTALLATION_GUIDE.md)
 
 ### Power Platform Environment Configuration
+
 **VA USGov Cloud Users:** The application is configured for VA USGov environments with specific tenant and authentication requirements:
 
 ---
@@ -201,12 +223,12 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines, code standa
 
 ## Documentation
 
-| Document                                                         | Description                                |
-| ---------------------------------------------------------------- | ------------------------------------------ |
-| [CHANGELOG.md](CHANGELOG.md)                                     | Complete development history               |
-| [CONTRIBUTING.md](docs/CONTRIBUTING.md)                          | Contribution guidelines and best practices |
-| [SECURITY.md](docs/SECURITY.md)                                  | Security policy and compliance framework   |
-| [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)                      | Project status and roadmap                 |
+| Document                                           | Description                                |
+| -------------------------------------------------- | ------------------------------------------ |
+| [CHANGELOG.md](CHANGELOG.md)                       | Complete development history               |
+| [CONTRIBUTING.md](docs/CONTRIBUTING.md)            | Contribution guidelines and best practices |
+| [SECURITY.md](docs/SECURITY.md)                    | Security policy and compliance framework   |
+| [PROJECT_STATUS.md](docs/PROJECT_STATUS.md)        | Project status and roadmap                 |
 | [INSTALLATION_GUIDE.md](src/INSTALLATION_GUIDE.md) | Installation and setup instructions        |
 | [RELEASE_NOTES.md](src/RELEASE_NOTES.md)           | Release notes and highlights               |
 
@@ -215,21 +237,25 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines, code standa
 ## Usage Overview
 
 ### Nominators
+
 1. Select award directly or use "Help Me Choose" guided flow.
 2. Enter nominee, context, justification (dynamic fields per award).
 3. Track statuses from My Nominations panel.
 
 ### Approvers
+
 1. Review queued submissions in Approvals.
 2. Act within SLA windows (Level 1: 5 days, Level 2: 3 days).
 3. Use escalation or info requests; overdue items auto-escalate.
 
 ### Administrators
+
 1. Monitor flow runs & error logs.
 2. Adjust minimal config JSONs (avoid mid-cycle source edits).
 3. Review monthly KPIs and backlog metrics.
 
 ## Architecture Snapshot
+
 ```
 ┌─────────────────────────┐
 │ Canvas App (v1.0.6)     │
@@ -243,26 +269,41 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines, code standa
 │ SharePoint Data Layer   │
 └─────────────────────────┘
 ```
+
 Independent versioning reduces coupling; minimal configs decrease drift risk.
 
 ## Configuration Samples
+
 `src/power-apps/v1.0.6/app-config.json` (excerpt):
+
 ```json
-{ "version": "1.0.6", "features": { "enableHelpMeChoose": true }, "validation": { "maxDescriptionLength": 4000 } }
+{
+  "version": "1.0.6",
+  "features": { "enableHelpMeChoose": true },
+  "validation": { "maxDescriptionLength": 4000 }
+}
 ```
+
 `src/power-automate/v1.0.1/flow-config.json` (excerpt):
+
 ```json
-{ "releaseVersion": "1.0.1", "approval": { "level1TimeoutDays": 5, "level2TimeoutDays": 3 }, "reminders": { "intervalDays": 2 } }
+{
+  "releaseVersion": "1.0.1",
+  "approval": { "level1TimeoutDays": 5, "level2TimeoutDays": 3 },
+  "reminders": { "intervalDays": 2 }
+}
 ```
 
 ## Support & Contact
-| Purpose | Contact |
-| ------- | ------- |
-| General Project | https://github.com/KCoderVA/Employee-Recognition-App |
-| VA Internal (SharePoint) | https://dvagov.sharepoint.com/sites/vhahin/svc/ci/ |
-| Development / Analytics | HINClinicalAnalytics@va.gov |
+
+| Purpose                  | Contact                                              |
+| ------------------------ | ---------------------------------------------------- |
+| General Project          | https://github.com/KCoderVA/Employee-Recognition-App |
+| VA Internal (SharePoint) | https://dvagov.sharepoint.com/sites/vhahin/svc/ci/   |
+| Development / Analytics  | HINClinicalAnalytics@va.gov                          |
 
 ## Roadmap Highlights
+
 - Teams adaptive card notifications
 - Advanced Power BI dashboards
 - Bulk approval tooling
@@ -282,6 +323,7 @@ Independent versioning reduces coupling; minimal configs decrease drift risk.
 **Repository Statistics:** 1,800+ lines in CHANGELOG.md documenting complete project history (legacy paths retained for historical accuracy)
 **License:** Apache License, Version 2.0 – See [LICENSE](LICENSE) for complete terms and conditions
 **Contact:**
+
 - [PREFERRED] GitHub Repository: https://github.com/KCoderVA/Employee-Recognition-App
 - [VA INTERNAL ONLY] SharePoint site: https://dvagov.sharepoint.com/sites/vhahin/svc/ci/
 - [ALTERNATE] Email: HINClinicalAnalytics@va.gov
@@ -289,10 +331,11 @@ Independent versioning reduces coupling; minimal configs decrease drift risk.
 ---
 
 ### Legacy Path Preservation Note
+
 Historical releases referenced a monolithic directory (`src/v1.0.x/v1.0.0/...`). During the Oct 28, 2025 restructure we adopted a component-first model (`src/power-apps/v1.0.6`, `src/power-automate/v1.0.1`, etc.). Legacy paths are intentionally retained in:
+
 - CHANGELOG.md entries
 - Archived release documentation
 - Older release notes
 
 They should NOT be globally replaced to preserve audit fidelity and traceability of historical build outputs. All forward-looking guidance now uses the component-first structure.
-

@@ -23,6 +23,71 @@ This document provides a complete, versioned history of all changes, enhancement
 
 ---
 
+## Version 1.1.2 (2026-01-13)
+
+**Release Type:** Major Feature Update – Triage Workflow Overhaul, Office365 API Migration, Platform Modernization
+**Date:** 2026-01-13
+**Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
+
+### Summary
+
+Version 1.1.2 delivers a significant upgrade to the Employee Recognition Canvas App, with a complete redesign of the Triage Screen, migration to updated Office365 APIs, enhanced form controls with dynamic visibility, and platform component upgrades. This release represents a major step forward in user experience for triage team members and introduces smart form handling with conditional display logic.
+
+### Added
+
+- **Triage Team Routing Combo Box:** New dropdown control on Triage_Screen with predefined routing options (Forward to Nursing Team, Forward to HRO Team, Forward to Public Affairs Team, Forward to Starfish Team, Return to Sender/Cancel)
+- **Dynamic Form Visibility:** Form2 on Triage_Screen now shows/hides based on `col_selectedUserNominee` collection count, hiding the form until a nomination is selected
+- **Submit Button with State Cleanup:** New "Submit Changes" button that resets form fields, submits data, clears all selection variables/collections, resets gallery, and navigates to Loading_Screen
+- **Nominee Display Card:** New read-only card displaying the selected nominee's name (`var_selectedUser.DisplayName`)
+- **Auto-Populated Action By Field:** Triage action tracking now auto-fills with current user's email address for enhanced audit trails
+- **Grid Layout Properties:** Added `LayoutGridColumns` and `LayoutGridRows` to Loading_Container and Update_PopUP_People containers
+
+### Changed
+
+- **Office365 API Migration:** Updated `gbl_userCurrentProfile` lookup from `Office365Users.SearchUserV2` to `Office365Users.SearchUser` in App.OnStart
+- **Version Number Update:** In-app version display updated from `1.0.5` to `1.1.1` series
+- **MSAppStructureVersion Upgrade:** Upgraded from 2.0 to 2.4.0, enabling new platform capabilities
+- **groupContainer Control Upgrade:** Updated from v1.3.0 to v1.4.0 with new grid layout support
+- **App Description Enhanced:** Extended CanvasManifest.json description to include GitHub repository link (https://github.com/department-of-veterans-affairs/578-EmployeeRecognitionApp)
+- **Triage_Screen OnVisible:** Added screen-level logic to initialize Form2.Visible to false
+- **Form2 Layout:** Converted from fixed dimensions (700x612 at 665,156) to responsive calculations using parent/sibling references
+- **Button Positioning:** btn_Print and btn_GoHome now use relative positioning instead of fixed coordinates
+- **DataCard Widths:** Standardized triage form data card widths from 350px to 453px
+- **Triage Status Field:** Hidden text input replaced with combo box overlay for guided team selection
+
+### Removed
+
+- **Copilot Preview Features:** Disabled `enablecopilotanswercontrol` and `enablecopilotcontrol` flags
+- **Deprecated Preview Flags:** Removed `enableideaspanel`, `enableideaspanelbyexample`, `enableeditcacherefreshfrequency`, `enablelegacydatatable`, `formularepair`, `reliableconcurrent`, `disablecdsfileandlargeimage`
+
+### Technical Details
+
+- **Triage_Screen.fx.yaml:** +955 lines (+65% growth, from 1,460 to 2,415 lines)
+- **Screen_NewSubmission.fx.yaml:** +53 lines (+0.9%)
+- **ViewSubmissions_Screen.fx.yaml:** +122 lines (+3.8%)
+- **Update_Screen.fx.yaml:** +12 lines (+0.9%)
+- **Loading_Screen.fx.yaml:** -9 lines (-1.6%, minor cleanup)
+- **New .pa.yaml files:** Added portable YAML format files in Other/Src/ directory
+
+### Impact Assessment
+
+- Significantly improves triage team workflow efficiency with guided team routing
+- Enhances audit trail accuracy with auto-populated user identification
+- Modernizes platform foundation for future feature development
+- No breaking changes to existing submission or approval workflows
+- Maintains full compatibility with existing SharePoint data sources
+
+### Testing Recommendations
+
+1. Verify Triage_Screen form visibility toggles correctly on gallery selection
+2. Test all five team routing options in the new combo box
+3. Confirm "Action By" field auto-populates with current user email
+4. Validate submit button clears all state variables and navigates correctly
+5. Test user profile lookup with updated SearchUser API
+6. Regression test all existing submission workflows
+
+---
+
 ## Version 1.1.0 (2025-11-19)
 
 **Release Type:** New analytics component, documentation expansion, and configuration hardening
@@ -30,22 +95,27 @@ This document provides a complete, versioned history of all changes, enhancement
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 Version 1.1.0 introduces the initial Analytics & Reporting component for the Employee Recognition App, establishes a secure Power BI development pattern, and hardens workspace configuration for large-document editing. This release focuses on analytics architecture, documentation, and repository hygiene; no functional changes were made to the core Canvas App screens or Power Automate flows.
 
 ### Added
+
 - **Analytics Component (`src/analytics/`):** New documentation hub (`README.md`, `QUICK_START.md`) outlining analytics objectives, KPIs, data sources, roadmap, and governance for Power BI-based dashboards.
 - **Power BI Assets (`src/analytics/powerbi/`):** Introduced Power BI directory structure and a sanitized template file `development/dashboard_v0.1.0.pbit` suitable for public distribution (no PHI or live data).
 - **Power BI Governance:** Documented VA Power BI Gov dataset identifiers, access patterns, and security expectations across analytics docs, including clear separation between safe templates and PHI-bearing development artifacts.
 
 ### Changed
+
 - **README.md:** Bumped project version badge and overview to v1.1.0 and explicitly called out the new analytics and reporting component while keeping the existing component-first architecture description intact.
 - **.vscode/settings.json:** Tuned markdown validation, preview behavior, extension affinity, and memory/search settings (`files.maxMemoryForLargeFilesMB`, `search.maxResults`) to reduce out-of-memory crashes when working with large documentation sets.
 - **.gitignore:** Strengthened ignore rules so that all `.pbix` files and `src/analytics/data-extracts/**` remain excluded even with `!src/**` includes, while explicitly re-allowing sanitized `.pbit` templates. Added `*.lnk` to prevent Windows shortcuts from entering the repository.
 
 ### Fixed
+
 - **Analytics PHI Protection:** Resolved a rule-precedence issue where a later `!src/**` pattern could have re-included Power BI `.pbix` and `data-extracts` assets. Follow-up overrides now guarantee these paths stay ignored in all cases.
 
 ### Impact
+
 - Establishes a robust, security-aware foundation for analytics and reporting without changing existing app behavior.
 - Ensures PHI and operational data used for analytics remain local-only, while sanitized templates and documentation are safely tracked in GitHub.
 - Improves editor stability and developer experience when working with high-volume markdown and configuration files.
@@ -64,6 +134,7 @@ Version 1.1.0 introduces the initial Analytics & Reporting component for the Emp
 -->
 
 ### Added
+
 - New `.github/workflows/README.md` providing plain-language and technical documentation for all automation workflows (CHANGELOG enforcement, repository health, mirror sync) plus recommendations for future CI/CD enhancements (secret scanning, dependency updates, packaging automation, action lint, docs lint, release notes generation).
 - Path-specific modular Copilot instruction files under `.github/instructions/` (`actions.instructions.md`, `code-review-pr.instructions.md`, `concept-explainer.instructions.md`, `debugging.instructions.md`, `docs.instructions.md`, `power-apps.instructions.md`, `power-automate.instructions.md`, `release-management.instructions.md`, `scripts.instructions.md`, `sharepoint.instructions.md`, `testing.instructions.md`) enabling context-aware guidance.
 - Draft universal consolidation file `.github/copilot-instructions_v2.md` (kept separate pending activation) summarizing cross-cutting policies & resilience protocols.
@@ -72,6 +143,7 @@ Version 1.1.0 introduces the initial Analytics & Reporting component for the Emp
 - Automated Apache 2.0 license header insertion across new non-`src` artifacts via `add-license-headers.ps1` (script referenced in v2 instructions).
 
 ### Changed
+
 - Updated `changelog-enforcement.yml` to exclude workflow-only changes (`.github/workflows/*`) from mandatory CHANGELOG updates, reducing noise for internal automation tweaks.
 - Refactored PR comment generation in `changelog-enforcement.yml` to use newline-aware array construction (eliminates literal `\n` artifacts and improves readability of status comments).
 - Legacy monolithic `.github/copilot-instructions.md` annotated with migration maps, container dividers, and commented blocks per section; migrated bullets now wrapped while orphan items intentionally left functional for pending disposition.
@@ -79,11 +151,13 @@ Version 1.1.0 introduces the initial Analytics & Reporting component for the Emp
 - Commit / cancellation / recovery protocols centralized and de-duplicated; redundant narrative removed from active guidance and preserved verbatim in orphan archive & v2 appendix.
 
 ### Fixed
+
 - Resolved formatting issue where PR comment displayed escaped newline sequences instead of proper Markdown line breaks.
 - Eliminated prior instruction duplication risk by consolidating terminal automation & quick command trigger rules into `scripts.instructions.md` with single authoritative copy.
 - Removed stray tab / glyph artifacts during instruction file generation (consistent markdown rendering & lint compatibility).
 
 ### Impact
+
 - Improves contributor experience by preventing unnecessary changelog failures for pure workflow maintenance.
 - Enhances transparency and onboarding through centralized workflow documentation.
 - Lays groundwork for adopting advanced automation (artifact packaging, security scanning, dependency hygiene) in future releases without altering existing functional app logic.
@@ -92,6 +166,7 @@ Version 1.1.0 introduces the initial Analytics & Reporting component for the Emp
 - Introduces maintainable remediation tooling for YAML/accessibility issues reducing manual correction time in future app iterations.
 
 ### Notes
+
 - No functional Canvas App or Power Automate logic changes included in these Unreleased updates.
 - Future consideration: implement recommended workflows incrementally (e.g., secret scanning + packaging automation) and record adoption under subsequent version entries.
 - Pending decision: activation (rename) of `copilot-instructions_v2.md` & archival of legacy file after orphan disposition (KEEP / MOVE / ARCHIVE / DROP choices) finalized.
@@ -103,9 +178,11 @@ Version 1.1.0 introduces the initial Analytics & Reporting component for the Emp
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 Version 1.0.7 transitions the project from a legacy monolithic `src/v1.0.x/v1.0.0/` layout to a component-first structure, consolidates README content, corrects CODEOWNERS patterns, and removes formatting issues (emoji artifacts, tab alignment). It improves maintainability, audit clarity, and contributor onboarding without modifying functional Canvas App or Flow logic.
 
 ### Changes in v1.0.7
+
 - **Directory Restructure:** Adopted component-first layout (`src/power-apps/v1.0.6`, `src/power-automate/v1.0.1`, `src/powershell/`, `src/sharepoint/`) replacing legacy path references in active documentation.
 - **README Consolidation:** Merged `README_alternative.md` content (Usage Overview, Architecture Snapshot, Configuration Samples, Support, Roadmap) into primary `README.md` and added legacy path preservation rationale.
 - **Badge & Path Hygiene:** Updated implementation badge link to `src/powershell/README.md`; corrected installation and release notes table links; removed broken emoji characters from directory tree.
@@ -116,12 +193,14 @@ Version 1.0.7 transitions the project from a legacy monolithic `src/v1.0.x/v1.0.
 - **Lint Noise Reduction:** Added explanatory comments to CODEOWNERS clarifying non-YAML format; removed problematic glyphs causing VS Code warnings.
 
 ### Technical Updates
+
 - README.md: Structural merge, directory tree replacement, architecture diagram whitespace normalization, badge/link adjustments, added legacy path note.
 - .github/CODEOWNERS: Pattern refactor to component-first model; comment block for lint suppression; removal of obsolete root entry.
 - (No functional source changes) Canvas App and Flow versions remain v1.0.6 and v1.0.1 respectively; no YAML/Power Fx modifications in this release.
 - Preserved historical CHANGELOG entries verbatim to maintain original context and path references.
 
 ### Impact Assessment
+
 - Improves contributor clarity by surfacing component boundaries explicitly.
 - Reduces friction for automation scripts by eliminating ambiguous deep wildcard patterns.
 - Strengthens audit integrity via explicit legacy path preservation policy.
@@ -129,20 +208,24 @@ Version 1.0.7 transitions the project from a legacy monolithic `src/v1.0.x/v1.0.
 - Prepares repository for future modular version increments without refactoring historical release notes.
 
 ### Follow-Up (Deferred)
+
 - Refactor PowerShell modules and CI workflow checks to remove any remaining hardcoded legacy paths.
 - Optional `.gitattributes` cleanup (further binary pattern consolidation) pending separate maintenance ticket.
 
 ---
 
 ## Version 1.0.6 (2025-08-19)
+
 **Release Type:** UX flow improvements, triage binding updates, and version metadata groundwork
 **Date:** 2025-08-19
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 Version 1.0.6 refines the new-submission experience from the View Submissions toolbar, cleans up external navigation, and tightens the triage workflow. It also lays the (commented) groundwork for richer in-app version metadata using the Makers API.
 
 ### Changes in v1.0.6
+
 - ViewSubmissions_Screen toolbar buttons:
   - HRO: Replaced external Navigate/Launch with an internal new-submission path that initializes form state deterministically (Concurrent reset/clears, ResetForm, col_SelectedAwardType = "HRO", Navigate(Screen_NewSubmission)).
   - Hines Hero: Mirrored the HRO pattern to remove external links and drive a consistent in-app submission flow.
@@ -154,6 +237,7 @@ Version 1.0.6 refines the new-submission experience from the View Submissions to
   - Wired submit/reset cleanup: SubmitForm(Form2); Reset(Gallery1); clear user-selection collections/variables.
 
 ### Technical Updates
+
 - Updated YAML in `src/v1.0.x/v1.0.0/power-apps/.unpacked/Src/`:
   - `ViewSubmissions_Screen.fx.yaml` – HRO/Hines Hero OnSelect logic overhaul to internalize new-submission flow.
   - `App.fx.yaml` – Version metadata scaffolding (commented) and Office365Users API use updated.
@@ -161,6 +245,7 @@ Version 1.0.6 refines the new-submission experience from the View Submissions to
 - New deployable package available: `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.6.msapp`.
 
 ### Impact Assessment
+
 - Improves UX consistency by removing external hops and ensuring clean form state at submission start.
 - Prepares for future, more accurate in-app version display and freshness checks.
 - Clarifies triage data context with explicit gallery binding and post-submit cleanup for reliability.
@@ -174,21 +259,26 @@ Version 1.0.6 refines the new-submission experience from the View Submissions to
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 Version 1.0.4 delivers significant user experience enhancements with modern visual assets, integrated tutorial systems, and improved interface responsiveness. This release focuses on professional visual branding, enhanced user guidance, and resolved display logic issues while maintaining full production stability.
 
 ### Changes in v1.0.4
+
 - **Visual Asset Modernization:**
+
   - Replaced all placeholder imagery with production-approved visual assets
   - Updated app branding with modern VA seal and organizational logos
   - Enhanced professional appearance with contemporary design elements
 
 - **Tutorial Integration System:**
+
   - Recorded and integrated front-line end user tutorial video
   - Hosted tutorial video on SharePoint with embedded access functionality
   - Added "Watch Tutorial Video" button on Update/Help screen
   - Implemented tutorial access button on first popup of each new submission
 
 - **Enhanced Loading Experience:**
+
   - Added animated loading progress bar to Loading Screen
   - Implemented animated spinning loader for improved user engagement
   - Professional progress indicators for better perceived performance
@@ -200,6 +290,7 @@ Version 1.0.4 delivers significant user experience enhancements with modern visu
   - Enhanced overall navigation flow and user interaction patterns
 
 ### Technical Updates
+
 - Updated source files in `src/v1.0.x/v1.0.0/power-apps/.unpacked/` with v1.0.4 enhancements
 - Enhanced Power Fx formulas for improved display logic and variable management
 - Integrated SharePoint connectivity for tutorial video hosting and access
@@ -207,6 +298,7 @@ Version 1.0.4 delivers significant user experience enhancements with modern visu
 - Validated and corrected all navigation hyperlinks throughout the application
 
 ### Impact Assessment
+
 - Significantly enhanced user experience with professional visual branding and modern interface design
 - Improved user onboarding and guidance through accessible tutorial video integration
 - Reduced navigation confusion and errors with validated hyperlink functionality
@@ -223,10 +315,13 @@ Version 1.0.4 delivers significant user experience enhancements with modern visu
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 Version 1.0.3 focuses on critical .gitignore configuration fixes to ensure proper Power Platform source file inclusion in the GitHub repository. This release resolves competing rules that were preventing `.msapp` deployment artifacts from being tracked while maintaining comprehensive exclusion patterns for development files.
 
 ### Changes in v1.0.3
+
 - **.gitignore Configuration Fix:**
+
   - Identified and resolved conflict between `!src/**` inclusion rule (line 199) and `*.msapp` exclusion rule (line 83)
   - Fixed invalid syntax error: `!src/** */` → `!src/**` (removed space before trailing slash)
   - Added specific override rule `!src/**/*.msapp` to force-include `.msapp` files within `src/` directory
@@ -234,6 +329,7 @@ Version 1.0.3 focuses on critical .gitignore configuration fixes to ensure prope
   - Corrected line 199 with proper glob pattern syntax for recursive source inclusion
 
 - **Documentation Enhancement:**
+
   - Updated NOTICE file with comprehensive current project information (v1.0.1 references, exact metrics)
   - Enhanced PROJECT_STATUS.md with detailed, quantified project metrics and current status
   - Added precise quantified values: 121-day timeline, 32 VS Code tasks, 19 local scripts, 14 public scripts
@@ -247,6 +343,7 @@ Version 1.0.3 focuses on critical .gitignore configuration fixes to ensure prope
   - Ensured deployment artifacts are tracked for production releases
 
 ### Technical Updates
+
 - Fixed critical .gitignore rule precedence issue preventing proper Power Platform artifact tracking
 - Corrected invalid glob syntax that was breaking source directory inclusion
 - Added defensive override patterns to ensure critical deployment files are always included
@@ -254,6 +351,7 @@ Version 1.0.3 focuses on critical .gitignore configuration fixes to ensure prope
 - Enhanced project metrics with exact quantified values throughout all documentation
 
 ### Impact Assessment
+
 - Resolves Power Platform deployment artifact tracking issues for public repository
 - Ensures proper source control for .msapp files while maintaining security exclusions
 - Improves repository organization and public presentation with accurate documentation
@@ -268,9 +366,11 @@ Version 1.0.3 focuses on critical .gitignore configuration fixes to ensure prope
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 Version 1.0.2 is a comprehensive documentation and workflow improvement release. All PowerShell scripts and GitHub Actions workflows in the `src/v1.0.x/v1.0.0/powershell` folder have been updated with clear, educational, and license/authorship comments. Section and sub-section logic is now fully explained throughout the code, with end-user-relevant info in the header and advanced/maintainer notes in the footer. No functional changes were made—only documentation and comment improvements for clarity, maintainability, and compliance.
 
 ### Changes in v1.0.2
+
 - **PowerShell Scripts:**
   - Added user-focused headers, educational notes, license/authorship, and advanced footers to all scripts in `src/v1.0.x/v1.0.0/powershell/`
   - Explained section and sub-section logic throughout each script for end-user education
@@ -284,11 +384,13 @@ Version 1.0.2 is a comprehensive documentation and workflow improvement release.
   - Ensured changelog entries are in descending chronological order (newest at the top)
 
 ### Technical Updates
+
 - All PowerShell scripts in `src/v1.0.x/v1.0.0/powershell/` now have structured documentation
 - Workflows updated for flexible file structure and improved error handling
 - Changelog and documentation versioning fully aligned with v1.0.2
 
 ### Impact Assessment
+
 - Improves onboarding, review, and maintenance for all users and contributors
 - Ensures full traceability and compliance with VA Healthcare ALM standards
 - Maintains production-ready status and auditability for all scripts and workflows
@@ -302,15 +404,18 @@ Version 1.0.2 is a comprehensive documentation and workflow improvement release.
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 Employee Recognition App v1.0.1 is a corrective public release following the resolution of a tag/commit mismatch in v1.0.0. This release ensures that the public repository accurately reflects the current production-ready state of the application with proper version alignment and clean release management.
 
 ### Changes in v1.0.1
+
 - **Release Management**: Corrected version tagging and release alignment
 - **Documentation**: Updated all version references to v1.0.1
 - **Quality Assurance**: Verified all release artifacts match current production state
 - **GitHub Release**: Clean public release with proper commit and tag synchronization
 
 ### Technical Updates
+
 - Updated README.md version badge to v1.0.1
 - Corrected all file paths and version references throughout documentation
 - Ensured consistent versioning across all project files
@@ -325,9 +430,11 @@ Employee Recognition App v1.0.1 is a corrective public release following the res
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 The Employee Recognition App v1.0.0 marked the first public release of a fully production-ready Power Platform solution for VA Healthcare. This version was superseded by v1.0.1 due to a tag/commit alignment issue that required corrective action for proper release management.
 
 #### Major Changes & Improvements Since v0.9.50
+
 - **Production Pilot Launch:** App is now live and accessible via direct links and SharePoint integration for all users.
 - **Documentation & Compliance:** All documentation, compliance, and status files updated and aligned for v1.0.0 public release.
 - **Directory Structure Finalized:** Project folders, source, and release artifacts organized for clarity and traceability.
@@ -340,6 +447,7 @@ The Employee Recognition App v1.0.0 marked the first public release of a fully p
 - **Security & Compliance:** Full compliance with VA Healthcare, FISMA, Privacy Act, and HIPAA requirements.
 
 #### Technical Details
+
 - **Source code:** `src/power-apps/EmployeeRecognitionApp_v1.0.0/Source/`
 - **Ready-to-deploy package:** `src/v1.0.x/v1.0.0/power-apps/.msapp/v1.0.0_FullRelease.msapp`
 - **Public PowerShell scripts:** `src/v1.0.x/v1.0.0/powershell/`
@@ -347,11 +455,13 @@ The Employee Recognition App v1.0.0 marked the first public release of a fully p
 - **Power Automate flows:** Validated and error-free for production use
 
 #### Impact Assessment
+
 - Enables full production use for employee recognition workflows
 - Provides a stable, auditable, and compliant foundation for future enhancements
 - Supports onboarding, training, and stakeholder engagement for VA Healthcare
 
 #### Commit Message
+
 ```
 release: Employee Recognition App v1.0.0 – Production Release
 
@@ -372,6 +482,7 @@ Technical details:
 ```
 
 #### Looking Ahead
+
 - **Version 1.1.0 (Anticipated August 18, 2025):**
   - Facility-wide public affairs campaign and messaging
   - Future-proofing of background automations and permissions
@@ -379,13 +490,17 @@ Technical details:
   - Additional enhancements based on feedback from this production pilot
 
 ---
+
 ## Version 0.9.50 (2025-07-30)
+
 **Release Type:** Major Automation, Compliance, and Documentation Update
 **Date:** 2025-07-30
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 - **Workspace Automation & Safety**
+
   - Completely refactored `workspace-cleanup.ps1` for robust, safe, and auditable workspace cleanup.
   - Added strict folder and explicit file exemption logic to prevent accidental archiving of protected/public files.
   - Implemented global empty directory cleanup with user confirmation and dry-run (WhatIf) support.
@@ -394,6 +509,7 @@ Technical details:
   - Maintained compliance with VA Healthcare security and audit requirements.
 
 - **Documentation & Compliance**
+
   - Updated all public-facing documents to reference v0.9.50 and reflect the latest project status.
   - Refined and expanded documentation in `README.md`, `PROJECT_STATUS.md`, `SECURITY.md`, and `NOTICE`.
   - Ensured all documentation and status files are fully aligned with the current application architecture, security controls, and compliance framework.
@@ -405,6 +521,7 @@ Technical details:
   - Prepared repository for final daily commit and public release.
 
 ### Technical Details
+
 - `scripts/workspace-cleanup.ps1`: Major refactor for safety, compliance, and auditability.
 - All log entries now include precise timestamps and are sorted for traceability.
 - Exemption logic for both folders and explicit files is strictly enforced.
@@ -412,6 +529,7 @@ Technical details:
 - All version references and badges updated to v0.9.50.
 
 ### Impact Assessment
+
 - Significantly reduces risk of accidental data loss or non-compliance during workspace cleanup.
 - Provides a fully auditable, timestamped log of all cleanup actions.
 - Ensures all public documentation is accurate, up-to-date, and compliant with VA Healthcare and open source standards.
@@ -430,6 +548,7 @@ feat: major automation, compliance, and documentation update (v0.9.50)
 - Validated repository structure, badges, and compliance for release readiness
 
 Technical details:
+
 - Major script refactor for safety and compliance
 - Documentation and status files updated for v0.9.50
 - All changes fully traceable and audit-ready
@@ -437,11 +556,13 @@ Technical details:
 ---
 
 ## Version 0.9.49 (2025-07-29)
+
 **Release Type:** Development, Power Fx, and Automation Refinement
 **Date:** 2025-07-29
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 - Refined Power Fx reset logic for complex pop-up and triage screens:
   - Exhaustively extracted all resettable/selectable object names from `Screen_Submissions_HinesHero.fx.yaml` for robust Concurrent(Reset(...)) formula construction
   - Developed and iteratively improved a comprehensive Power Fx formula to reset all relevant controls, excluding objects subordinate to forms (handled by ResetForm)
@@ -455,17 +576,20 @@ Technical details:
 - Maintained full compliance with VA Healthcare ALM and security standards throughout all development and automation activities
 
 ### Technical Details
+
 - All Power Fx reset logic and object extraction performed on `Screen_Submissions_HinesHero.fx.yaml` (v0.9.28 source)
 - Iterative refinement of resettable object lists, exclusion of form-subordinate controls, and validation of resettable status
 - No files removed; all changes are additive, focused on logic, automation, and documentation
 
 ### Impact Assessment
+
 - Enables more robust and maintainable reset logic for complex Power Apps screens
 - Improves developer productivity and reduces risk of missed or duplicate resets
 - Provides a reusable pattern for future Power Fx automation and YAML analysis
 - Maintains production-ready status and full traceability for all changes
 
 ### Commit Message
+
 ```
 feat: Power Fx reset logic refinement and YAML object extraction (v0.9.49)
 
@@ -482,11 +606,13 @@ Technical details:
 ```
 
 ## Version 0.9.48 (2025-07-29)
+
 **Release Type:** Major Application Update – Triage, UI, Workflow, and Testing Enhancements
 **Date:** 2025-07-29
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 - Added new Triage_Screen for triage workflow management, including forms, search, and new controls (Date picker, Text input)
 - Introduced AppTest.xml and automated test definitions for quality assurance and regression testing
 - Expanded DataSources.json with new data sources for triage and award categories; updated SharePoint and connector references
@@ -512,17 +638,20 @@ Technical details:
 - Overall, this release delivers new triage capabilities, improved user experience, expanded data capture, automated testing, and enhanced security and compliance
 
 ### Technical Details
+
 - All .json, .yaml, and .xml files reviewed and updated as needed
 - New and updated files support business requirements, security, and Power Platform best practices
 - UI/UX improvements and error handling enhancements across multiple screens and workflows
 
 ### Impact Assessment
+
 - Enables new triage and workflow management for award submissions
 - Improves user experience, data capture, and validation across the app
 - Adds automated testing and compliance tracking for quality assurance
 - Enhances security, telemetry, and business process support
 
 ### Commit Message
+
 ```
 feat: major update to Employee Recognition App (v0.9.28) with triage, UI, and workflow enhancements
 
@@ -557,12 +686,15 @@ Technical details:
 ```
 
 ---
+
 ## Version 0.9.47 (2025-07-28)
+
 **Release Type:** Documentation, Formatting, and Compliance Update
 **Date:** 2025-07-28
 **Developer:** Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Summary
+
 - Standardized all version headers and changelog formatting for full compliance with Power Platform ALM and VA Healthcare documentation standards.
 - Added/updated Apache 2.0 license headers and copyright blocks to all major documentation files.
 - Updated project version references to v0.9.47 across README.md, PROJECT_STATUS.md, CONTRIBUTING.md, SECURITY.md, NOTICE, and Power Apps Web Reference.
@@ -570,6 +702,7 @@ Technical details:
 - Prepared the repository for a final daily commit and public release.
 
 ### Technical Details
+
 - Unified changelog header style to `## Version x.x.xx (YYYY-MM-DD)`.
 - Ensured all documentation files reference the current version and status.
 - Improved badge and status indicators in README.md.
@@ -577,11 +710,13 @@ Technical details:
 - Validated all documentation for release readiness and traceability.
 
 ### Impact Assessment
+
 - Ensures full traceability and auditability for all recent changes.
 - Improves onboarding and review experience for new contributors and stakeholders.
 - Maintains production-ready status and compliance with VA Healthcare requirements.
 
 ### Commit Message
+
 ```
 docs: Standardize changelog, update documentation, and prepare v0.9.47 release
 
@@ -598,89 +733,115 @@ Technical details:
 - Validated documentation for release readiness
 ```
 
-
 ## Version 0.9.46 (2025-07-28)
+
 ### Deep-Dive File Diff: Screen_NewSubmission.fx.yaml (v0.9.28 vs v0.9.26)
+
 - Performed a full, line-by-line comparison of `Screen_NewSubmission.fx.yaml` between v0.9.28 and v0.9.26.
 - **Result:** No differences detected; the file is identical in both versions.
 - No changes, additions, or removals were made to this screen between these versions.
 
 ## Version 0.9.45 (2025-07-28)
+
 **Summary:**
 This release documents all file-level changes between EmployeeRecognitionApp_v0.9.28 and EmployeeRecognitionApp_v0.9.26. Every new, removed, or updated file is listed as a separate itemized entry below.
+
 ### Added
+
 - `pkgs/PcfControlTemplates/Date picker_0.0.46.json`: New PCF control template for Date Picker added.
 - `pkgs/PcfControlTemplates/Text input_0.0.54.json`: New PCF control template for Text Input added.
 - `pkgs/PcfConversions/PowerApps_CoreControls_DatePickerCanvas.json`: New PCF conversion mapping for DatePickerCanvas added.
 - `pkgs/PcfConversions/PowerApps_CoreControls_TextInputCanvas.json`: New PCF conversion mapping for TextInputCanvas added.
+
 ### Removed
+
 - `Assets/README.md`: Asset documentation file removed from v0.9.28.
+
 ### Unchanged (No line-level changes detected in initial scan)
+
 - `Src/Components/Component1.fx.yaml`, `Src/Components/Component1.json`, all files in `Assets/Images`, `pkgs/Wadl`, and `pkgs/TableDefinitions`.
+
 ### Notes
+
 - No line-level changes detected in the first 122 lines of `Src/App.fx.yaml` and first 50 lines of `Src/CONSTRUCTION_Screen.fx.yaml`. Full file diff pending for these and other large YAML files.
 
 ---
 
 ## Version 0.9.44 (July 16, 2025)
+
 **Commit:** b692188ed1243f7431ef24ef8aac3e9af97ca435
 **Author:** Kyle.Coder@VA.gov
 **Date:** 2025-07-16
 **Type:** Docs
+
 - Add license headers to all workspace files
 - Updated multiple documentation and configuration files
 
 ## Version 0.9.43 (July 16, 2025)
+
 **Commit:** 56dd34d7ee5b2c5a8261984fdbc9df4ba5531d27
 **Author:** Kyle.Coder@VA.gov
 **Date:** 2025-07-16
 **Type:** Feature
+
 - Create comprehensive workspace inventory and exportable Copilot package
 - Added/updated multiple files in copilot-export/
 
 ## Version 0.9.42 (July 16, 2025)
+
 **Commit:** 1df810eb1d628fd60556e358b13720c1d99779e8
 **Author:** Kyle.Coder@VA.gov
 **Date:** 2025-07-16
 **Type:** Feature
+
 - Add automated local git commit workflow to Copilot instructions
 
 ## Version 0.9.41 (July 16, 2025)
+
 **Commit:** ad1a53fad184b630a70339a41e3708bf8ac5c2a9
 **Author:** Kyle.Coder@VA.gov
 **Date:** 2025-07-16
 **Type:** Docs
+
 - Update CHANGELOG.md - Version 0.9.18 (feature)
 
 ## Version 0.9.40 (July 16, 2025)
+
 **Commit:** 57f8656719bc9235d21c3b9584f41f6fade60bfa
 **Author:** Kyle.Coder@VA.gov
 **Date:** 2025-07-16
 **Type:** Docs
+
 - Enhance autonomous commit protocol with detailed message generation
 - Updated .github/copilot-instructions.md, CHANGELOG.md, README.md
 
 ## Version 0.9.39 (July 22, 2025)
+
 **Commit:** 6213b0a5509598e6fe21e5cd309ba461f38258bc
 **Author:** Kyle.Coder@VA.gov
 **Date:** 2025-07-22
 **Type:** Fix
+
 - Implement permanent VS Code task execution ban to resolve chronic workflow interruptions
 - Updated .github/copilot-instructions.md, .vscode/settings.json, CHANGELOG.md
 - Added docs/VA_SECURITY_UPDATE_ANALYSIS.md
 
 ## Version 0.9.38 (July 22, 2025)
+
 **Commit:** 26022944960d03ab6f0ca8954288a120e5cc6873
 **Author:** Kyle.Coder@VA.gov
 **Date:** 2025-07-22
 **Type:** Docs
+
 - Add Version 0.9.22 CHANGELOG entry for VS Code task execution ban
 
 ## Version 0.9.37 (July 22, 2025)
+
 **Commit:** ecbb01fd075b9e5c8bbbd23f089c0ca770308697
 **Author:** Kyle J. Coder
 **Date:** 2025-07-22
 **Type:** Release
+
 - Major Organizational Release - Complete Documentation Alignment
 - Updated multiple documentation and configuration files for alignment
 - Removed WORKSPACE_INVENTORY.html
@@ -688,69 +849,86 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - Added docs/MARKDOWN_ERROR_SOLUTIONS.md
 
 ## Version 0.9.36 (July 23, 2025)
+
 **Commit:** 6891f8a9828fc8740cbc66d5b5a0668b936d56fd
 **Author:** Kyle J. Coder
 **Date:** 2025-07-23
 **Type:** Maintenance
+
 - Remove copilot-export folder from public repository
 - Updated .gitignore, CHANGELOG.md, PROJECT_STATUS.md
 - Added docs/PowerApps_Development_Workflow_Analysis.html
 
 ## Version 0.9.35 (July 24, 2025)
+
 **Commit:** 537dec06b7d1c0cbebc34baed52462ca77675bbf
 **Author:** Kyle J. Coder
 **Date:** 2025-07-24
 **Type:** Fix
+
 - Update workspace location path reference for network migration
 - Added PowerApps_Development_Workflow_Analysis.html
 - Updated docs/PROJECT_PROFILE.md
 
 ## Version 0.9.34 (July 25, 2025)
+
 **Commit:** 045035d74980ee43e95740f719eedd491b59b401
 **Author:** Kyle J. Coder
 **Date:** 2025-07-25
 **Type:** Feature
+
 - Weekend development completion with interactive JavaScript enhancements
 - Added COMPREHENSIVE_PROJECT_ANALYSIS.html and WEEKEND_SHUTDOWN_REPORT.md
 - Removed PowerApps_Development_Workflow_Analysis.html
 - Enhanced navigation toggle, progress bar styling, and cross-platform compatibility
 
-
-
 ## Version 0.9.33 (July 22, 2025)
+
 **CR-036**: Location text block tooltip and prompt enhancement (Request #36)
+
 - **Completed**: 07/22/2025
 - **Details**: Added tooltip and expanded text prompt for the "Location" question to improve clarity for front-line staff, per stakeholder recommendation.
 
 ## Version 0.9.32 (July 18, 2025)
+
 **CR-033**: Starfish Award PDF link bug fix (Request #33)
+
 - **Completed**: 07/18/2025
-- **Details**: Updated the "more info" link for I*CARE/Starfish Award to open the correct PDF file on the Whole Health SharePoint site. Bug resolved and verified.
+- **Details**: Updated the "more info" link for I\*CARE/Starfish Award to open the correct PDF file on the Whole Health SharePoint site. Bug resolved and verified.
 
 ## Version 0.9.31 (July 28, 2025)
+
 **CR-051**: Nurse practitioner spelling correction (Request #51)
+
 - **Completed**: 07/28/2025
 - **Details**: Corrected all instances of "nurse practitioner" spelling in the application as reported. Verified and completed.
 
 ## Version 0.9.30 (July 28, 2025)
+
 **CR-041**: WOW! Award nomenclature update (Request #41)
+
 - **Completed**: 07/28/2025
 - **Details**: All instances of "WOW! Award" updated to "WOW! Recognition" throughout the app interface, per stakeholder request. Verified and completed.
 
 ## Version 0.9.29 (July 28, 2025)
+
 **CR-040a**: Submission routing/POC/committee process (Request #38) - Completion
 
 ## Version 0.9.28 (July 25, 2025)
+
 **CR-040a**: Submission routing/POC/committee process (Request #38) - Testing in Progress
+
 - **Progress Update**: 07/25/2025
 - **Details**: Issue CR-040a moved to testing phase. All major features for submission routing, POC routing, and committee process have been implemented. Testing and validation of the new workflow and process improvements are underway as of this date.
 
 ## Version 0.9.27 - 2025-07-28
+
 **Release Type**: Documentation, Automation, and Compliance Update
 **Date**: 2025-07-28
 **Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Added
+
 - **Power Automate Flow Artifacts**: Added new triage and approval flow export (`2025.07.28TriageandApprovalFlow_20250728113938.zip`) and unpacked source files in `src/power-automate/TriageandApprovalFlow_20250728113938/` including `definition.json`, `apisMap.json`, `connectionsMap.json`, and manifest files for full traceability and ALM compliance.
 - **Analysis Methodology Documentation**: Introduced `ANALYSIS_METHODOLOGY_CONTEXT.md` to preserve exact analysis standards, writing style, and quality expectations for ongoing project review and reporting.
 - **Monday Restart Protocol**: Added `MONDAY_RESTART_PROMPT.md` to document precise continuation instructions for comprehensive analysis, ensuring seamless workflow resumption and context preservation.
@@ -758,23 +936,28 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Power Automate Flow Metadata**: Included `manifest.json` and related files for new flow assets, supporting managed solution packaging and deployment.
 
 ### Changed
+
 - **Workspace Settings**: Updated `.vscode/settings.json` to improve file exclusion patterns, enable file nesting for JSON schema files, and ensure all workspace files are properly associated and formatted for Power Platform development.
 - **Copilot Instructions**: Enhanced `.github/copilot-instructions.md` with a new changelog, script reference table, extension management guidelines, troubleshooting FAQ, and formatting improvements for better developer onboarding and compliance tracking.
 
 ### Documentation
+
 - **Comprehensive Analysis Context**: Documented the established methodology, writing style, and analysis standards in `ANALYSIS_METHODOLOGY_CONTEXT.md` for future reference and quality assurance.
 - **Restart and Continuation Protocols**: Provided detailed instructions in `MONDAY_RESTART_PROMPT.md` to ensure uninterrupted progress and adherence to enterprise-grade analysis standards.
 
 ### Technical Details
+
 - **Power Automate Flow Export**: All new flow artifacts are versioned and stored in both release and source directories for full ALM traceability.
 - **Settings and Exclusions**: Improved workspace configuration to optimize VS Code performance and maintain compliance with VA Healthcare security and documentation requirements.
 - **Documentation Integration**: All new methodology and protocol files are referenced in project documentation and integrated into the ongoing analysis workflow.
 
 ### Quality Assurance
+
 - **Repository Health**: Validated that all new files are properly tracked, documented, and compliant with project standards.
 - **Documentation Consistency**: Ensured all new and updated documentation follows established formatting and traceability patterns.
 
 ### Business Impact
+
 - **ALM and Compliance**: Enhanced automation and documentation practices support enterprise-grade ALM, auditability, and stakeholder transparency.
 - **Developer Onboarding**: Improved onboarding and workflow continuity for new and existing team members through detailed methodology and protocol documentation.
 - **Project Readiness**: Maintained production-ready status with all changes fully documented and compliant with VA Healthcare requirements.
@@ -788,6 +971,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Added
+
 - **Assets/Images/**: Introduced new subfolder for image assets, including `logo.jpg` and `SampleImage.json`, supporting enhanced branding and UI visuals.
 - **New/Updated Screen YAMLs**: Added or updated multiple `.fx.yaml` files in `Src/` for new screens, improved navigation, and additional app features.
 - **Component Enhancements**: Expanded `Components/` with new reusable components for modular app design.
@@ -796,6 +980,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **References and Miscellaneous**: Populated `Other/References/` with new configuration and reference files for improved maintainability.
 
 ### Changed
+
 - **CanvasManifest.json**: Updated manifest to reflect new screens, controls, and app settings introduced in v0.9.26.
 - **ComponentReferences.json**: Modified to include references to new and updated components.
 - **Themes.json**: Enhanced theme configuration for improved UI consistency and accessibility.
@@ -804,22 +989,26 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Screen YAMLs in Src/**: Modified logic, formulas, and UI layout in multiple screens to support new business requirements and user feedback.
 
 ### Fixed
+
 - **Asset Reference Issues**: Corrected broken or outdated asset references in YAML and JSON files.
 - **Control Template Bugs**: Fixed issues in XML control templates that caused rendering or interaction problems.
 - **Data Source Definitions**: Resolved inconsistencies and errors in data source JSON files, ensuring reliable data connectivity.
 - **Component Integration**: Addressed integration issues between new components and existing screens.
 
 ### Technical Details
+
 - **Folder Structure**: Maintained consistent folder structure with clear separation of assets, logic, controls, and configuration files.
 - **Documentation**: Added README.md files to all major subfolders in `Source/` to document folder purpose, contents, and usage patterns.
 - **ALM Compliance**: All changes align with Power Platform ALM and source control best practices, supporting traceability and auditability.
 
 ### Quality Assurance
+
 - **File Integrity**: Verified presence and integrity of all expected files and folders after unpacking.
 - **Source Control Readiness**: Ensured all new and updated files are tracked and documented for version control.
 - **App Functionality**: Validated that all new features, screens, and integrations function as intended in the unpacked source.
 
 ### Business Impact
+
 - **Enhanced Maintainability**: Improved folder organization, documentation, and modularity for easier ongoing development.
 - **New Features**: Enabled new business workflows and user experiences through added screens, components, and data sources.
 - **Developer Onboarding**: Provided comprehensive documentation and structure to support new team members and reviewers.
@@ -831,6 +1020,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Added
+
 - **Interactive File Opening System**: Implemented clickable file buttons with full workspace path display
 - **Reliable Navigation Toggle**: Added robust hamburger menu functionality with debug logging
 - **Weekend Shutdown Report**: Comprehensive project status documentation for week-end closure
@@ -838,6 +1028,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **File Path Clipboard Integration**: One-click copying of full file paths for VS Code access
 
 ### Enhanced
+
 - **UI/UX Professional Design**: Improved color contrast, header styling, and navigation sidebar
 - **Executive Summary Layout**: Reorganized into two-column format for better readability
 - **Progress Bar Styling**: Enhanced visual appearance and functionality
@@ -845,6 +1036,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Error Handling**: Robust fallback mechanisms for file opening and clipboard operations
 
 ### Fixed
+
 - **JavaScript Reliability Issues**: Resolved duplicate function conflicts and execution problems
 - **Navigation Functionality**: Fixed hamburger icon toggle and sidebar responsiveness
 - **File Button Interactions**: Corrected non-functional file opening buttons
@@ -852,6 +1044,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Layout Overlapping**: Resolved UI element conflicts and spacing problems
 
 ### Technical Improvements
+
 - **Debug Logging**: Added comprehensive console logging for troubleshooting
 - **Cross-Platform Compatibility**: Enhanced Windows file path handling and clipboard integration
 - **Function Scope Management**: Implemented window-level function declarations for reliability
@@ -859,18 +1052,21 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Performance Optimization**: Streamlined JavaScript execution and DOM manipulation
 
 ### Documentation
+
 - **Analysis Progress**: Completed Phases 5-14 of comprehensive project analysis (37% complete)
 - **Interactive Report**: Enhanced COMPREHENSIVE_PROJECT_ANALYSIS.html with professional UI
 - **Technical Documentation**: Updated development patterns and JavaScript implementation guides
 - **Quality Metrics**: Documented 100+ files analyzed and 50,000+ lines of code reviewed
 
 ### Quality Assurance
+
 - **Repository Health**: Validated all systems operational and compliant
 - **Security Compliance**: Maintained VA Healthcare enterprise security requirements
 - **Code Quality**: Ensured clean repository state with no uncommitted changes
 - **User Experience**: Tested all interactive features for enterprise-grade functionality
 
 ### Business Impact
+
 - **Enterprise UI/UX**: Professional visual design suitable for VA Healthcare environments
 - **Developer Productivity**: Enhanced file access and navigation for development workflows
 - **Analysis Framework**: Systematic approach enabling comprehensive project evaluation
@@ -885,6 +1081,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Developer**: Kyle J. Coder (Advanced Analytics & Informatics)
 
 ### Fixed
+
 - **Workspace Location Path Reference**: Updated PROJECT_PROFILE.md development standards file path for network migration
   - Changed from old C:\Users\VHAHINCoderK1\OneDrive location to new S:\Informatics\Data Team network location
   - Ensures all file references correctly point to permanent shared network drive storage
@@ -894,10 +1091,12 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Functionality Preservation**: Maintained complete workspace functionality after migration from local C:\ to networked S:\ drive
 
 ### Changed
+
 - **Documentation Path**: Updated absolute file reference in PROJECT_PROFILE.md to reflect new network storage location
 - **Development Standards Reference**: PowerApps coding standards document path updated for organizational shared drive
 
 ### Technical Details
+
 - Examined all 107 lines of VS Code workspace configuration - no updates needed (uses relative paths)
 - Analyzed 90 lines of VS Code settings - no updates needed (workspace-relative paths)
 - Searched entire codebase for old location references - only found one absolute path in documentation
@@ -912,6 +1111,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
 
 ### Added
+
 - **Power Apps Triage Screen Development**: Enhanced Canvas app with new triage functionality for award nominations
 - **Advanced Gallery Filtering**: Implemented sophisticated filtering for untriaged submissions using Power FX formulas
 - **Form-Gallery Integration**: Created seamless toggle between gallery list view and form detail view
@@ -919,11 +1119,13 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Workflow Documentation**: Comprehensive Power FX formula guidance for triage team functionality
 
 ### Changed
+
 - **User Interface Flow**: Enhanced navigation between submission review and detailed editing modes
 - **Data Management**: Improved SharePoint list integration with advanced filtering capabilities
 - **Search Experience**: Real-time filtering with SharePoint data source optimization
 
 ### Technical Details
+
 - **Power FX Formulas**: Advanced Filter() operations with multiple criteria and search integration
 - **Gallery Configuration**: Dynamic Items property with sophisticated filtering logic
 - **Form Integration**: Seamless data binding between gallery selection and form display
@@ -943,6 +1145,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
 
 ### Added
+
 - **Comprehensive Root Directory File Updates**: Systematically updated all 10 essential root directory files
 - **Enhanced Project Documentation**: Updated README.md, PROJECT_STATUS.md, CONTRIBUTING.md with current metrics
 - **Security Documentation Enhancement**: Added current security compliance status to SECURITY.md
@@ -950,6 +1153,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Enhanced Git Commit Template**: Updated .gitmessage with comprehensive project context and current metrics
 
 ### Changed
+
 - **Version Alignment**: Updated all version references from 0.9.18/0.9.22 → 0.9.23 across documentation
 - **Project Metrics Enhancement**: Updated automation metrics to reflect 33+ VS Code tasks and 17+ PowerShell scripts
 - **Documentation Statistics**: Enhanced from 55+ to 60+ pages of comprehensive documentation
@@ -957,17 +1161,20 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Development Focus**: Updated contribution guidelines with current development priorities
 
 ### Fixed
+
 - **Documentation Consistency**: Ensured all root directory files reflect current project state
 - **Version Synchronization**: Aligned all version badges and status indicators
 - **Project Status Accuracy**: Updated all project metadata to reflect post-approval development cycle
 - **File Organization**: Completed workspace cleanup removing temporary and redundant files
 
 ### Security
+
 - **Enterprise Compliance**: Documented 50+ administrator-privilege operation restrictions
 - **VA Healthcare Standards**: Enhanced security documentation with current compliance protocols
 - **Development Guidelines**: Updated security considerations in contribution workflows
 
 ### Technical Details
+
 - **Root Files Updated**: README.md, PROJECT_STATUS.md, CONTRIBUTING.md, SECURITY.md, NOTICE, .gitmessage
 - **Files Cleaned**: Removed temporary analysis files and organized documentation structure
 - **Workspace Optimization**: Comprehensive file organization and cleanup completed
@@ -980,16 +1187,18 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 ---
 
 ### Added
+
 - Documentation and file organization improvements
 
 ### Changed
+
 - Updated all root directory files to current project status (v0.9.22)
 - Enhanced project metadata and version references
 - Improved security documentation with current compliance status
 
 ### Fixed
-- Aligned all documentation with current development state
 
+- Aligned all documentation with current development state
 
 ## Version 0.9.22 - 2025-07-22
 
@@ -999,22 +1208,26 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
 
 ### Fixed
+
 - **VS Code Task Execution Ban**: Implemented permanent ban on `run_vs_code_task` during automated workflows to resolve chronic "user cancelled" interruptions
 - **Workflow Reliability**: Eliminated persistent false cancellation messages that were halting automation processes
 - **Terminal Automation**: Enhanced direct PowerShell execution protocol for all automation scripts
 
 ### Added
+
 - **Direct PowerShell Command Protocol**: Required alternative approaches using `run_in_terminal` instead of `run_vs_code_task`
 - **Banned VS Code Task Usage**: Comprehensive documentation of problematic task operations
 - **Enhanced Error Recovery**: Improved workflow continuation protocols to bypass system interruptions
 
 ### Changed
+
 - **Automated Commit Workflow**: Updated to use direct PowerShell execution for all steps
 - **Repository Health Check**: Converted from VS Code task to direct script execution
 - **Workspace Cleanup**: Enhanced to use `run_in_terminal` with full script paths
 - **CHANGELOG Updates**: Improved to use direct PowerShell execution instead of task automation
 
 ### Technical Details
+
 - **Root Cause**: VS Code tasks were generating false "user cancelled" messages causing workflow halts
 - **Solution**: Complete elimination of `run_vs_code_task` and `get_task_output` during automation
 - **Implementation**: Direct PowerShell execution using `pwsh -ExecutionPolicy Bypass -File` syntax
@@ -1024,7 +1237,6 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Business Justification**: Ensure reliable automated workflows for development and deployment processes
 **Impact Assessment**: Critical improvement to development productivity and automation reliability
 
-
 ## Version 0.9.21 - 2025-07-22
 
 **Release Type**: Security Configuration Release
@@ -1033,6 +1245,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
 
 ### Added
+
 - **Enterprise Security Restrictions**: Added permanent administrator-privilege operation restrictions to Copilot instructions
 - **Security Compliance Checker**: Created `Test-VASecurityCompliance.ps1` PowerShell script for validating operations against VA Healthcare policies
 - **Restricted Operations Database**: Added `.vscode/restricted-operations.json` with comprehensive blocked/allowed operations catalog
@@ -1040,12 +1253,14 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Terminal Automation Restrictions**: Added forbidden operations section to prevent administrator-privilege command recommendations
 
 ### Changed
+
 - **Copilot Instructions**: Enhanced with comprehensive VA Healthcare enterprise security compliance protocols
 - **VS Code Settings**: Added security compliance references and configuration comments
 - **PowerShell Environment**: Successfully updated to latest user-scope modules (Az, SharePoint Online, PSReadLine, ConsoleGuiTools)
 - **Development Tools**: Updated Git (v2.50.1) and GitHub Desktop (v3.5.2) within user permissions
 
 ### Security
+
 - **Permanent Blocking**: Configured permanent restrictions for 25 types of administrator-privilege operations including:
   - Microsoft system components (Office, Visual Studio, SQL Server Management Studio)
   - Enterprise applications (Power BI Desktop, Power Automate Desktop, Azure Data Studio)
@@ -1056,6 +1271,7 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 - **Compliance Protocol**: Established automatic checking and rejection of administrator-privilege requests
 
 ### Technical Details
+
 - **Error Code Analysis**: Documented common failure patterns (1602, 0x800704c7, 4294967295, 1603) from WinGet operations
 - **Security Validation**: Created automated compliance checking for winget, PowerShell, system, and extension operations
 - **Alternative Workflows**: Established user-scope package management protocols for development work
@@ -1063,7 +1279,6 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Change Request**: CR-2025-VAH-SEC-001 - Implement permanent security restrictions for enterprise development environment
 **Business Justification**: Prevent future administrator-privilege escalation attempts while maintaining development capabilities
 **Compliance Status**: Fully compliant with VA Healthcare enterprise security policies
-
 
 ## Version 0.9.20 - 2025-07-16
 
@@ -1073,9 +1288,11 @@ This release documents all file-level changes between EmployeeRecognitionApp_v0.
 **Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
 
 ### Summary
+
 Enhanced autonomous commit protocol with comprehensive message generation requirements
 
 ### Changes Made
+
 - Added detailed commit message generation protocol to copilot-instructions.md
 - Implemented pre-analysis requirements examining get_changed_files output before generation
 - Enhanced message construction template with conventional commit format enforcement
@@ -1085,18 +1302,21 @@ Enhanced autonomous commit protocol with comprehensive message generation requir
 - Applied minor formatting improvements to README.md
 
 ### Technical Details
+
 - **Commit Hash**: (Auto-generated)
 - **Branch**: main
 - **Files Modified**: .github/copilot-instructions.md, CHANGELOG.md, README.md
 - **Repository Status**: Enhanced commit message automation
 
 ### Impact Assessment
+
 - **User Impact**: Improved automation reliability and commit message quality
 - **Breaking Changes**: None
 - **Migration Required**: No
 - **Testing Required**: Automated workflow validation
 
 ### Related Information
+
 - **Change Request**: CR-2025-097 - Commit message generation protocol enhancement
 - **Documentation**: Enhanced copilot-instructions.md with message generation requirements
 - **Protocol Added**: Comprehensive commit message generation with pre-analysis
@@ -1111,9 +1331,11 @@ Enhanced autonomous commit protocol with comprehensive message generation requir
 **Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
 
 ### Summary
+
 Enhanced autonomous git commit protocol with zero-prompt execution
 
 ### Changes Made
+
 - Added explicit protocol to avoid run_in_terminal for all commands during automated workflows
 - Implemented zero-prompt execution using VS Code commands and file tools exclusively
 - Updated workflow to completely eliminate terminal usage and system prompts
@@ -1124,18 +1346,21 @@ Enhanced autonomous git commit protocol with zero-prompt execution
 - Enhanced copilot-instructions.md with comprehensive prompt-free protocols
 
 ### Technical Details
+
 - **Commit Hash**: (Auto-generated)
 - **Branch**: main
 - **Files Modified**: .github/copilot-instructions.md, scripts/git-commit-automation.ps1
 - **Repository Status**: Enhanced automation protocols
 
 ### Impact Assessment
+
 - **User Impact**: Improved automation reliability
 - **Breaking Changes**: None
 - **Migration Required**: No
 - **Testing Required**: Automated workflow validation
 
 ### Related Information
+
 - **Change Request**: CR-2025-096 - Zero-prompt automation enhancement
 - **Documentation**: Updated copilot-instructions.md with terminal ban protocols
 - **Scripts Added**: git-commit-automation.ps1 for reference implementation
@@ -1150,24 +1375,29 @@ Enhanced autonomous git commit protocol with zero-prompt execution
 **Organization**: Edward Hines Jr. VA Hospital (Station #578), VISN #12
 
 ### Summary
+
 seamless local commit automatin
 
 ### Changes Made
+
 - seamless local commit automation and safety checks
 
 ### Technical Details
+
 - **Commit Hash**: 1df810eb1d628fd60556e358b13720c1d99779e8
 - **Branch**: main
 - **Files Modified**: 0 files
 - **Repository Status**: Clean working directory
 
 ### Impact Assessment
+
 - **User Impact**: User-facing changes
 - **Breaking Changes**: None
 - **Migration Required**: No
 - **Testing Required**: Standard validation
 
 ### Related Information
+
 - **Change Request**: CR-673
 - **Stakeholder**: Christina Conway (Health System Specialist)
 - **Approval Status**: Development in progress
@@ -1176,6 +1406,7 @@ seamless local commit automatin
 ---
 
 ## 🔗 Related Documentation
+
 - **[README.md](README.md)** - Complete project overview and technical details
 - **[PROJECT_ORGANIZATION.md](PROJECT_ORGANIZATION.md)** - Repository structure and organization guide
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Professional contribution guidelines
@@ -1183,6 +1414,7 @@ seamless local commit automatin
 - **[Current Release Notes](releases/v0.9.x/RELEASE_NOTES.md)** - Latest version documentation
 
 ## 🎯 Development Summary
+
 This changelog documents **118+ incremental version releases** representing comprehensive iterative development of a Power Platform employee recognition solution. Each version increment corresponds to specific stakeholder change requests (CR) with complete traceability from request to implementation.
 
 **Current Status**: Version 0.9.18 - Post-approval development cycle with comprehensive GitHub automation and enhanced documentation suite implementing 16 stakeholder approvals.
@@ -1192,6 +1424,7 @@ This changelog documents **118+ incremental version releases** representing comp
 ## [0.9.0] - 2025-07-10
 
 ### Added
+
 - **Repository Organization and Documentation Complete** - Professional repository preparation for production release
 - **Repository Manager Migration System** - Centralized management tools in dedicated folder
   - Moved all repository manager executables to `repository_manager/` subfolder
@@ -1221,6 +1454,7 @@ This changelog documents **118+ incremental version releases** representing comp
   - Integrated Power Apps web-only development workflow documentation
 
 ### Changed
+
 - **Enhanced Safe Commit Process** - Upgraded `scripts/safe-commit.ps1` with comprehensive features:
   - Interactive mode with guided CHANGELOG entry
   - Automatic file staging and validation
@@ -1240,12 +1474,14 @@ This changelog documents **118+ incremental version releases** representing comp
   - Streamlined file structure for production readiness
 
 ### Fixed
+
 - **CHANGELOG Enforcement Reliability** - Resolved issues with pre-commit hook compatibility
 - **PowerShell Script Robustness** - Enhanced error handling and cross-platform compatibility
 - **VS Code Task Integration** - Fixed task execution and parameter passing issues
 - **Repository File Management** - Cleaned up unnecessary files and improved organization
 
 ### Security
+
 - **Git Hook Security** - Ensured pre-commit hooks follow security best practices
 - **Script Execution Policy** - Properly configured PowerShell execution for enterprise environments
 - **Repository Separation** - Implemented secure separation between local development and public repository
@@ -1253,6 +1489,7 @@ This changelog documents **118+ incremental version releases** representing comp
 ## [0.9.18] - 2025-07-16
 
 ### Added
+
 - **GitHub Automation Workflows** - Complete CI/CD pipeline implementation
   - Created comprehensive GitHub Actions workflow suite for automated project management
   - Implemented repository health monitoring with automated checks and reporting
@@ -1275,6 +1512,7 @@ This changelog documents **118+ incremental version releases** representing comp
   - Added comprehensive quick start guides and development references
 
 ### Changed
+
 - **Project Metadata Updates** - Current status and achievement documentation
   - Updated version tracking to reflect post-approval development cycle (v0.9.18)
   - Enhanced project status documentation with Award Committee approval metrics
@@ -1287,12 +1525,14 @@ This changelog documents **118+ incremental version releases** representing comp
   - Streamlined documentation maintenance and version control processes
 
 ### Fixed
+
 - **GitHub Workflow Validation** - Ensured all automation functions correctly
 - **Documentation Cross-References** - Updated all internal links and references
 - **Project Status Accuracy** - Aligned all documentation with current development state
 - **Repository Organization** - Optimized file structure for GitHub best practices
 
 ### Security
+
 - **GitHub Actions Security** - Implemented secure workflow patterns with minimal permissions
 - **Repository Access Control** - Enhanced security for automated processes
 - **Documentation Compliance** - Ensured all documentation meets VA IT security standards
@@ -1300,6 +1540,7 @@ This changelog documents **118+ incremental version releases** representing comp
 ## [0.9.17] - 2025-07-16
 
 ### Added
+
 - **Award Committee Stakeholder Feedback Process** - Comprehensive voting and review cycle completed
   - Conducted two-phase voting process with Award Committee (20 members)
   - Achieved 16 approvals, 1 non-voting comment, 0 rejections from comprehensive stakeholder review
@@ -1307,6 +1548,7 @@ This changelog documents **118+ incremental version releases** representing comp
   - Established formal voting process for future major releases and changes
 
 ### Changed
+
 - **Enhanced Documentation and Architecture Review** - Comprehensive project analysis and documentation updates
   - Updated README.md with enhanced project statistics (55+ documentation files, 20+ PowerShell scripts)
   - Enhanced Technical Architecture section with detailed component descriptions and integration patterns
@@ -1325,6 +1567,7 @@ This changelog documents **118+ incremental version releases** representing comp
   - Enhanced web-only development workflow documentation with comprehensive tooling information
 
 ### Fixed
+
 - **Documentation Consistency** - Ensured all project documentation reflects current architecture and capabilities
   - Aligned all documentation with current v0.9.0 production-ready status
   - Updated project metrics to reflect comprehensive development environment and automation
@@ -1332,16 +1575,18 @@ This changelog documents **118+ incremental version releases** representing comp
 
 ## [Unreleased]
 
-*Post-stakeholder approval development cycle - Implementing Award Committee feedback*
+_Post-stakeholder approval development cycle - Implementing Award Committee feedback_
 
 ---
 
 ## 📈 Recent Repository Organization Updates (July 2025)
 
 ### Repository Preparation for GitHub (July 10, 2025)
+
 **Major organizational improvements and professional repository preparation:**
 
 #### 🏗️ **Professional Repository Structure**
+
 - **Added**: Comprehensive GitHub templates (issue templates, pull request templates)
 - **Added**: [`CONTRIBUTING.md`](CONTRIBUTING.md) with Power Platform best practices
 - **Added**: [`SECURITY.md`](SECURITY.md) with VA IT compliance requirements
@@ -1350,12 +1595,14 @@ This changelog documents **118+ incremental version releases** representing comp
 - **Organized**: Release management with proper versioning in `releases/v0.8.x/`
 
 #### 🧹 **File Organization & Cleanup**
+
 - **Removed**: 7 redundant documentation files (educational/one-time status documents)
 - **Moved**: Release artifacts to proper `releases/` folder with semantic naming
 - **Enhanced**: `.gitignore` with comprehensive Power Platform and GitHub patterns
 - **Created**: Professional release notes with complete component documentation
 
 #### 📚 **Documentation Enhancement**
+
 - **Cross-references**: All major documents now properly reference each other
 - **Comprehensive coverage**: Technical guides, security policies, contribution guidelines
 - **Professional formatting**: Consistent markdown styling with badges and metrics
@@ -1363,11 +1610,12 @@ This changelog documents **118+ incremental version releases** representing comp
 
 ---
 
-
 ## Version History
 
 ### Version 0.9.17 (July 16, 2025)
+
 **CR-047**: Julia Nakashima - "Help Me Choose" preparatory explanations
+
 - **Requested**: 07/10/2025 by Julia G. Nakashima
 - **Request**: "Under the in-app of 'Help Me Choose' generic award submission, consider preparatory option question to briefly explain differences between ICARE or Great Catch/HRO/Safety etc. Perhaps something like an explanation of what a Great Catch vs ICARE is before the app user is prompted to fill out unnecessary questions that end up being irrelevant later. Similarly on the Great Catch/Safety Story/HRO HeRO screen, provide brief preparatory question to help app user identify the difference between the three situations."
 - **Status**: In progress as of 07/16/2025
@@ -1375,7 +1623,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.16 (July 16, 2025)
+
 **CR-046**: Julia Nakashima - HRO Principles link enhancement
+
 - **Requested**: 07/07/2025 by Julia G. Nakashima
 - **Request**: "Is there a way to add a link to [the HRO Principles] page, or when these terms come up to an explanation for these because it unlikely that everyone knows what each of these mean and it is inefficient to go back and look through the app for the link to the HRO page."
 - **Status**: In progress as of 07/16/2025
@@ -1383,7 +1633,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.15 (July 16, 2025)
+
 **CR-045**: Julia Nakashima - Hines Hero PDF outdated content bug
+
 - **Requested**: 07/07/2025 by Julia G. Nakashima
 - **Request**: "The Hines Hero explanation/pdf is sort of outdated Hines Hero Info.pdf as in Hines Happening is not always hosted by Mr. Doelling and the click here link leads to an error."
 - **Status**: In progress as of 07/16/2025
@@ -1391,7 +1643,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.14 (July 16, 2025)
+
 **CR-044**: Julia Nakashima - "Click Here for More Information" pop-up enhancement
+
 - **Requested**: 07/07/2025 by Julia G. Nakashima
 - **Request**: "…it is nice but I am wondering if it should explain the process for if you need help choosing verses picking on your own. May be it should explain more how the app picks the award. Why would I let the app choose verses picking it myself? Maybe that should be explained because it kind of vague."
 - **Status**: In progress as of 07/16/2025
@@ -1399,7 +1653,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.13 (July 16, 2025)
+
 **CR-043**: Irena Persky - "Help Me Choose" triage process inquiry
+
 - **Requested**: 07/02/2025 by Irena Persky
 - **Request**: "For the 'Help Me Choose' option, the app user entering information just answers the questions and the committee chooses the award? The award list option does not come up if the person entering is not sure what to pick, correct?"
 - **Status**: In progress as of 07/16/2025
@@ -1407,7 +1663,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.12 (July 16, 2025)
+
 **CR-042b**: Irena Persky - WOW! Award to WOW! Recognition nomenclature
+
 - **Requested**: 07/02/2025 by Irena Persky
 - **Request**: "Change instances of language showing 'WOW! Award' to more appropriately say 'WOW! Recognition' throughout app interface."
 - **Status**: In progress as of 07/16/2025
@@ -1415,7 +1673,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.11 (July 16, 2025)
+
 **CR-042a**: Julia Nakashima - Chat Bot inquiry (Resolved)
+
 - **Requested**: 07/07/2025 by Julia G. Nakashima
 - **Request**: "What is the 'chat bot' in teams? How does that work? What does that mean? How will I know how to access it? Will it just chat me?"
 - **Completed**: 07/07/2025 by email response with clarifying information
@@ -1424,7 +1684,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.10 (July 16, 2025)
+
 **CR-041**: Irena Persky - Hines Hero SharePoint link bug
+
 - **Requested**: 07/02/2025 by Irena Persky
 - **Request**: "For the Hines Hero's click, is another form supposed to open? Link currently goes to SharePoint document, which itself containing a dead link"
 - **Status**: In progress as of 07/16/2025
@@ -1432,7 +1694,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.9 (July 16, 2025)
+
 **CR-040b**: Julia Nakashima - Award Committee workgroup inquiry (Resolved)
+
 - **Requested**: 07/07/2025 by Julia G. Nakashima
 - **Request**: "I am wondering still what is the process for when a submission is submitted, who reviews these submissions? Did the workgroup figure out those details? How is it determined if someone wins or not? Is there a scoring system on the backend? How is an award determined especially if it is through the 'no, help me choose option' option? Is there a triage team or through an algorithm? Was this ever determined? How is this fairly determined without bias?"
 - **Completed**: 07/07/2025 by email response with clarifying information
@@ -1441,7 +1705,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.8 (July 16, 2025)
+
 **CR-040a**: Matthew Moeller - Routing and process flow inquiries
+
 - **Requested**: 07/09/2025 by Matthew C. Moeller (via proxy Jeffry M. Howerton)
 - **Request**: Multiple inquiries including: submission routing to departments, organizational POC routing, Hines Hero nomination process clarity, Awards Committee streamlining, and submission processing timeframes
 - **Status**: In progress as of 07/16/2025
@@ -1449,7 +1715,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.7 (July 16, 2025)
+
 **CR-039**: Matthew Moeller - Hines Hero Media Service nomination 404 error
+
 - **Requested**: 07/09/2025 by Matthew C. Moeller (via proxy Debralee P. Lutgen)
 - **Request**: "One issue I found is that there is no example of a Hines Hero (Media Service) nomination attached to the link. It gives a 404 error."
 - **Status**: In progress as of 07/16/2025
@@ -1457,7 +1725,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.6 (July 16, 2025)
+
 **CR-038**: Tuesday Majors - App demo/walkthrough recommendation (Postponed)
+
 - **Requested**: 07/02/2025 by Tuesday A. Majors
 - **Request**: "it may be beneficial to have a meeting to walk through the app, from beginning to end with all the updates"
 - **Status**: Postponed as of 07/16/2025, pending approval/process direction from Christina Conway
@@ -1465,7 +1735,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.5 (July 16, 2025)
+
 **CR-037**: David Lee - "Location" question clarifying language
+
 - **Requested**: 07/07/2025 by David Kyungsun Lee
 - **Request**: "Consider recommendation to alter that 'Location' question's clarifying language to make clearer to front-line staff."
 - **Status**: In progress as of 07/16/2025
@@ -1473,7 +1745,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.4 (July 16, 2025)
+
 **CR-036**: David Lee - Location text block inquiry (Resolved)
+
 - **Requested**: 07/07/2025 by David Kyungsun Lee
 - **Request**: "Lack of clarity regarding the in-app instructions around the 'Location' question's intent ([paraphrasing] the specific room number vs generic description)"
 - **Completed**: 07/09/2025 by email response with clarifying information
@@ -1482,7 +1756,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.3 (July 16, 2025)
+
 **CR-035**: Award Committee voting process - Second round completion
+
 - **Continued from**: CR-032a
 - **Completed**: 07/16/2025
 - **Implementation**: Updated project tracking with Award Committee feedback and achieved final approval status (16 approvals, 1 non-voting comment, 0 rejections)
@@ -1490,7 +1766,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.2 (July 16, 2025)
+
 **CR-034**: Chad Franche - Nursing Daisy/Bee and Safety Story link recommendations
+
 - **Requested**: 07/07/2025 by Chad C. Franche
 - **Request**: "After clicking on 'more info' for the Nursing Daisy/Bee and Safety Story, those pages still have submission links for the original process. Consider altering hyperlink's destination"
 - **Status**: In progress as of 07/16/2025
@@ -1498,15 +1776,19 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.9.1 (July 16, 2025)
-**CR-033**: Chad Franche - I*CARE Values "more info" link bug
+
+**CR-033**: Chad Franche - I\*CARE Values "more info" link bug
+
 - **Requested**: 07/07/2025 by Chad C. Franche
-- **Request**: "When you click on 'more info' for I*CARE Values nothing pops up or is linked, like for the other options."
+- **Request**: "When you click on 'more info' for I\*CARE Values nothing pops up or is linked, like for the other options."
 - **Status**: In progress as of 07/16/2025
 
 ---
 
 ### Version 0.8.5 (July 14, 2025)
+
 **CR-032b**: Award Committee voting process - Second voting round
+
 - **Continued from**: CR-032a
 - **Completed**: 07/14/2025
 - **Implementation**: Completed second voting email to non-responding committee members, achieved additional responses for comprehensive stakeholder approval
@@ -1514,7 +1796,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.8.4 (July 9, 2025)
+
 **CR-032a**: Award Committee voting process - Initial voting round
+
 - **Requested**: Per Christina Conway instructions
 - **Completed**: 07/09/2025
 - **Implementation**: Conducted initial voting email to 20 Award Committee members, received 12 responses (9 approvals, 3 non-voting comments, 0 rejections)
@@ -1522,7 +1806,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.8.3 (Pending - July 7, 2025)
+
 **CR-031d**: Final stakeholder approval - Awaiting results
+
 - **Continued from**: CR-031c
 - **Status**: Pending
 - **Implementation**: Awaiting deadline fulfillment to count total sub-committee approval or comments
@@ -1530,7 +1816,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.8.2 (July 2, 2025)
+
 **CR-031c**: Final stakeholder approval - Committee vote initiated
+
 - **Continued from**: CR-031b
 - **Completed**: 07/02/2025
 - **Implementation**: Email sent to sub-committee with assigned voting deadline of 07/07/2025
@@ -1538,7 +1826,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.8.1 (July 1, 2025)
+
 **CR-031b**: Final stakeholder approval - Pre-approval received
+
 - **Continued from**: CR-031a
 - **Completed**: 07/01/2025
 - **Implementation**: Pre-approval received, instructed to send voting-enabled email to project sub-committee to solicit "Approve/Reject" consensus for publishing to entire Hines employee staff
@@ -1546,7 +1836,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.8.0 (July 1, 2025)
+
 **CR-031a**: Final stakeholder approval - Initial review
+
 - **Meeting**: 07/01/2025
 - **Stakeholder**: Christina Conway
 - **Implementation**: Met with primary key-stakeholder for review of change orders & extensive published state demonstration
@@ -1554,7 +1846,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.7.4 (July 2, 2025)
+
 **CR-030e**: Redundant instruction blocks - Final publication
+
 - **Continued from**: CR-030d
 - **Completed**: 07/02/2025
 - **Implementation**: Updates completed, new version published
@@ -1562,7 +1856,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.7.3 (July 3, 2025)
+
 **CR-030d**: Redundant instruction blocks - Troubleshooting
+
 - **Continued from**: CR-030c
 - **Completed**: 07/03/2025
 - **Implementation**: Troubleshooting re-added feature
@@ -1570,7 +1866,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.7.2 (July 2, 2025)
+
 **CR-030c**: Redundant instruction blocks - Re-implementation
+
 - **Continued from**: CR-030b
 - **Completed**: 07/02/2025
 - **Implementation**: Completed re-adding the GUI features back into app
@@ -1578,7 +1876,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.7.1 (July 1, 2025)
+
 **CR-030b**: Redundant instruction blocks - Stakeholder discussion
+
 - **Continued from**: CR-030a
 - **Meeting**: 07/01/2025
 - **Implementation**: Talked to Matthew C. Moeller about change order, decided to re-add two specific occasions that are relevant to specific popups
@@ -1586,7 +1886,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.7.0 (June 28, 2025)
+
 **CR-030a**: Redundant instruction blocks - Initial removal
+
 - **Requested**: 06/12/2025 by Matthew C. Moeller
 - **Request**: "Remove instances of redundant 'Select the most appropriate' instruction blocks"
 - **Completed**: 06/28/2025
@@ -1595,7 +1897,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.9 (July 2, 2025)
+
 **CR-029c**: Review Prior To Submission feature - Final completion
+
 - **Continued from**: CR-029b
 - **Completed**: 07/02/2025
 - **Implementation**: Updates completed, new version published
@@ -1603,7 +1907,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.8 (July 1, 2025)
+
 **CR-029b**: Review Prior To Submission feature - Troubleshooting
+
 - **Continued from**: CR-029a
 - **Completed**: 07/01/2025
 - **Implementation**: Troubleshooting new features completed
@@ -1611,7 +1917,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.7 (June 30, 2025)
+
 **CR-029a**: Review Prior To Submission feature - Initial implementation
+
 - **Requested**: 06/12/2025 by Matthew C. Moeller
 - **Request**: "Prior to final form submissions, add a new larger/prompt to 'Review Prior To Submission' ability to all screens"
 - **Completed**: 06/30/2025
@@ -1620,7 +1928,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.6 (June 30, 2025)
+
 **CR-028**: SharePoint default value bug fix
+
 - **Requested**: 06/12/2025 by Matthew C. Moeller
 - **Request**: "Found bug with item labels displaying default SharePoint value"
 - **Completed**: 06/30/2025
@@ -1629,7 +1939,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.5 (June 30, 2025)
+
 **CR-027**: Spelling/grammar errors in review screens
+
 - **Requested**: 06/12/2025 by Matthew C. Moeller
 - **Request**: "Spelling/grammar errors with final form review screen views"
 - **Completed**: 06/30/2025
@@ -1638,7 +1950,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.4 (June 30, 2025)
+
 **CR-026**: Additional Info wording simplification
+
 - **Requested**: 06/12/2025 by Matthew C. Moeller
 - **Request**: "Change 'Additional Info' wording on all screens to simplify"
 - **Completed**: 06/30/2025
@@ -1647,7 +1961,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.3 (June 30, 2025)
+
 **CR-025c**: YES/NO button visibility - Testing completion
+
 - **Continued from**: CR-025b
 - **Completed**: 06/30/2025
 - **Implementation**: Testing and updates completed
@@ -1655,7 +1971,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.2 (June 27, 2025)
+
 **CR-025b**: YES/NO button visibility - Code changes
+
 - **Continued from**: CR-025a
 - **Completed**: 06/27/2025
 - **Implementation**: Altered new feature's functions and underlying code
@@ -1663,7 +1981,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.1 (June 26, 2025)
+
 **CR-025a**: YES/NO button visibility - Language changes
+
 - **Requested**: 06/12/2025 by Christina Conway & Matthew C. Moeller
 - **Request**: "Alter the 'Choose an award' dropdown popups on all screens to alter YES/NO button visibilities"
 - **Completed**: 06/26/2025
@@ -1672,7 +1992,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.6.0 (June 30, 2025)
+
 **CR-024c**: Award dropdown GUI improvements - Testing completion
+
 - **Continued from**: CR-024b
 - **Completed**: 06/30/2025
 - **Implementation**: Testing and updates completed
@@ -1680,7 +2002,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.9 (June 27, 2025)
+
 **CR-024b**: Award dropdown GUI improvements - Code changes
+
 - **Continued from**: CR-024a
 - **Completed**: 06/27/2025
 - **Implementation**: Altered new feature's functions and underlying code
@@ -1688,7 +2012,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.8 (June 26, 2025)
+
 **CR-024a**: Award dropdown GUI improvements - Language changes
+
 - **Requested**: 06/12/2025 by Christina Conway & Matthew C. Moeller
 - **Request**: "Alter the 'Choose an award' dropdown popups on all screens to improve GUI and wording around 'More Info' buttons"
 - **Completed**: 06/26/2025
@@ -1697,7 +2023,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.7 (June 24, 2025)
+
 **CR-023b**: Hines Hero language modification - Final completion
+
 - **Continued from**: CR-023a
 - **Completed**: 06/24/2025
 - **Implementation**: Final implementation completed
@@ -1705,7 +2033,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.6 (June 23, 2025)
+
 **CR-023a**: Hines Hero language modification
+
 - **Requested**: 06/12/2025 by Christina Conway & Matthew C. Moeller
 - **Request**: "Modify the 'Hines Hero' language and routing to include 'Hines Happenings' packages simultaneously"
 - **Completed**: 06/23/2025
@@ -1714,7 +2044,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.5 (June 24, 2025)
+
 **CR-022c**: Patient Safety language softening - Testing completion
+
 - **Continued from**: CR-022b
 - **Completed**: 06/24/2025
 - **Implementation**: Fixed popup variables/errors found during testing of new feature. Completed testing & published updated app version
@@ -1722,7 +2054,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.4 (June 19, 2025)
+
 **CR-022b**: Patient Safety language softening - New popup
+
 - **Continued from**: CR-022a
 - **Completed**: 06/19/2025
 - **Implementation**: Built new subordinate popup that provides preparatory information prior to JPSR window opening with opt-out capability
@@ -1730,7 +2064,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.3 (June 17, 2025)
+
 **CR-022a**: Patient Safety language softening - Basic changes
+
 - **Requested**: 06/12/2025 by Christina Conway
 - **Request**: "Change language on 'Patient Safety' boolean popups to make softer prompt & alter the JPSR page functions"
 - **Completed**: 06/17/2025
@@ -1739,7 +2075,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.2 (June 18, 2025)
+
 **CR-021**: Remove time selection boxes
+
 - **Requested**: 06/12/2025 by Christina Conway
 - **Request**: "Remove the 'Select a specific time' boxes within all screens"
 - **Completed**: 06/18/2025
@@ -1748,21 +2086,26 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.5.1 (June 17, 2025)
+
 **CR-020**: Starfish Award terminology
+
 - **Requested**: 06/12/2025 by Christina Conway
-- **Request**: "Change 'I*CARE Award' references back to 'Starfish Award'"
+- **Request**: "Change 'I\*CARE Award' references back to 'Starfish Award'"
 - **Completed**: 06/17/2025
 - **Implementation**: Completed terminology changes throughout application
 
 ---
 
 ### Version 0.5.0 (June 12, 2025)
+
 **Major Change Order Received**: Christina Conway provided comprehensive comments document with multiple change requests (CR-020 through CR-030)
 
 ---
 
 ### Version 0.4.7 (May 9, 2025)
+
 **CR-019b**: Critical bug resolution
+
 - **Continued from**: CR-019a
 - **Completed**: 05/09/2025
 - **Implementation**: All critical errors resolved, system restored to stable state
@@ -1770,7 +2113,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.4.6 (May 6, 2025)
+
 **CR-019a**: Critical bug emergency
+
 - **Issue**: 05/06/2025
 - **Description**: "Updates created hundreds of application bugs & errors overnight on both the app's user interface & hidden automation programming"
 - **Impact**: Roughly 531 code errors manifested overnight following corrections to parallel system and software update
@@ -1779,7 +2124,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.4.5 (May 7, 2025)
+
 **CR-018**: Spelling errors correction
+
 - **Requested**: By Manuelissa Capulong
 - **Request**: "Spelling errors within application"
 - **Completed**: 05/07/2025
@@ -1788,7 +2135,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.4.4 (May 7, 2025)
+
 **CR-017d**: QR code for external submissions - On hold
+
 - **Continued from**: CR-017c
 - **Status**: 05/07/2025
 - **Implementation**: Meeting with Public Affairs has not yet occurred, other project components prioritized for completion first
@@ -1796,7 +2145,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.4.3 (April 30, 2025)
+
 **CR-017c**: QR code for external submissions - Re-evaluation
+
 - **Continued from**: CR-017b
 - **Status**: 04/30/2025
 - **Implementation**: Re-visited topic with Public Affairs stakeholders to confirm need to meet offline
@@ -1804,7 +2155,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.4.2 (April 16, 2025)
+
 **CR-017b**: QR code for external submissions - Privacy concerns
+
 - **Continued from**: CR-017a
 - **Status**: 04/16/2025
 - **Implementation**: Public Affairs stakeholders not available to discuss privacy/data sharing concerns related to SurveyMonkey, de-prioritized until after initial app publication for Version 1.5
@@ -1812,7 +2165,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.4.1 (April 9, 2025)
+
 **CR-017a**: QR code for external submissions - Initial concept
+
 - **Requested**: 04/09/2025
 - **Request**: "Develop QR code for non-VA employees to fill in similar questions to submit via Survey Monkey"
 - **Status**: Presented concept to stakeholders, identified need to meet with Matthew C. Moeller offline
@@ -1820,7 +2175,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.4.0 (May 7, 2025)
+
 **CR-016c**: Pre-fill Daisy Award Form - Continued development
+
 - **Continued from**: CR-016b
 - **Status**: 05/07/2025
 - **Implementation**: Continuing to work on developing solution to request (In Progress)
@@ -1828,7 +2185,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.9 (May 1, 2025)
+
 **CR-016b**: Pre-fill Daisy Award Form - Proof of concept
+
 - **Continued from**: CR-016a
 - **Status**: 05/01/2025
 - **Implementation**: Briefly began proof-of-concept programming/testing to evaluate feasibility & requirements to plan implementation path
@@ -1836,7 +2195,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.8 (April 30, 2025)
+
 **CR-016a**: Pre-fill Daisy Award Form - Initial request
+
 - **Requested**: 04/30/2025 by Kimberly Richmond (Nursing stakeholders)
 - **Request**: "Pre-fill Daisy Award Nomination Form after info given through app and send to Nursing Award sub-committee points of contact"
 - **Status**: Request put forth by Nursing stakeholders
@@ -1844,7 +2205,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.7 (May 28, 2025)
+
 **CR-015**: Chat box for JPSR - Resolved
+
 - **Requested**: By Manuelissa Capulong
 - **Request**: "Chat box for JPSR submission encouragement (find a way to make it not come off punitive to person submitting)"
 - **Resolution**: Comment resolved via solution to CR-009 (Safety Boolean) implementation
@@ -1852,7 +2215,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.6 (April 28, 2025)
+
 **CR-014**: WOW! Tab integration
+
 - **Requested**: By Irena Persky
 - **Request**: "WOW! Tab re-directs to the already developed WOW! Platform"
 - **Completed**: 04/28/2025
@@ -1861,7 +2226,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.5 (April 9, 2025)
+
 **CR-013**: Post-approval automation - Future consideration
+
 - **Requested**: 04/09/2025
 - **Request**: "Post-approval automation potentials: Nominee notifications, award certificate printing, Service Chief/Supervisor notification of subordinate employee nominees, etc."
 - **Status**: Stakeholder group interested but deprioritized and postponed development with no implementation timeline
@@ -1869,7 +2236,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.4 (April 16, 2025)
+
 **CR-012b**: Daisy & Bee award clarification - Resolution
+
 - **Continued from**: CR-012a
 - **Completed**: 04/16/2025
 - **Stakeholder**: Kimberly Richmond
@@ -1878,7 +2247,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.3 (April 9, 2025)
+
 **CR-012a**: Daisy & Bee award clarification - Initial request
+
 - **Requested**: 04/09/2025 by Kyle J. Coder
 - **Request**: "Confirm with Nursing Team that Daisy & Bee are supposed to be able to be submitted by both external (Veterans/Visitors) & internal (staff) groups"
 - **Status**: Requested clarifying details from Nursing stakeholders, but postponed due to nursing staff availability
@@ -1886,7 +2257,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.2 (May 20, 2025)
+
 **CR-011**: Direct award targeting - Resolved
+
 - **Requested**: By @Everyone
 - **Request**: "Initial intro question to directly target the specific award users want, instead of the algorithmic prompts that require more clicks and answers"
 - **Resolution**: Comment resolved via solution to CR-002 implementation
@@ -1894,7 +2267,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.1 (May 1, 2025)
+
 **CR-010b**: Back button functionality - Implementation
+
 - **Continued from**: CR-010a
 - **Completed**: 05/01/2025
 - **Implementation**: Enhanced back button functionality completed
@@ -1902,7 +2277,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.3.0 (April 30, 2025)
+
 **CR-010a**: Back button functionality - Stakeholder request
+
 - **Requested**: 04/30/2025 by Kyle J. Coder
 - **Request**: "Back button to return to previous pop-up, versus current start-over"
 - **Meeting**: During 04/30/2025 meeting, stakeholder group requested alterations to button routing
@@ -1910,7 +2287,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.9 (June 8, 2025)
+
 **CR-009h**: Safety Boolean - Final completion
+
 - **Continued from**: CR-009g
 - **Completed**: 06/08/2025
 - **Implementation**: Completed implementation and testing of AI Chatbot for safety reporting
@@ -1918,7 +2297,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.8 (May 28, 2025)
+
 **CR-009g**: Safety Boolean - AI Chatbot testing
+
 - **Continued from**: CR-009f
 - **Status**: 05/28/2025
 - **Implementation**: AI Chatbot built and starting testing phase (approximately 90% complete)
@@ -1926,7 +2307,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.7 (May 20, 2025)
+
 **CR-009f**: Safety Boolean - AI Chatbot 75% progress
+
 - **Continued from**: CR-009e
 - **Status**: 05/20/2025
 - **Implementation**: Working on AI Chatbot (approximately 75% complete)
@@ -1934,7 +2317,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.6 (May 7, 2025)
+
 **CR-009e**: Safety Boolean - AI Chatbot 25% progress
+
 - **Continued from**: CR-009d
 - **Status**: 05/07/2025
 - **Implementation**: Working on AI Chatbot (approximately 25% complete)
@@ -1942,7 +2327,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.5 (May 1, 2025)
+
 **CR-009d**: Safety Boolean - AI Chatbot start
+
 - **Continued from**: CR-009c
 - **Completed**: 05/01/2025
 - **Implementation**: Finished debugging in-app additions and changes. Started work on AI Chatbot
@@ -1950,7 +2337,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.4 (April 30, 2025)
+
 **CR-009c**: Safety Boolean - Stakeholder feedback
+
 - **Continued from**: CR-009b
 - **Meeting**: 04/30/2025
 - **Implementation**: Key stakeholders requested change to soften the app's requesting language and mandatory JPSR trigger. Evaluated three options (in-app prompts, AI Chatbot, after-action emails), group decided to pursue AI Chatbot solution
@@ -1958,7 +2347,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.3 (April 29, 2025)
+
 **CR-009b**: Safety Boolean - JPSR algorithm
+
 - **Continued from**: CR-009a
 - **Completed**: 04/29/2025
 - **Implementation**: Finished programming algorithm for "YES" response to trigger JPSR system and prompt app user to complete a formal safety report
@@ -1966,7 +2357,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.2 (April 18, 2025)
+
 **CR-009a**: Safety Boolean - Initial question
+
 - **Requested**: By Tuesday A. Majors (Safety Team)
 - **Request**: "Safety Boolean response triggers JPSR/formal safety reporting system"
 - **Completed**: 04/18/2025
@@ -1975,7 +2368,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.1 (April 30, 2025)
+
 **CR-008**: Improved navigation to first page
+
 - **Requested**: By Christina Conway
 - **Request**: "Get to 1st page to submit another nomination"
 - **Completed**: 04/30/2025
@@ -1987,7 +2382,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.2.0 (April 2, 2025)
+
 **CR-007**: Multi-team forwarding capability - Postponed
+
 - **Requested**: 04/02/2025 by Christina Conway
 - **Request**: "Triage team that receives the submission has ability to simultaneously forward a packet to multiple teams at once (i.e. nomination is ideal for both a Safety Story & a Daisy award)"
 - **Status**: Technical feasibility confirmed, de-prioritized and postponed until after roll-out publication for Version 2.0
@@ -1996,7 +2393,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.9 (April 18, 2025)
+
 **CR-006**: Help page feedback - Resolved
+
 - **Requested**: By Christina Conway
 - **Request**: "Love the help page"
 - **Resolution**: Positive feedback, no changes needed
@@ -2004,7 +2403,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.8 (April 18, 2025)
+
 **CR-005**: End page tabs - Resolved
+
 - **Requested**: By Christina Conway
 - **Request**: "End page tabs"
 - **Resolution**: No action required
@@ -2012,7 +2413,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.7 (April 9, 2025)
+
 **CR-004**: Group/Team nomination selection - Postponed
+
 - **Requested**: 04/09/2025 by Christina Conway
 - **Request**: "Nomination choices allowing for either a 'Group/Team' selection or 'individual employee' selection"
 - **Status**: Technical feasibility confirmed, postponed until after roll-out publication for Version 1.5
@@ -2021,7 +2424,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.6 (April 16, 2025)
+
 **CR-003**: Submitter confusion notification - Resolved
+
 - **Requested**: 04/02/2025 by Chad C. Franche
 - **Request**: "Do we consider notifying the submitter that the nomination is general and that the type of award (if any) is determined by the triage team? To reduce potential confusion."
 - **Resolution**: Comment resolved via solution to CR-002 implementation
@@ -2029,7 +2434,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.5 (May 20, 2025)
+
 **CR-002d**: Award-specific question logic - Final completion
+
 - **Continued from**: CR-002c
 - **Completed**: 05/20/2025
 - **Implementation**: Final completion and testing of award-specific question logic system
@@ -2037,7 +2444,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.4 (May 7, 2025)
+
 **CR-002c**: Award-specific question logic - Debugging phase
+
 - **Continued from**: CR-002b
 - **Status**: 05/07/2025
 - **Implementation**: Working on debugging the new additions and algorithm and polishing the display. Anticipated completion by next week's meeting.
@@ -2045,7 +2454,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.3 (May 5, 2025)
+
 **CR-002b**: Award-specific question logic - Hidden layers
+
 - **Continued from**: CR-002a
 - **Completed**: 05/05/2025
 - **Implementation**: Completed new hidden layers to app that are customized for each award type based on initial screening question
@@ -2053,7 +2464,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.2 (April 28, 2025)
+
 **CR-002a**: Award-specific question logic - Initial screening
+
 - **Requested**: By @Everyone (Award Committee)
 - **Request**: "Which specific award is the nomination for?"
 - **Completed**: 04/28/2025
@@ -2065,7 +2478,9 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.1 (April 18, 2025)
+
 **CR-001**: Privacy controls - submitters see only their submissions
+
 - **Requested**: 04/09/2025 by Christina Conway
 - **Request**: "Remove names of nominees from public view (submitter can only see their submissions)"
 - **Completed**: 04/18/2025
@@ -2074,6 +2489,7 @@ This changelog documents **118+ incremental version releases** representing comp
 ---
 
 ### Version 0.1.0 (Initial Draft - April 9, 2025)
+
 **Release Date**: April 9, 2025
 **Status**: Initial draft delivered to Award Committee
 **Description**: First functioning version delivered after one month of development on Canvas app, SharePoint, and automated flows
@@ -2083,6 +2499,7 @@ This changelog documents **118+ incremental version releases** representing comp
 ## Summary Statistics
 
 ### Development Metrics
+
 - **Total Version Releases**: 117 incremental versions (0.1.0 → 0.9.17)
 - **Total Change Requests**: 48 main requests (31 original + 17 post-approval)
 - **Total Implementation Stages**: 117+ individual stages
@@ -2090,15 +2507,17 @@ This changelog documents **118+ incremental version releases** representing comp
 - **Average Development Cycle**: 1-2 days per version increment
 
 ### Completion Status
+
 - **Completed Requests**: 29 (60.4%)
 - **In Progress**: 16 (33.3%)
 - **Postponed for Future Versions**: 3 (6.3%)
 
 ### Active Development Items (Current Status)
+
 - **CR-032-047**: Post-approval stakeholder feedback implementation cycle (In Progress)
 - **Award Committee Approval**: Achieved 16 approvals, 1 non-voting comment, 0 rejections
 - **Current Focus**: Bug fixes, UI enhancements, and process clarifications based on stakeholder feedback
 
 ---
 
-*This comprehensive changelog reflects the complete incremental development process with 114 version releases documenting every stage of the Employee Recognition Application development from initial draft delivery through post-approval stakeholder feedback implementation in v0.9.1. The project achieved stakeholder approval and is implementing comprehensive feedback for production deployment.*
+_This comprehensive changelog reflects the complete incremental development process with 114 version releases documenting every stage of the Employee Recognition Application development from initial draft delivery through post-approval stakeholder feedback implementation in v0.9.1. The project achieved stakeholder approval and is implementing comprehensive feedback for production deployment._

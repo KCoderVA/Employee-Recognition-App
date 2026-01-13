@@ -224,3 +224,25 @@ src/analytics/powerbi/development/*.pbix
 # Explicitly exclude the following from public release
 .github/copilot-instructions.md
 RecursiveDirectoryAnalysis_*.csv
+
+# ================================
+# IGNORE: All ZIP files and folders named ".zip"
+#
+# - Ignore any file with a .zip extension anywhere in the repository.
+# - Ignore any directory or folder named exactly ".zip" anywhere (use trailing slash).
+# - Git matching is case-sensitive by default. To cover common case variants, include explicit
+#   patterns for uppercase/lowercase variants where needed. Most systems use lowercase ".zip".
+# - These patterns are intentionally broad and match recursively.
+# ================================
+# Ignore any file that ends with .zip
+*.zip
+# Also ignore any .zip file in subdirectories explicitly (redundant but explicit)
+**/*.zip
+
+# Ignore directories named ".zip" at any depth
+/.zip/
+**/.zip/
+
+# Some archives may have uppercase extensions; include common uppercase variants
+*.ZIP
+**/*.ZIP
