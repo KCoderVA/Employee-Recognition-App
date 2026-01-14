@@ -96,8 +96,17 @@ jobs:
             "${api}" || true)"
 
           if [ "${code}" = "200" ]; then
-            echo "✅ PAT can access ${TARGET_REPO}"
-            exit 0
+            # The REST payload usually includes a permissions object for authenticated callers.
+            # We avoid jq (not guaranteed installed) and do a lightweight check.
+            if grep -q '"push"[[:space:]]*:[[:space:]]*true' /tmp/target-repo.json; then
+              echo "✅ PAT can access and push to ${TARGET_REPO}"
+              exit 0
+            fi
+
+            echo "::error title=Insufficient Token Permissions::PAT can see ${TARGET_REPO} but does not appear to have push permission. Ensure MIRROR_PAT includes Contents: Read/Write for that target repo (fine-grained) or 'repo' scope (classic)."
+            echo "Response (first 80 lines):"
+            sed -n '1,80p' /tmp/target-repo.json || true
+            exit 1
           fi
 
           if [ "${code}" = "401" ]; then
