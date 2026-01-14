@@ -12,11 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Mirror to Personal Repository
+name: Mirror to Enterprise Repository
 
-# This workflow automatically mirrors the enterprise repository to the personal
-# public repository to maintain transparency and community access while keeping
-# the enterprise repo as the canonical source.
+# This workflow runs in the *personal* public repository (source of truth) and
+# mirrors changes into the VA enterprise-controlled private repository.
 
 on:
   push:
@@ -26,6 +25,14 @@ on:
       - 'hotfix/**'
   workflow_dispatch:
     inputs:
+      dry_run:
+        description: 'Dry run (no writes): validate auth and refs only'
+        required: false
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
       force_mirror:
         description: 'Force complete mirror (including all refs)'
         required: false
@@ -41,75 +48,86 @@ permissions:
 
 jobs:
   mirror:
-    name: Mirror to KCoderVA/Employee-Recognition-App
+    name: Mirror to department-of-veterans-affairs/578-EmployeeRecognitionApp
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
+    env:
+      # Personal Access Token used to push to the target repository.
+      # Configure as a repository secret: Settings → Secrets and variables → Actions → MIRROR_PAT
+      MIRROR_PAT: ${{ secrets.MIRROR_PAT }}
+      TARGET_REPO: department-of-veterans-affairs/578-EmployeeRecognitionApp
+      # `github.event.inputs` exists only for workflow_dispatch; default safely for push events.
+      DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+      FORCE_MIRROR: ${{ github.event.inputs.force_mirror || 'false' }}
+
     steps:
-      - name: Checkout enterprise repository
+      - name: Checkout source repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Full history for complete mirror
           fetch-tags: true
 
-      - name: Mirror secret missing (placeholder)
-        # NOTE: Secret integration temporarily disabled to satisfy linter complaining about undefined secret context.
-        # TODO: Re-enable by adding repository secret MIRROR_SSH_KEY and setting job-level env: MIRROR_SSH_KEY: ${{ secrets.MIRROR_SSH_KEY }}
-        # This step always runs and warns until secret is added.
+      - name: Mirror PAT missing
+        if: env.MIRROR_PAT == ''
         run: |
-          echo "::warning title=Mirror SSH Key Missing::Secret MIRROR_SSH_KEY not configured; mirror steps will be skipped."
-          echo "Add repo secret MIRROR_SSH_KEY and restore env block to enable mirroring."
+          echo "::warning title=Mirror PAT Missing::Secret MIRROR_PAT not configured; mirror steps will be skipped."
+          echo "Add repo secret MIRROR_PAT (classic PAT with 'repo' scope, or fine-grained PAT with Contents: Read/Write for the target repo)."
 
-      - name: Configure SSH for mirror push
-        if: false  # disabled until secret added
+      - name: Dry run enabled
+        if: env.MIRROR_PAT != '' && env.DRY_RUN == 'true'
         run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          printf '%s' "$MIRROR_SSH_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
+          echo "::notice title=Dry Run Enabled::This run will validate authentication and ref updates, but will not write to the target repository."
+          echo "Target: ${TARGET_REPO}"
 
-      - name: Add personal repository remote (disabled until secret added)
-        if: false
+      - name: Configure enterprise repository remote
+        if: env.MIRROR_PAT != ''
         run: |
-          if git remote get-url personal 2>/dev/null; then
-            echo "Personal remote already exists."
-          else
-            git remote add personal git@github.com:KCoderVA/Employee-Recognition-App.git
-          fi
-          git remote -v
+          # Avoid echoing secrets. Configure an authenticated HTTPS remote using the PAT.
+          git remote remove enterprise 2>/dev/null || true
+          git remote add enterprise "https://github.com/${TARGET_REPO}.git"
+          git remote set-url enterprise "https://x-access-token:${MIRROR_PAT}@github.com/${TARGET_REPO}.git"
 
-      - name: Mirror push (full) - disabled
-        if: false
+      - name: Mirror push (full) - dry run
+        if: env.MIRROR_PAT != '' && github.event_name == 'workflow_dispatch' && env.FORCE_MIRROR == 'true' && env.DRY_RUN == 'true'
+        run: |
+          echo "🔄 DRY RUN: Full mirror push (all refs)..."
+          git push enterprise --mirror --dry-run
+
+      - name: Mirror push (full)
+        if: env.MIRROR_PAT != '' && github.event_name == 'workflow_dispatch' && env.FORCE_MIRROR == 'true' && env.DRY_RUN != 'true'
         run: |
           echo "🔄 Executing full mirror push (all refs)..."
-          git push personal --mirror
+          git push enterprise --mirror
 
-      - name: Mirror push (standard) - disabled
-        if: false
+      - name: Mirror push (standard) - dry run
+        if: env.MIRROR_PAT != '' && !(github.event_name == 'workflow_dispatch' && env.FORCE_MIRROR == 'true') && env.DRY_RUN == 'true'
+        run: |
+          echo "🔄 DRY RUN: Standard mirror push..."
+          branch="${GITHUB_REF#refs/heads/}"
+          git push enterprise "${branch}:${branch}" --force --dry-run
+          git push enterprise --tags --force --dry-run
+
+      - name: Mirror push (standard)
+        if: env.MIRROR_PAT != '' && !(github.event_name == 'workflow_dispatch' && env.FORCE_MIRROR == 'true') && env.DRY_RUN != 'true'
         run: |
           echo "🔄 Executing standard mirror push..."
           # Push current branch
-          git push personal "${GITHUB_REF#refs/heads/}:${GITHUB_REF#refs/heads/}" --force-with-lease
+          branch="${GITHUB_REF#refs/heads/}"
+          git push enterprise "${branch}:${branch}" --force
 
           # Push all tags
-          git push personal --tags --force-with-lease
+          git push enterprise --tags --force
 
-      - name: Verify mirror sync (disabled)
-        if: false
+      - name: Verify mirror sync
+        if: env.MIRROR_PAT != ''
         run: |
           echo "✅ Mirror push step completed"
-          echo "Source: department-of-veterans-affairs/578-EmployeeRecognitionApp"
-          echo "Target: KCoderVA/Employee-Recognition-App"
+          echo "Source: ${GITHUB_REPOSITORY}"
+          echo "Target: ${TARGET_REPO}"
+          echo "Dry run: ${DRY_RUN}"
           echo "Branch: ${GITHUB_REF#refs/heads/}"
           echo "Commit: ${GITHUB_SHA::8}"
-
-      - name: Cleanup SSH keys (disabled)
-        if: false
-        run: |
-          rm -f ~/.ssh/id_ed25519
-          echo "🧹 SSH keys cleaned up"
 
   notify-on-failure:
     name: Notify on Mirror Failure
@@ -128,7 +146,7 @@ jobs:
               title: '🚨 Mirror to Personal Repository Failed',
               body: `## Mirror Workflow Failure
 
-              The automated mirror to \`KCoderVA/Employee-Recognition-App\` failed.
+              The automated mirror to \`department-of-veterans-affairs/578-EmployeeRecognitionApp\` failed.
 
               **Details:**
               - Workflow Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
@@ -138,16 +156,19 @@ jobs:
 
               **Action Required:**
               1. Review the workflow logs for errors
-              2. Verify SSH key secret \`MIRROR_SSH_KEY\` is valid
+              2. Verify mirror secret \`MIRROR_PAT\` is valid and has access to the target repo
               3. Check personal repository access permissions
               4. Manual resync may be required
 
               **Manual Resync Command:**
               \`\`\`bash
-              git clone --mirror git@github.com:department-of-veterans-affairs/578-EmployeeRecognitionApp.git
-              cd 578-EmployeeRecognitionApp.git
-              git remote add personal git@github.com:KCoderVA/Employee-Recognition-App.git
-              git push personal --mirror
+              # Using a PAT (recommended):
+              # export MIRROR_PAT=...  (classic PAT: repo scope; fine-grained PAT: contents read/write)
+              git clone --mirror https://github.com/${context.repo.owner}/${context.repo.repo}.git
+              cd ${context.repo.repo}.git
+              git remote add enterprise https://github.com/department-of-veterans-affairs/578-EmployeeRecognitionApp.git
+              git remote set-url enterprise "https://x-access-token:${MIRROR_PAT}@github.com/department-of-veterans-affairs/578-EmployeeRecognitionApp.git"
+              git push enterprise --mirror
               \`\`\`
               `,
               labels: ['bug', 'automation', 'mirror-sync']
