@@ -25,8 +25,12 @@
 ################################################################################
 # Global Text Normalization
 ################################################################################
-# Enforce LF endings for all text files (single directive for clarity)
-* text eol=lf
+# Line endings policy: prefer LF (\n) as the repo standard.
+# Why: LF is the cross-platform industry norm and avoids noisy diffs/CI issues.
+# Note: Use text=auto so unknown binaries are not accidentally treated as text.
+# If you must revert to CRLF for a Windows-only toolchain, change this policy
+# and set Git/VS Code settings accordingly.
+* text=auto eol=lf
 
 # NOTE: Removed redundant '* text=auto' to avoid confusion. All unspecified files
 # treated as text with LF unless explicitly marked binary below.

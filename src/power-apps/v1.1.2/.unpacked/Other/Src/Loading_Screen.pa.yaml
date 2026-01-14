@@ -1,0 +1,489 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Loading_Screen:
+    Properties:
+      Fill: =RGBA(0, 131, 190, 1)
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: |-
+        =/////////////////////////////
+        // DEVELOPER NOTES:
+        /////////////////////////////
+        // // // The "App.StartScreen" for this application is this "Loading_Screen", and for app performance issues the "App.OnStart" and "Loading_Screen.OnVisible" properties have minimal functions or calculations added to it. Similarly, each of the other screens within this app have optimized "OnVisible" properties to improve user interface and app performance as much as possible.
+        // // // The vast majority of the app's variables, collections, objects, forms, and settings are configured to be initialized, established, cleared, or reset on this within the "Loading_Variable_Timer" object contained within this screen. Many of the objects, buttons, functions, or formula within the app will redirect user navigation back to this "Loading_Screen" at designated points with the intention to trigger re-initialization of the app configuration and content to planned state.
+        /////////////////////////////
+
+        // When this "OnVisible" function is called, this code will trigger the "Loading_Variable_Timer" object to reset itself and restart timing again from zero. In turn, the "Loading_Variable_Timer" object contains all the key application formula, settings, and parameters within it's "Timer.OnStart" and "Timer.OnEnd" functions.
+            Loading_Variable_Timer.Reset
+            && Loading_Variable_Timer.Start    ;
+    Children:
+      - Loading_Shape_LogoBackground:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =156
+            Width: =640
+      - Loading_Label_EdwardHinesJr:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: ="Microsoft JhengHei UI Light"
+            FontWeight: =FontWeight.Semibold
+            Height: =69
+            Size: =38
+            Text: ="Edward Hines Jr."
+            Visible: =false
+            Width: =639
+            Y: =171
+      - Loading_Label_VAHospital:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: ="Microsoft JhengHei UI Light"
+            Height: =48
+            Size: =28
+            Text: ="VA Hospital"
+            Visible: =false
+            Width: =637
+            Y: =223
+      - Loading_Container_Loading:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Height: =Parent.Height - (Loading_Label_AppName.Y + Loading_Label_AppName.Height)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =640
+            Y: =Loading_Label_AppName.Y + Loading_Label_AppName.Height
+          Children:
+            - Home_Container_Label_Loading:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Bold
+                  Size: =40
+                  Text: ="Loading..."
+                  Width: =640
+                  Y: =88
+            - Home_Container_Label_PublicationInfo:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  Size: =14
+                  Text: |+
+                    =Concatenate("App Publication:  ", gbl_appVersionDateTime, "    ", "App Version: ",  gbl_appVersionNumber)
+                  Width: =Parent.Width
+                  Y: =Parent.Height - Self.Height
+            - Home_Container_Label_PleaseWait:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Lighter
+                  Size: =48
+                  Text: =
+                  Width: =Parent.Width
+                  Y: =Home_Container_Label_Loading.Y + Home_Container_Label_Loading.Height
+            - Home_Container_Label_ErrorWarning:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  AutoHeight: =true
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Lighter
+                  Size: =18
+                  Text: ="If this screen does not automatically redirect you after three seconds, the application is having a significant error. Please contact the app developers about this, by clicking          ."
+                  Visible: =false
+                  Width: =Parent.Width - 50
+                  X: |+
+                    =25
+                  Y: =Home_Container_Label_PleaseWait.Y + Home_Container_Label_PleaseWait.Height
+            - Home_Container_Label_ClickHere:
+                Control: Label@2.5.1
+                Properties:
+                  Align: =Align.Center
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Semibold
+                  Height: =Home_Container_Label_ErrorWarning.Height
+                  OnSelect: = Launch("mailto:hinclinicalanalytics@va.gov?subject=Feedback%2FIssue%2FBug%20Report%20with%20the%20%22578%20Employee%20Recognition%20App%22&body=I%20was%20using%20the%20%22578%20Employee%20Recognition%20App%22%20(weblink%20to%20this%20item%3A%20https%3A%2F%2Ftinyurl.com%2Fmtb9btfp)%2C%20and%20I%20have%20click%20the%20button%20within%20the%20app%20to%20contact%20the%20application's%20developers%2Fadmin%20team%20to%20report%20an%20problem%2C%20bug%2C%20broken%20link%2C%20or%20some%20other%20feedback%20that%20needs%20to%20be%20updated%20or%20fixed.%20My%20comments%20about%20the%20issue%20I%20have%20run%20into%20is%20(FREE%20TEXT%20BELOW)%3A%20%0A%0A", {}, LaunchTarget.New)
+                  Size: =20
+                  Text: ="here"
+                  Tooltip: ="Contact the application developers..."
+                  Underline: =true
+                  Visible: =false
+                  Width: =236
+                  X: =257
+                  Y: =Home_Container_Label_ErrorWarning.Y + 41
+            - Loading_Variable_Timer:
+                Control: Timer@2.1.0
+                Properties:
+                  AutoStart: =true
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  BorderThickness: =0
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =ColorFade(Self.BorderColor, 70%)
+                  DisabledColor: =ColorFade(Self.Fill, 90%)
+                  DisabledFill: =ColorFade(Self.Fill, 70%)
+                  Duration: |-
+                    =If(
+                        gbl_userIsAdmin,
+                        2500,
+                        500
+                        )
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Bold
+                  Height: =56
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnTimerEnd: |-
+                    =// Upon this "OnTimerEnd" trigger, empties these variables or collection's current values and establishes the originally intended default app value using "Set()" or "ClearCollect()" functions, allowing them each to be interacted with fresh upon their parent screen's "OnVisible" function
+                        ClearCollect(col_userCurrentProfile, Office365Users.MyProfile());
+                        ClearCollect(col_listStarfishSubmissions, '578_Starfish');
+                        Set(gbl_CurrentDateTime, Now());
+
+                    // Upon the "OnTimerEnd" trigger, this code resets every form within the application setting, allowing them each to be reloaded fresh upon their parent screen's "OnVisible" function
+                        Concurrent(
+                            ResetForm(Form_Starfish),
+                            ResetForm(Form_Nursing),
+                            ResetForm(Form_SafetyStory),
+                            ResetForm(Form_HinesHero),
+                            ResetForm(Form_ICARE)
+                        );
+
+                    // Upon the "OnTimerEnd" trigger, this code determines if the entire application is being loaded new/fresh for the first time OR if this screen was reached by an internal application re-direction from some other in-app function. If the application is being loaded new/fresh for the first time, the 'initial landing/loading screen' directs the user to begin a new submission on  "Screen_NewSubmission". If the this screen was generated following an internal app re-direction from a previous button, then the 'initial landing/loading screen' directs the user to the "ViewSubmissions_Screen" to view previous entries;
+                        If(
+                            gbl_appFirstOnStart = true,
+                            Navigate(Screen_NewSubmission) & Set(gbl_appFirstOnStart, false),
+                            Navigate(ViewSubmissions_Screen)
+                        );
+                  OnTimerStart: |-
+                    =// Upon this "OnTimerStart" trigger, all variables are reset to default "Blank()" value using ClearCollect so that the subordinate page's "OnVisible" functions or subcomponent object's direct action functions can collect them again fresh (variables excluded from this mass forced reset, but triggered elsewhere (such as the "App.OnStart" function) are: "gbl_userCurrentEmail", "gbl_userCurrentProfile", "gbl_userIsAdmin", "gbl_appFirstOnStart", "gbl_HostIsMobile", "gbl_HostIsWindows", "gbl_screenWidthValue", "gbl_screenHeightValue", "gbl_appVersionNumber", "gbl_appVersionDateTime", "gbl_Admin_AddNewUser").
+                        Concurrent(
+                            Set(gbl_CurrentDateTime, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q0, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q0_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q0_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q1, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q2, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q2_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Location_TextInputBox, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank()),
+                            Set(var_PopUP_Starfish_Submission_NurseBoolean_False, Blank()),
+                            Set(var_PopUP_Starfish_Submission_NurseBoolean_True, Blank()),
+                            Set(var_PopUP_Starfish_Submission_NurseBoolean_Unsure, Blank()),
+                            Set(var_PopUP_Starfish_Submission_NurseType_Licensed, Blank()),
+                            Set(var_PopUP_Starfish_Submission_NurseType_Unlicensed, Blank()),
+                            Set(var_PopUP_Starfish_Submission_NurseType_Unsure, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank()),
+                            Set(var_PopUP_Starfish_Submission_SafetyBoolean_False, Blank()),
+                            Set(var_PopUP_Starfish_Submission_SafetyBoolean_True, Blank()),
+                            Set(var_PopUP_Starfish_Submission_SafetyBoolean_Unsure, Blank()),
+                            Set(var_PopUP_Starfish_Submission_SafetyBoolean_Response, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3_YES, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3b, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3b_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3b_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3b_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3b_YES, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3b, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3b_N, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3b_NO, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3b_Y, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3b_YES, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3c, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3c_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3c_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3c_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3c_YES, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3c, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3c_N, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3c_NO, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3c_Y, Blank()),
+                            Set(var_PopUP_HinesHero_Submission_Q3c_YES, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q4, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q4_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q4_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q4_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q4_YES, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q4a, Blank()),
+                            Set(var_PopUp_Q4a_ClinicalBoolean_Text, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q5, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q5_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q5_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q5_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q5_YES, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q6, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q6_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q6_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q6_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q6_YES, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q7, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q7_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q7_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q7_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q7_YES, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q8, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q8_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q8_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q8_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q8_YES, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_N, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_YES, Blank()),
+                            Set(var_HROPrinciple_1, Blank()),
+                            Set(var_HROPrinciple_2, Blank()),
+                            Set(var_HROPrinciple_3, Blank()),
+                            Set(var_HROPrinciple_4, Blank()),
+                            Set(var_HROPrinciple_5, Blank()),
+                            Set(var_HROPrinciplesCombined2, Blank()),
+                            Set(var_resetSearchParameter, Blank()),
+                            Set(var_SelectedAwardType, Blank()),
+                            Set(var_selectedUser, Blank()),
+                            Set(var_selectedUser_Manager, Blank()),
+                            Set(var_PopUP_About, Blank()),
+                            Set(var_PopUP_Emergency, Blank()),
+                            Set(var_PopUP_Office, Blank()),
+                            Set(var_PopUP_People, Blank()),
+                            Set(var_PopUP_Resources, Blank()),
+                            Set(var_SelectedNomination, Blank()),
+                            Set(var_PopUP_StarfishInfo, Blank()),
+                            Set(var_PopUP_JPSRBoolean, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3a, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3a_N, Blank()), 
+                            Set(var_PopUP_Starfish_Submission_Q3a_NO, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3a_Y, Blank()),
+                            Set(var_PopUP_Starfish_Submission_Q3a_YES, Blank())
+                            //Set(var_PopUP_HinesHero_Submission_Q3a, Blank()),
+                            //Set(var_PopUP_HinesHero_Submission_Q3a_N, Blank()),
+                            //Set(var_PopUP_HinesHero_Submission_Q3a_NO, Blank()),
+                            //Set(var_PopUP_HinesHero_Submission_Q3a_Y, Blank()),
+                            //Set(var_PopUP_HinesHero_Submission_Q3a_YES, Blank())
+                        );
+
+                    // Upon this "OnTimerStart" trigger, all collections are reset to default "Blank()" values using ClearCollect so that the subordinate page's "OnVisible" functions or subcomponent object's direct action functions can collect them again fresh (collections excluded from this mass forced reset, but triggered elsewhere (such as the "App.OnStart" function) are:  "col_userCurrentProfile", "col_appVersionNumbers", & "col_appVersionsUngrouped")).
+                        Concurrent(
+                            ClearCollect(col_listStarfishSubmissions, Blank()),
+                            ClearCollect(col_PopUP_Starfish_Submission_NurseBoolean_Response, Blank()),
+                            ClearCollect(col_PopUP_Starfish_Submission_NurseType_Response, Blank()),
+                            ClearCollect(col_SelectedAwardType, Blank()),
+                            ClearCollect(col_SelectedNomination_HROPrinciple, Blank()),
+                            ClearCollect(col_myPeople, Blank()),
+                            ClearCollect(col_selectedUserProfile, Blank()),
+                            ClearCollect(col_selectedUser_Manager, Blank()),
+                            ClearCollect(col_selectedUserNominee, Blank())
+                        );
+                  PaddingBottom: =0
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Repeat: =true
+                  Size: =10
+                  Text: |+
+                    =//Text(Loading_Variable_Timer.Value, "[$-en-US]0000") & " ms"
+                    Text(
+                        Loading_Variable_Timer.Value / 1000,
+                        "[$-en-US]0.000"
+                    ) & " seconds"
+                  Visible: |-
+                    =If(
+                        gbl_userIsAdmin = true,
+                        true,
+                        false
+                    )
+                  Width: =504
+                  X: =84
+            - Loading_MobileLayout_Toggle:
+                Control: Classic/Toggle@2.1.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Default: |-
+                    =If(
+                        gbl_userIsAdmin = true,
+                        true,
+                        false
+                    )
+
+                    /////KYLE UN-COMMENT THIS OUT:
+                    /*
+                    If(
+                        gbl_HostIsWindows = true,
+                        false,
+                        gbl_HostIsMobile = true,
+                        true
+                    )
+                    */
+                  Font: =Font.'Open Sans'
+                  Height: =60
+                  ShowLabel: =false
+                  TrueFill: =RGBA(9, 33, 98, 1)
+                  Visible: |-
+                    =If(
+                        Lower(gbl_userCurrentEmail = "kyle.coder@va.gov"),
+                            true,
+                        gbl_userIsAdmin = true,
+                            true,
+                        false
+                    )
+                  Width: =116
+                  X: =(Parent.Width / 2) - (Self.Width / 2)
+                  Y: =519
+            - Button1:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(0, 0, 0, 0)
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(0, 0, 0, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =Loading_MobileLayout_Toggle.Height + 75
+                  HoverBorderColor: =RGBA(0, 0, 0, 0)
+                  HoverColor: =RGBA(255, 255, 255, 100)
+                  HoverFill: =RGBA(0, 0, 0, 0)
+                  OnSelect: |-
+                    =If(
+                        gbl_userIsAdmin = true,
+                        Set(gbl_userIsAdmin, false),
+                        Set(gbl_userIsAdmin, true)
+                    )
+                  PressedBorderColor: =RGBA(0, 0, 0, 0)
+                  PressedColor: =RGBA(0, 0, 0, 0)
+                  PressedFill: =RGBA(0, 0, 0, 0)
+                  Size: =18
+                  Text: ="Admin Layout Toggle:"
+                  VerticalAlign: =VerticalAlign.Top
+                  Visible: |-
+                    =If(
+                        Lower(gbl_userCurrentEmail = "kyle.coder@va.gov") || gbl_userIsAdmin = true,
+                        true,
+                        false
+                    )
+                  Width: =Loading_MobileLayout_Toggle.Width + (100 * 2)
+                  X: =Loading_MobileLayout_Toggle.X - 100
+                  Y: =Loading_MobileLayout_Toggle.Y - 50
+      - Loading_IsAdmin_TestingStop_Icon:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            Height: =39
+            Icon: =Icon.Bug
+            OnSelect: "=// Administrator-only button, to clear testing user profiles (picked up from button on ViewSubmissions_Screen), and resets them back to the original application defaults\r\n\r\n// CLEARS ALL IDENTITY/VARIABLES/COLLECTIONS FOR THE CURRENT USER FROM THE DEFAULTED App.OnStart FUNCTIONS\r\n    Set(gbl_userIsAdmin, Blank());\r\n    Set(gbl_userCurrentEmail, Blank());\r\n    Set(gbl_userCurrentProfile, Blank());\r\n    Clear(col_userCurrentProfile);\r\n    Clear(col_selectedUserProfile);\r\n    Clear(col_selectedUser_Manager);\r\n    Clear(col_selectedUserNominee);\r\n    Clear(col_myPeople);\r\n    Clear(col_listStarfishSubmissions);\r\n    Clear(col_PopUP_Starfish_Submission_NurseBoolean_Response);\r\n    Clear(col_SelectedNomination_HROPrinciple);\r\n    Clear(col_SelectedAwardType);\r\n    \r\n\r\n\r\n// IDENTIFIES THE CURRENT USER BY Windows ActiveDirectory EMAIL ADDRESS\r\n    Set(gbl_userCurrentEmail, Lower(User().Email));\r\n\r\n// SET VARIABLE TO DETERMINE SPECIAL ACCESS FOR APP DEVELOPERS TO CONTROLS, VIEWS, OR FUNCTIONS\r\n    Set(gbl_userIsAdmin,\r\n        If(\r\n            Lower(Text(gbl_userCurrentEmail)) in [\r\n                \"Kyle.Coder@va.gov\",\r\n                \"FirstName.LastName@va.gov\",\r\n                //\"George.Washington@va.gov\",\r\n                //\"Fake.Name@va.gov\"\r\n            ],\r\n            true,\r\n            false)\r\n        );\r\n\r\n// PICK UP ADDITIONAL Windows ActiveDirectory DEMOGRAPHICS BASED ON THE EMAIL ADDRESS IDENTIFIED IN \"gbl_userCurrentEmail\"\r\n    Set(\r\n        gbl_userCurrentProfile,\r\n        Office365Users.SearchUser({searchTerm:(gbl_userCurrentEmail)})\r\n    );\r\n    ClearCollect(\r\n        col_userCurrentProfile,\r\n        Office365Users.MyProfileV2()\r\n    );\r\n\r\n// THIS BUTTON'S OnSelect PROPERTY WILL MANUALLY CLEAR/BLANK VIRTUALLY ALL VARIABLES, COLLECTIONS, PARAMETERS, OR INTERNAL APP SETTINGS, SO THAT ADMIN TESTING COMPONENTS & VIEWS ARE RESET BACK TO DEFAULT VALUES\r\n    Set(gbl_CurrentDateTime, Blank());\r\n    ClearCollect(col_selectedUserProfile, Blank());\r\n    ClearCollect(col_selectedUser_Manager, Blank());\r\n    Set(var_selectedUser, Blank());\r\n    Set(var_selectedUser_Manager, Blank());\r\n    Set(var_SelectedNomination, Blank());\r\n    Set(var_PopUP_StarfishInfo, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Location_TextInputBox, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q0, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q0_N, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q0_Y, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q1, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q2, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q2_N, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank());\r\n    Set(var_PopUP_Starfish_Submission_NurseBoolean_Response, Blank());\r\n    ClearCollect(col_PopUP_Starfish_Submission_NurseBoolean_Response, Blank());\r\n    Set(var_PopUP_Starfish_Submission_NurseBoolean_True, Blank());\r\n    Set(var_PopUP_Starfish_Submission_NurseBoolean_False, Blank());\r\n    Set(var_PopUP_Starfish_Submission_NurseBoolean_Unsure, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank());\r\n    Set(var_PopUP_Starfish_Submission_SafetyBoolean_Response, Blank());\r\n    Set(var_PopUP_Starfish_Submission_SafetyBoolean_True, Blank());\r\n    Set(var_PopUP_Starfish_Submission_SafetyBoolean_False, Blank());\r\n    Set(var_PopUP_Starfish_Submission_SafetyBoolean_Unsure, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q3, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q3_N, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q3_NO, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q3_Y, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q3_YES, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q4, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q4_N, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q4_NO, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q4_Y, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q4_YES, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q5, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q5_N, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q5_NO, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q5_Y, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q6, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q6_N, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q6_NO, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q6_Y, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q6_YES, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q7, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q7_N, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q7_Y, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q7_YES, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q7_NO, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q8, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q8_N, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q8_NO, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q8_Y, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q8_YES, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_YES, Blank());\r\n    Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO_NO, Blank());\r\n    Set(var_HROPrinciple_1, Blank());\r\n    Set(var_HROPrinciple_2, Blank());\r\n    Set(var_HROPrinciple_3, Blank());\r\n    Set(var_HROPrinciple_4, Blank());\r\n    Set(var_HROPrinciple_5, Blank());\r\n    Set(var_HROPrinciplesCombined2, Blank());\r\n    ClearCollect(col_SelectedNomination_HROPrinciple, Blank());\r\n\r\n// THIS BUTTON'S OnSelect PROPERTY WILL NAVIGATE TO Loading_Screen, AFTER RESETING THE DURATION OF THE TIMER ON Loading_Screen BACK TO DEFAULT DURATION, TO ALLOW NEW DEFAULT USER PROFILE PARAMETERS, VARIABLES, AND FUNCTIONS (ABOVE) TO REFRESH\r\n    Set(gbl_userCurrentEmail, Lower(User().Email));\r\n    Reset(Loading_Variable_Timer);\r\n    ((Loading_Variable_Timer).Duration = 150);\r\n    ((Loading_Variable_Timer).Repeat = true);\r\n    ((Loading_Variable_Timer).AutoStart = true);\r\n    ((Loading_Variable_Timer).AutoPause = false);\r\n    ((Loading_Variable_Timer).Start = true);\r\n    Navigate(Loading_Screen)"
+            Visible: |-
+              =If(
+                  gbl_userIsAdmin = true,
+                  true,
+                  false
+              )
+            Width: =42
+            X: =1
+            Y: =1047
+      - Loading_Label_AppName:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: ="Microsoft JhengHei UI Light"
+            FontWeight: =FontWeight.Bold
+            Height: =367
+            Size: =72
+            Text: ="Employee Recognition Application"
+            Width: =637
+            X: =1
+            Y: =156
+      - Loading_IsAdmin_ConstructionScreen:
+          Control: Classic/Icon@2.5.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 18, 107, 1)
+            Height: =39
+            Icon: =Icon.Support
+            OnSelect: =
+            Visible: |-
+              =If(
+                  gbl_userIsAdmin = true,
+                  true,
+                  false
+              )
+            Width: =42
+            Y: =1097
+      - Loading_Image_BannerHinesVA:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Height: =156
+            Image: =banner_HinesVA
+            Width: =(App.Width / 20 ) * 18
+            X: =(App.Width / 20 )
+      - Image16:
+          Control: Image@2.2.3
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Image: ='button_StaffAwardsAndRecognitions-noBackground'
+            X: =160
+            Y: =669
+      - Spinner1:
+          Control: Spinner@1.4.6
+          Properties:
+            Appearance: ='Spinner.Appearance'.Primary
+            Height: =50
+            SpinnerColor: =RGBA(9, 33, 98, 1)
+            SpinnerSize: ='Spinner.SpinnerSize'.Huge
+            TrackColor: =RGBA(180, 214, 250, 1)
+            Width: =46
+            X: =297
+            Y: =558
+      - Progress1:
+          Control: Progress@1.1.34
+          Properties:
+            Height: =19
+            Max: =Loading_Variable_Timer.Duration
+            Thickness: ='Progress.Thickness'.Large
+            Value: =Loading_Variable_Timer.Value
+            Width: =(App.Width / 100 ) * 98
+            X: =10
+            Y: =1086
