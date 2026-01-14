@@ -25,6 +25,11 @@ on:
       - 'hotfix/**'
   workflow_dispatch:
     inputs:
+      target_repo:
+        description: 'Target repository to mirror into (owner/repo)'
+        required: false
+        default: 'department-of-veterans-affairs/578-EmployeeRecognitionApp'
+        type: string
       dry_run:
         description: 'Dry run (no writes): validate auth and refs only'
         required: false
@@ -48,7 +53,7 @@ permissions:
 
 jobs:
   mirror:
-    name: Mirror to department-of-veterans-affairs/578-EmployeeRecognitionApp
+    name: Mirror to ${{ github.event.inputs.target_repo || 'department-of-veterans-affairs/578-EmployeeRecognitionApp' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -56,7 +61,7 @@ jobs:
       # Personal Access Token used to push to the target repository.
       # Configure as a repository secret: Settings → Secrets and variables → Actions → MIRROR_PAT
       MIRROR_PAT: ${{ secrets.MIRROR_PAT }}
-      TARGET_REPO: department-of-veterans-affairs/578-EmployeeRecognitionApp
+      TARGET_REPO: ${{ github.event.inputs.target_repo || 'department-of-veterans-affairs/578-EmployeeRecognitionApp' }}
       # `github.event.inputs` exists only for workflow_dispatch; default safely for push events.
       DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
       FORCE_MIRROR: ${{ github.event.inputs.force_mirror || 'false' }}
@@ -79,6 +84,36 @@ jobs:
         run: |
           echo "::notice title=Dry Run Enabled::This run will validate authentication and ref updates, but will not write to the target repository."
           echo "Target: ${TARGET_REPO}"
+
+      - name: Preflight target repository access
+        if: env.MIRROR_PAT != ''
+        run: |
+          set -euo pipefail
+          api="https://api.github.com/repos/${TARGET_REPO}"
+          code="$(curl -sS -o /tmp/target-repo.json -w "%{http_code}" \
+            -H "Authorization: Bearer ${MIRROR_PAT}" \
+            -H "Accept: application/vnd.github+json" \
+            "${api}" || true)"
+
+          if [ "${code}" = "200" ]; then
+            echo "✅ PAT can access ${TARGET_REPO}"
+            exit 0
+          fi
+
+          if [ "${code}" = "401" ]; then
+            echo "::error title=Invalid MIRROR_PAT::GitHub API returned 401 for ${TARGET_REPO}. The token is invalid/expired."
+            exit 1
+          fi
+
+          if [ "${code}" = "404" ]; then
+            echo "::error title=Target Repo Not Found or Not Authorized::GitHub API returned 404 for ${TARGET_REPO}. This usually means the PAT does not have access to that private repo (or the repo name is wrong)."
+            exit 1
+          fi
+
+          echo "::error title=Unexpected GitHub API Response::GitHub API returned HTTP ${code} for ${TARGET_REPO}."
+          echo "Response (first 80 lines):"
+          sed -n '1,80p' /tmp/target-repo.json || true
+          exit 1
 
       - name: Configure enterprise repository remote
         if: env.MIRROR_PAT != ''
@@ -135,6 +170,9 @@ jobs:
     needs: mirror
     if: failure()
 
+    env:
+      TARGET_REPO: ${{ github.event.inputs.target_repo || 'department-of-veterans-affairs/578-EmployeeRecognitionApp' }}
+
     steps:
       - name: Create issue on failure
         uses: actions/github-script@v7
@@ -143,10 +181,10 @@ jobs:
             const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '🚨 Mirror to Personal Repository Failed',
+              title: '🚨 Mirror to Enterprise Repository Failed',
               body: `## Mirror Workflow Failure
 
-              The automated mirror to \`department-of-veterans-affairs/578-EmployeeRecognitionApp\` failed.
+              The automated mirror to \`${process.env.TARGET_REPO}\` failed.
 
               **Details:**
               - Workflow Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}
@@ -157,7 +195,7 @@ jobs:
               **Action Required:**
               1. Review the workflow logs for errors
               2. Verify mirror secret \`MIRROR_PAT\` is valid and has access to the target repo
-              3. Check personal repository access permissions
+              3. Confirm the target repo name is correct
               4. Manual resync may be required
 
               **Manual Resync Command:**
@@ -166,8 +204,8 @@ jobs:
               # export MIRROR_PAT=...  (classic PAT: repo scope; fine-grained PAT: contents read/write)
               git clone --mirror https://github.com/${context.repo.owner}/${context.repo.repo}.git
               cd ${context.repo.repo}.git
-              git remote add enterprise https://github.com/department-of-veterans-affairs/578-EmployeeRecognitionApp.git
-              git remote set-url enterprise "https://x-access-token:${MIRROR_PAT}@github.com/department-of-veterans-affairs/578-EmployeeRecognitionApp.git"
+              git remote add enterprise https://github.com/${process.env.TARGET_REPO}.git
+              git remote set-url enterprise "https://x-access-token:${MIRROR_PAT}@github.com/${process.env.TARGET_REPO}.git"
               git push enterprise --mirror
               \`\`\`
               `,
