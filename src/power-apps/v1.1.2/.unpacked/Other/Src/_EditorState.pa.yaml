@@ -1,0 +1,22 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+EditorState:
+  ScreensOrder:
+    - Loading_Screen
+    - ViewSubmissions_Screen
+    - Screen_NewSubmission
+    - Screen_Submissions_HROSafetyStory
+    - Screen_Submissions_HinesHero
+    - Screen_Submission_ICARE
+    - Submission_Screen_Nursing
+    - Update_Screen
+    - CONSTRUCTION_Screen
+    - Triage_Screen
+  ComponentDefinitionsOrder:
+    - Component1

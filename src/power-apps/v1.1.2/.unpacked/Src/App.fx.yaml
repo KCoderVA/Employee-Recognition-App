@@ -1,0 +1,472 @@
+App As appinfo:
+    BackEnabled: =false
+    Formulas: =
+    OnStart: |-
+        =/////////////////////////////
+        // DEVELOPER NOTES:
+        /////////////////////////////
+        // // // The "App.StartScreen" for this application is this "Loading_Screen", and for app performance issues the "App.OnStart" and "Loading_Screen.OnVisible" properties have minimal functions or calculations added to it. Similarly, each of the other screens within this app have optimized "OnVisible" properties to improve user interface and app performance as much as possible.
+        // // // The vast majority of the app's variables, collections, objects, forms, and settings are configured to be initialized, established, cleared, or reset on this within the "Loading_Variable_Timer" object contained within this screen. Many of the objects, buttons, functions, or formula within the app will redirect user navigation back to this "Loading_Screen" at designated points with the intention to trigger re-initialization of the app configuration and content to planned state.
+        /////////////////////////////
+        // THIS APPLICATION'S CURRENT PUBLISHED VERSION URL:  "https://apps.gov.powerapps.us/play/e/default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/a/f14182d6-e4ef-42bf-8dd2-0a628377cb77"
+        // Part of URL         | URL's Value                                              | What it Represents
+        // --------------------|----------------------------------------------------------|-------------------------------
+        // Base URL            | https://apps.gov.powerapps.us/                           | Power Apps US Gov Cloud
+        // Environment         | e/default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf           | "e/" indicates Environment name and GUID
+        // App                 | a/f14182d6-e4ef-42bf-8dd2-0a628377cb77                   | "a/" indicates App ID (GUID)
+        // tenantId            | e95f1b23-abaf-45ee-821d-b7ab251ab3bf                     | Azure ActiveDirectory Tenant ID for access/user authentication (may be omitted for VA tenants)
+        // hint                | 361aa4ec-99b2-4d29-b485-8f905db4f09b                     | Used internally by PowerApps for navigation, session context, or deeplinks (may be omitted)
+        // sourcetime          | 1750776424383                                            | Timestamp/session identifier for session or cache-busting (may be omitted)
+        /////////////////////////////
+
+
+
+        // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL IDENTIFY THE CURRENT USER BY Windows ActiveDirectory EMAIL ADDRESS, USED TO GENERATE NEARLY ALL OTHER USER AND AUTHORIZATION PARAMETERS OR VARIABLES
+            Set(
+                gbl_userCurrentEmail,
+                Lower(User().Email)
+            );
+
+        // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL PICK UP ADDITIONAL Windows ActiveDirectory DEMOGRAPHICS BASED ON THE EMAIL ADDRESS IDENTIFIED IN "gbl_userCurrentEmail"
+            Set(
+                gbl_userCurrentProfile,
+                Office365Users.SearchUser({searchTerm:(gbl_userCurrentEmail)})
+            );
+
+        // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL PICK UP ADDITIONAL Windows ActiveDirectory DEMOGRAPHICS BASED ON THE APPLICATION'S ACCESS PERMISSIONS, CONTAINED WITHIN THE RESPECTIVE SharePoint LISTS:
+            Set(
+                gbl_userIsTriage,
+                !IsEmpty(
+                    Filter(
+                        App_Users_TriageTeam,
+                        (Lower(Email_Text) = Lower(Text(gbl_userCurrentEmail)))
+                    )
+                )
+            );
+
+        // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL SET A VARIABLE TO DETERMINE SPECIAL ACCESS FOR APP ADMINISTRATORS TO IMPACT OBJECTS, CONTROLS, VIEWS, FORMULA, OR FUNCTIONS ONLY WHEN THE CURRENT USER IS IDENTIFIED AS AN APP ADMINISTRATOR (VIA THE USER BEING ADDED OR REMOVED FROM THIS SharePoint LIST: "https://dvagov.sharepoint.com/sites/vhahin/svc/ci/TelehealthTeamApp/Lists/DeskAdmins/AllItems.aspx"). NOTE: THIS "gbl_userIsAdmin" VARIABLE ONLY IMPACTS THE INTERNAL APP COMPONENTS, WHILE BEING ADDED TO THE SHAREPOINT LIST DOES NOT GRANT A USER OFFICIAL "Power Apps Ownership" PERMISSIONS TO PROGRAM OR DEVELOP THIS APP
+            Set(
+                gbl_userIsAdmin,
+                !IsEmpty(
+                    Filter(
+                        App_Users_Admins,//SharePoint List URL:  https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/Lists/App_Users_Admins/
+                        (Lower(Email_Text) = Lower(Text(gbl_userCurrentEmail)))
+                    )
+                )
+            );
+            Set(
+                gbl_userIsTriageTeam,
+                !IsEmpty(
+                    Filter(
+                        App_Users_TriageTeam,//SharePoint List URL:  https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/Lists/App_Users_TriageTeam/
+                        (Lower(Email_Text) = Lower(Text(gbl_userCurrentEmail)))
+                    )
+                )
+            );
+            Set(
+                gbl_userIsHROTeam,
+                !IsEmpty(
+                    Filter(
+                        App_Users_HROTeam,//SharePoint List URL:  https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/Lists/App_Users_HROTeam/
+                        (Lower(Email_Text) = Lower(Text(gbl_userCurrentEmail)))
+                    )
+                )
+            );
+            Set(
+                gbl_userIsNursingTeam,
+                !IsEmpty(
+                    Filter(
+                        App_Users_NursingTeam,//SharePoint List URL:  https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/Lists/App_Users_NursingTeam/
+                        (Lower(Email_Text) = Lower(Text(gbl_userCurrentEmail)))
+                    )
+                )
+            );
+            Set(
+                gbl_userIsPublicAffairsTeam,
+                !IsEmpty(
+                    Filter(
+                        App_Users_PublicAffairsTeam,//SharePoint List URL:  https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/Lists/App_Users_PublicAffairsTeam/
+                        (Lower(Email_Text) = Lower(Text(gbl_userCurrentEmail)))
+                    )
+                )
+            );
+            Set(
+                gbl_userIsStarfishTeam,
+                !IsEmpty(
+                    Filter(
+                        App_Users_StarfishTeam,//SharePoint List URL:  https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/Lists/App_Users_StarfishTeam/
+                        (Lower(Email_Text) = Lower(Text(gbl_userCurrentEmail)))
+                    )
+                )
+            );
+
+
+        // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL SET A VARIABLE TO ALLOW CERTAIN FUNCTIONS ONLY ON THE FIRST TIME THE APPLICATION LOADS, AND TURNED OFF ON RE-NAVIGATIONS
+            Set(
+                gbl_appFirstOnStart,
+                true
+            );
+
+        // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL SET A VARIABLE TO DETECT THE HOST OPERATING SYSTEM ("Windows" or "Mobile"), USED TO ALTER FUTURE DEEPLINKS AND USER INTERFACE LAYOUTS
+        If(
+            Host.OSType = "Windows",
+                //Set(gbl_HostIsWindows, true);
+                //Set(gbl_HostIsMobile, false);
+                //Set(gbl_screenWidthValue, 1366);
+                //Set(gbl_screenHeightValue, 768),
+                Set(gbl_HostIsMobile, true);
+                Set(gbl_HostIsWindows, false);
+                Set(gbl_screenWidthValue, 640);
+                Set(gbl_screenHeightValue, 1136)
+        );
+        /*
+            If(Host.OSType = "Windows",
+                Set(gbl_HostIsWindows, true)
+                    && Set(gbl_HostIsMobile, false)
+                    && Update(App.Width, Value(App.Width), 1200),
+                Set(gbl_HostIsMobile, true)
+                    && Set(gbl_HostIsWindows, false)
+                    && Update(App.Width, Value(App.Width), 1200)
+                    //&& Param("hostClientType") = "web"
+            );
+        */
+
+        // WHEN THIS "App.OnStart" FUNCTION IS CALLED, THIS CODE BLOCK WILL INITIALIZE AND SET A COMBINATION OF COLLECTIONS & VARIABLE TO DETECT THE CURRENT APPLICATION VERSION HISTORY (via "PowerAppsForMakers" connector) AND ALLOW IN-APP DISPLAY OF PUBLICATION DATE AND PUBLICATION VERSION NUMBER
+            ClearCollect(
+                col_appVersionNumbers,
+                PowerAppsforMakers.GetAppVersions("f14182d6-e4ef-42bf-8dd2-0a628377cb77",{'$top':("99")})
+            );
+            ClearCollect(
+                col_appVersionsUngrouped,
+                Ungroup(
+                    col_appVersionNumbers,
+                    value
+                )
+            );
+            Set(
+                gbl_appVersionNumber,
+                Concatenate(
+                    "1.1.",
+                    "1"
+                    //,"-", CountRows(col_appVersionsUngrouped)
+                    )
+            );
+            Set(
+                gbl_appVersionDateTime,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Published"
+                ).properties.appVersion
+            );
+            //Clear(col_appVersionNumbers);
+            //Clear(col_appVersionsUngrouped);
+        ////////////
+        /*
+            Set(
+                z_version_Properties_LifecycleID_Published,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Published"
+                ).properties.appVersion
+            );
+            Set(
+                z_version_Properties_LifecycleID_Saved,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Autosaved"
+                ).properties.appVersion
+            );
+            Set(
+                z_version_Tags_SienaVersion_Published,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Published"
+                ).tags.sienaVersion
+            );
+            Set(
+                z_version_Tags_SienaVersion_Saved,
+                LookUp(
+                    Ungroup(
+                        col_appVersionNumbers,
+                        value
+                    ),
+                    properties.lifeCycleId = "Autosaved"
+                ).tags.sienaVersion
+            );
+            Set(
+                z_versions_Tags_SienaVersionDTVzulu_PublishedLower,
+                Left(
+                    z_version_Tags_SienaVersion_Published, 15)
+                    //Find("-", z_version_Tags_SienaVersion_Published) - 2)
+            );
+            Set(
+                z_versions_Tags_SienaVersionDTVzulu_PublishedYear,
+                Left(z_versions_Tags_SienaVersionDTVzulu_PublishedLower, 4)
+            );
+            /*Set(
+                z_versions_Tags_SienaVersionDTVlocal_Published_Converted,
+                DateTimeValue(
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,1,4) & "-" &
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,5,2) & "-" &
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,7,2) & " " &
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,10,2) & ":" &
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,12,2) & ":" &
+                    Mid(z_versions_Tags_SienaVersionDTVzulu_Published,14,2),
+                    "en-US"
+                )
+            );
+            Set(
+                z_versions_Tags_SienaVersionDTVlocal_Published_SubsituteT,
+                Substitute(z_versions_Tags_SienaVersionDTVzulu_Published, "T", " ")
+            );
+            Set(
+                z_versions_Tags_SienaVersionDTVlocal_Published_SubsituteZ,
+                Substitute(z_versions_Tags_SienaVersionDTVzulu_Published, "Z", "")
+            );
+        */
+
+
+
+
+
+
+
+        /*
+        // Get date/time stamp of last published version
+            Set(ZZZ_appVersionDateTime_Published,
+                LookUp(
+                    Ungroup(col_appVersionNumbers,value),
+                    properties.lifeCycleId = "Published").properties.appVersion
+            );
+        // Get date/time stamp of last autosaved version
+            Set(ZZZ_appVersionDateTime_Autosaved,
+                LookUp(
+                    Ungroup(col_appVersionNumbers,value),
+                    properties.lifeCycleId = "Autosaved").properties.appVersion
+            );
+        // Get date/time stamp of last drafted version
+            Set(ZZZ_appVersionDateTime_Draft,
+                LookUp(
+                    Ungroup(col_appVersionNumbers,value),
+                    properties.lifeCycleId = "Draft").properties.appVersion
+            );
+        // Get date/time stamp of last unpublished version
+            Set(ZZZ_appVersionDateTime_NotBlank,
+                LookUp(
+                    Ungroup(col_appVersionNumbers,value),
+                    properties.lifeCycleId <> "Published").properties.appVersion
+            );
+        Set(
+            ZZZ_varLatestDraftVersion,
+            First(
+                SortByColumns(
+                    Filter(
+                        Ungroup(col_appVersionNumbers, value),
+                        properties.lifeCycleId = "Draft"
+                    ),"type",SortOrder.Descending)
+                )
+        );
+
+
+
+
+        // Get date/time stamp of last unpublished version
+            Set(ZZZ_appVersionDateTime_Distinct,
+                Distinct(
+                    Ungroup(col_appVersionNumbers, value),
+                    properties.lifeCycleId
+                )
+            );
+
+
+            // === Flatten the nested 'value' table once for reuse ===
+        ClearCollect(
+            col_AppVersionsFlat,
+            Ungroup(col_appVersionNumbers, value)
+        );
+
+        // === Get appVersion of last Published ===
+        Set(
+            ZZZ_appVersionDateTime_Published222,
+            LookUp(
+                col_AppVersionsFlat,
+                properties.lifeCycleId = "Published"
+            ).properties.appVersion
+        );
+
+        // === Get appVersion of last Autosaved ===
+        Set(
+            ZZZ_appVersionDateTime_Autosaved222,
+            LookUp(
+                col_AppVersionsFlat,
+                properties.lifeCycleId = "Autosaved"
+            ).properties.appVersion
+        );
+
+        // === Get appVersion of last Draft ===
+        Set(
+            ZZZ_appVersionDateTime_Draft222,
+            LookUp(
+                col_AppVersionsFlat,
+                properties.lifeCycleId = "Draft"
+            ).properties.appVersion
+        );
+
+        // === Get appVersion of last Unpublished (anything not 'Published') ===
+        Set(
+            ZZZ_appVersionDateTime_NotPublished222,
+            LookUp(
+                col_AppVersionsFlat,
+                properties.lifeCycleId <> "Published"
+            ).properties.appVersion
+        );
+
+        // === Get latest Draft record as a full record object ===
+        Set(
+            ZZZ_varLatestDraftVersion222,
+            First(
+                SortByColumns(
+                    Filter(
+                        col_AppVersionsFlat,
+                        properties.lifeCycleId = "Draft"
+                    ),
+                    "type",
+                    SortOrder.Descending
+                )
+            )
+        );
+
+        // === Distinct list of all lifeCycleId values found ===
+        Set(
+            ZZZ_appVersionDateTime_Distinct222,
+            Distinct(
+                col_AppVersionsFlat,
+                properties.lifeCycleId
+            )
+        );
+        // === Get appVersion of last published SeinnaVersion ===
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionDistinct,
+            Distinct(
+                col_AppVersionsFlat,
+                tags.sienaVersion
+            )
+        );
+
+
+
+        If(
+            ZZZ_appVersionDateTime_Published222 <> ZZZ_appVersionDateTime_NotPublished222,
+            Set(
+                ZZZ_UserOutOfDate,
+                true),
+            Set(
+                ZZZ_UserOutOfDate,
+                false)
+        );
+
+        // === Get appVersion of last published SeinnaVersion ===
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionPublished22222,
+            First(
+                Filter(col_AppVersionsFlat,
+                    tags.sienaVersion
+                    )
+
+                    //LookUp(
+                    //    col_AppVersionsFlat,
+                    //    StartsWith(tags.sienaVersion, "2025"),
+                    //    tags.sienaVersion)
+            )
+        );
+        First(
+                SortByColumns(
+                    Filter(
+                        col_AppVersionsFlat,
+                        properties.lifeCycleId = "Published"
+                    ),
+                    "type",
+                    SortOrder.Descending
+                )
+            );
+
+
+
+        // === Get appVersion of last published SeinnaVersion ===
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionUnpublished,
+            LookUp(
+                col_AppVersionsFlat,
+                tags.sienaVersion <> "Published"
+            ).tags.sienaVersion
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionPublishedLeft,
+            Left(
+                ZZZ_appVersionDateTime_SiennaVersionPublished,
+                Find("-", ZZZ_appVersionDateTime_SiennaVersionPublished) - 1)
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionPublishedDTV,
+            DateTimeValue(
+                Substitute(
+                    Substitute(ZZZ_appVersionDateTime_SiennaVersionPublished, "T", " "),
+                    "Z", ""),
+                "en-US"
+            )
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionUnPublishedLeft,
+            Left(
+                ZZZ_appVersionDateTime_SiennaVersionUnpublished,
+                Find("-", ZZZ_appVersionDateTime_SiennaVersionUnpublished) - 1)
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionUnpublishedDTV,
+            DateTimeValue(
+                Substitute(
+                    Substitute(ZZZ_appVersionDateTime_SiennaVersionUnpublished, "T", " "),
+                    "Z", ""),
+                "en-US"
+            )
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionGreaterThan,
+            If(
+                (ZZZ_appVersionDateTime_SiennaVersionPublishedDTV > ZZZ_appVersionDateTime_SiennaVersionUnpublishedDTV),
+                    ZZZ_appVersionDateTime_SiennaVersionPublishedDTV,
+                    ZZZ_appVersionDateTime_SiennaVersionUnpublishedDTV
+            )
+        );
+        Set(
+            ZZZ_appVersionDateTime_SiennaVersionOutOfDate,
+            If(
+                (ZZZ_appVersionDateTime_SiennaVersionPublishedDTV > ZZZ_appVersionDateTime_SiennaVersionUnpublishedDTV),
+                    false,
+                    true
+            )
+        );
+        */
+    SizeBreakpoints: =[640, 1200, 1800, 2400]
+    StartScreen: =Loading_Screen
+    Theme: =PowerAppsTheme
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

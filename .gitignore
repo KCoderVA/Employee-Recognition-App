@@ -66,7 +66,6 @@ repository_manager/
 # EXCLUDE: Power Platform Binaries & Connections
 # ================================
 # Power Platform files excluded from public release
-*.msapp
 Connections/
 DataSources/
 other/
@@ -135,6 +134,12 @@ testing/
 *.tar.gz
 **/*_exportedZip.zip
 **/*_PowerAutomateFlow*.zip
+**.zip
+**/*.zip
+**/.zip/**
+!**/src/power-apps/**/.zip/**
+**/archive/**
+
 
 # ================================
 # EXCLUDE: Power BI Files with PHI/Sensitive Data

@@ -1,0 +1,1570 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  Update_Screen:
+    Properties:
+      LoadingSpinnerColor: =RGBA(56, 96, 178, 1)
+      OnVisible: |-
+        =Set(gbl_appFirstOnStart, false);
+
+        Set(var_PopUP_About, 0);
+
+        Set(var_PopUP_People, 0);     // Not In Use
+        Set(var_PopUP_Office, 0);     // Not In Use
+        Set(var_PopUP_Emergency, 0);  // Not In Use
+        Set(var_PopUP_Resources, 0);  // Not In Use
+
+
+        Set(var_PopUP_Starfish_Submission_Q0, Blank());
+        Set(var_PopUP_Starfish_Submission_Q1, Blank());
+        Set(var_PopUP_Starfish_Submission_Q2, Blank());
+        Set(var_PopUP_Starfish_Submission_Q2_NurseBoolean, Blank());
+        Set(var_PopUP_Starfish_Submission_Q2_SafetyBoolean, Blank());
+        Set(var_PopUP_Starfish_Submission_Q3, Blank());
+        Set(var_PopUP_Starfish_Submission_Q3b, Blank());
+        Set(var_PopUP_Starfish_Submission_Q3c, Blank());
+        Set(var_PopUP_HinesHero_Submission_Q3c, Blank());
+        Set(var_PopUP_Starfish_Submission_Q4, Blank());
+        Set(var_PopUP_Starfish_Submission_Q4a, Blank());
+        Set(var_PopUp_Q4a_ClinicalBoolean_Text, Blank());
+        Set(var_PopUP_Starfish_Submission_Q5, Blank());
+        Set(var_PopUP_Starfish_Submission_Q6, Blank());
+        Set(var_PopUP_Starfish_Submission_Q7, Blank());
+        Set(var_PopUP_Starfish_Submission_Q8, Blank());
+        Set(var_PopUP_Starfish_Submission_Q9_ChoiceHRO, Blank());
+    Children:
+      - Update_PopUP_People:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderThickness: =5
+            DropShadow: =DropShadow.None
+            Height: =About_Content_FluidGrid.Height - 20
+            RadiusBottomLeft: =100
+            RadiusBottomRight: =100
+            RadiusTopLeft: =100
+            RadiusTopRight: =100
+            Visible: =var_PopUP_People > 0
+            Width: =Parent.Width - 20
+            X: =10
+            Y: =175
+          Children:
+            - Update_PopUP_ViewSubmissions_Background:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height
+                  Width: |+
+                    =Parent.Width
+            - Update_PopUP_ViewSubmissions_Label:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(0, 0, 0, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  DisplayMode: =DisplayMode.View
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =245
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Size: =32
+                  Text: ="Are you trying to update information about yourself or another employee?"
+                  Width: =489
+                  X: =65
+                  Y: =100
+            - Update_PopUP_ViewSubmissions_Button_Self:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =283
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnSelect: |-
+                    =Launch( "https://yourit.va.gov/va?id=sc_cat_item&sys_id=3e243bc3db447b407ed130ca7c961998", {}, LaunchTarget.New)
+
+                    //Launch( "https://mim.va.gov/IdentityManagement/aspx/users/EditPerson.aspx", {}, LaunchTarget.New);
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: ="I want to update my own information"
+                  Width: =240
+                  X: =45
+                  Y: =475
+            - Update_PopUP_ViewSubmissions_Button_Others:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =282
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnSelect: =Launch( "https://yourit.va.gov/va?id=sc_cat_item&sys_id=3e243bc3db447b407ed130ca7c961998", {}, LaunchTarget.New);
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: ="I want to update another employee's information"
+                  Width: =240
+                  X: |+
+                    =Parent.Width - Self.Width - 45
+                  Y: =475
+            - Update_PopUP_ViewSubmissions_Label_Instructions:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =26
+                  Italic: =true
+                  Size: =14
+                  Text: ="Click one of the buttons below:"
+                  Width: =263
+                  X: =178
+                  Y: =435
+            - Update_PopUP_ViewSubmissions_Close_Background:
+                Control: Classic/Button@2.2.0
+                Group: Update_PopUP_ViewSubmissions_Close_Group
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =80
+                  HoverBorderColor: =ColorFade(Self.Color, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: =""
+                  Width: =84
+                  X: =504
+                  Y: =20
+            - Update_PopUP_ViewSubmissions_Close_Icon:
+                Control: Classic/Icon@2.5.0
+                Group: Update_PopUP_ViewSubmissions_Close_Group
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Height: =60
+                  HoverBorderColor: =
+                  HoverColor: =
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  Icon: =Icon.CancelBadge
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  Width: =63
+                  X: =514
+                  Y: =30
+            - Update_PopUP_ViewSubmissions_Close_Button:
+                Control: Classic/Button@2.2.0
+                Group: Update_PopUP_ViewSubmissions_Close_Group
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  BorderThickness: =0
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(255, 255, 255, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =125
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: =
+                  Width: =144
+                  X: =475
+      - Update_PopUP_Office:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderThickness: =5
+            DropShadow: =DropShadow.None
+            Height: =About_Content_FluidGrid.Height - 20
+            RadiusBottomLeft: =100
+            RadiusBottomRight: =100
+            RadiusTopLeft: =100
+            RadiusTopRight: =100
+            Visible: =var_PopUP_Office>0
+            Width: =Parent.Width - 20
+            X: =10
+            Y: =175
+          Children:
+            - Update_PopUP_Office_Background:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height
+                  Width: |+
+                    =Parent.Width
+            - Update_PopUP_Office_Label:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(0, 0, 0, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  DisplayMode: =DisplayMode.View
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =245
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Size: =32
+                  Text: ="Do you want to add a new entry, or update an existing entry?"
+                  Width: =489
+                  X: =65
+                  Y: =100
+            - Update_PopUP_Office_Button_Self:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =283
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnSelect: =Launch("https://forms.office.com/g/ZjsYb3NSL7x", {}, LaunchTarget.New)
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: |-
+                    ="I want to add 
+                    a new entry that does not exist"
+                  Width: =240
+                  X: =45
+                  Y: =475
+            - Update_PopUP_Office_Button_Others:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =282
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnSelect: =Launch("https://forms.office.com/g/ZjsYb3NSL7x", {}, LaunchTarget.New)
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: ="I want to update an entry that already exists"
+                  Width: =240
+                  X: |+
+                    =Parent.Width - Self.Width - 45
+                  Y: =475
+            - Update_PopUP_Office_Label_Instructions:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =26
+                  Italic: =true
+                  Size: =14
+                  Text: ="Click one of the buttons below:"
+                  Width: =263
+                  X: =178
+                  Y: =435
+            - Update_PopUP_Office_Close_Background:
+                Control: Classic/Button@2.2.0
+                Group: Update_PopUP_Office_Close_Group
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =80
+                  HoverBorderColor: =ColorFade(Self.Color, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: =""
+                  Width: =84
+                  X: =504
+                  Y: =20
+            - Update_PopUP_Office_Close_Icon:
+                Control: Classic/Icon@2.5.0
+                Group: Update_PopUP_Office_Close_Group
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Height: =60
+                  HoverBorderColor: =
+                  HoverColor: =
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  Icon: =Icon.CancelBadge
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  Width: =63
+                  X: =514
+                  Y: =30
+            - Update_PopUP_Office_Close_Button:
+                Control: Classic/Button@2.2.0
+                Group: Update_PopUP_Office_Close_Group
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  BorderThickness: =0
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(255, 255, 255, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =125
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: =
+                  Width: =144
+                  X: =475
+      - Update_PopUP_Emergency:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderThickness: =5
+            DropShadow: =DropShadow.None
+            Height: =About_Content_FluidGrid.Height - 20
+            RadiusBottomLeft: =100
+            RadiusBottomRight: =100
+            RadiusTopLeft: =100
+            RadiusTopRight: =100
+            Visible: =var_PopUP_Emergency>0
+            Width: =Parent.Width - 20
+            X: =10
+            Y: =175
+          Children:
+            - Update_PopUP_Emergency_Background:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height
+                  Width: |+
+                    =Parent.Width
+            - Update_PopUP_Emergency_Label:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(0, 0, 0, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  DisplayMode: =DisplayMode.View
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =357
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Size: =32
+                  Text: ="Changes to the 'EMERGENCY' tab require administrator approval. Initiate a request by clicking the button below:"
+                  Width: =489
+                  X: =65
+                  Y: =100
+            - Update_PopUP_Emergency_Button_Self:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =142
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnSelect: =Launch("mailto:VHAAUGHASDATATEAM@DVAGOV.onmicrosoft.com?subject=ATTN:%20Phonebook%20Admins%20RE:%20Updates%20to%20the%20EMERGENCY%20tab!&body=I%20am%20requesting%20a%20modification,%20update,%20or%20some%20other%20change%20to%20the%20“EMERGENCY”%20tab%20of%20your%20phonebook%20application%20(%20https://apps.gov.powerapps.us/play/e/default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/a/7170bcbd-1ed3-48c7-b597-9a8b85ec024a?tenantId=e95f1b23-abaf-45ee-821d-b7ab251ab3bf%20).%20The%20update%20that%20I%20propose%20to%20be%20made%20to%20this%20tab%20is:", {}, LaunchTarget.New)
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: ="Contact the admins to modify this tab"
+                  Width: =338
+                  X: =140
+                  Y: =546
+            - Update_PopUP_Emergency_Close_Background:
+                Control: Classic/Button@2.2.0
+                Group: Update_PopUP_Emergency_Close_Group
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =80
+                  HoverBorderColor: =ColorFade(Self.Color, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: =""
+                  Width: =84
+                  X: =504
+                  Y: =20
+            - Update_PopUP_Emergency_Close_Icon:
+                Control: Classic/Icon@2.5.0
+                Group: Update_PopUP_Emergency_Close_Group
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Height: =60
+                  HoverBorderColor: =
+                  HoverColor: =
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  Icon: =Icon.CancelBadge
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  Width: =63
+                  X: =514
+                  Y: =30
+            - Update_PopUP_Emergency_Close_Button:
+                Control: Classic/Button@2.2.0
+                Group: Update_PopUP_Emergency_Close_Group
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  BorderThickness: =0
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(255, 255, 255, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =125
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: =
+                  Width: =144
+                  X: =475
+      - Update_PopUP_Resources:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderThickness: =5
+            DropShadow: =DropShadow.None
+            Height: =About_Content_FluidGrid.Height - 20
+            RadiusBottomLeft: =100
+            RadiusBottomRight: =100
+            RadiusTopLeft: =100
+            RadiusTopRight: =100
+            Visible: =var_PopUP_Resources>0
+            Width: =Parent.Width - 20
+            X: =10
+            Y: =175
+          Children:
+            - Update_PopUP_Resources_Background:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height
+                  Width: |+
+                    =Parent.Width
+            - Update_PopUP_Resources_Label:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(0, 0, 0, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  DisplayMode: =DisplayMode.View
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  Height: =357
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Size: =32
+                  Text: |-
+                    ="Changes to the
+                    'LINKS' tab require administrator approval. Initiate a request by clicking the button below:"
+                  Width: =489
+                  X: =65
+                  Y: =100
+            - Update_PopUP_Resources_Button:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =142
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                  OnSelect: =Launch("mailto:VHAAUGHASDATATEAM@DVAGOV.onmicrosoft.com?subject=ATTN:%20Phonebook%20Admins%20RE:%20Updates%20to%20the%20LINKS%20tab!&body=I%20am%20requesting%20a%20modification,%20update,%20or%20some%20other%20change%20to%20the%20“LINKS”%20tab%20of%20your%20phonebook%20application%20(%20https://apps.gov.powerapps.us/play/e/default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/a/7170bcbd-1ed3-48c7-b597-9a8b85ec024a?tenantId=e95f1b23-abaf-45ee-821d-b7ab251ab3bf%20).%20The%20update%20that%20I%20propose%20to%20be%20made%20to%20this%20tab%20is:", {}, LaunchTarget.New)
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: ="Contact the admins to modify this tab"
+                  Width: =338
+                  X: =140
+                  Y: =546
+            - Update_PopUP_Resources_Close_Background:
+                Control: Classic/Button@2.2.0
+                Group: Update_PopUP_Resources_Close_Group
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: |+
+                    =About_Toolbar_Tab_MyAwards_Button.Fill
+                  Font: =Font.'Open Sans'
+                  Height: =80
+                  HoverBorderColor: =ColorFade(Self.Color, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  PaddingBottom: =0
+                  PaddingTop: =0
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Text: =""
+                  Width: =84
+                  X: =504
+                  Y: =20
+            - Update_PopUP_Resources_Close_Icon:
+                Control: Classic/Icon@2.5.0
+                Group: Update_PopUP_Resources_Close_Group
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Height: =60
+                  HoverBorderColor: =
+                  HoverColor: =
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  Icon: =Icon.CancelBadge
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  Width: =63
+                  X: =514
+                  Y: =30
+            - Update_PopUP_Resources_Close_Button:
+                Control: Classic/Button@2.2.0
+                Group: Update_PopUP_Resources_Close_Group
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  BorderThickness: =0
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(255, 255, 255, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =125
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =
+                  HoverFill: =ColorFade(Self.BorderColor, 20%)
+                  OnSelect: =Set(var_PopUP_People, 0); Set(var_PopUP_Office, 0); Set(var_PopUP_Emergency, 0); Set(var_PopUP_Resources, 0); Set(var_PopUP_About, 0);
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Text: =
+                  Width: =144
+                  X: =475
+      - About_Toolbar_Background_Shape:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =73
+            Width: =Parent.Width
+      - About_Toolbar_Tab_HinesHero_Button:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            BorderThickness: =3
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(221, 79, 14, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Normal
+            Height: =75
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(221, 79, 14, 1)
+            HoverFill: =RGBA(239, 245, 203, 1)
+            OnSelect: |-
+              =Navigate(Screen_Submissions_HinesHero, BorderStyle.None);
+              //Launch("https://dvagov.sharepoint.com/:b:/r/sites/HinesEmployeeEngagementandWholeHealth/Shared%20Documents/Hines%20Employee%20Engagement/Shared%20Documents/Employee%20Recognition/Hines%20Hero%20Info.pdf",{},LaunchTarget.New)
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =16
+            Text: ="Hines Hero"
+            Width: =120
+            X: =390
+            Y: =10
+      - About_Toolbar_Tab_WOW!_Button:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            BorderThickness: =3
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(32, 56, 100, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Normal
+            Height: =75
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(32, 56, 100, 1)
+            HoverFill: =RGBA(239, 245, 203, 1)
+            OnSelect: =Launch("https://apps.gov.powerapps.us/play/e/default-e95f1b23-abaf-45ee-821d-b7ab251ab3bf/a/90804a92-f5c3-4250-811f-361aaab67244?tenantId=e95f1b23-abaf-45ee-821d-b7ab251ab3bf", {}, LaunchTarget.Replace)
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =15
+            Text: ="WOW!"
+            Width: =120
+            X: =130
+            Y: =10
+      - About_Toolbar_Tab_About_Button:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =RGBA(29, 120, 109, 1)
+            BorderThickness: =3
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(41, 163, 149, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Normal
+            Height: =75
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(23, 102, 93, 1)
+            HoverFill: =RGBA(239, 245, 203, 1)
+            OnSelect: =Navigate(Update_Screen);
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =16
+            Text: ="About/ Help"
+            Width: =115
+            X: =520
+            Y: =10
+      - About_Toolbar_Tab_MyAwards_Button:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            BorderThickness: =3
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(0, 134, 208, 1)
+            Font: =Font.'Open Sans'
+            FontWeight: =FontWeight.Normal
+            Height: =75
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(9, 99, 148, 1)
+            HoverFill: =RGBA(239, 245, 203, 1)
+            OnSelect: =Navigate(ViewSubmissions_Screen,ScreenTransition.None)
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =16
+            Text: ="My Awards"
+            Width: =115
+            X: =5
+            Y: =10
+      - About_Toolbar_Tab_HRO_Button:
+          Control: Classic/Button@2.2.0
+          Properties:
+            BorderColor: =ColorFade(Self.Fill, -15%)
+            BorderThickness: =3
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(168, 0, 0, 1)
+            Font: =Font.'Open Sans'
+            Height: =75
+            HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+            HoverColor: =RGBA(221, 79, 14, 1)
+            HoverFill: =RGBA(239, 245, 203, 1)
+            OnSelect: |-
+              =Navigate(Screen_Submissions_HROSafetyStory);
+              Launch("https://dvagov.sharepoint.com/sites/VHAHINHRO/SitePages/Home.aspx", {}, LaunchTarget.New);
+            PressedBorderColor: =Self.Fill
+            PressedColor: =Self.Fill
+            PressedFill: =Self.Color
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =15.5
+            Text: ="HRO"
+            Width: =120
+            X: =260
+            Y: =10
+      - About_TitleBar_Background_Shape:
+          Control: Rectangle@2.3.0
+          Properties:
+            BorderColor: =RGBA(255, 255, 255, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =3
+            Fill: =RGBA(41, 163, 149, 1)
+            Height: =87
+            Width: =Parent.Width
+            Y: =76
+      - About_Title_AboutThisApp_Label:
+          Control: Label@2.5.1
+          Properties:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(241, 245, 196, 1)
+            Font: ="Microsoft JhengHei UI Light"
+            FontWeight: =FontWeight.Bold
+            Height: =53
+            Size: =32
+            Text: ="About This App"
+            Width: =369
+            X: =260
+            Y: =93
+      - About_Subtitle_HelpfulInfo_Label:
+          Control: Label@2.5.1
+          Properties:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            Font: =Font.'Open Sans'
+            Height: =44
+            Size: =18
+            Text: ="Helpful Information"
+            Width: =245
+            X: =5
+            Y: =102
+      - About_Content_FluidGrid:
+          Control: FluidGrid@2.3.0
+          Properties:
+            BorderThickness: =0
+            Height: =805
+            Width: =Parent.Width
+            Y: =161
+          Children:
+            - Update_Canvas_DataCard_1:
+                Control: DataCard@1.0.2
+                Variant: BlankCard
+                Properties:
+                  Height: =675
+                  Width: =Parent.Width
+                  X: =0
+                  Y: =0
+                Children:
+                  - About_FluidGrid_WholeHealth_Container:
+                      Control: GroupContainer@1.4.0
+                      Variant: ManualLayout
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        BorderThickness: =5
+                        DropShadow: =DropShadow.None
+                        Fill: |+
+                          =About_Toolbar_Tab_MyAwards_Button.Fill
+                        Height: =170
+                        RadiusBottomLeft: =25
+                        RadiusBottomRight: =25
+                        RadiusTopLeft: =25
+                        RadiusTopRight: =25
+                        Width: |+
+                          =Parent.Width - 6
+                        X: =3
+                        Y: =3
+                      Children:
+                        - Image6:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              BorderThickness: =3
+                              Fill: =RGBA(255, 255, 255, 1)
+                              Height: =140
+                              Image: =
+                              ImagePosition: =ImagePosition.Fill
+                              RadiusBottomLeft: =50
+                              RadiusBottomRight: =50
+                              RadiusTopLeft: =50
+                              RadiusTopRight: =50
+                              Width: =135
+                              X: =20
+                              Y: =16
+                        - Label1:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =95
+                              Size: =32
+                              Text: ="Watch a tutorial    about this app!"
+                              Width: =425
+                              X: =189
+                              Y: =38
+                        - Button5:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(255, 255, 255, 0)
+                              Font: =Font.'Open Sans'
+                              Height: =170
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =RGBA(255, 255, 255, 0.75)
+                              OnSelect: =Launch("https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/EmployeeRecognitionApp/_layouts/15/stream.aspx?id=%2Fsites%2FHinesEmployeeEngagementandWholeHealth%2FEmployeeRecognitionApp%2FShared%20Documents%2FRecordedTutorial_EmployeeRecognitionApp%28take3%29%2Emp4", {}, LaunchTarget.New);
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Text: =""
+                              Width: =640
+                        - Image6_4:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Height: |+
+                                =140 * .79
+                              Image: =icon_Video
+                              ImagePosition: =ImagePosition.Fill
+                              RadiusBottomLeft: =5
+                              RadiusBottomRight: =5
+                              RadiusTopLeft: =5
+                              RadiusTopRight: =5
+                              Width: |+
+                                =135 * .79
+                              X: =34
+                              Y: =29
+                  - About_FluidGrid_Awards_Container:
+                      Control: GroupContainer@1.4.0
+                      Variant: ManualLayout
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        BorderThickness: =5
+                        DropShadow: =DropShadow.None
+                        Fill: |+
+                          ='About_Toolbar_Tab_WOW!_Button'.Fill
+                        Height: =170
+                        RadiusBottomLeft: =25
+                        RadiusBottomRight: =25
+                        RadiusTopLeft: =25
+                        RadiusTopRight: =25
+                        Width: |+
+                          =Parent.Width - 6
+                        X: =3
+                        Y: =About_FluidGrid_WholeHealth_Container.Y + Self.Height + 6
+                      Children:
+                        - Image6_1:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              BorderThickness: =3
+                              Fill: =RGBA(255, 255, 255, 1)
+                              Height: =140
+                              Image: =
+                              ImagePosition: =ImagePosition.Fill
+                              RadiusBottomLeft: =50
+                              RadiusBottomRight: =50
+                              RadiusTopLeft: =50
+                              RadiusTopRight: =50
+                              Width: =135
+                              X: =20
+                              Y: =16
+                        - Label1_1:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =118
+                              Size: =32
+                              Text: ="More info about      Whole Health"
+                              Width: =425
+                              X: =189
+                              Y: =26
+                        - Button5_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(255, 255, 255, 0)
+                              Font: =Font.'Open Sans'
+                              Height: =170
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =RGBA(255, 255, 255, 0.75)
+                              OnSelect: |-
+                                =Launch("https://dvagov.sharepoint.com/sites/HinesEmployeeEngagementandWholeHealth/", {}, LaunchTarget.New);
+                                //Navigate(CONSTRUCTION_Screen, BorderStyle.None)
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Text: =""
+                              Width: =634
+                        - Image6_7:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Height: =170
+                              Image: =stamp_WholeHealth_CircleOfLife
+                              Width: =169 - 6
+                              X: =6
+                              Y: |+
+                                =-5
+                  - About_FluidGrid_StarfishAward_Container:
+                      Control: GroupContainer@1.4.0
+                      Variant: ManualLayout
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        BorderThickness: =5
+                        DropShadow: =DropShadow.None
+                        Fill: |+
+                          =About_Toolbar_Tab_HRO_Button.Fill
+                        Height: =170
+                        RadiusBottomLeft: =25
+                        RadiusBottomRight: =25
+                        RadiusTopLeft: =25
+                        RadiusTopRight: =25
+                        Width: |+
+                          =Parent.Width - 6
+                        X: =3
+                        Y: =About_FluidGrid_Awards_Container.Y + Self.Height + 6
+                      Children:
+                        - Image6_2:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              BorderThickness: =3
+                              Fill: =RGBA(255, 255, 255, 1)
+                              Height: =140
+                              Image: =
+                              ImagePosition: =ImagePosition.Fill
+                              RadiusBottomLeft: =50
+                              RadiusBottomRight: =50
+                              RadiusTopLeft: =50
+                              RadiusTopRight: =50
+                              Width: =135
+                              X: =20
+                              Y: =16
+                        - Label1_2:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =95
+                              Size: =32
+                              Text: ="More info about I*CARE VALUES"
+                              Width: =425
+                              X: =189
+                              Y: =38
+                        - Button5_2:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(255, 255, 255, 0)
+                              Font: =Font.'Open Sans'
+                              Height: =170
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =RGBA(255, 255, 255, 0.75)
+                              OnSelect: |-
+                                =Launch("https://department.va.gov/icare/", {}, LaunchTarget.New);
+                                //Navigate(CONSTRUCTION_Screen, BorderStyle.None)
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Text: =""
+                              Width: =634
+                        - Image6_8:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Height: =140 * .90
+                              Image: ='logo_ICARE-noBackground'
+                              Width: =135 * .90
+                              X: =26
+                              Y: =12
+                  - About_FluidGrid_HRO_Container:
+                      Control: GroupContainer@1.4.0
+                      Variant: ManualLayout
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        BorderThickness: =5
+                        DropShadow: =DropShadow.None
+                        Fill: |+
+                          =About_Toolbar_Tab_HinesHero_Button.Fill
+                        Height: =170
+                        RadiusBottomLeft: =25
+                        RadiusBottomRight: =25
+                        RadiusTopLeft: =25
+                        RadiusTopRight: =25
+                        Width: |+
+                          =Parent.Width - 6
+                        X: =3
+                        Y: =About_FluidGrid_StarfishAward_Container.Y + Self.Height + 6
+                      Children:
+                        - Image6_3:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              BorderThickness: =3
+                              Fill: =RGBA(255, 255, 255, 1)
+                              Height: =140
+                              Image: =
+                              ImagePosition: =ImagePosition.Fill
+                              RadiusBottomLeft: =50
+                              RadiusBottomRight: =50
+                              RadiusTopLeft: =50
+                              RadiusTopRight: =50
+                              Width: =135
+                              X: =20
+                              Y: =16
+                        - Label1_3:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Bold
+                              Height: =118
+                              Size: =32
+                              Text: ="More info about High Reliability"
+                              Width: =425
+                              X: =187
+                              Y: =26
+                        - Button5_3:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(255, 255, 255, 0)
+                              Font: =Font.'Open Sans'
+                              Height: =170
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =RGBA(255, 255, 255, 0.75)
+                              OnSelect: =Launch("https://dvagov.sharepoint.com/sites/VHAHINHRO/SitePages/Home.aspx", {}, LaunchTarget.New);
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              Text: =""
+                              Width: =634
+                        - Image6_9:
+                            Control: Image@2.2.3
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Height: =140 * .9
+                              Image: ='icon_HRO-Pillars'
+                              Width: =135 * .9
+                              X: =26
+                              Y: =23
+      - About_BottomButton_Help/About_Container:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            BorderThickness: =2
+            DropShadow: =DropShadow.None
+            Fill: |+
+              =About_Toolbar_Tab_About_Button.Fill
+            Height: =170
+            RadiusBottomLeft: =10
+            RadiusBottomRight: =10
+            RadiusTopLeft: =10
+            RadiusTopRight: =10
+            Width: =Parent.Width
+            Y: =966
+          Children:
+            - Image6_5:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  BorderThickness: =3
+                  Height: =140
+                  Image: =AboutInco
+                  ImagePosition: =ImagePosition.Fill
+                  RadiusBottomLeft: =50
+                  RadiusBottomRight: =50
+                  RadiusTopLeft: =50
+                  RadiusTopRight: =50
+                  Width: =135
+                  X: =20
+                  Y: =16
+            - Label1_6:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Color: =RGBA(255, 255, 255, 1)
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Bold
+                  Height: =95
+                  Size: =32
+                  Text: |-
+                    ="App Info Details &
+                    Contact Developer"
+                  Width: =425
+                  X: =189
+                  Y: =38
+            - Button5_4:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  BorderThickness: =0
+                  Color: =RGBA(255, 255, 255, 1)
+                  DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                  Fill: =RGBA(255, 255, 255, 0)
+                  Font: =Font.'Open Sans'
+                  Height: =170
+                  HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(255, 255, 255, 0.75)
+                  OnSelect: =Set(var_PopUP_About, 1);
+                  PressedBorderColor: =Self.Fill
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  Text: =""
+                  Width: =640
+      - About_PopUP_AppInfo&DevOps_Container:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            BorderColor: =RGBA(9, 33, 98, 1)
+            DropShadow: =DropShadow.None
+            Height: =Parent.Height
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Visible: =var_PopUP_About>0
+            Width: =Parent.Width
+          Children:
+            - Starfish_Submission_PopUP_Background_5:
+                Control: Classic/Button@2.2.0
+                Properties:
+                  AutoDisableOnSelect: =false
+                  BorderColor: =ColorFade(Self.Fill, -15%)
+                  Color: =RGBA(128, 128, 128, 90)
+                  DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                  DisplayMode: =DisplayMode.View
+                  Fill: =RGBA(128, 128, 128, .90)
+                  Font: =Font.'Open Sans'
+                  Height: =Parent.Height
+                  HoverBorderColor: =
+                  HoverColor: =RGBA(255, 255, 255, 1)
+                  HoverFill: =RGBA(0, 0, 0, 0)
+                  PressedBorderColor: =
+                  PressedColor: =Self.Fill
+                  PressedFill: =Self.Color
+                  Visible: =Parent.Visible
+                  Width: =Parent.Width
+            - About_AppInfo&DevOps_Secondary_Container:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =10
+                  DropShadow: =DropShadow.None
+                  Height: =Parent.Height - 300
+                  RadiusBottomLeft: =100
+                  RadiusBottomRight: =100
+                  RadiusTopLeft: =100
+                  RadiusTopRight: =100
+                  Visible: =Parent.Visible
+                  Width: =Parent.Width - 40
+                  X: =(Parent.Width / 2) - (Self.Width / 2)
+                  Y: =(Parent.Height / 2) - (Self.Height / 2)
+                Children:
+                  - About_PopUP_AppInfo&DevOps_Background_Shape:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        AutoDisableOnSelect: =false
+                        BorderColor: =RGBA(9, 33, 98, 1)
+                        BorderThickness: =0
+                        Color: =RGBA(128, 128, 128, 90)
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisplayMode: =DisplayMode.View
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =Parent.Height
+                        HoverBorderColor: =
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        PressedBorderColor: =
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        RadiusBottomLeft: =100
+                        RadiusBottomRight: =100
+                        RadiusTopLeft: =100
+                        RadiusTopRight: =100
+                        Text: =
+                        Visible: =Parent.Visible
+                        Width: =Parent.Width
+                        X: =Parent.Width - Self.Width
+                  - Label2_3:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =40
+                        OnSelect: =Launch("https://github.com/KCoderVA/Employee-Recognition-App/issues", {}, LaunchTarget.New)
+                        Size: =16
+                        Text: |+
+                          =Concatenate("Publication Date:  ", gbl_appVersionDateTime, "    ", "Version: ",  gbl_appVersionNumber)
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =Parent.Width
+                        X: =(Parent.Width / 2) - (Self.Width / 2)
+                        Y: =Parent.Height - Self.Height - 15
+                  - About_PopUP_ReportBug_Button:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(9, 33, 98, 1)
+                        BorderThickness: =10
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: |
+                          =About_Toolbar_Tab_MyAwards_Button.Fill
+                        Font: =Font.'Open Sans'
+                        Height: =145
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: |-
+                          =Launch("https://github.com/KCoderVA/Employee-Recognition-App/issues", {}, LaunchTarget.New)
+                          //Launch("mailto:kyle.coder@va.gov?subject=%5BATTENTION!%5D%20I%20found%20a%20bug%20or%20had%20an%20issue%20with%20your%20'578%20Employee%20Recognition%20App'&body=While%20using%20the%20'578%20Employee%20Recognition%20App'%20(web%20URL%3A%20https%3A%2F%2Fmake.gov.powerapps.us%2Fenvironments%2FDefault-e95f1b23-abaf-45ee-821d-b7ab251ab3bf%2Fapps%2Ff14182d6-e4ef-42bf-8dd2-0a628377cb77%2Fdetails)%2C%20I%20have%20experienced%20a%20problem%20or%20error%20that%20needs%20to%20be%20escalated%20to%20the%20application%20developers%3A%0A%0A%0A%0A%5BENTER%20FREE%20TEXT%20DESCRIPTION%20HERE%20%26%20PLEASE%20INCLUDE%20ANY%20SCREENSHOTS%20OR%20DETAILS%20THE%20DEVELOPERS%20CAN%20USE%20TO%20RECREATE%20YOUR%20ISSUE%5D", {}, LaunchTarget.New)
+                        PaddingBottom: =0
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =0
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        RadiusBottomLeft: =30
+                        RadiusBottomRight: =30
+                        RadiusTopLeft: =30
+                        RadiusTopRight: =30
+                        Text: |-
+                          ="Report a bug or problem to
+                          the app admins"
+                        Width: =275
+                        X: =15
+                        Y: =Parent.Height - Self.Height - 60
+                  - About_PopUP_LeaveReview_Button:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(9, 33, 98, 1)
+                        BorderThickness: =10
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: |
+                          =About_Toolbar_Tab_MyAwards_Button.Fill
+                        Font: =Font.'Open Sans'
+                        Height: =145
+                        HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                        HoverColor: =RGBA(255, 255, 255, 1)
+                        HoverFill: =ColorFade(RGBA(56, 96, 178, 1), -20%)
+                        OnSelect: =Launch("https://forms.office.com/Pages/ResponsePage.aspx?id=Ixtf6a-r7kWCHberJRqzv12bT-wk_m9GpK8NAw7cP5BUNElaTkhIVkFPT0kxRDFMRk1KVzVIOFI3Uy4u", {}, LaunchTarget.New)
+                        PaddingBottom: =0
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =0
+                        PressedBorderColor: =Self.Fill
+                        PressedColor: =Self.Fill
+                        PressedFill: =Self.Color
+                        RadiusBottomLeft: =30
+                        RadiusBottomRight: =30
+                        RadiusTopLeft: =30
+                        RadiusTopRight: =30
+                        Text: ="Leave a review or give feedback about this app"
+                        Width: =275
+                        X: =Parent.Width - Self.Width - 15
+                        Y: =Parent.Height - Self.Height - 60
+                  - Label2_4:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        AutoHeight: =true
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =50
+                        Size: =20
+                        Text: ="Please use the buttons below to provide the app creators with feedback and suggestions, or to report any bugs/issues:"
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =HtmlText2.Width
+                        X: =HtmlText2.X
+                        Y: =About_PopUP_ReportBug_Button.Y - Self.Height - 5
+                  - HtmlText2:
+                      Control: HtmlViewer@2.1.0
+                      Properties:
+                        AutoHeight: =true
+                        Font: =Font.'Open Sans'
+                        HtmlText: |-
+                          =Concatenate(
+                              "This application was
+                              <br>developed, tested, and published by the <br>",
+                              "<b>Advanced Analytics Team</b>",
+                              " within the ",
+                              "<i>Clinical Informatics/Health Informatics (CI/HI)</i>",
+                              " service at the ",
+                              "<br><b>Edward Hines Jr. VA Hospital</b> (578/VISN12)."
+                          )
+                        Size: =27
+                        Width: =Parent.Width - 20
+                        X: =10
+                        Y: =50
+                  - About_AppInfo&DevOps_Close_Container:
+                      Control: GroupContainer@1.4.0
+                      Variant: ManualLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Height: ='About_AppInfo&DevOps_Close_Button'.Height
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Width: ='About_AppInfo&DevOps_Close_Button'.Width
+                        X: =Parent.Width - Self.Width
+                      Children:
+                        - About_AppInfo&DevOps_Close_Background:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(9, 33, 98, 1)
+                              BorderThickness: =10
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: |
+                                =About_Toolbar_Tab_MyAwards_Button.Fill
+                              Font: =Font.'Open Sans'
+                              Height: =80
+                              HoverBorderColor: =ColorFade(Self.Color, 20%)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =ColorFade(Self.BorderColor, 20%)
+                              OnSelect: =
+                              PaddingBottom: =0
+                              PaddingTop: =0
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              RadiusBottomLeft: =100
+                              RadiusBottomRight: =100
+                              RadiusTopLeft: =100
+                              RadiusTopRight: =100
+                              Text: =""
+                              Width: =84
+                              X: =(Parent.Width / 2) - (Self.Width /2)
+                              Y: =(Parent.Height / 2) - (Self.Height /2)
+                        - About_AppInfo&DevOps_Close_Icon:
+                            Control: Classic/Icon@2.5.0
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Color: =RGBA(255, 255, 255, 1)
+                              Height: =60
+                              HoverBorderColor: =
+                              HoverColor: =
+                              HoverFill: =ColorFade(Self.BorderColor, 20%)
+                              Icon: =Icon.CancelBadge
+                              OnSelect: =
+                              Width: =63
+                              X: =(Parent.Width / 2) - (Self.Width /2)
+                              Y: =(Parent.Height / 2) - (Self.Height /2)
+                        - About_AppInfo&DevOps_Close_Button:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =ColorFade(Self.Fill, -15%)
+                              BorderThickness: =0
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                              Fill: =RGBA(255, 255, 255, 0)
+                              Font: =Font.'Open Sans'
+                              Height: =125
+                              HoverBorderColor: =ColorFade(Self.BorderColor, 20%)
+                              HoverColor: =
+                              HoverFill: =ColorFade(Self.BorderColor, 20%)
+                              OnSelect: =Set(var_PopUP_About, 0);
+                              PressedBorderColor: =Self.Fill
+                              PressedColor: =Self.Fill
+                              PressedFill: =Self.Color
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Text: =
+                              Width: =144
